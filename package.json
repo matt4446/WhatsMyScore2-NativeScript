@@ -1,0 +1,13 @@
+{
+	"nativescript": {
+		"id": "whatsmyscore.breakoutdeveloper.com",
+		"tns-android": {
+			"version": "1.5.1"
+		}
+	},
+	"dependencies": {
+		"tns-core-modules": "1.5.1",
+        "nativescript-angular": "~0.0.20",
+        "nativescript-dev-typescript": "~0.2.3"
+	}
+}
