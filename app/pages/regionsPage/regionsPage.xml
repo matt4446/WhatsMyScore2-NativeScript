@@ -1,5 +1,4 @@
-<Page xmlns="http://www.nativescript.org/tns.xsd" loaded="pageLoaded">
-  <StackLayout>
+
+<StackLayout>
     <Label text="regions page..." cssClass="title"/>
-  </StackLayout>
-</Page>
+</StackLayout>

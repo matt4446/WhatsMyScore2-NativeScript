@@ -1,23 +1,16 @@
 import 'reflect-metadata';
-import {Component} from 'angular2/core';
 import {TextView} from 'ui/text-view';
 import {topmost} from 'ui/frame';
 import {nativeScriptBootstrap} from 'nativescript-angular/application';
+import {Component} from 'angular2/core';
 
-//import { StartPage } from "../startPage/startPage";
-
-
+//using html to avoid compile warning where it checks the xml files 
 @Component({
-    selector: "main",
-    template:  `
-<StackLayout orientation='vertical'>
-    <Label [text]='message' class='title' (tap)='message = "OHAI"'></Label>
-</StackLayout>
-`
+	selector: 'main',
+	templateUrl: "pages/mainPage/main.html"
 })
-export class MainPage
-{
-    public Message: string = "Hi";
+class MainPage {
+    public message: string = "Hello, Angular!";
 }
 
 export function pageLoaded(args) {
@@ -25,7 +18,6 @@ export function pageLoaded(args) {
     page.bindingContext = "";
 
     console.log('BOOTSTRAPPING...');
-
     nativeScriptBootstrap(MainPage, []).then((appRef) => {
         console.log('ANGULAR BOOTSTRAP DONE.');
     }, (err) =>{
