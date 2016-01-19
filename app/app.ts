@@ -2,17 +2,9 @@ import frame = require("ui/frame");
 import application = require("application");
 
 if(application.android) {
-    application.onLaunch = function (intent) {
-        console.log("onLaunch");
-        
-        application.android.onActivityStarted = function (activity) {
-            console.log("onStarted");
-            var window = activity.getWindow();
-            if (window) {
-                window.setBackgroundDrawable(null);
-            }
-        }
-    }
+    application.onLaunch = () => {
+        console.log("Whats My Score - onLaunch");
+    };
 }
 
 if (application.ios) {
@@ -25,6 +17,10 @@ if (application.ios) {
     });
 }
 
-application.mainModule = "pages/startPage";
-// application.mainModule = "profile-main";
+application.onUncaughtError = (error) => {
+    console.error(error.message);
+    console.error(error.nativeError);
+};
+application.mainModule = "pages/mainPage/mainPage";
+application.cssFile = "./app.css";
 application.start();

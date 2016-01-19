@@ -1,13 +1,21 @@
 {
     "compilerOptions": {
-        "module": "commonjs",
         "target": "es5",
-        "inlineSourceMap": true,
+        "module": "commonjs",
+        "noEmitOnError": false,
+        "rootDir": ".",
+        "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
-        "noEmitHelpers": true
+        "sourceMap": true,
+        "sourceRoot": "",
+        "inlineSourceMap": true
     },
-    "exclude": [
-        "node_modules",
-        "platforms"
+    "files": [
+        "app/app.ts" ,
+        "app/pages/mainPage/mainPage.ts"       
+    ],
+    "filesGlob": [
+        "node_modules/tns-core-modules/tns-core-modules.d.ts",
+        "app/**/*.ts"
     ]
 }
