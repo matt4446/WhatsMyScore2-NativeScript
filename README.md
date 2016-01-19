@@ -4,7 +4,7 @@ What's My Score App built with NativeScript + Angular 2 + TypeScript
 ## Progress
 - Building. 
 - "ANGULAR BOOTSTRAP DONE".
-- No content ? 
+- Runs similar to hello world demo 
 
 ## To-do: 
 1. create the project equal to  [the ionic version](https://github.com/matt4446/WhatsMyScore2-Ionic2) 
