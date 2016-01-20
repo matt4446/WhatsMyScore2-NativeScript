@@ -7,15 +7,16 @@
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
         "sourceMap": true,
-        "sourceRoot": "",
         "inlineSourceMap": true
     },
     "files": [
-        "app/app.ts" ,
-        "app/pages/mainPage/mainPage.ts"       
+        "typings/tsd.d.ts",
+        "app/decorators/app.ts",
+        "app/decorators/page.ts",
+        "app/app.ts",
+        "app/mainPage.ts"
     ],
-    "filesGlob": [
-        "node_modules/tns-core-modules/tns-core-modules.d.ts",
-        "app/**/*.ts"
-    ]
+    "atom": {
+        "rewriteTsconfig": true
+    }
 }
