@@ -22,11 +22,14 @@ export class RegionsPage
     public back(): void 
     {
         this.logger.Notify("regions - page - back pressed");
+        //todo- back pressed
+        this.router.navigate(["Start"])
     }
     
     public start() : void
     {
         this.logger.Notify("regions - page - start pressed");
+        this.router.navigate(["Start"])
     }
     //search will be different to the ionic project:
     //https://github.com/NativeScript/nativescript-angular/issues/27
