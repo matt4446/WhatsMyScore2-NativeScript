@@ -13,10 +13,8 @@
         "typings/tsd.d.ts",
         "app/decorators/app.ts",
         "app/decorators/page.ts",
+        "app/decorators/control.ts",
         "app/app.ts",
         "app/mainPage.ts"
-    ],
-    "atom": {
-        "rewriteTsconfig": true
-    }
+    ]
 }

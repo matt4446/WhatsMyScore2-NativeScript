@@ -1,6 +1,4 @@
 import {Component} from 'angular2/core';
-import {bootstrap} from 'angular2/platform/browser';
-import {nativeScriptBootstrap} from 'nativescript-angular/application';
 import {RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, LocationStrategy} from "angular2/router";
 
 const _reflect: any=Reflect;
@@ -13,6 +11,7 @@ export function App(config: any={}) {
 
     config.selector = 'main';
     config.template = "<router-outlet></router-outlet>";
+    
     
     config.directives = config.directives ? config.directives.concat(ROUTER_DIRECTIVES) : ROUTER_DIRECTIVES;
     //config.directives = [ROUTER_DIRECTIVES];

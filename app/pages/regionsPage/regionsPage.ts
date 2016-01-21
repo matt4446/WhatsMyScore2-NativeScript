@@ -2,10 +2,12 @@ import {Component} from 'angular2/core';
 import {Page} from "../../decorators/page";
 import {Logger} from "../../providers/logger";
 import {Router} from "angular2/router";
+import {SearchList, ISearchEvent} from "../../controls/searchList/searchList";
 
 @Page({
     selector: "regions",
-    templateUrl: "pages/regionsPage/regionsPage.html"
+    templateUrl: "pages/regionsPage/regionsPage.html",
+    directives: [SearchList] //<-- Search list directive added here
 })
 export class RegionsPage 
 {
@@ -31,6 +33,17 @@ export class RegionsPage
         this.logger.Notify("regions - page - start pressed");
         this.router.navigate(["Start"])
     }
+    
+    //passed to the child component
+    public regionsHintText = "Hi from regions";
+    
+    //action to 
+    public regionSearch($event : any)
+    {
+        this.logger.Notify("Search passed to region");
+        this.logger.Notify($event);
+        //this.logger.Notify("Search Term in Regions Page: " + $event.Value);
+    } 
     //search will be different to the ionic project:
     //https://github.com/NativeScript/nativescript-angular/issues/27
 }
