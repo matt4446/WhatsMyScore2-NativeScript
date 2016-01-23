@@ -5,6 +5,7 @@ import { Observable } from "data/observable";
 //var observable = require("data/observable");
 import { SearchBar } from "ui/search-bar"
 
+//http://stackoverflow.com/questions/32568808/angular2-root-component-with-ng-content
 @Control({
     selector: "search-list",
     templateUrl: "controls/searchList/searchList.html",

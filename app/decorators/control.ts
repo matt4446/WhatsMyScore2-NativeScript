@@ -19,6 +19,10 @@ export interface IPageConfig {
     providers?: any[];
     inputs?: any[];
     outputs?: any[];
+    
+    host?: {
+        'class' : string 
+    }
 }
 
 export function Control(config: IPageConfig={})

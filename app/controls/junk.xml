@@ -1,7 +1,0 @@
-<Page xmlns="http://schemas.nativescript.org/tns.xsd">
-  <StackLayout>
-    <Label text="Loading..." cssClass="title"/>
-     <SearchBar id="searchBar" hint="Search" clear="onClear" submit="onSubmit" ></SearchBar>
-     
-  </StackLayout>
-</Page>

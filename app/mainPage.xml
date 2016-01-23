@@ -1,5 +1,5 @@
 <Page 
-    xmlns="http://schemas.nativescript.org/tns.xsd" loaded="pageLoadedBindAngular">
+    xmlns="http://schemas.nativescript.org/tns.xsd" loaded="pageLoadedBindAngular" actionBarHidden="true">
     <StackLayout>
         <Label text="Loading..." cssClass="title"/>
     </StackLayout>

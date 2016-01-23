@@ -37,14 +37,20 @@ export class MainPage {
     }
 }
 
+var bootstrapPromise; 
+
 export function pageLoadedBindAngular(args) {
     var page = args.object;
     page.bindingContext = "";
 
-    console.log('BOOTSTRAPPING...');
-    var promise = nativeScriptBootstrap(MainPage, [
-        ROUTER_PROVIDERS,
-        bind(LocationStrategy).toClass(NSLocationStrategy), //https://github.com/NativeScript/sample-Groceries/blob/710de30fdfe8640cabb489fb64ac02c1af894926/app/app-page.ts
-        provide(APP_BASE_HREF, {useValue : '/'})
-    ]);
+    if(!bootstrapPromise){
+        console.log('BOOTSTRAPPING...');
+        var promise = nativeScriptBootstrap(MainPage, [
+            ROUTER_PROVIDERS,
+            bind(LocationStrategy).toClass(NSLocationStrategy), //https://github.com/NativeScript/sample-Groceries/blob/710de30fdfe8640cabb489fb64ac02c1af894926/app/app-page.ts
+            provide(APP_BASE_HREF, {useValue : '/'})
+        ]);
+    }
+    
+    bootstrapPromise = promise
 }

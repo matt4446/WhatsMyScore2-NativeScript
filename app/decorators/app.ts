@@ -10,15 +10,16 @@ export function App(config: any={}) {
     let annotations = _reflect.getMetadata('annotations', cls) || [];
 
     config.selector = 'main';
+    //config.template = "<nav></nav><router-outlet></router-outlet>";
     config.template = "<router-outlet></router-outlet>";
     
     
-    config.directives = config.directives ? config.directives.concat(ROUTER_DIRECTIVES) : ROUTER_DIRECTIVES;
-    //config.directives = [ROUTER_DIRECTIVES];
-    // create @Component
+    config.directives = config.directives 
+        ? config.directives.concat(ROUTER_DIRECTIVES) 
+        : ROUTER_DIRECTIVES;
+
     annotations.push(new Component(config));
 
-    // redefine with added annotations
     _reflect.defineMetadata('annotations', annotations, cls);
 
     return cls;

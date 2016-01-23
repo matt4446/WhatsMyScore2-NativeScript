@@ -1,6 +1,15 @@
 <Page xmlns="http://schemas.nativescript.org/tns.xsd" [loaded]="pageLoaded()">
-    <StackLayout>
+    <StackLayout cssClass="inset">
         <Label text="Start" class="title"></Label>
-        <button (tap)="loadRegions()" text="regions"></button>
+        <!--<button (tap)="loadRegions()" text="regions"></button>-->
     </StackLayout>
+    
+    <nx-list>
+        <nx-list-item>
+            <button (tap)="loadRegions()" text="regions"></button>
+        </nx-list-item>
+        <nx-list-item>
+            <button (tap)="loadRegions()" text="regions 2"></button>
+        </nx-list-item>
+    </nx-list>
 </Page>

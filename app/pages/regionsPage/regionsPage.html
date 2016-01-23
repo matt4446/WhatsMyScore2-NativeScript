@@ -1,10 +1,10 @@
 <Page xmlns="http://schemas.nativescript.org/tns.xsd" [loaded]="pageLoaded()">
     <StackLayout>
         <Label text="regions page..." cssClass="title"></Label>
-        
-        <!-- See: app/controls/searchList/searchList --> 
+
+        <!-- See: app/controls/searchList/searchList -->
         <search-list [HintText]="regionsHintText" (OnSearch)="regionSearch($event)"></search-list>
-        
+
         <button (tap)="back()" text="back"></button>
         <button (tap)="start()" text="start"></button>
     </StackLayout>

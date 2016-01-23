@@ -11,14 +11,22 @@ import {SearchList, ISearchEvent} from "../../controls/searchList/searchList";
 })
 export class RegionsPage 
 {
-    constructor(private logger: Logger, private router: Router)
+    constructor(
+        private logger: Logger, 
+        private router: Router)
     {
         this.logger.Notify("Regions page started");
     }
     
-    public pageLoaded(): void {
+    public pageLoaded(args:any): void {
         this.logger.Notify("regions page - loaded");
         console.log("regions page - loaded - i happen alot?");
+        
+        //var page = <pages.Page>args.object;
+        var page = args.object;
+        page.animate({
+            translate: { x: 30, y:0 }
+        });
     }
     
     public back(): void 
