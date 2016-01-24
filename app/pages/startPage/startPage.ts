@@ -50,6 +50,8 @@ export class StartPage
             this.logger.Notify("I failed navigating from start -> regions");
         });
     }
+    
+    
 }
 
 

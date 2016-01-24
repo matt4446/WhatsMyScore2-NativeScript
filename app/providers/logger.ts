@@ -1,5 +1,7 @@
 //import {Injectable} from 'angular2/core';
 import {Observable, Subscription, Subject} from 'rxjs/Rx';
+import {Http, Response} from "angular2/http";
+
 //@Injectable()
 export class Logger
 {
@@ -21,5 +23,13 @@ export class Logger
     public Notify(message: string)
     {
         this.distinctLog.next(message);
+    }
+    
+    public NotifyResponse(requestObservable: Observable<Response>)
+    {
+        var subscription = requestObservable.subscribe(response => {
+            this.Notify("response:");
+            this.Notify(response.text());
+        });
     }
 } 

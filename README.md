@@ -1,6 +1,10 @@
 # WhatsMyScore2 - NativeScript
 What's My Score App built with NativeScript + Angular 2 + TypeScript 
 
+## Getting Started
+Make sure you have all the tools to run [NativeScript](http://docs.nativescript.org/start/getting-started) 
+
+
 ## To-do: 
 1. create the project equal to  [the ionic version](https://github.com/matt4446/WhatsMyScore2-Ionic2) 
     - Start page - *Started*
@@ -25,7 +29,7 @@ What's My Score App built with NativeScript + Angular 2 + TypeScript
 - "ANGULAR BOOTSTRAP DONE".
 - Some sort of routing done. 
 
-## Genymotion
+### Genymotion
 This project is using [Genymotion](https://www.genymotion.com/#!/) and an old HTC Android device to test with. Test it as you will. 
 
   

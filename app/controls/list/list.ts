@@ -31,9 +31,25 @@ export class NxList {
         }
     }   
     
+    //this should give me a list of shadow elements in ng-content
     @ContentChildren(NxListItem)
-    set _listItems(items){
-        this.logger.Notify("Setting a list item");
+    set _listItems(items: any){
+        this.logger.Notify("Setting list item nodes");
+        var children: Array<NxListItem> = items.toArray();
+        this.logger.Notify("" + children.length);
+        //these items will be wrapped in a stack panel.
+        // children.forEach((item : NxListItem) => {
+        //     var stackPanel = item.Element;
+        //     stackPanel.animate({
+        //         opacity: 1,
+        //         duration: 3000,
+        //         translate: {
+        //             x : 10,
+        //             y: 0
+        //         }
+        //     })
+        // });
+        
     }
 }
 

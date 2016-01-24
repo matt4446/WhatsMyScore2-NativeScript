@@ -3,8 +3,17 @@
         <Label text="regions page..." cssClass="title"></Label>
 
         <!-- See: app/controls/searchList/searchList -->
+        <!--
         <search-list [HintText]="regionsHintText" (OnSearch)="regionSearch($event)"></search-list>
-
+        -->
+        <!-- *ngFor="#item of list" -->
+        <nx-list>
+            <!--<nx-list-item *ngFor="#item of list">
+                <region-item [Item]='item'></region-item>
+            </nx-list-item>-->
+        </nx-list>
+        
+        
         <button (tap)="back()" text="back"></button>
         <button (tap)="start()" text="start"></button>
     </StackLayout>

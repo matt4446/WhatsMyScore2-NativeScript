@@ -14,6 +14,7 @@ import { RegionPage } from "./pages/regionPage/regionPage";
 //providers 
 import {Logger} from                "./providers/logger";
 import {NSLocationStrategy} from    "./ns-location-strategy";
+import {HTTP_PROVIDERS} from        'angular2/http';
 
 //routing
 import {APP_BASE_HREF, RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, LocationStrategy} from "angular2/router";
@@ -23,7 +24,7 @@ import {APP_BASE_HREF, RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, Locatio
 //page decorator - save some code writing. Wrapper around @Component
 @App({
     selector: "main",
-    providers: [Logger],
+    providers: [Logger, HTTP_PROVIDERS],
 })
 @RouteConfig([
     { path: "/", component: StartPage, as: "Start" },
