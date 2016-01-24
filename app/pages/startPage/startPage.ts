@@ -9,11 +9,6 @@ import {NxListItem} from "../../controls/list/list-item"
 
 import pages = require("ui/page");
 
-
-// @Component({
-//     selector: "startPage",
-//     templateUrl: "startPage.xml"
-// })
 @Page({
     selector: "start",
     directives: [NxList, NxListItem],

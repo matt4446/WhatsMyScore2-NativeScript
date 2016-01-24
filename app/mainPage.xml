@@ -1,6 +1,11 @@
 <Page 
-    xmlns="http://schemas.nativescript.org/tns.xsd" loaded="pageLoadedBindAngular" actionBarHidden="true">
+    xmlns="http://schemas.nativescript.org/tns.xsd" 
+     actionBarHidden="true">
+     <!-- removed page load (and ng bootstrap) to test icons  -->
     <StackLayout>
         <Label text="Loading..." cssClass="title"/>
+        <Label text="&#xf100; ionic icon" class="ion-icon" />
+        <Label text="&#xf0f9; font awesome icon" class="fa" />
+        <Button text="&#xf117; material icon" class="material-icon"/>
     </StackLayout>
 </Page>

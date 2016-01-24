@@ -1,22 +1,47 @@
 ﻿/* colours */
+@primary : #387ef5;
+@primary-background : @primary;
+@primary-text: #FFF;
 
-@import 'theme/colors';
-@import 'theme/padding';
-
+@default-padding : 16;
+@default-margin: 16;
 /* font */
-@default-font-size: 20;
-
+@font-size-default: 20;
+@font-size-h1: 36;
 /* elements */
 
+.ion-icon {
+    font-family: "Ionicons";
+}
+.fa {
+    font-family: "FontAwesome";
+}
+
+.material-icon {
+   font-family: 'Material-Design-Iconic-Font';
+}
 
 button {
-    font-size: @default-font-size;
+    font-size: @font-size-default;
     background-color: #387ef5;
     color: @primary-text
 }
 
-.item-list {
-    margin-bottom: @default-margin;
+.nx-header{
+    font-size: @font-size-h1;
+}
+
+.nx-list {
+    padding-bottom: @default-padding;
+    padding-top: 0;
+}
+
+.nx-item {
+    border-bottom: 1;
+    border-color: #c8c7cc;
+    border-style: solid;
+    padding-top: @default-padding;
+    padding-bottom: @default-padding;
 }
 
 .inset {
@@ -24,7 +49,7 @@ button {
 }
 
 .item-button {
-    font-size: @default-font-size;
-    background-color: #000;
+    font-size: @font-size-default;
+    background-color: #c8c7cc;
     color: @primary-text
 }

@@ -4,6 +4,8 @@ What's My Score App built with NativeScript + Angular 2 + TypeScript
 ## Getting Started
 Make sure you have all the tools to run [NativeScript](http://docs.nativescript.org/start/getting-started) 
 
+## What am I up to. 
+I could build it up in a rush with the current components but that would'nt really domonstrate angular2.
 
 ## To-do: 
 1. create the project equal to  [the ionic version](https://github.com/matt4446/WhatsMyScore2-Ionic2) 

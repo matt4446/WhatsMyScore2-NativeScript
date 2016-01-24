@@ -21,7 +21,7 @@ export interface IPageConfig {
     outputs?: any[];
     
     host?: {
-        'class' : string 
+        'cssClass' : string 
     }
 }
 

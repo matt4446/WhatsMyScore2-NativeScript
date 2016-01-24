@@ -1,26 +1,46 @@
 import { Control } from "../../decorators/control";
-import { Input, Output, EventEmitter, ContentChildren, ViewChild } from "angular2/core";
+import { Input, Output, EventEmitter, ContentChildren,ContentChild, ViewChild,TemplateRef } from "angular2/core";
 import { Logger } from "../../providers/logger";
 import { StackLayout, Button } from "ui"
 
 @Control({
     selector:"nx-list-item",
     template: `
-    <StackLayout>
-        <label text="list item added"></label>
-        <ng-content></ng-content>
-    </StackLayout>
+    
+    <GridLayout columns="auto, auto, auto" 
+        rows="auto" cssClass='nx-item' >
+        <StackLayout col="0">
+            <ng-content select="[item-left]"></ng-content>
+        </StackLayout>
+        <StackLayout col="1">
+            <ng-content></ng-content>
+        </StackLayout>
+        <StackLayout col="2">
+            <ng-content select="[item-right]"></ng-content>
+        </StackLayout>
+    </GridLayout>
     `,
-    providers: [],
-    host:{
-        "class" : "item"
-    }
+    providers: []
 })
 export class NxListItem {
+    private template: TemplateRef;
+    
     constructor(private logger:Logger){
         this.logger.Notify("nx-item added");
     }
     
+    @ContentChild(TemplateRef) 
+    set Child(template: TemplateRef){
+        this.logger.Notify("Tempalte");
+        let stackLayout: StackLayout = template.elementRef.nativeElement;
+        
+        stackLayout.animate({
+            translate: {
+                x : 10,
+                y : 0
+            }
+        });
+    }
 
     @ViewChild(StackLayout)
     set Element(stackItem : StackLayout) {

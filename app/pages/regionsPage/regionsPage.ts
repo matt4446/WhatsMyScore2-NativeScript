@@ -82,7 +82,7 @@ export class RegionsPage
                 this.logger.Notify("items available:" + items.length);
             });
             
-            response.map(r => r.text())
+        response.map(r => r.text())
             .subscribe((result) => {
                 this.logger.Notify("items loaded");
                 this.logger.Notify(result);

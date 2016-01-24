@@ -2,18 +2,18 @@ import { Control } from "../../decorators/control";
 import { Input, Output, EventEmitter, ContentChildren } from "angular2/core";
 import { Logger } from "../../providers/logger";
 import { NxListItem } from "./list-item";
+import { NxHeader } from "./header";
 //var observable = require("data/observable");
 
 @Control({
     selector: "nx-list",
     //templateUrl: "controls/list/list.html",
     template:`
-    <StackLayout>
-        <label text='list'></label>
+    <StackLayout cssClass='nx-list'>
         <ng-content></ng-content>
     </StackLayout>
     `,
-    directives: [ NxListItem ],
+    directives: [ NxListItem, NxHeader ],
     inputs:["padding"]
 })
 export class NxList {

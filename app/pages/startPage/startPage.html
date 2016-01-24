@@ -5,18 +5,29 @@
     
     
     <nx-list>
+        <nx-header>
+            Start
+        </nx-header>
         <nx-list-item>
+            <label item-left class="icon" text="&#xf393;" ></label>
+
             <button (tap)="loadRegions()" text="Leagues & Regions">
                 
             </button>
-            <label class="note" text="BUCS, SUTL ..." ></label>
+            <label item-right class="note" text="BUCS, SUTL ..." ></label>
         </nx-list-item>
         <nx-list-item>
-            <button (tap)="loadRegions()" text="regions 2"></button>
+            <label item-right cssclass="fa"  text="&#xf1e0;right test ..." ></label>
+        </nx-list-item>
+        <nx-list-item>
+            <label item-right cssclass="fa" text="&#xf1e0;left test ..." ></label>
         </nx-list-item>
     </nx-list>
     
     <nx-list>
+        <nx-header>
+            Search
+        </nx-header>
         <nx-list-item>
             <button text="Competitions"></button>
         </nx-list-item>

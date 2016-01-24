@@ -25,7 +25,7 @@ module.exports = function (grunt) {
     grunt.initConfig({
         ts: {
             build: {
-                tsconfig: './app/tsconfig.json',
+                tsconfig: './tsconfig.json',
                 options: {
                     fast: "never",
                     compiler: "node_modules/typescript/bin/tsc"

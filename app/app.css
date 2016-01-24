@@ -1,17 +1,39 @@
 /* colours */
-/* padding */
 /* font */
 /* elements */
-.inset {
-  padding: 16;
+.ion-icon {
+  font-family: "Ionicons";
+}
+.fa {
+  font-family: "FontAwesome";
+}
+.material-icon {
+  font-family: 'Material-Design-Iconic-Font';
 }
 button {
   font-size: 20;
   background-color: #387ef5;
   color: #FFF;
 }
+.nx-header {
+  font-size: 36;
+}
+.nx-list {
+  padding-bottom: 16;
+  padding-top: 0;
+}
+.nx-item {
+  border-bottom: 1;
+  border-color: #c8c7cc;
+  border-style: solid;
+  padding-top: 16;
+  padding-bottom: 16;
+}
+.inset {
+  padding: 16;
+}
 .item-button {
   font-size: 20;
-  background-color: #000;
+  background-color: #c8c7cc;
   color: #FFF;
 }
