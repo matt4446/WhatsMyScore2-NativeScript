@@ -3,9 +3,10 @@
      actionBarHidden="true" loaded="pageLoadedBindAngular">
      <!-- removed page load (and ng bootstrap) to test icons  -->
     <StackLayout>
-        <Label text="Loading..." cssClass="title"/>
-        <Label text="&#xf100; ionic icon" cssClass="ion-icon" />
-        <Label text="&#xf0f9; font awesome icon" cssClass="fa" />
+        <Label text="Loading..." class="title"/>
+        <Label text="&#xf100; ionic icon" class="ion-icon" />
+        <Label text="&#xf100;" class="ion-icon" />        
+        <Label text="&#xf0f9; font awesome icon" cssClass="fa-icon" />
         <Button text="&#xf117; material icon" cssClass="material-icon"/>
     </StackLayout>
 </Page>
