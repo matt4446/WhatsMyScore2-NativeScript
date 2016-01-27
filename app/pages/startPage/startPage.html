@@ -1,15 +1,17 @@
-<Page xmlns="http://schemas.nativescript.org/tns.xsd" [loaded]="pageLoaded()">
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" (loaded)="pageLoaded()">
     <StackLayout class="inset">
         <nx-list>
             <nx-header item-top>
                 <label text="Start" class="nx-header-title"></label>
             </nx-header>
             <nx-item (tap)="loadRegions()">
+                <!-- left of center --> 
                 <label item-left class="ion-icon" text="&#xf203;"></label>
                 <!-- center column -->
                 <label text="Leagues & Regions"></label>
                 <label class="note" text="BUCS, SUTL ..."></label>
                 <!-- / center column -->
+                <!-- right of center --> 
                 <label item-right class="ion-icon" text="&#xf125;"></label>
             </nx-item>
             <nx-item>
