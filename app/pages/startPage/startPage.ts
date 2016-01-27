@@ -5,13 +5,14 @@ import {Logger} from "../../providers/logger";
 import {Router} from "angular2/router";
 import {NxNav} from "../../controls/nav/nav";
 import {NxList} from "../../controls/list/list";
-import {NxListItem} from "../../controls/list/list-item"
+import {NxListItem} from "../../controls/list/list-item";
+import {NxHeader} from "../../controls/list/header";
 
 import pages = require("ui/page");
 
 @Page({
     selector: "start",
-    directives: [NxList, NxListItem],
+    directives: [NxList, NxListItem, NxHeader],
     templateUrl: "pages/startPage/startPage.html"
 })
 export class StartPage 

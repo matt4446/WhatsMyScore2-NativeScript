@@ -9,9 +9,19 @@ import { NxHeader } from "./header";
     selector: "nx-list",
     //templateUrl: "controls/list/list.html",
     template:`
-    <StackLayout cssClass='nx-list'>
-        <ng-content></ng-content>
+    <Border borderRadius="0" borderWidth="1" borderColor="#eeeeee">
+    <StackLayout>
+        <StackLayout>
+            <ng-content select="[item-top]"></ng-content>
+        </StackLayout>
+        <StackLayout style="padding-left:4;">
+            <ng-content></ng-content>
+        </StackLayout>
+        <StackLayout>
+            <ng-content select="[item-bottom]"></ng-content>
+        </StackLayout>
     </StackLayout>
+    </Border>
     `,
     directives: [ NxListItem, NxHeader ],
     inputs:["padding"]

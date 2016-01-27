@@ -4,18 +4,17 @@ import { Logger } from "../../providers/logger";
 import { StackLayout, Button } from "ui"
 
 @Control({
-    selector:"nx-list-item",
+    selector:"nx-item",
+    //create a 1 row template; 3 columns; 2 for the icons on the sides
     template: `
-    
-    <GridLayout columns="auto, auto, auto" 
-        rows="auto" cssClass='nx-item' >
-        <StackLayout col="0">
+    <GridLayout columns="32, *, 32" rows="auto" class="nx-item">
+        <StackLayout col="0" style="vertical-align:center">
             <ng-content select="[item-left]"></ng-content>
         </StackLayout>
         <StackLayout col="1">
             <ng-content></ng-content>
         </StackLayout>
-        <StackLayout col="2">
+        <StackLayout col="2" style="vertical-align:center">
             <ng-content select="[item-right]"></ng-content>
         </StackLayout>
     </GridLayout>

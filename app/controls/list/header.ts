@@ -1,16 +1,33 @@
 import { Control } from "../../decorators/control";
 import { Input, Output, EventEmitter, ContentChildren, ViewChild } from "angular2/core";
 import { Logger } from "../../providers/logger";
-import { StackLayout, Button } from "ui"
+import { StackLayout, Button } from "ui";
+
+import { NxListItem } from "./list-item";
 
 @Control({
     selector:"nx-header",
+//     template: `
+//     <StackLayout class="nx-header" style="background-color:#4d75b8;color:#ffffff;">
+// 
+//         <nx-item>
+//             <ng-content></ng-content>
+//         </nx-item>
+// 
+//     </StackLayout>
+// 
+//     `,
     template: `
-    <StackLayout>
-        <label cssClass='nx-header' text='hi' cssClass='nx-header'></label>
-    </StackLayout>
+    
+        <StackLayout class="nx-header-outer">
+            <StackLayout class="nx-header-inner">
+                <ng-content></ng-content>
+            </StackLayout>
+        </StackLayout>
+
     `,
-    providers: []
+    providers: [],
+    directives:[ NxListItem ]
 })
 export class NxHeader
 {
@@ -18,3 +35,9 @@ export class NxHeader
         this.logger.Notify("add header");
     }
 }
+
+    // <StackLayout style="background-color:#4d75b8;color:#ffffff;">
+    //     <StackLayout class="nx-header" style="padding:16">
+    //         <ng-content></ng-content>
+    //     </StackLayout>
+    // </StackLayout>

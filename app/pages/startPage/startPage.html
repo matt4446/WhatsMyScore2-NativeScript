@@ -1,42 +1,38 @@
 <Page xmlns="http://schemas.nativescript.org/tns.xsd" [loaded]="pageLoaded()">
-    <StackLayout cssClass="inset">
-        <Label text="Start" class="title"></Label>
-        <!--<button (tap)="loadRegions()" text="regions"></button>-->
-        <Label text="&#xf100; ionic icon" cssClass="ion-icon"></Label>
-        <Label text="&#xf0f9; font awesome icon" cssClass="fa"></Label>
-        <Button text="&#xf117; material icon" cssClass="material-icon">
-        </Button>
-
+    <StackLayout class="inset">
         <nx-list>
-            <nx-header>
-                Start
+            <nx-header item-top>
+                <label text="Start" class="nx-header-title"></label>
             </nx-header>
-            <nx-list-item>
+            <nx-item (tap)="loadRegions()">
+                <label item-left class="ion-icon" text="&#xf203;"></label>
+                <!-- center column -->
+                <label text="Leagues & Regions"></label>
+                <label class="note" text="BUCS, SUTL ..."></label>
+                <!-- / center column -->
+                <label item-right class="ion-icon" text="&#xf125;"></label>
+            </nx-item>
+            <nx-item>
                 <label item-left class="ion-icon" text="&#xf393;"></label>
-
-                <button (tap)="loadRegions()" text="Leagues & Regions">
-
-                </button>
-                <label item-right class="note" text="BUCS, SUTL ..."></label>
-            </nx-list-item>
-            <nx-list-item>
-                <label item-right cssclass="fa" text="&#xf1e0;right test ..."></label>
-            </nx-list-item>
-            <nx-list-item>
-                <label item-right cssclass="fa" text="&#xf1e0;left test ..."></label>
-            </nx-list-item>
+                <label text="Map"></label>
+                <!-- show right  --> 
+                <label item-right class="ion-icon" text="&#xf125;"></label>
+            </nx-item>
         </nx-list>
 
         <nx-list>
-            <nx-header>
-                Search
+            <nx-header item-top>
+                <label text="Search" class="nx-header-title"></label>
             </nx-header>
-            <nx-list-item>
-                <button text="Competitions"></button>
-            </nx-list-item>
-            <nx-list-item>
-                <button text="Competitors"></button>
-            </nx-list-item>
+            <nx-item>
+                <label text="Competitions"></label>
+                <label item-right class="ion-icon" text="&#xf21f;"></label>
+            </nx-item>
+            <nx-item>
+                <label item-left class="ion-icon" text="&#xf47c;"></label>
+                <label text="Competitors"></label>
+                <label item-right class="ion-icon" text="&#xf21f;"></label>
+            </nx-item>
         </nx-list>
 
     </StackLayout>

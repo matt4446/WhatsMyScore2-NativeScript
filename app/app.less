@@ -4,25 +4,63 @@
 @primary-background : @primary;
 @primary-text: #FFF;
 @default-padding : 16;
+@default-padding-top-bottom : 8;
+
 @default-margin: 16;
 
 /* font */
 
 @font-size-default: 20;
+@font-size-small: 16;
 @font-size-h1: 36;
 
 /* elements */
 
-.ion-icon {
-    font-family: "Ionicons";
+.icon {
+    font-size: @font-size-default;
+    margin: @default-margin/4;
 }
 
-.fa {
+.ion-icon {
+    font-family: "Ionicons";
+    /* file must match exactly (indluding case) Ionicons.ttf */
+    /* app/fonts/Ionicons.ttf */
+    /* cheat sheet http://ionicons.com/cheatsheet.html */
+     
+}
+
+.fa-icon {
     font-family: "FontAwesome";
+    /* file must match exactly (indluding case) Ionicons.ttf */
+    /* app/fonts/FontAwesome.ttf */
+    /* cheat sheet https://fortawesome.github.io/Font-Awesome/cheatsheet/ */
 }
 
 .material-icon {
     font-family: 'Material-Design-Iconic-Font';
+    /* file must match exactly (indluding case) Ionicons.ttf */
+    /* app/fonts/Material-Design-Iconic-Font.ttf */
+}
+
+.inset {
+    padding: @default-margin;
+}
+
+.note {
+    font-size: @font-size-small;
+    color: #202020;   
+}
+
+
+Page {
+    background-color: white;
+    font-size: @font-size-default;
+    padding: 0;
+}
+
+label {
+    font-size: @font-size-default;
+    color: black;
 }
 
 button {
@@ -31,26 +69,46 @@ button {
     color: @primary-text
 }
 
-.nx-header {
-    font-size: @font-size-h1;
+.nx-header-outer {
+    background-color:#4d75b8;color:#ffffff;
 }
 
+.nx-header-inner {
+    padding: @default-padding;
+    padding-top: @default-padding-top-bottom;
+    padding-bottom: @default-padding-top-bottom;
+}
+
+
+.nx-header {
+    font-size: @font-size-h1;    
+    background-color:#4d75b8;
+    color:@primary-text;
+}
+.nx-header-title {
+    font-weight: bold;
+    color:@primary-text;
+}
+
+.nx-list-outer{}
 .nx-list {
     padding-bottom: @default-padding;
     padding-top: 0;
+    padding-left: 8;
+    padding-right: 8;
+    margin-bottom: @default-margin;
 }
 
 .nx-item {
-    border-bottom: 1;
+    border-bottom-width: 1;
     border-color: #c8c7cc;
     border-style: solid;
     padding-top: @default-padding;
     padding-bottom: @default-padding;
 }
 
-.inset {
-    padding: @default-margin;
-}
+
+
 
 .item-button {
     font-size: @font-size-default;

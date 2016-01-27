@@ -37,3 +37,8 @@ This project is using [Genymotion](https://www.genymotion.com/#!/) and an old HT
   
 ### XML Snippets
 [VS Code Snippets](https://marketplace.visualstudio.com/items/tsvetan-ganev.nativescript-xml-snippets) - thanks Tsvetan Ganev
+
+### Fonts 
+fonts have been added:
+FontAwesome
+Ionicons
