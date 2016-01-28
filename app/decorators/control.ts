@@ -19,7 +19,7 @@ export interface IPageConfig {
     providers?: any[];
     inputs?: any[];
     outputs?: any[];
-    
+    pipes?: any[];
     host?: {
         'cssClass' : string 
     }

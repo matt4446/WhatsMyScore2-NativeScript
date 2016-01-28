@@ -7,16 +7,6 @@ import { NxListItem } from "./list-item";
 
 @Control({
     selector:"nx-header",
-//     template: `
-//     <StackLayout class="nx-header" style="background-color:#4d75b8;color:#ffffff;">
-// 
-//         <nx-item>
-//             <ng-content></ng-content>
-//         </nx-item>
-// 
-//     </StackLayout>
-// 
-//     `,
     template: `
     
         <StackLayout class="nx-header-outer">

@@ -14,7 +14,7 @@ import { NxHeader } from "./header";
         <StackLayout>
             <ng-content select="[item-top]"></ng-content>
         </StackLayout>
-        <StackLayout style="padding-left:4;">
+        <StackLayout>
             <ng-content></ng-content>
         </StackLayout>
         <StackLayout>

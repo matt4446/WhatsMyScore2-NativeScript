@@ -1,41 +1,42 @@
 <Page xmlns="http://schemas.nativescript.org/tns.xsd" (loaded)="pageLoaded()">
+    <ScrollView>
     <StackLayout class="inset">
         <nx-list>
             <nx-header item-top>
-                <label text="Start" class="nx-header-title"></label>
+                <label text="START" class="nx-header-title"></label>
             </nx-header>
             <nx-item (tap)="loadRegions()">
-                <!-- left of center --> 
-                <label item-left class="ion-icon" text="&#xf203;"></label>
-                <!-- center column -->
+                <!-- left  --> 
+                <ion-icon item-left icon="ion-map"></ion-icon>
+                <!-- center -->
+                <!-- stackpanel layout --> 
                 <label text="Leagues & Regions"></label>
                 <label class="note" text="BUCS, SUTL ..."></label>
-                <!-- / center column -->
-                <!-- right of center --> 
-                <label item-right class="ion-icon" text="&#xf125;"></label>
+                <!-- right --> 
+                <ion-icon item-right icon="ion-chevron-right"></ion-icon>
             </nx-item>
             <nx-item>
-                <label item-left class="ion-icon" text="&#xf393;"></label>
+                <ion-icon item-left icon="ion-map"></ion-icon>
                 <label text="Map"></label>
-                <!-- show right  --> 
-                <label item-right class="ion-icon" text="&#xf125;"></label>
+                <ion-icon item-right icon="ion-chevron-right"></ion-icon>
             </nx-item>
         </nx-list>
 
         <nx-list>
             <nx-header item-top>
-                <label text="Search" class="nx-header-title"></label>
+                <label text="SEARCH" class="nx-header-title"></label>
             </nx-header>
             <nx-item>
                 <label text="Competitions"></label>
-                <label item-right class="ion-icon" text="&#xf21f;"></label>
+                <ion-icon item-right icon="ion-search"></ion-icon>
             </nx-item>
             <nx-item>
-                <label item-left class="ion-icon" text="&#xf47c;"></label>
+                <ion-icon item-left icon="ion-ios-people"></ion-icon>
                 <label text="Competitors"></label>
-                <label item-right class="ion-icon" text="&#xf21f;"></label>
+                <ion-icon item-right icon="ion-search"></ion-icon>
             </nx-item>
         </nx-list>
 
     </StackLayout>
+    </ScrollView>
 </Page>

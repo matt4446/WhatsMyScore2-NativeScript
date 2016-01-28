@@ -7,12 +7,14 @@ import {NxNav} from "../../controls/nav/nav";
 import {NxList} from "../../controls/list/list";
 import {NxListItem} from "../../controls/list/list-item";
 import {NxHeader} from "../../controls/list/header";
+import {IonIcon} from "../../controls/icons/ion-icon";
+import {TitleTransform} from "../../pipes/title";
 
 import pages = require("ui/page");
 
 @Page({
     selector: "start",
-    directives: [NxList, NxListItem, NxHeader],
+    directives: [NxList, NxListItem, NxHeader, IonIcon],
     templateUrl: "pages/startPage/startPage.html"
 })
 export class StartPage 

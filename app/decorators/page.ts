@@ -20,6 +20,7 @@ export interface IPageConfig {
     //template?: string;
     directives?: any[];
     providers?: any[];
+    pipes?: any[];
 }
 
 export function Page(config: IPageConfig={})
