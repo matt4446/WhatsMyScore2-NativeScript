@@ -12,7 +12,7 @@ import { IProvider } from "../../models/models";
     `,
     providers: [],
     host:{
-        "cssClass" : "item"
+        "class" : "item"
     },
     inputs: ["Item"]
 })

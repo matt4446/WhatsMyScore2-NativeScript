@@ -10,7 +10,7 @@ import {Observable, Subscription, BehaviorSubject} from 'rxjs/Rx';
 export class ProviderService{
     
     
-    constructor(private $http: Http, private logger: Logger){
+    constructor(private http: Http, private logger: Logger){
         logger.Notify("ProviderService created");
     }
     
@@ -22,7 +22,7 @@ export class ProviderService{
         
         this.logger.Notify("Load :" + route);
         
-        var promise = this.$http.get(route);
+        var promise = this.http.get(route);
         
         this.logger.NotifyResponse(promise);
                 
@@ -36,11 +36,11 @@ export class ProviderService{
         
         this.logger.Notify("Load :" + route);
         
-        var promise = this.$http.get(route);
+        //var observableRequest = this.http.get(route);
+        var observableRequest = this.http.get(route);
+        this.logger.NotifyResponse(observableRequest);
         
-        this.logger.NotifyResponse(promise);
-        
-        return promise;
+        return observableRequest;
     }
    
 }

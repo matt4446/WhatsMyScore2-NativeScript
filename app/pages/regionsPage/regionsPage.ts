@@ -1,8 +1,9 @@
-import {Component} from 'angular2/core';
+import {NgIf, NgFor} from 'angular2/common';
+import {Router} from "angular2/router";
 import {Page} from "../../decorators/page";
 import {Logger} from "../../providers/logger";
-import {Router} from "angular2/router";
 import {SearchList, ISearchEvent} from "../../controls/searchList/searchList";
+
 
 /* data */
 import { ProviderService } from "../../providers/leagues/leagues";
@@ -11,11 +12,17 @@ import { IProvider } from "../../models/models"
 /* directive */
 import { RegionItem } from "./region-item";
 
+import {NxNav} from "../../controls/nav/nav";
+import {NxList} from "../../controls/list/list";
+import {NxListItem} from "../../controls/list/list-item";
+import {NxHeader} from "../../controls/list/header";
+import {IonIcon} from "../../controls/icons/ion-icon";
+
 @Page({
     selector: "regions",
     templateUrl: "pages/regionsPage/regionsPage.html",
     providers: [ProviderService],
-    directives: [SearchList, RegionItem] //<-- Search list directive added here
+    directives: [NgIf, NgFor,SearchList, RegionItem, NxList, NxListItem, NxHeader, IonIcon] //<-- Search list directive added here
 })
 export class RegionsPage 
 {
@@ -69,23 +76,39 @@ export class RegionsPage
     
     /* angular2 lifecycle */
     public ngAfterViewInit(){
-        this.logger.Notify("view init");
+        this.logger.Notify("Region-page ngAfterViewInit");
         
         //time to load the data
         var response = this.regions.List();
         
-        
-        response.map(response => response.json())
-            .subscribe((items : IProvider[]) => {
-                this.list = items;
+        //transform the data to json -> array of IProvider
+        response
+            .map(response => response.json())
+            .subscribe((items : Array<IProvider>) => {
+                this.list = items; //<- items is a object ?
                 
-                this.logger.Notify("items available:" + items.length);
+                // items.forEach((item) => {
+                //     this.logger.Notify("item");
+                //     this.logger.Notify(item.Name);
+                // });
+                // 
+                // this.logger.Notify("items available:" + items.length);
+            },(error) => {
+                this.logger.Error("Could not map items");
+                this.logger.Error(error);
             });
-            
-        response.map(r => r.text())
+                        
+        response
+            //.map(r => { return {status: r.status, text: r.text() }; })
             .subscribe((result) => {
-                this.logger.Notify("items loaded");
-                this.logger.Notify(result);
+                this.logger.Notify("items loaded - status:" +result.status);
+                let text = result.text();
+                this.logger.Notify(text);
+                let json = result.json();
+                this.logger.Notify("json parsed: " + json);
+                this.logger.NotifyObjectProperties(json);
+                this.logger.Notify("count: " +json.count);
+                
             });
     }
     

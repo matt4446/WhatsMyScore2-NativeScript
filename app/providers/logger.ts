@@ -2,27 +2,66 @@
 import {Observable, Subscription, Subject} from 'rxjs/Rx';
 import {Http, Response} from "angular2/http";
 
+interface ILogMessage {
+    level : string;
+    message : string;
+}
+
+const debugLevel = "Notify";
+const errorLevel = "Error";
 //@Injectable()
 export class Logger
 {
-    private distinctLog: Subject<string> = new Subject<string>();
+    private distinctLog: Subject<ILogMessage> = new Subject<ILogMessage>();
     
     constructor(){
-        this.distinctLog
+        let varients = this.distinctLog;
+        
+        let notifyStream = varients
+            .filter((x) => x.level == debugLevel)
             .distinctUntilChanged((x,y) => x===y)
+            .map(e=> e.message)
             .subscribe((msg) => {
                 
-                console.log("======================");
+                console.log("=Debug===============");
                 console.log(msg);
                 console.log("======================");
+                
             });
             
-        
+        let errorStream = varients
+            .filter(x=> x.level == errorLevel)
+            .distinctUntilChanged((x,y) => x===y)
+            .map(e=> e.message)
+            .subscribe((msg) => {
+                    
+                    console.log("*ERROR*****************");
+                    console.log(msg);
+                    console.log("**********************");
+                    
+                });
     }
     
     public Notify(message: string)
+    { 
+        this.distinctLog.next({
+            level: debugLevel,
+            message: message
+        });
+    }
+    
+    public Error(message: string)
     {
-        this.distinctLog.next(message);
+        this.distinctLog.next({
+            level: errorLevel,
+            message: message
+        });
+    }
+    
+    public NotifyObjectProperties(object: any){
+        for(let item in object){
+            console.log("Property: " + item);
+        }
     }
     
     public NotifyResponse(requestObservable: Observable<Response>)

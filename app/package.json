@@ -1,9 +1,9 @@
 {
-	"name": "tns-template-hello-world",
-	"main": "app.js",
-	"version": "1.5.1",
-	"author": "Telerik <support@telerik.com>",
-	"description": "Nativescript hello-world project template",
+	"name": "NativeScript version of What's My Score",
+	"main": "bootstrap.js",
+	"version": "0.1",
+	"author": "Matthew Green",
+	"description": "NativeScript version of What's My Score",
 	"license": "Apache-2.0",
 	"keywords": [
 		"telerik",

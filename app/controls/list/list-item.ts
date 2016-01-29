@@ -9,19 +9,20 @@ import { StackLayout, Button } from "ui"
     //https://github.com/NativeScript/NativeScript/issues/859 -- cant get per side border yet. 
     template: `
     <Border height="2" borderRadius="0" borderWidth="2" borderColor="#387ef5"></Border>
-    <GridLayout columns="32, *, 32" rows="auto" class="nx-item">
+    <GridLayout columns="32, *, 32" rows="auto" class="nx-item" (tap)="tapWrapper($event)">
         <StackLayout col="0" class="icon-column" style="vertical-align:center;horizontal-align:center" >
             <ng-content select="[item-left]"></ng-content>
         </StackLayout>
         <StackLayout col="1">
             <ng-content></ng-content>
         </StackLayout>
-        <StackLayout col="2" lass="icon-column" style="vertical-align:center;horizontal-align:center">
+        <StackLayout col="2" class="icon-column" style="vertical-align:center;horizontal-align:center">
             <ng-content select="[item-right]"></ng-content>
         </StackLayout>
     </GridLayout>
     `,
-    providers: []
+    providers: [],
+    outputs: ["tap"]
 })
 export class NxListItem {
     private template: TemplateRef;
@@ -30,5 +31,16 @@ export class NxListItem {
         this.logger.Notify("nx-item added");
     }
     
+    public tapWrapper = (args: any) => {
+        this.logger.Notify("tap clicked on item");
+        
+        if(this.tap){
+            this.tap.next(args);
+        } else {
+            this.logger.Notify("tap has not been set on the view");
+        }
+    };
+    
+    public tap = new EventEmitter(); // : (args: EventEmitter<any>) => void;
     //todo get the contents to naviate
 }

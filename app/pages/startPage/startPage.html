@@ -1,42 +1,42 @@
 <Page xmlns="http://schemas.nativescript.org/tns.xsd" (loaded)="pageLoaded()">
     <ScrollView>
-    <StackLayout class="inset">
-        <nx-list>
-            <nx-header item-top>
-                <label text="START" class="nx-header-title"></label>
-            </nx-header>
-            <nx-item (tap)="loadRegions()">
-                <!-- left  --> 
-                <ion-icon item-left icon="ion-map"></ion-icon>
-                <!-- center -->
-                <!-- stackpanel layout --> 
-                <label text="Leagues & Regions"></label>
-                <label class="note" text="BUCS, SUTL ..."></label>
-                <!-- right --> 
-                <ion-icon item-right icon="ion-chevron-right"></ion-icon>
-            </nx-item>
-            <nx-item>
-                <ion-icon item-left icon="ion-map"></ion-icon>
-                <label text="Map"></label>
-                <ion-icon item-right icon="ion-chevron-right"></ion-icon>
-            </nx-item>
-        </nx-list>
+        <StackLayout class="inset">
+            <nx-list>
+                <nx-header item-top>
+                    <label text="START" class="nx-header-title"></label>
+                </nx-header>
+                <nx-item (tap)="loadRegions($event)">
+                    <ion-icon item-left icon="ion-map"></ion-icon>
+                    
+                    <!-- center -->
+                    <label text="Leagues & Regions"></label>
+                    <label class="note" text="BUCS, SUTL ..."></label>
+                    <!-- center -->
 
-        <nx-list>
-            <nx-header item-top>
-                <label text="SEARCH" class="nx-header-title"></label>
-            </nx-header>
-            <nx-item>
-                <label text="Competitions"></label>
-                <ion-icon item-right icon="ion-search"></ion-icon>
-            </nx-item>
-            <nx-item>
-                <ion-icon item-left icon="ion-ios-people"></ion-icon>
-                <label text="Competitors"></label>
-                <ion-icon item-right icon="ion-search"></ion-icon>
-            </nx-item>
-        </nx-list>
+                    <ion-icon item-right icon="ion-chevron-right"></ion-icon>
+                </nx-item>
+                <nx-item>
+                    <ion-icon item-left icon="ion-map"></ion-icon>
+                    <label text="Map"></label>
+                    <ion-icon item-right icon="ion-chevron-right"></ion-icon>
+                </nx-item>
+            </nx-list>
 
-    </StackLayout>
+            <nx-list>
+                <nx-header item-top>
+                    <label text="SEARCH" class="nx-header-title"></label>
+                </nx-header>
+                <nx-item>
+                    <label text="Competitions"></label>
+                    <ion-icon item-right icon="ion-search"></ion-icon>
+                </nx-item>
+                <nx-item>
+                    <ion-icon item-left icon="ion-ios-people"></ion-icon>
+                    <label text="Competitors"></label>
+                    <ion-icon item-right icon="ion-search"></ion-icon>
+                </nx-item>
+            </nx-list>
+
+        </StackLayout>
     </ScrollView>
 </Page>

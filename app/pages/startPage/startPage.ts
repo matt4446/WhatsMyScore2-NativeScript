@@ -1,4 +1,4 @@
-import {Observable } from "data/observable";
+import {Observable, EventData } from "data/observable";
 import {Inject, Component, View} from 'angular2/core';
 import {Page} from "../../decorators/page";
 import {Logger} from "../../providers/logger";
@@ -8,12 +8,13 @@ import {NxList} from "../../controls/list/list";
 import {NxListItem} from "../../controls/list/list-item";
 import {NxHeader} from "../../controls/list/header";
 import {IonIcon} from "../../controls/icons/ion-icon";
-import {TitleTransform} from "../../pipes/title";
+//import {TitleTransform} from "../../pipes/title";
 
 import pages = require("ui/page");
 
 @Page({
     selector: "start",
+    //move directives to App .. 
     directives: [NxList, NxListItem, NxHeader, IonIcon],
     templateUrl: "pages/startPage/startPage.html"
 })
@@ -35,8 +36,13 @@ export class StartPage
         // });
     }
     
-    public loadRegions() : void{
+    public loadRegions(args: EventData) : void{
         this.logger.Notify("time to load regions");
+        
+        if(args){ 
+            this.logger.Notify("There are args");
+            //to do animate transition
+        }
         
         let promise: Promise<any, any> = this.router.navigate(["Regions"]);
         

@@ -1,19 +1,23 @@
-<Page xmlns="http://schemas.nativescript.org/tns.xsd" [loaded]="pageLoaded()">
-    <StackLayout >
-        <Label text="regions page..." cssClass="title"></Label>
-
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" (loaded)="pageLoaded($event)">
+    
+    <StackLayout class="inset">
         <!-- See: app/controls/searchList/searchList -->
         <!--
         <search-list [HintText]="regionsHintText" (OnSearch)="regionSearch($event)"></search-list>
         -->
         <!-- *ngFor="#item of list" -->
         <nx-list>
+            <nx-header item-top>
+                <label text="LEAGUES & REGIONS" class="nx-header-title"></label>
+            </nx-header>
+            <nx-item>
+                <label text="Test item"></label>
+            </nx-item>
             <!--<nx-list-item *ngFor="#item of list">
                 <region-item [Item]='item'></region-item>
             </nx-list-item>-->
         </nx-list>
-        
-        
+
         <button (tap)="back()" text="back"></button>
         <button (tap)="start()" text="start"></button>
     </StackLayout>

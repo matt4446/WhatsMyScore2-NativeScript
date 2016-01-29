@@ -5,7 +5,7 @@
 @primary-text: #FFF;
 @default-padding : 16;
 @default-padding-top-bottom : 8;
-
+@default-padding-short: @default-padding/2;
 @default-margin: 16;
 
 /* font */
@@ -93,9 +93,9 @@ button {
 .nx-list-outer{}
 .nx-list {
     padding-bottom: @default-padding;
-    padding-top: 0;
-    padding-left: 8;
-    padding-right: 8;
+    padding-top: @default-padding-short;
+    padding-left: @default-padding-short;
+    padding-right: @default-padding-short;
     margin-bottom: @default-margin;
 }
 
