@@ -106,9 +106,11 @@ export class RegionsPage
                 this.logger.Notify(text);
                 let json = result.json();
                 this.logger.Notify("json parsed: " + json);
+                this.logger.Notify("Take a peak at json object ...");
                 this.logger.NotifyObjectProperties(json);
-                this.logger.Notify("count: " +json.count);
-                
+                this.logger.Notify("test property count: " +json.count);
+                this.logger.Notify("test property size:" +json.size);
+                this.logger.Notify("test property size:" +json.size());
             });
     }
     
