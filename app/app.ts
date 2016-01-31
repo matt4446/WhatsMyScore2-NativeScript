@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 
 import {Router} from "angular2/router";
-import {nativeScriptBootstrap} from 'nativescript-angular/application';
+import {nativeScriptBootstrap, bootstrap} from 'nativescript-angular/application';
 import {bind, provide, Inject, Component} from 'angular2/core';
 import {Page} from "./decorators/page";
 import {App} from "./decorators/app";
@@ -26,6 +26,7 @@ import {NxList} from "./controls/list/list";
 import {NxListItem} from "./controls/list/list-item";
 import {NxHeader} from "./controls/list/header";
 import {IonIcon} from "./controls/icons/ion-icon";
+
 
 //page decorator - save some code writing. Wrapper around @Component
 @App({
@@ -53,7 +54,8 @@ export function pageLoadedBindAngular(args) {
 
     if(!bootstrapPromise){
         console.log('BOOTSTRAPPING...');
-        var promise = nativeScriptBootstrap(AppMain, [
+        var promise = bootstrap(AppMain, [
+        //var promise = nativeScriptBootstrap(AppMain, [
             ROUTER_PROVIDERS,
             bind(LocationStrategy).toClass(NSLocationStrategy), //https://github.com/NativeScript/sample-Groceries/blob/710de30fdfe8640cabb489fb64ac02c1af894926/app/app-page.ts
             provide(APP_BASE_HREF, {useValue : '/'})

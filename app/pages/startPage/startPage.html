@@ -15,7 +15,7 @@
 
                     <ion-icon item-right icon="ion-chevron-right"></ion-icon>
                 </nx-item>
-                <nx-item>
+                <nx-item (tap)="incomplete($event)">
                     <ion-icon item-left icon="ion-map"></ion-icon>
                     <label text="Map"></label>
                     <ion-icon item-right icon="ion-chevron-right"></ion-icon>
@@ -26,11 +26,11 @@
                 <nx-header item-top>
                     <label text="SEARCH" class="nx-header-title"></label>
                 </nx-header>
-                <nx-item>
+                <nx-item (tap)="incomplete($event)">
                     <label text="Competitions"></label>
                     <ion-icon item-right icon="ion-search"></ion-icon>
                 </nx-item>
-                <nx-item>
+                <nx-item (tap)="incomplete($event)">
                     <ion-icon item-left icon="ion-ios-people"></ion-icon>
                     <label text="Competitors"></label>
                     <ion-icon item-right icon="ion-search"></ion-icon>

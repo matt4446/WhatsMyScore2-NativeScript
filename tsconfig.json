@@ -16,7 +16,6 @@
         "app/decorators/control.ts",
         "app/bootstrap.ts",
         "app/app.ts",
-        "app/mainPage.ts",
         "app/providers/leagues/leagues.ts"
     ]
 }

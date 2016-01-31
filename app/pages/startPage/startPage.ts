@@ -1,4 +1,6 @@
 import {Observable, EventData } from "data/observable";
+import {} from "ui";
+
 import {Inject, Component, View} from 'angular2/core';
 import {Page} from "../../decorators/page";
 import {Logger} from "../../providers/logger";
@@ -9,9 +11,6 @@ import {NxListItem} from "../../controls/list/list-item";
 import {NxHeader} from "../../controls/list/header";
 import {IonIcon} from "../../controls/icons/ion-icon";
 //import {TitleTransform} from "../../pipes/title";
-
-import pages = require("ui/page");
-
 @Page({
     selector: "start",
     //move directives to App .. 
@@ -53,6 +52,10 @@ export class StartPage
         promise.catch(() => {
             this.logger.Notify("I failed navigating from start -> regions");
         });
+    }
+    
+    public incomplete(args: EventData) : void {
+        dialogs.alert("Its not made yet");
     }
     
     
