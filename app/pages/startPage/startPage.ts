@@ -1,5 +1,5 @@
 import {Observable, EventData } from "data/observable";
-import {} from "ui";
+import {alert} from "ui/dialogs";
 
 import {Inject, Component, View} from 'angular2/core';
 import {Page} from "../../decorators/page";
@@ -43,6 +43,8 @@ export class StartPage
             //to do animate transition
         }
         
+        alert("nav is broken - not sure why.");
+        
         let promise: Promise<any, any> = this.router.navigate(["Regions"]);
         
         promise.then(() => {
@@ -55,7 +57,7 @@ export class StartPage
     }
     
     public incomplete(args: EventData) : void {
-        dialogs.alert("Its not made yet");
+        alert("Its not made yet");
     }
     
     

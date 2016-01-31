@@ -14,7 +14,6 @@ import { Logger} from "../../providers/logger";
     <Border borderRadius="0" borderWidth="1" borderColor="#eeeeee">
         <!-- main bar --> 
         <GridLayout columns="60, 32, *, 32" rows="auto" class="nx-nav">
-            <StackLayout
             <StackLayout col="0" class="icon-column" style="vertical-align:center; ">
                 <ng-content select="[nav-left]"></ng-content>
             </StackLayout>

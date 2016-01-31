@@ -6,7 +6,7 @@
     }
   },
   "dependencies": {
-    "angular2": "~2.0.0-beta.2",
+    "angular2": "2.0.0-beta.0",
     "nativescript-angular": "0.0.25",
     "nativescript-telerik-ui": "^0.2.3",
     "ionicons": "~2.0.0",
