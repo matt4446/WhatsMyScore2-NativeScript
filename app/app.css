@@ -10,6 +10,7 @@
   /* file must match exactly (indluding case) Ionicons.ttf */
   /* app/fonts/Ionicons.ttf */
   /* cheat sheet http://ionicons.com/cheatsheet.html */
+  font-size: 26;
 }
 .fa-icon {
   font-family: "FontAwesome";
@@ -53,7 +54,7 @@ button {
   padding-bottom: 8;
 }
 .nx-header {
-  font-size: 36;
+  font-size: 26;
   background-color: #4d75b8;
   color: #FFF;
 }
@@ -63,7 +64,7 @@ button {
 }
 .nx-list {
   padding-bottom: 16;
-  padding-top: 0;
+  padding-top: 8;
   padding-left: 8;
   padding-right: 8;
   margin-bottom: 16;
@@ -78,5 +79,18 @@ button {
 .item-button {
   font-size: 20;
   background-color: #c8c7cc;
+  color: #FFF;
+}
+.nx-nav-inner {
+  margin-bottom: 8;
+  margin-top: 32;
+}
+.nx-nav {
+  background-color: #387ef5;
+}
+.nx-nav .ion-icon {
+  color: #FFF;
+}
+.nav-title {
   color: #FFF;
 }

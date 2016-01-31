@@ -1,5 +1,6 @@
 ﻿/* colours */
 
+@header-baclground: #0c60ee;
 @primary : #387ef5;
 @primary-background : @primary;
 @primary-text: #FFF;
@@ -12,7 +13,7 @@
 
 @font-size-default: 20;
 @font-size-small: 14;
-@font-size-h1: 36;
+@font-size-h1: 26;
 
 /* elements */
 
@@ -26,7 +27,7 @@
     /* file must match exactly (indluding case) Ionicons.ttf */
     /* app/fonts/Ionicons.ttf */
     /* cheat sheet http://ionicons.com/cheatsheet.html */
-     
+    font-size: @font-size-h1 ;
 }
 
 .fa-icon {
@@ -41,6 +42,7 @@
     /* file must match exactly (indluding case) Ionicons.ttf */
     /* app/fonts/Material-Design-Iconic-Font.ttf */
 }
+
 
 .inset {
     padding: @default-margin;
@@ -113,3 +115,19 @@ button {
     color: @primary-text
 }
 
+.nx-nav-inner {
+    margin-bottom: @default-padding-short;
+    margin-top: @default-margin*2;
+}
+.nx-nav {
+    background-color: @primary;
+    
+    .ion-icon {
+        color: @primary-text
+    }
+}
+
+
+.nav-title {
+    color: @primary-text
+}

@@ -9,7 +9,7 @@ import { NxHeader } from "./header";
     selector: "nx-list",
     //templateUrl: "controls/list/list.html",
     template:`
-    <Border borderRadius="0" borderWidth="1" borderColor="#eeeeee">
+    <Border borderRadius="0" borderWidth="1" borderColor="#eeeeee" class="nx-list">
     <StackLayout>
         <StackLayout>
             <ng-content select="[item-top]"></ng-content>

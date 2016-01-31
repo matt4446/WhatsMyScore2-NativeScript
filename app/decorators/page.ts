@@ -1,4 +1,4 @@
-import { Component } from 'angular2/core'
+import { Component, View } from 'angular2/core'
 import { EventData } from "data/observable"
 
 const _reflect: any = Reflect;
@@ -30,11 +30,7 @@ export function Page(config: IPageConfig={})
         var annotations = _reflect.getMetadata('annotations', cls) || [];
         var componentConfig: any = config;
 
-        //componentConfig.selector = 'main';
-
-        //componentConfig.host = config.host || {};
-        //componentConfig.host['[hidden]'] = '_hidden';
-        //componentConfig.host['[class.tab-subpage]'] = '_tabSubPage';
+            
 
         annotations.push(new Component(componentConfig));
 

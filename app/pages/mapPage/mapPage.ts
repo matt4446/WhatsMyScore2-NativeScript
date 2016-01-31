@@ -12,12 +12,12 @@ import {NxHeader} from "../../controls/list/header";
 import {IonIcon,NavIcon} from "../../controls/icons/ion-icon";
 //import {TitleTransform} from "../../pipes/title";
 @Page({
-    selector: "start",
+    selector: "map-page",
     //move directives to App .. 
     directives: [NxNav, NxList, NxListItem, NxHeader, IonIcon],
-    templateUrl: "pages/startPage/startPage.html"
+    templateUrl: "pages/mapPage/mapPage.html"
 })
-export class StartPage 
+export class MapPage 
 {
     constructor(private logger:Logger, private router: Router)
     {

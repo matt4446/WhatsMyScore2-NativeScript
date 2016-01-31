@@ -1,45 +1,39 @@
 import { Control } from "../../decorators/control";
-import { PipeTransform, Pipe, Input, Output, EventEmitter, ContentChildren,ContentChild, ViewChild,TemplateRef } from "angular2/core";
+import { Directive, PipeTransform, Pipe, Input, Output, EventEmitter, ContentChildren,ContentChild, ViewChild,TemplateRef } from "angular2/core";
 import { Logger } from "../../providers/logger";
 
-// @Pipe({name: 'IconPipe', pure: true})
-// class IconPipe implements PipeTransform {
-//    transform(value: any, args: any[] = []) {
-//        console.log("icon-pipe");
-//        console.log(value);
-//        
-//        let r = value.replace("&#x", "");
-//        r = r.replace(";","");
-// 
-//        let k = "\\u" + r;
-//        return k;
-//    }
-// }
+@Directive({
+    selector:"nav-icon",
+    properties: [
+        'class: ion-icon nav-icon' 
+    ]
+})
+export class NavIcon{ }
 
 @Control({
     selector:"ion-icon",
-    /* Target:
-    <label class="ion-icon" text="&#xf203;"></label>
-    */
-    /* <label class="ion-icon" [text]="test2 | IconPipe"></label>  */
+    // template: `   
+    // <label (tap)="tapIcon" #item 
+    //     class="ion-icon"
+    //     [style.color]="color"        <-- ORIGINAL EXCEPTION: Error: Not implemented: setStyleProperty
+    //     [text]="GetIcon()"></label>
+    // `, 
     template: `   
-    <label class="ion-icon" [text]="GetIcon()"></label>
-    `,
+    <label (tap)="tapIcon" #item 
+        class="ion-icon"
+        [text]="GetIcon()"></label>
+    `, 
     providers: [],
-    inputs:["icon"],
+    inputs:["icon", "nav"],
+    outputs:["tap"]
     //pipes: [IconPipe]
 })
 export class IonIcon {
-    private template: TemplateRef;
-    
+
     constructor(private logger:Logger){
         this.logger.Notify("icon added");
     }
-    
-    public hi = "hi self";
-    public test = "\uf101";
-    public test2 = "&#xf101;";
-    
+        
     public GetIcon(): string
     {
         let key = this.icon ? this.icon : "";
@@ -48,7 +42,10 @@ export class IonIcon {
         return key;
     }
     
+    public color = "#FF0000";
     public icon : string;
+    public nav : boolean = false;
+    public tap = new EventEmitter();
     
     private Match(key: string){
         switch (key) {
@@ -74,6 +71,10 @@ export class IonIcon {
                 return "\uf125";
             case "ion-clipboard": 
                 return "\uf127";
+            case "ion-android-favorite":
+                return "\uf388";
+            case "ion-android-menu":
+                return "\uf394";
             default: 
                 //ion-alert
                 return key;

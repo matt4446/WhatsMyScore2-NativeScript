@@ -1,4 +1,15 @@
 
+
+<StackLayout>
+    <nx-nav>
+        <ion-icon nav-left nav="true" (tap)="menuTap($event)" icon="ion-android-menu"></ion-icon>
+        
+        <label class="nx-header-title" text="WHATS MY SCORE" style="horizontal-align:center"></label>
+        
+        <ion-icon nav-right nav="true" icon="ion-android-favorite"></ion-icon>
+        
+    </nx-nav>
+    
     <ScrollView>
         <StackLayout class="inset">
             <nx-list>
@@ -11,7 +22,7 @@
                     <!-- center -->
                     <label text="Leagues & Regions"></label>
                     <label class="note" text="BUCS, SUTL ..."></label>
-                    <!-- center -->
+                    <!-- / center -->
 
                     <ion-icon item-right icon="ion-chevron-right"></ion-icon>
                 </nx-item>
@@ -39,3 +50,7 @@
 
         </StackLayout>
     </ScrollView>
+    
+</StackLayout>
+
+    

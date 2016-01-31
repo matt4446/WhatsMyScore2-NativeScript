@@ -11,7 +11,7 @@ import { StackLayout, Button, Page } from "ui"
     template: `
     <StackLayout #item>
     <Border height="2" borderRadius="0" borderWidth="2" borderColor="#387ef5"></Border>
-    <GridLayout  columns="32, *, 32" rows="auto" class="nx-item" (tap)="tapWrapper($event)">
+    <GridLayout  columns="42, *, 42" rows="auto" class="nx-item" (tap)="tapWrapper($event)">
         <StackLayout col="0" class="icon-column" style="vertical-align:center;horizontal-align:center" >
             <ng-content select="[item-left]"></ng-content>
         </StackLayout>
@@ -38,9 +38,6 @@ export class NxListItem {
     
     public tapWrapper = (args: any) => {
         this.logger.Notify("tap clicked on item");
-        console.log('Container: ' + this.container);
-        console.log('Container element: ' + this.container.nativeElement);
-        console.log('Container page: ' + this.container.nativeElement.page);
         
         let stackLayout: StackLayout = this.container.nativeElement;
         let page = stackLayout.page;
