@@ -22,11 +22,11 @@ export class Logger
             .distinctUntilChanged((x,y) => x===y)
             .map(e=> e.message)
             .subscribe((msg) => {
-                
+                var d = new Date();
+                var ds = d.toISOString();
                 console.log("=Debug===============");
-                console.log(msg);
+                console.log(ds + ": " + msg);
                 console.log("======================");
-                
             });
             
         let errorStream = varients

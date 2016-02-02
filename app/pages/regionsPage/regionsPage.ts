@@ -1,4 +1,5 @@
 import {NgIf, NgFor} from 'angular2/common';
+import {Component} from 'angular2/core';
 import {Router} from "angular2/router";
 import {Page} from "../../decorators/page";
 import {Logger} from "../../providers/logger";
@@ -19,7 +20,7 @@ import {NxHeader} from "../../controls/list/header";
 import {IonIcon} from "../../controls/icons/ion-icon";
 
 @Page({
-    selector: "regions",
+    selector: "regions-page",
     templateUrl: "pages/regionsPage/regionsPage.html",
     providers: [ProviderService],
     directives: [NgIf, NgFor,SearchList, RegionItem, NxList, NxListItem, NxHeader, IonIcon] //<-- Search list directive added here
@@ -71,8 +72,6 @@ export class RegionsPage
         this.logger.Notify($event);
         //this.logger.Notify("Search Term in Regions Page: " + $event.Value);
     } 
-    //search will be different to the ionic project:
-    //https://github.com/NativeScript/nativescript-angular/issues/27
     
     /* angular2 lifecycle */
     public ngAfterViewInit(){
