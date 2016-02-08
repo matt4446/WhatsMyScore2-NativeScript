@@ -73,10 +73,17 @@ export class NxListItem {
         this.logger.Notify("tap clicked on item");
         
         var stackLayout: StackLayout = this.getNativeElement();
-        let page = stackLayout.page;
         
+        this.logger.NotifyObjectProperties(stackLayout);
         this.itemSelected.next(this);
         
+        
+        let moveRight = stackLayout.animate({
+            duration: 200,
+            translate: { x: 20, y: 0 },
+            opacity: 0.8
+        })
+        /*
         let moveRight = stackLayout.animate({
             duration: 200,
             translate: { x: 20, y: 0 },
@@ -95,7 +102,7 @@ export class NxListItem {
                 this.logger.Notify("tap has not been set on the view");
             }
         });
-        
+        */
         
 
     };

@@ -11,7 +11,11 @@ export function App(config: any={}) {
 
     config.selector = 'main';
     //config.template = "<nav></nav><router-outlet></router-outlet>";
-    config.template = "<router-outlet></router-outlet>";
+    config.template = `
+    <StackLayout>
+    <router-outlet></router-outlet>
+    </StackLayout>
+    `;
     
     
     config.directives = config.directives 

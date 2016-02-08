@@ -15,7 +15,7 @@ export interface IPageConfig {
     selector?: string;
     onLoaded? : (args: EventData) => void;
     onNavigatingTo? : (arg: EventData) => void;
-    
+    template?: string;
     templateUrl?: string;
     //template?: string;
     directives?: any[];

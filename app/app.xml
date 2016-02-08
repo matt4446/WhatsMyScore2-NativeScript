@@ -6,7 +6,7 @@
         <Label text="Loading..." class="title"/>
         <Label text="&#xf100; ionic icon" class="ion-icon" />
         <Label text="&#xf100;" class="ion-icon" />        
-        <Label text="&#xf0f9; font awesome icon" cssClass="fa-icon" />
-        <Button text="&#xf117; material icon" cssClass="material-icon"/>
+        <Label text="&#xf0f9; font awesome icon" class="fa-icon" />
+        <Button text="&#xf117; material icon" class="material-icon"/>
     </StackLayout>
 </Page>
