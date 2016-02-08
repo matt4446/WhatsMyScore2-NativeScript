@@ -20,24 +20,10 @@ import {IonIcon} from "./controls/icons/ion-icon";
 
 import {RouteConfig} from "angular2/router";
 
-//page decorator - save some code writing. Wrapper around @Component
+//app decorator - save some code writing. Wrapper around @Component
 @App({
     selector: "main",
     providers: [Logger],
-    // template:`
-    //      <StackLayout>
-    //         <Label text="Loading..." class="title"></Label>
-    //      </StackLayout>
-    // `,
-    // template:`
-    //     <StackLayout>
-    //         <Label text="Loading..." class="title"></Label>
-    //         <Label text="&#xf100; ionic icon" class="ion-icon"></Label>
-    //         <Label text="&#xf100;" class="ion-icon"></Label>        
-    //         <Label text="&#xf0f9; font awesome icon" class="fa-icon"></Label>
-    //         <Button text="&#xf117; material icon" class="material-icon"></Label>
-    //     </StackLayout>
-    // `,
     directives: [NxList, NxListItem, NxHeader, IonIcon]
 })
 @RouteConfig([
