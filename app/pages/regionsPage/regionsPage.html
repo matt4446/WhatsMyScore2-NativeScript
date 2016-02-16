@@ -1,4 +1,11 @@
-
+<StackLayout>
+        <nx-nav>
+        <ion-icon nav-left nav="true" (tap)="menuTap($event)" icon="ion-android-menu"></ion-icon>
+        
+        <label class="nx-header-title" text="Regions" style="horizontal-align:center"></label>
+        
+        <ion-icon nav-right nav="true" icon="ion-android-favorite"></ion-icon>
+    </nx-nav>
     
     <StackLayout class="inset">
         <nx-list>
@@ -13,3 +20,4 @@
         <button (tap)="back()" text="back"></button>
         <button (tap)="start()" text="start"></button>
     </StackLayout>
+</StackLayout>

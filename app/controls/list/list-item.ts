@@ -77,13 +77,9 @@ export class NxListItem {
         this.logger.NotifyObjectProperties(stackLayout);
         this.itemSelected.next(this);
         
-        
-        let moveRight = stackLayout.animate({
-            duration: 200,
-            translate: { x: 20, y: 0 },
-            opacity: 0.8
-        })
-        /*
+        this.tap.next(args);        
+        //abandon animation until 1.6 release
+        /* 
         let moveRight = stackLayout.animate({
             duration: 200,
             translate: { x: 20, y: 0 },

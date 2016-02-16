@@ -11,10 +11,16 @@
     },
     "files": [
         "typings/tsd.d.ts",
+        "app/app.ts",
+        "app/compat.d.ts",
         "app/decorators/app.ts",
         "app/decorators/page.ts",
         "app/decorators/control.ts",
-        "app/app.ts",
-        "app/providers/leagues/leagues.ts"
+        "app/providers/leagues/leagues.ts",
+        "node_modules/tns-core-modules/tns-core-modules.base.d.ts"
+    ],
+    "exclude": [
+        "node_modules",
+        "platforms"
     ]
 }

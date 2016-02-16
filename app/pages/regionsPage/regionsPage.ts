@@ -23,7 +23,7 @@ import {IonIcon} from "../../controls/icons/ion-icon";
     selector: "regions-page",
     templateUrl: "pages/regionsPage/regionsPage.html",
     providers: [ProviderService],
-    directives: [NgIf, NgFor,SearchList, RegionItem, NxList, NxListItem, NxHeader, IonIcon] //<-- Search list directive added here
+    directives: [NgIf, NgFor,SearchList, RegionItem, NxNav, NxList, NxListItem, NxHeader, IonIcon]
 })
 export class RegionsPage 
 {
@@ -86,12 +86,12 @@ export class RegionsPage
             .subscribe((items : Array<IProvider>) => {
                 this.list = items; //<- items is a object ?
                 
-                // items.forEach((item) => {
-                //     this.logger.Notify("item");
-                //     this.logger.Notify(item.Name);
-                // });
-                // 
-                // this.logger.Notify("items available:" + items.length);
+                items.forEach((item) => {
+                    this.logger.Notify("item");
+                    this.logger.Notify(item.Name);
+                });
+                
+                 this.logger.Notify("items available:" + items.length);
             },(error) => {
                 this.logger.Error("Could not map items");
                 this.logger.Error(error);

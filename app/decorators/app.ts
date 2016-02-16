@@ -1,5 +1,6 @@
 import {Component} from 'angular2/core';
 import {RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, LocationStrategy} from "angular2/router";
+import {NS_ROUTER_DIRECTIVES} from "nativescript-angular/router/ns-router";
 
 const _reflect: any=Reflect;
 
@@ -13,14 +14,14 @@ export function App(config: any={}) {
     //config.template = "<nav></nav><router-outlet></router-outlet>";
     config.template = `
     <StackLayout>
-    <router-outlet></router-outlet>
+    <page-router-outlet></page-router-outlet>
     </StackLayout>
     `;
     
     
     config.directives = config.directives 
-        ? config.directives.concat(ROUTER_DIRECTIVES) 
-        : ROUTER_DIRECTIVES;
+        ? config.directives.concat(NS_ROUTER_DIRECTIVES) 
+        : NS_ROUTER_DIRECTIVES;
 
     annotations.push(new Component(config));
 
