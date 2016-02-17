@@ -77,28 +77,29 @@ export class NxListItem {
         this.logger.NotifyObjectProperties(stackLayout);
         this.itemSelected.next(this);
         
-        this.tap.next(args);        
-        //abandon animation until 1.6 release
-        /* 
+        //this.tap.next(args);        
+        //.. working cli 1.6 :)  
+         
         let moveRight = stackLayout.animate({
             duration: 200,
             translate: { x: 20, y: 0 },
             opacity: 0.8
         }).then(() =>{
+            
+        }).then(() => {
+            if(this.tap){
+                this.tap.next(args);
+            } else {
+                this.logger.Notify("tap has not been set on the view");
+            }
+            
             return stackLayout.animate({ 
                 duration: 300,
                 translate: { x:0, y: 0},
                 opacity: 1
             });  
-        }).then(() => {
-            if(this.tap){
-                this.tap.next(args);
-                
-            } else {
-                this.logger.Notify("tap has not been set on the view");
-            }
         });
-        */
+        
         
 
     };

@@ -13,6 +13,7 @@ export function App(config: any={}) {
     config.selector = 'main';
     //config.template = "<nav></nav><router-outlet></router-outlet>";
     config.template = `
+    
     <StackLayout>
     <page-router-outlet></page-router-outlet>
     </StackLayout>

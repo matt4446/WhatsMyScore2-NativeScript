@@ -27,9 +27,9 @@ import {RouteConfig} from "angular2/router";
     directives: [NxList, NxListItem, NxHeader, IonIcon]
 })
 @RouteConfig([
-    { path: "/", component: StartPage, as: "Start" },
-    { path: "/regions", component: RegionsPage, as: "Regions" },
-    { path: "/regions/:id", component: RegionPage, as: "Region" }
+    { path: "/", component: StartPage, name: "Start" },
+    { path: "/regions", component: RegionsPage, name: "Regions" },
+    { path: "/regions/:id", component: RegionPage, name: "Region" }
 ])
 export class AppMain {
     constructor(private logger:Logger)

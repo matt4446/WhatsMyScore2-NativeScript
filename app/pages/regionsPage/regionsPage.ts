@@ -86,10 +86,10 @@ export class RegionsPage
             .subscribe((items : Array<IProvider>) => {
                 this.list = items; //<- items is a object ?
                 
-                items.forEach((item) => {
-                    this.logger.Notify("item");
-                    this.logger.Notify(item.Name);
-                });
+                // items.forEach((item) => {
+                //     this.logger.Notify("item");
+                //     this.logger.Notify(item.Name);
+                // });
                 
                  this.logger.Notify("items available:" + items.length);
             },(error) => {
