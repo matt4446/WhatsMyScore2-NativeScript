@@ -95,14 +95,49 @@ export class NxList {
         
         var anyReady = this.children.map((item) => item.itemReady);
         var anySelected = this.children.map((item) => item.itemSelected);
-        
-        Observable.forkJoin(anySelected).subscribe((item) => {
-            this.logger.Notify("forkJoin: one of the items was selected");
+                
+        Observable.fromArray(anySelected).flatMap(x=> x).subscribe((item : NxListItem) => {
+            this.logger.Notify("one of the items was selected");
+            
+            //get rid of all items except the selected one.
+            this.children.forEach((row) => {
+                if(item == row){
+                    return;
+                }
+                
+                var stackPanel = row.getNativeElement();
+                stackPanel.animate({
+                    opacity: 1,
+                    duration: 300,
+                    translate: {
+                        x : 40,
+                        y: 0
+                    }
+               }).then(() => {
+                   return stackPanel.animate({
+                       translate: {
+                           x: -200,
+                           y: 0
+                       },
+                       opacity: 0
+                   });
+               }).then(() => {
+                    stackPanel.translateX = 0;
+                    return stackPanel.animate({
+                        translate: {
+                            x: 0,
+                            y: 0
+                        },
+                        opacity: 1
+                    });
+               });
+               
+                
+            });
+            
         });
-        Observable.combineLatest(anySelected).subscribe((item) => {
-            this.logger.Notify("combineLatest: one of the items was selected");
-        });
         
+       
         //these items will be wrapped in a stack panel.
         // children.forEach((item : NxListItem) => {
         //     var stackPanel = item.Element;
