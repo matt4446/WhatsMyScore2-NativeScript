@@ -110,6 +110,9 @@ export class RegionsPage
                 this.logger.Notify("test property count: " +json.count);
                 this.logger.Notify("test property size:" +json.size);
                 this.logger.Notify("test property size:" +json.size());
+                
+                this.logger.Notify("Try again at the array length:")
+                this.logger.Notify("length:" + json.length);
             });
     }
     
