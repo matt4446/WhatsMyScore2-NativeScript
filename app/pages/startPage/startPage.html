@@ -11,6 +11,14 @@
     
     <ScrollView>
         <StackLayout class="inset">
+            <nx-card>
+                <grid-layout rows="200, auto, auto" columns="auto, auto, *">
+                    <label text="Batman wants to be friends?" class="info" textWrap="true" row="1" colSpan="3" ></label>   
+                    <label text="Batman wants to be friends?" class="info" textWrap="true" row="1" colSpan="3" ></label>   
+                    <button text="DECLINE" tap="goAway" class="clear-btn blue" row="2" col="0" ></button>
+                    <button text="ACCEPT" class="clear-btn blue" row="2" col="1" ></button>
+                </grid-layout>
+            </nx-card>
             <nx-list>
                 <nx-header item-top>
                     <label text="START" class="nx-header-title"></label>

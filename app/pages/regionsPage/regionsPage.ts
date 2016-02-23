@@ -18,6 +18,8 @@ import {NxList} from "../../controls/list/list";
 import {NxListItem} from "../../controls/list/list-item";
 import {NxHeader} from "../../controls/list/header";
 import {IonIcon} from "../../controls/icons/ion-icon";
+import {Http} from 'angular2/http';
+import {Settings} from "../../providers/routes/routes";
 
 @Page({
     selector: "regions-page",
@@ -28,6 +30,7 @@ import {IonIcon} from "../../controls/icons/ion-icon";
 export class RegionsPage 
 {
     constructor(
+        private http: Http,
         private logger: Logger, 
         private router: Router,
         private regions: ProviderService)
@@ -36,19 +39,7 @@ export class RegionsPage
     }
     
     public list : Array<IProvider> = [];
-    
-    public pageLoaded(args:any): void {
-        this.logger.Notify("regions page - loaded");
-        console.log("regions page - loaded - i happen alot?");
         
-        //does not work:
-        //var page = <pages.Page>args.object;
-        // var page = args.object;
-        // page.animate({
-        //     translate: { x: 30, y:0 }
-        // });
-    }
-    
     public back(): void 
     {
         this.logger.Notify("regions - page - back pressed");
@@ -74,8 +65,30 @@ export class RegionsPage
     } 
     
     /* angular2 lifecycle */
-    public ngAfterViewInit(){
+    public ngOnInit(){
         this.logger.Notify("Region-page ngAfterViewInit");
+        
+        /* new test - http */
+        
+        let base = Settings.WebApiBaseUrl;
+        let endpoint  = "/Api/Providers/List/Enabled";
+        let route = base + endpoint;
+        
+        this.logger.Notify("Load :" + route);
+        
+        this.http.get(route).map(x=> x.json()).subscribe((items: any) => {
+            console.log('items: ' + items);          
+            this.list = items;
+            
+            console.log(items.length);
+        });
+        
+        //var observableRequest = this.http.get(route);
+        let observableRequest = this.http.get(route);
+        
+        /* */
+        
+        
         
         //time to load the data
         var response = this.regions.List();
@@ -97,23 +110,23 @@ export class RegionsPage
                 this.logger.Error(error);
             });
                         
-        response
-            //.map(r => { return {status: r.status, text: r.text() }; })
-            .subscribe((result) => {
-                this.logger.Notify("items loaded - status:" +result.status);
-                let text = result.text();
-                this.logger.Notify(text);
-                let json = result.json();
-                this.logger.Notify("json parsed: " + json);
-                this.logger.Notify("Take a peak at json object ...");
-                this.logger.NotifyObjectProperties(json);
-                this.logger.Notify("test property count: " +json.count);
-                this.logger.Notify("test property size:" +json.size);
-                this.logger.Notify("test property size:" +json.size());
-                
-                this.logger.Notify("Try again at the array length:")
-                this.logger.Notify("length:" + json.length);
-            });
+        // response
+        //     //.map(r => { return {status: r.status, text: r.text() }; })
+        //     .subscribe((result) => {
+        //         this.logger.Notify("items loaded - status:" +result.status);
+        //         let text = result.text();
+        //         this.logger.Notify(text);
+        //         let json = result.json();
+        //         this.logger.Notify("json parsed: " + json);
+        //         this.logger.Notify("Take a peak at json object ...");
+        //         this.logger.NotifyObjectProperties(json);
+        //         this.logger.Notify("test property count: " +json.count);
+        //         this.logger.Notify("test property size:" +json.size);
+        //         this.logger.Notify("test property size:" +json.size());
+        //         
+        //         this.logger.Notify("Try again at the array length:")
+        //         this.logger.Notify("length:" + json.length);
+        //     });
     }
     
 }

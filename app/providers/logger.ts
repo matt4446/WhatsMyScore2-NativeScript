@@ -34,11 +34,9 @@ export class Logger
             .distinctUntilChanged((x,y) => x===y)
             .map(e=> e.message)
             .subscribe((msg) => {
-                    
                     console.log("*ERROR*****************");
                     console.log(msg);
                     console.log("**********************");
-                    
                 });
     }
     
@@ -66,9 +64,9 @@ export class Logger
     
     public NotifyResponse(requestObservable: Observable<Response>)
     {
-        var subscription = requestObservable.subscribe(response => {
-            this.Notify("response:");
-            this.Notify(response.text());
-        });
+        // var subscription = requestObservable.subscribe(response => {
+        //     this.Notify("response:");
+        //     this.Notify(response.text());
+        // });
     }
 } 

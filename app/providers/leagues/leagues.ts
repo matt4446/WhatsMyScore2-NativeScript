@@ -22,7 +22,7 @@ export class ProviderService{
         
         this.logger.Notify("Load :" + route);
         
-        var promise = this.http.get(route);
+        let promise = this.http.get(route);
         
         this.logger.NotifyResponse(promise);
                 
@@ -37,7 +37,8 @@ export class ProviderService{
         this.logger.Notify("Load :" + route);
         
         //var observableRequest = this.http.get(route);
-        var observableRequest = this.http.get(route);
+        let observableRequest = this.http.get(route);
+        
         this.logger.NotifyResponse(observableRequest);
         
         return observableRequest;

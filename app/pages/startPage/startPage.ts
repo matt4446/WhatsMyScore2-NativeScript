@@ -10,18 +10,36 @@ import {NxList} from "../../controls/list/list";
 import {NxListItem} from "../../controls/list/list-item";
 import {NxHeader} from "../../controls/list/header";
 import {IonIcon,NavIcon} from "../../controls/icons/ion-icon";
+
+import {Http} from 'angular2/http';
+import {Settings} from "../../providers/routes/routes";
+import {NxCard} from "../../controls/card/card";
 //import {TitleTransform} from "../../pipes/title";
 @Page({
     selector: "start",
     //move directives to App .. 
-    directives: [NxNav, NxList, NxListItem, NxHeader, IonIcon],
+    directives: [NxCard, NxNav, NxList, NxListItem, NxHeader, IonIcon],
     templateUrl: "pages/startPage/startPage.html"
 })
 export class StartPage 
 {
-    constructor(private logger:Logger, private router: Router)
+    constructor(private logger:Logger, private http: Http, private router: Router)
     {
-        this.logger.Notify("Start Page - constructor hit");   
+        this.logger.Notify("Start Page - constructor hit"); 
+        
+        let base = Settings.WebApiBaseUrl;
+        let endpoint  = "/Api/Providers/List/Enabled";
+        let route = base + endpoint;
+        
+        this.logger.Notify("Load :" + route);
+        
+        this.http.get(route).map(x=> x.json()).subscribe((items: any) => {
+            console.log('items: ' + items);          
+            console.log(items.length);
+        });
+        
+        //var observableRequest = this.http.get(route);
+        let observableRequest = this.http.get(route);  
     }
     
     public pageLoaded(args: any): void {
