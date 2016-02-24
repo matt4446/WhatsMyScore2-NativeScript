@@ -1,17 +1,17 @@
 <StackLayout>
-        <nx-nav>
+    <nx-nav>
         <ion-icon nav-left nav="true" (tap)="menuTap($event)" icon="ion-android-menu"></ion-icon>
         
         <label class="nx-header-title" text="Regions" style="horizontal-align:center"></label>
         
         <ion-icon nav-right nav="true" icon="ion-android-favorite"></ion-icon>
     </nx-nav>
-    
-    
-    
+    <ScrollView>
     <StackLayout class="inset">
         <nx-card *ngFor="#region of list">
-            <Label  [text]='region.Name'></Label>
+            <nx-item>
+                 <Label  [text]='region.Name'></Label>
+            </nx-item>
         </nx-card>
         
         <nx-list>
@@ -21,9 +21,7 @@
             <nx-item>
                 <label text="Test item"></label>
             </nx-item>
-            
-            
-            
+
             <nx-item *ngFor="#region of list">
                 <Label  [text]='region.Name'></Label>
             </nx-item>
@@ -33,4 +31,5 @@
         <button (tap)="back()" text="back"></button>
         <button (tap)="start()" text="start"></button>
     </StackLayout>
+    </ScrollView>
 </StackLayout>

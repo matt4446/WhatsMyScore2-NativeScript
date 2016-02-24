@@ -1,5 +1,12 @@
 import { Component, View } from 'angular2/core'
 import { EventData } from "data/observable"
+import {NxNav} from "../controls/nav/nav";
+import {NxList} from "../controls/list/list";
+import {NxListItem} from "../controls/list/list-item";
+import {NxHeader} from "../controls/list/header";
+import {NxCard} from "../controls/card/card";
+import {IonIcon,NavIcon} from "../controls/icons/ion-icon";
+import {NgIf, NgFor} from 'angular2/common';
 
 const _reflect: any = Reflect;
 
@@ -29,9 +36,13 @@ export function Page(config: IPageConfig={})
     {
         var annotations = _reflect.getMetadata('annotations', cls) || [];
         var componentConfig: any = config;
-
-            
-
+        
+        var components = [NxCard, NxNav, NxList, NxListItem, NxHeader, IonIcon, NgIf, NgFor];
+        
+        config.directives = config.directives 
+            ? config.directives.concat(components) 
+            : components;
+        
         annotations.push(new Component(componentConfig));
 
         _reflect.defineMetadata('annotations', annotations, cls);

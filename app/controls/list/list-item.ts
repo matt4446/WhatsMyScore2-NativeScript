@@ -13,7 +13,7 @@ import { Observable, Subscription, Subject} from 'rxjs/Rx';
     //[itemLoaded]="itemLoaded($event)"
     template: `
     <StackLayout #item style="opacity:1">
-        <Border height="2" borderRadius="0" borderWidth="2" borderColor="#387ef5"></Border>
+        <Border height="2" borderRadius="0" borderWidth="1" borderColor="#387ef5"></Border>
         <GridLayout  columns="42, *, 42" rows="auto" class="nx-item" (tap)="tapWrapper($event)">
             <StackLayout col="0" class="icon-column" style="vertical-align:center;horizontal-align:center" >
                 <ng-content select="[item-left]"></ng-content>

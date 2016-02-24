@@ -1,10 +1,8 @@
-import {NgIf, NgFor} from 'angular2/common';
 import {Component} from 'angular2/core';
 import {Router} from "angular2/router";
 import {Page} from "../../decorators/page";
 import {Logger} from "../../providers/logger";
-import {SearchList, ISearchEvent} from "../../controls/searchList/searchList";
-
+//import {SearchList, ISearchEvent} from "../../controls/searchList/searchList";
 
 /* data */
 import { ProviderService } from "../../providers/leagues/leagues";
@@ -12,20 +10,13 @@ import { IProvider } from "../../models/models"
 
 /* directive */
 import { RegionItem } from "./region-item";
-
-import {NxNav} from "../../controls/nav/nav";
-import {NxList} from "../../controls/list/list";
-import {NxListItem} from "../../controls/list/list-item";
-import {NxHeader} from "../../controls/list/header";
-import {IonIcon} from "../../controls/icons/ion-icon";
 import {Http} from 'angular2/http';
 import {Settings} from "../../providers/routes/routes";
-import {NxCard} from "../../controls/card/card";
+
 @Page({
     selector: "regions-page",
     templateUrl: "pages/regionsPage/regionsPage.html",
-    providers: [ProviderService],
-    directives: [NgIf, NgFor,SearchList, RegionItem, NxNav, NxCard, NxList, NxListItem, NxHeader, IonIcon]
+    providers: [ProviderService]
 })
 export class RegionsPage 
 {
@@ -75,8 +66,7 @@ export class RegionsPage
         response
             .map(response => response.json())
             .subscribe((items : Array<IProvider>) => {
-                this.list = items; //<- items is a object ?
-                this.logger.Notify("items available:" + items.length);
+                this.list = items;
             },(error) => {
                 this.logger.Error("Could not map items");
                 this.logger.Error(error);

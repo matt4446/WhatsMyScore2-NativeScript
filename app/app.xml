@@ -1,7 +1,7 @@
 <Page 
     xmlns="http://schemas.nativescript.org/tns.xsd" 
      actionBarHidden="true" loaded="pageLoadedBindAngular">
-     <!-- removed page load (and ng bootstrap) to test icons  -->
+     
     <StackLayout>
         <Label text="Loading..." class="title"/>
         <Label text="&#xf100; ionic icon" class="ion-icon" />

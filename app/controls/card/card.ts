@@ -14,8 +14,7 @@ import { Observable, Subscription, Subject} from 'rxjs/Rx';
             <ng-content></ng-content>
         </StackLayout>
     </CardView>
-    `,
-    inputs:["padding", "margin"]
+    `
 })
 export class NxCard {
     constructor() 
