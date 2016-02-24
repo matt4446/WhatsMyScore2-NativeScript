@@ -7,7 +7,13 @@
         <ion-icon nav-right nav="true" icon="ion-android-favorite"></ion-icon>
     </nx-nav>
     
+    
+    
     <StackLayout class="inset">
+        <nx-card *ngFor="#region of list">
+            <Label  [text]='region.Name'></Label>
+        </nx-card>
+        
         <nx-list>
             <nx-header item-top>
                 <label text="LEAGUES & REGIONS" class="nx-header-title"></label>
@@ -15,8 +21,15 @@
             <nx-item>
                 <label text="Test item"></label>
             </nx-item>
+            
+            
+            
+            <nx-item *ngFor="#region of list">
+                <Label  [text]='region.Name'></Label>
+            </nx-item>
+            
         </nx-list>
-        <Label [text]='"items loaded: " + items.length' class='title'></Label>      
+        
         <button (tap)="back()" text="back"></button>
         <button (tap)="start()" text="start"></button>
     </StackLayout>

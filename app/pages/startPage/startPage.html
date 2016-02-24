@@ -12,12 +12,24 @@
     <ScrollView>
         <StackLayout class="inset">
             <nx-card>
-                <grid-layout rows="200, auto, auto" columns="auto, auto, *">
-                    <label text="Batman wants to be friends?" class="info" textWrap="true" row="1" colSpan="3" ></label>   
-                    <label text="Batman wants to be friends?" class="info" textWrap="true" row="1" colSpan="3" ></label>   
-                    <button text="DECLINE" tap="goAway" class="clear-btn blue" row="2" col="0" ></button>
-                    <button text="ACCEPT" class="clear-btn blue" row="2" col="1" ></button>
-                </grid-layout>
+                <nx-header>
+                    <label text="START" class="nx-header-title"></label>
+                </nx-header>
+                <nx-item (tap)="loadRegions($event)">
+                    <ion-icon item-left icon="ion-map"></ion-icon>
+                    
+                    <!-- center -->
+                    <label text="Leagues & Regions"></label>
+                    <label class="note" text="BUCS, SUTL ..."></label>
+                    <!-- / center -->
+
+                    <ion-icon item-right icon="ion-chevron-right"></ion-icon>
+                </nx-item>
+                <nx-item (tap)="incomplete($event)">
+                    <ion-icon item-left icon="ion-map"></ion-icon>
+                    <label text="Map"></label>
+                    <ion-icon item-right icon="ion-chevron-right"></ion-icon>
+                </nx-item>
             </nx-card>
             <nx-list>
                 <nx-header item-top>

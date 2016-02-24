@@ -5,35 +5,20 @@ import { CardView } from "cardview";
 //var observable = require("data/observable");
 import { Observable, Subscription, Subject} from 'rxjs/Rx';
 
-@Directive({
-    selector: "CardView",
-})
-export class MainCardView {
-    public cardView: CardView;
-
-    constructor(private element: ElementRef) {
-        this.cardView = element.nativeElement;
-    }
-    
-
-}
-
 @Control({
     selector: "nx-card",
     //templateUrl: "controls/list/list.html",
     template:`
-    <CardView margin="10">
-        <ng-content></ng-content>
+    <CardView>
+        <StackLayout>
+            <ng-content></ng-content>
+        </StackLayout>
     </CardView>
     `,
-    directives: [MainCardView],
     inputs:["padding", "margin"]
 })
 export class NxCard {
-    constructor(
-        private owner: MainCardView
-    ) 
+    constructor() 
     {
     }
-   
 }
