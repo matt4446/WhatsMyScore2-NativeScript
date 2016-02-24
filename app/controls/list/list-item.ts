@@ -8,9 +8,6 @@ import { Observable, Subscription, Subject} from 'rxjs/Rx';
     selector:"nx-item",
     //create a 1 row template; 3 columns; 2 for the icons on the sides
     //https://github.com/NativeScript/NativeScript/issues/859 -- cant get per side border yet. 
-    
-    //[itemLoading]="itemLoading($event)" 
-    //[itemLoaded]="itemLoaded($event)"
     template: `
     <StackLayout #item style="opacity:1">
         <Border height="2" borderRadius="0" borderWidth="1" borderColor="#387ef5"></Border>
