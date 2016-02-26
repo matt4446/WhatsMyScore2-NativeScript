@@ -2,16 +2,27 @@
     <nx-nav>
         <ion-icon nav-left nav="true" (tap)="menuTap($event)" icon="ion-android-menu"></ion-icon>
         
-        <label class="nx-header-title" text="Regions" style="horizontal-align:center"></label>
+        <label class="nx-header-title" text="Leagues & Regions" style="horizontal-align:center"></label>
         
         <ion-icon nav-right nav="true" icon="ion-android-favorite"></ion-icon>
     </nx-nav>
     <ScrollView>
     <StackLayout class="inset">
         <nx-card *ngFor="#region of list">
+            <nx-header>
+                 <Label [text]='region.Name' class="nx-header-title"></Label>
+            </nx-header>
             <nx-item>
-                 <Label  [text]='region.Name'></Label>
+                
+                 <img [src]='"~/" + region.Logo' height="100" />
             </nx-item>
+            
+            <nx-item>
+                 <ion-icon item-left icon="ion-ios-star"></ion-icon>
+                 <Label [text]='region.CompetitionCount + " Competitions"'></Label>
+                 <ion-icon item-right icon="ion-chevron-right"></ion-icon>
+            </nx-item>
+            
         </nx-card>
         
         <nx-list>
@@ -24,7 +35,9 @@
 
             <nx-item *ngFor="#region of list">
                 <Label  [text]='region.Name'></Label>
+                <ion-icon item-right icon="ion-chevron-right"></ion-icon>
             </nx-item>
+            
             
         </nx-list>
         

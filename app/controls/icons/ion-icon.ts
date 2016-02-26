@@ -47,6 +47,7 @@ export class IonIcon {
     public nav : boolean = false;
     public tap = new EventEmitter();
     
+    //http://ionicons.com/cheatsheet.html
     private Match(key: string){
         switch (key) {
             case "ion-alert":
@@ -57,7 +58,8 @@ export class IonIcon {
                 return "\uf2c7";
             case "ion-android-add-circle":
                 return "\uf359";
-                
+            case "ion-ios-star":
+                return "\uf4b3";
             // .. 
             case "ion-ios-people" : 
                 return "\uf47c";
