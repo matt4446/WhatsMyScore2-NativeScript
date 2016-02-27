@@ -35,6 +35,8 @@ export function Control(config: IPageConfig={})
         componentConfig.changeDetection = ChangeDetectionStrategy.OnPush;
         //componentConfig.selector = 'main';
         
+        
+        
         annotations.push(new Component(componentConfig));
 
         _reflect.defineMetadata('annotations', annotations, cls);

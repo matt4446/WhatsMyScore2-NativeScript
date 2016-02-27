@@ -24,12 +24,12 @@ import {RouteConfig} from "angular2/router";
 @App({
     selector: "main",
     providers: [Logger],
-    directives: [NxList, NxListItem, NxHeader, IonIcon],
     registerElements: [{
         name: "CardView",
         resolver: () => require("nativescript-cardview").CardView
     }]
 })
+
 @RouteConfig([
     { path: "/", component: StartPage, name: "Start" },
     { path: "/regions", component: RegionsPage, name: "Regions" },

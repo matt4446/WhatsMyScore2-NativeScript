@@ -1,6 +1,7 @@
 import { Control } from "../../decorators/control";
-import { Directive, PipeTransform, Pipe, Input, Output, EventEmitter, ContentChildren,ContentChild, ViewChild,TemplateRef } from "angular2/core";
+import { Directive, HostListener, ElementRef, Input, Output, EventEmitter, ContentChildren,ContentChild, ViewChild,TemplateRef } from "angular2/core";
 import { Logger } from "../../providers/logger";
+import { Label } from "ui";
 
 @Directive({
     selector:"nav-icon",
@@ -8,7 +9,10 @@ import { Logger } from "../../providers/logger";
         'class: ion-icon nav-icon' 
     ]
 })
-export class NavIcon{ }
+export class NavIcon
+{
+    
+}
 
 @Control({
     selector:"ion-icon",
@@ -19,7 +23,7 @@ export class NavIcon{ }
     //     [text]="GetIcon()"></label>
     // `, 
     template: `   
-    <label (tap)="tapIcon" #item 
+    <label (tap)="tapIcon($event)" #item 
         class="ion-icon"
         [text]="GetIcon()"></label>
     `, 
@@ -29,9 +33,15 @@ export class NavIcon{ }
     //pipes: [IconPipe]
 })
 export class IonIcon {
-
+    private container: ElementRef;
+    
     constructor(private logger:Logger){
         this.logger.Notify("icon added");
+    }
+    
+    @ViewChild('item') 
+    set _listItems(item: ElementRef){
+        this.container = item;
     }
         
     public GetIcon(): string
@@ -46,6 +56,19 @@ export class IonIcon {
     public icon : string;
     public nav : boolean = false;
     public tap = new EventEmitter();
+    
+    public tapIcon($event){
+        this.logger.Notify("icon tapped");
+        let label : Label = this.container.nativeElement;
+        label.animate({
+            opacity: 0.7
+        }).then(() => {
+            return label.animate({
+                opacity: 1
+            });
+        });
+        this.tap.next($event)
+    }
     
     //http://ionicons.com/cheatsheet.html
     private Match(key: string){

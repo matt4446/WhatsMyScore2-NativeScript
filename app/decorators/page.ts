@@ -1,12 +1,12 @@
-import { Component, View } from 'angular2/core'
-import { EventData } from "data/observable"
+import { Component, View } from "angular2/core";
 import {NxNav} from "../controls/nav/nav";
 import {NxList} from "../controls/list/list";
 import {NxListItem} from "../controls/list/list-item";
 import {NxHeader} from "../controls/list/header";
 import {NxCard} from "../controls/card/card";
+import {NxDrawer} from "../controls/drawer/drawer";
 import {IonIcon,NavIcon} from "../controls/icons/ion-icon";
-import {NgIf, NgFor} from 'angular2/common';
+import {NgIf, NgFor} from "angular2/common";
 
 const _reflect: any = Reflect;
 
@@ -20,8 +20,8 @@ const _reflect: any = Reflect;
 
 export interface IPageConfig {
     selector?: string;
-    onLoaded? : (args: EventData) => void;
-    onNavigatingTo? : (arg: EventData) => void;
+    //onLoaded? : (args: EventData) => void;
+    //onNavigatingTo? : (arg: EventData) => void;
     template?: string;
     templateUrl?: string;
     //template?: string;
@@ -37,7 +37,7 @@ export function Page(config: IPageConfig={})
         var annotations = _reflect.getMetadata('annotations', cls) || [];
         var componentConfig: any = config;
         
-        var components = [NxCard, NxNav, NxList, NxListItem, NxHeader, IonIcon, NgIf, NgFor];
+        var components = [NxDrawer, NxCard, NxNav, NxList, NxListItem, NxHeader, IonIcon, NgIf, NgFor];
         
         config.directives = config.directives 
             ? config.directives.concat(components) 

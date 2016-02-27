@@ -1,9 +1,8 @@
 import { Control } from "../../decorators/control";
 import { EventEmitter, ViewChildren, ViewChild, ElementRef, HostListener, Host, Directive, Component, ContentChild, TemplateRef, ViewContainerRef} from 'angular2/core';
-
 import { Logger} from "../../providers/logger";
-import { NxTitle } from "./nav-title"
-import {NxCard} from "../card/card";
+import { IonIcon,NavIcon} from "../icons/ion-icon";
+import { Observable, Subscription, Subject} from 'rxjs/Rx';
 
 @Control({
     selector:"nx-nav",
@@ -15,6 +14,9 @@ import {NxCard} from "../card/card";
 
                     <GridLayout columns="42, *, 42" rows="auto" class="nx-nav-inner">
                         <StackLayout col="0" class="icon-column" style="vertical-align:center;horizontal-align:center">
+                            <nx-nav-back></nx-nav-back>
+                            <ion-icon nav="true" (tap)="tapWrapper($event)" icon="ion-android-menu"></ion-icon>
+            
                             <ng-content select="[nav-left]"></ng-content>
                         </StackLayout>
                         <StackLayout col="1">
@@ -31,7 +33,7 @@ import {NxCard} from "../card/card";
             </Border>
         </StackLayout>
     `,
-    directives: [],
+    directives: [IonIcon,NavIcon],
     providers: [],
     inputs: [ "showBack", "showMenu", "title" ],
     outputs: [ "showLeftSidebar", "showRightSidebar" ]
@@ -39,7 +41,10 @@ import {NxCard} from "../card/card";
 export class NxNav {
     @ViewChild('item') private container: ElementRef
 
-    public constructor(private logger: Logger ){
+    public constructor(
+        private element: ElementRef,
+        private logger: Logger) {
+            
         this.logger.Notify("nx-nav");
     }
       
@@ -47,9 +52,16 @@ export class NxNav {
     public showBack : boolean = true;
     public showMenu : boolean = false;
         
-        
+    //public MenuSelected: Subject<any> = new Subject<any>();
     public showLeftSidebar = new EventEmitter();
     public showRightSidebar = new EventEmitter();
+       
+    public menuSelected = new Subject<boolean>();
+       
+    public tapWrapper = (args: any) => {
+        this.logger.Notify("tap clicked on menu");
+        this.menuSelected.next(true);
+    };
         
     private ngAfterViewInit()
     {
