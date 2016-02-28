@@ -1,7 +1,19 @@
-<StackLayout>
-    <nx-drawer>
-        <StackLayout drawer-aside-left>
+
+<nx-drawer>
+    <start-nav drawer-aside-left></start-nav>
+    
+    <nx-nav>
+        <label class="nx-header-title" text="WHATS MY SCORE" style="horizontal-align:center"></label>
+        
+        <ion-icon nav-right nav="true" icon="ion-android-favorite"></ion-icon>
+    </nx-nav>
+    
+    <ScrollView>
+        <StackLayout class="inset">
             <nx-list>
+                <nx-header item-top>
+                    <label text="START" class="nx-header-title"></label>
+                </nx-header>
                 <nx-item (tap)="loadRegions($event)">
                     <ion-icon item-left icon="ion-map"></ion-icon>
                     
@@ -18,60 +30,27 @@
                     <ion-icon item-right icon="ion-chevron-right"></ion-icon>
                 </nx-item>
             </nx-list>
+
+            <nx-list>
+                <nx-header item-top>
+                    <label text="SEARCH" class="nx-header-title"></label>
+                </nx-header>
+                <nx-item (tap)="incomplete($event)">
+                    <label text="Competitions"></label>
+                    <ion-icon item-right icon="ion-search"></ion-icon>
+                </nx-item>
+                <nx-item (tap)="incomplete($event)">
+                    <ion-icon item-left icon="ion-ios-people"></ion-icon>
+                    <label text="Competitors"></label>
+                    <ion-icon item-right icon="ion-search"></ion-icon>
+                </nx-item>
+            </nx-list>
+
         </StackLayout>
-        
-        <nx-nav>
-            <label class="nx-header-title" text="WHATS MY SCORE" style="horizontal-align:center"></label>
-            
-            <ion-icon nav-right nav="true" icon="ion-android-favorite"></ion-icon>
-        </nx-nav>
-       
-        <ScrollView>
-            <StackLayout class="inset">
-                <nx-list>
-                    <nx-header item-top>
-                        <label text="START" class="nx-header-title"></label>
-                    </nx-header>
-                    <nx-item (tap)="loadRegions($event)">
-                        <ion-icon item-left icon="ion-map"></ion-icon>
-                        
-
-                        <label text="Leagues & Regions"></label>
-                        <label class="note" text="BUCS, SUTL ..."></label>
-
-
-                        <ion-icon item-right icon="ion-chevron-right"></ion-icon>
-                    </nx-item>
-                    <nx-item (tap)="incomplete($event)">
-                        <ion-icon item-left icon="ion-map"></ion-icon>
-                        <label text="Map"></label>
-                        <ion-icon item-right icon="ion-chevron-right"></ion-icon>
-                    </nx-item>
-                </nx-list>
-
-                <nx-list>
-                    <nx-header item-top>
-                        <label text="SEARCH" class="nx-header-title"></label>
-                    </nx-header>
-                    <nx-item (tap)="incomplete($event)">
-                        <label text="Competitions"></label>
-                        <ion-icon item-right icon="ion-search"></ion-icon>
-                    </nx-item>
-                    <nx-item (tap)="incomplete($event)">
-                        <ion-icon item-left icon="ion-ios-people"></ion-icon>
-                        <label text="Competitors"></label>
-                        <ion-icon item-right icon="ion-search"></ion-icon>
-                    </nx-item>
-                </nx-list>
-
-            </StackLayout>
-        </ScrollView>
-    </nx-drawer>
+    </ScrollView>
+</nx-drawer>
     
     
-    
-    
-</StackLayout>
 
     
 

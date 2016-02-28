@@ -61,6 +61,7 @@ export class NxNav {
     public tapWrapper = (args: any) => {
         this.logger.Notify("tap clicked on menu");
         this.menuSelected.next(true);
+        
     };
         
     private ngAfterViewInit()

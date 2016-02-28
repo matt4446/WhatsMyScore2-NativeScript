@@ -12,11 +12,13 @@ import { IProvider } from "../../models/models"
 import { RegionItem } from "./region-item";
 import {Http} from 'angular2/http';
 import {Settings} from "../../providers/routes/routes";
+import {StartNav} from "../nav/start.nav"
 
 @Page({
     selector: "regions-page",
     templateUrl: "pages/regionsPage/regionsPage.html",
-    providers: [ProviderService]
+    providers: [ProviderService],
+    directives: [StartNav]
 })
 export class RegionsPage 
 {

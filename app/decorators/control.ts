@@ -1,16 +1,9 @@
 import { Component, ChangeDetectionStrategy } from 'angular2/core';
 
+
 const _reflect: any = Reflect;
 
-/*
-<Page xmlns="http://www.nativescript.org/tns.xsd" loaded="pageLoaded">
-  <StackLayout>
-    <Label text="Loading..." cssClass="title"/>
-  </StackLayout>
-</Page>
-*/
-
-export interface IPageConfig {
+export interface IControlConfig {
     selector?: string;
     
     templateUrl?: string;
@@ -24,8 +17,7 @@ export interface IPageConfig {
         'class' : string 
     }
 }
-
-export function Control(config: IPageConfig={})
+export function Control(config: IControlConfig={})
 {
     return (cls) =>
     {
@@ -33,10 +25,7 @@ export function Control(config: IPageConfig={})
         var componentConfig: any = config;
 
         componentConfig.changeDetection = ChangeDetectionStrategy.OnPush;
-        //componentConfig.selector = 'main';
-        
-        
-        
+         
         annotations.push(new Component(componentConfig));
 
         _reflect.defineMetadata('annotations', annotations, cls);
@@ -44,3 +33,4 @@ export function Control(config: IPageConfig={})
         return cls;
     }
 }
+

@@ -27,7 +27,8 @@ import {RouteConfig} from "angular2/router";
     registerElements: [{
         name: "CardView",
         resolver: () => require("nativescript-cardview").CardView
-    }]
+    }],
+    directives: []
 })
 
 @RouteConfig([

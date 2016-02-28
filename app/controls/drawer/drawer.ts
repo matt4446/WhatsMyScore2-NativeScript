@@ -5,25 +5,27 @@ import { NxNav } from "../nav/nav";
 import { Observable, Subscription, Subject} from 'rxjs/Rx';
 import { StackLayout,AbsoluteLayout, GridLayout, Button, Page, Frame } from "ui"
 
+/*
+ * GridLayout without rows and columns defined will overlap elements. 
+ */
+
 @Control({
     selector:"nx-drawer",
     template:`
         <GridLayout>
             <AbsoluteLayout #asideLeftParent opacity="0" verticalAlignment="top" horizontalAlignment="left">
-                <StackLayout top="0" left="0" width="200" #asideLeft class="sidebar">
+                <StackLayout top="0" left="0" width="300" #asideLeft>
                     <ng-content select="[drawer-aside-left]"></ng-content>
                 </StackLayout>
             </AbsoluteLayout>  
         
             <StackLayout #grid horizontalAlignment="stretch">
                 
-                <StackLayout top="0" left="0" #centerContent >
+                <StackLayout #centerContent >
                     <ng-content></ng-content>
                 </StackLayout>
 
             </StackLayout>  
-            
-                 
         </GridLayout>
     `
 })
@@ -38,7 +40,10 @@ export class NxDrawer {
     }
     
     private State = {
-        Open : false
+        Open : false,
+        HasLeft : false,
+        HasRight: false,
+        NavAttached: false
     };
     
     public Open () {
@@ -63,12 +68,16 @@ export class NxDrawer {
     @ViewChild('asideLeft') 
     set _asideLeft(item: ElementRef){
         this.asideLeftContent = item;
+        this.State.HasLeft = true;
+        
+        this.logger.Notify("drawer.asideLeftContent set" + item);
     }
     
     @ViewChild('asideRight') 
     set _asideRight(item: ElementRef){
         this.asideRightContent = item;
-        
+        this.State.HasRight = true;    
+        this.logger.Notify("drawer.asideRightContent set: item" + item);
     }
     
     @ViewChild('centerContent')
@@ -78,11 +87,18 @@ export class NxDrawer {
     
     @ContentChildren(NxNav)
     set _setNav(items: any){
+        if(this.State.NavAttached){ return; }
+        
+        this.logger.Notify("drawer.nav set: " + items);
+        this.State.NavAttached = true;
         this.childNavs = items.toArray();
+        
+        this.logger.Notify("nav items: " + this.childNavs.length);
         
         var anySelected = this.childNavs.map((item) => item.menuSelected);
                 
         Observable.fromArray(anySelected).flatMap(x=> x).subscribe(() => { 
+            this.logger.Notify("nav menu tapped -> open side");
             let grid: StackLayout = this.grid.nativeElement;
             
             let leftParent: AbsoluteLayout = this.asideLeftParent.nativeElement;
@@ -92,6 +108,7 @@ export class NxDrawer {
             
             if(this.State.Open){
                 this.State.Open = false;
+                this.logger.Notify("bring back center");
                 //center.visibility = "collapse";
                 center.animate({
                     translate: {
@@ -106,11 +123,12 @@ export class NxDrawer {
                 });
             }else if(!this.State.Open){
                 this.State.Open = true;
+                this.logger.Notify("show aside left");
                 //center.visibility = "visible";
                 center.animate({
                     translate: {
                         y: 0,
-                        x: 200
+                        x: 300
                     },
                     opacity: 0.7
                 });

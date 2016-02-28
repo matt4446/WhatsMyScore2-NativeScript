@@ -3,6 +3,7 @@ import { HostListener, ElementRef, Input, Output, EventEmitter, ContentChildren,
 import { Logger } from "../../providers/logger";
 import { StackLayout, Button, Page } from "ui"
 import { Observable, Subscription, Subject} from 'rxjs/Rx';
+import {Router, Location, Instruction} from 'angular2/router';
 
 @Control({
     selector:"nx-item",
@@ -25,6 +26,7 @@ import { Observable, Subscription, Subject} from 'rxjs/Rx';
     </StackLayout>
     `,
     providers: [],
+    inputs: ['params: nxRoute'],
     outputs: ["tap"]
 })
 export class NxListItem {
@@ -37,7 +39,7 @@ export class NxListItem {
         this.itemReady.next(this);
     }
         
-    constructor(private logger:Logger){
+    constructor(private router: Router, private location: Location, private logger:Logger){
         this.logger.Notify("nx-item added");
         this.itemReady.subscribe(() => {
             this.logger.Notify("nx-item ready");
@@ -45,6 +47,15 @@ export class NxListItem {
         this.itemSelected.subscribe(() => {
            this.logger.Notify("nx-item selected");
         });
+    }
+    
+    private routeParams: any[];
+    // the instruction passed to the router to navigate
+    private navigationInstruction: Instruction;
+    
+    set params(changes: any[]) {
+        this.routeParams = changes;
+        this.navigationInstruction = this.router.generate(this.routeParams);
     }
     
     public itemReady: Subject<NxListItem> = new Subject<NxListItem>();
@@ -61,6 +72,8 @@ export class NxListItem {
     }
     
     public getNativeElement() : StackLayout {
+        if(!this.container){ return ; }
+        
         let stackLayout: StackLayout = this.container.nativeElement;
         
         return stackLayout;
@@ -70,12 +83,9 @@ export class NxListItem {
         this.logger.Notify("tap clicked on item");
         
         var stackLayout: StackLayout = this.getNativeElement();
+        if(!stackLayout) { return ;}
         
-        this.logger.NotifyObjectProperties(stackLayout);
         this.itemSelected.next(this);
-        
-        //this.tap.next(args);        
-        //.. working cli 1.6 :)  
          
         let moveRight = stackLayout.animate({
             duration: 100,
@@ -88,17 +98,14 @@ export class NxListItem {
                 opacity: 1
             });
         }).then(() => {
-            if(this.tap){
+            if(this.navigationInstruction){
+                this.router.navigate(this.routeParams);
+            }else if(this.tap){
                 this.tap.next(args);
             } else {
                 this.logger.Notify("tap has not been set on the view");
             }
-            
-              
         });
-        
-        
-
     };
     
     public tap = new EventEmitter(); // : (args: EventEmitter<any>) => void;
