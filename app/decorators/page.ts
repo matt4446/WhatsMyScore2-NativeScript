@@ -37,8 +37,7 @@ export function Page(config: IPageConfig={})
 {
     return (cls) =>
     {
-        var actionBar = topmost().currentPage.actionBar;
-        actionBar.visibility = "collapsed";
+        
         
         var annotations = _reflect.getMetadata('annotations', cls) || [];
         var componentConfig: any = config;

@@ -35,7 +35,7 @@ import {RouteConfig} from "angular2/router";
     { path: "/", component: StartPage, name: "Start" },
     { path: "/regions", component: RegionsPage, name: "Regions" },
     { path: "/regions/:regionId", component: RegionPage, name: "Region" },
-    { path: "/regions/:regionId/competition/:competitionId", component: RegionCompetitionPage, name: "Competiton" } 
+    { path: "/regions/:regionId/competition/:competitionId", component: RegionCompetitionPage, name: "RegionCompetiton" } 
 ])
 export class AppMain {
     constructor(private logger:Logger)
