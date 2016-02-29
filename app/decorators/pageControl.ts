@@ -8,7 +8,7 @@ import {NxCard} from "../controls/card/card";
 import {NxDrawer} from "../controls/drawer/drawer";
 import {IonIcon,NavIcon} from "../controls/icons/ion-icon";
 import {NS_ROUTER_DIRECTIVES,NS_ROUTER_PROVIDERS} from "nativescript-angular/router";
-
+import {TitleTransform} from "../pipes/title"
 
 const _reflect: any = Reflect;
 
@@ -35,7 +35,7 @@ export function PageControl(config: IPageControlConfig={}) {
         componentConfig.changeDetection = ChangeDetectionStrategy.OnPush;
         
         var nxDirectives = [NxDrawer, NxCard, NxNav, NxList, NxListItem, NxHeader, IonIcon, NgIf, NgFor];
-        var providers = [];
+        var providers = [TitleTransform];
         
         config.directives = config.directives 
             ? config.directives.concat(nxDirectives) 

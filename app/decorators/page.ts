@@ -10,6 +10,7 @@ import {NgIf, NgFor} from "angular2/common";
 import {NS_ROUTER_DIRECTIVES,NS_ROUTER_PROVIDERS} from "nativescript-angular/router";
 import {topmost} from "ui/frame";
 import {ActionItem} from "ui/action-bar";
+import {TitleTransform} from "../pipes/title"
 
 const _reflect: any = Reflect;
 
@@ -44,11 +45,16 @@ export function Page(config: IPageConfig={})
         
         var providers = [];
         var nxDirectives = [NxDrawer, NxCard, NxNav, NxList, NxListItem, NxHeader, IonIcon, NgIf, NgFor];
+        var pipes = [TitleTransform];
         
         config.directives = config.directives 
             ? config.directives.concat(nxDirectives) 
             : nxDirectives;
        
+        config.pipes = config.pipes 
+            ? config.pipes.concat() 
+            : pipes;
+        
         annotations.push(new Component(componentConfig));
 
         _reflect.defineMetadata('annotations', annotations, cls);
