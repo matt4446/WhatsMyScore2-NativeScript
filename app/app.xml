@@ -1,6 +1,4 @@
-<Page 
-    xmlns="http://schemas.nativescript.org/tns.xsd" 
-     actionBarHidden="true" loaded="pageLoadedBindAngular">
+<Page xmlns="http://schemas.nativescript.org/tns.xsd">
      
     <StackLayout>
         <Label text="Loading..." class="title"/>

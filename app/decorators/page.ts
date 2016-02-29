@@ -8,6 +8,8 @@ import {NxDrawer} from "../controls/drawer/drawer";
 import {IonIcon,NavIcon} from "../controls/icons/ion-icon";
 import {NgIf, NgFor} from "angular2/common";
 import {NS_ROUTER_DIRECTIVES,NS_ROUTER_PROVIDERS} from "nativescript-angular/router";
+import {topmost} from "ui/frame";
+import {ActionItem} from "ui/action-bar";
 
 const _reflect: any = Reflect;
 
@@ -35,6 +37,9 @@ export function Page(config: IPageConfig={})
 {
     return (cls) =>
     {
+        var actionBar = topmost().currentPage.actionBar;
+        actionBar.visibility = "collapsed";
+        
         var annotations = _reflect.getMetadata('annotations', cls) || [];
         var componentConfig: any = config;
         

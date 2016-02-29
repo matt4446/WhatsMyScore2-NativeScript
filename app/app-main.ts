@@ -6,7 +6,7 @@ import {App} from "./decorators/app";
 import { StartPage } from "./pages/startPage/startPage";
 import { RegionsPage } from "./pages/regionsPage/regionsPage";
 import { RegionPage } from "./pages/regionPage/regionPage";
-
+import { RegionCompetitionPage } from "./pages/regionCompetitionPage/regionCompetitionPage";
 //providers 
 import {Logger} from "./providers/logger";
 
@@ -34,7 +34,8 @@ import {RouteConfig} from "angular2/router";
 @RouteConfig([
     { path: "/", component: StartPage, name: "Start" },
     { path: "/regions", component: RegionsPage, name: "Regions" },
-    { path: "/regions/:id", component: RegionPage, name: "Region" }
+    { path: "/regions/:regionId", component: RegionPage, name: "Region" },
+    { path: "/regions/:regionId/competition/:competitionId", component: RegionCompetitionPage, name: "Competiton" } 
 ])
 export class AppMain {
     constructor(private logger:Logger)

@@ -4,14 +4,13 @@ import {Logger} from "../../providers/logger";
 import {CompetitionService} from "../../providers/leagues/competitions";
 import {RouteParams} from "angular2/router";
 import { ICompetition } from "../../models/models"
-import {StartNav} from "../nav/start.nav";
+
 @Page({
-    selector: "Region",
-	templateUrl: "pages/regionPage/regionPage.html",
-    directives: [StartNav],
+    selector: "RegionCompetiton",
+	templateUrl: "pages/regionCompetitionPage/regionCompetitionPage.html",
     providers: [CompetitionService]
 })
-export class RegionPage 
+export class RegionCompetitionPage 
 {
     constructor(private params: RouteParams,private logger: Logger, private competitionService: CompetitionService)
     {
@@ -36,6 +35,6 @@ export class RegionPage
             }, (error)=> {
                 this.logger.Error(error);
             });
-    }  
+    } 
 }
 
