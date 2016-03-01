@@ -24,7 +24,7 @@ export function Control(config: IControlConfig={})
         var annotations = _reflect.getMetadata('annotations', cls) || [];
         var componentConfig: any = config;
 
-        componentConfig.changeDetection = ChangeDetectionStrategy.OnPush;
+        //componentConfig.changeDetection = ChangeDetectionStrategy.OnPush;
          
         annotations.push(new Component(componentConfig));
 

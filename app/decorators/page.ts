@@ -8,8 +8,7 @@ import {NxDrawer} from "../controls/drawer/drawer";
 import {IonIcon,NavIcon} from "../controls/icons/ion-icon";
 import {NgIf, NgFor} from "angular2/common";
 import {NS_ROUTER_DIRECTIVES,NS_ROUTER_PROVIDERS} from "nativescript-angular/router";
-import {topmost} from "ui/frame";
-import {ActionItem} from "ui/action-bar";
+
 //pipes 
 import {TitleTransform} from "../pipes/title";
 import {DisplayDate} from "../pipes/dates"
@@ -40,8 +39,7 @@ export function Page(config: IPageConfig={})
 {
     return (cls) =>
     {
-        
-        
+
         var annotations = _reflect.getMetadata('annotations', cls) || [];
         var componentConfig: any = config;
         

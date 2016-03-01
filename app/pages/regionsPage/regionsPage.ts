@@ -14,6 +14,9 @@ import {Http} from 'angular2/http';
 import {Settings} from "../../providers/routes/routes";
 import {StartNav} from "../nav/start.nav"
 
+import {topmost} from "ui/frame";
+import {ActionItem} from "ui/action-bar";
+
 @Page({
     selector: "regions-page",
     templateUrl: "pages/regionsPage/regionsPage.html",
@@ -59,6 +62,8 @@ export class RegionsPage
     
     /* angular2 lifecycle */
     public ngOnInit(){
+        topmost().currentPage.actionBarHidden = true;
+        
         this.logger.Notify("Region-page ngAfterViewInit");
         
         //time to load the data

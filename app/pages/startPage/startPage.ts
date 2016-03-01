@@ -10,6 +10,8 @@ import {Http} from 'angular2/http';
 import {Settings} from "../../providers/routes/routes";
 import {NxDrawer} from "../../controls/drawer/drawer";
 import {StartNav} from "../nav/start.nav"
+import {topmost} from "ui/frame";
+import {ActionItem} from "ui/action-bar";
 
 @Page({
     selector: "start",
@@ -48,15 +50,8 @@ export class StartPage
         alert("Its not made yet");
     }
     
-    
+    public ngOnInit()
+    {
+        topmost().currentPage.actionBarHidden = true;
+    }
 }
-
-
-//var vmModule = require("./main-view-model");
-// export function pageLoaded(args) {
-//     var page = args.object;
-//     var vm = new startPage();
-//     page.bindingContext = vm;
-// }
-
-//exports.pageLoaded = pageLoaded;
