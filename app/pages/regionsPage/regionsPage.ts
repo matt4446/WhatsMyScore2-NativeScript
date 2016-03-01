@@ -62,7 +62,7 @@ export class RegionsPage
     
     /* angular2 lifecycle */
     public ngOnInit(){
-        topmost().currentPage.actionBarHidden = true;
+        
         
         this.logger.Notify("Region-page ngAfterViewInit");
         
@@ -78,6 +78,10 @@ export class RegionsPage
                 this.logger.Error("Could not map items");
                 this.logger.Error(error);
             });
+    }
+    
+    public ngAfterViewInit(){
+        topmost().currentPage.actionBarHidden = true;
     }
     
 }
