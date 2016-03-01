@@ -1,0 +1,34 @@
+<nx-nav>
+    <label class="nx-header-title" text="Menu" style="horizontal-align:center"></label>
+</nx-nav>
+<StackLayout class="inset">
+    <nx-list>
+        <nx-item [nxRoute]="['Start']">
+            <ion-icon item-left icon="ion-map"></ion-icon>
+            
+            <label text="Start"></label>
+            
+            <ion-icon item-right icon="ion-chevron-right"></ion-icon>
+        </nx-item>
+        
+    </nx-list>
+    <nx-list>
+        <nx-item>
+            <ion-icon item-left icon="ion-map"></ion-icon>
+            
+            <label text="Current Competition"></label>
+
+            <ion-icon item-right icon="ion-chevron-right"></ion-icon>
+        </nx-item>
+        <nx-item>
+            <ion-icon item-left icon="ion-map"></ion-icon>
+            <label text="Grades"></label>
+            <ion-icon item-right icon="ion-chevron-right"></ion-icon>
+        </nx-item>
+        <nx-item>
+            <ion-icon item-left icon="ion-map"></ion-icon>
+            <label text="Clubs"></label>
+            <ion-icon item-right icon="ion-chevron-right"></ion-icon>
+        </nx-item>
+    </nx-list>
+</StackLayout>

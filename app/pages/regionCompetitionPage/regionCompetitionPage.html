@@ -1,17 +1,56 @@
 <nx-drawer>
-    <start-nav drawer-aside-left></start-nav>
+    <competition-nav drawer-aside-left></competition-nav>
     
     <nx-nav>
         <label class="nx-header-title" text="Competition" style="horizontal-align:center"></label>
-        
         <ion-icon nav-right nav="true" icon="ion-android-favorite"></ion-icon>
     </nx-nav>
     
     <ScrollView>
         <StackLayout class="inset">
-            
+            <nx-list>
+                <nx-header item-top>
+                    <label [text]="'Information & Documents' | Title" class="nx-header-title"></label>
+                </nx-header>
+                <nx-item>
+                    <ion-icon item-left icon="ion-map"></ion-icon>
+                    <label text="Information"></label>
+                    <ion-icon item-right icon="ion-chevron-right"></ion-icon>
+                </nx-item>
+                <nx-item>
+                    <ion-icon item-left icon="ion-map"></ion-icon>
+                    <label text="Start List"></label>
+                    <ion-icon item-right icon="ion-chevron-right"></ion-icon>
+                </nx-item>
+            </nx-list>
+
+            <nx-list>
+                <nx-header item-top>
+                    <label [text]="'Competition & Results' | Title" class="nx-header-title"></label>
+                </nx-header>
+                <nx-item>
+                    <label text="Grades"></label>
+                    <ion-icon item-right icon="ion-search"></ion-icon>
+                </nx-item>
+                <nx-item>
+                    <ion-icon item-left icon="ion-ios-people"></ion-icon>
+                    <label text="Clubs"></label>
+                    <ion-icon item-right icon="ion-search"></ion-icon>
+                </nx-item>
+                <nx-item>
+                    <ion-icon item-left icon="ion-ios-people"></ion-icon>
+                    <label text="Find a Competitor"></label>
+                </nx-item>
+                <nx-item>
+                    <ion-icon item-left icon="ion-ios-people"></ion-icon>
+                    <label text="Stats"></label>
+                </nx-item>
+            </nx-list>
+
         </StackLayout>
     </ScrollView>
+    
+    
 </nx-drawer>
     
     

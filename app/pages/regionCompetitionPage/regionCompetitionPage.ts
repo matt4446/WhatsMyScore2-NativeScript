@@ -3,11 +3,12 @@ import {Page} from "../../decorators/page";
 import {Logger} from "../../providers/logger";
 import {CompetitionService} from "../../providers/leagues/competitions";
 import {RouteParams} from "angular2/router";
-import { ICompetition } from "../../models/models"
-
+import {ICompetition} from "../../models/models"
+import {CompetitionNav} from "../nav/competition.nav";
 @Page({
     selector: "RegionCompetiton",
 	templateUrl: "pages/regionCompetitionPage/regionCompetitionPage.html",
+    directives: [CompetitionNav],
     providers: [CompetitionService]
 })
 export class RegionCompetitionPage 

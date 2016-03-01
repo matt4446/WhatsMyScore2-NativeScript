@@ -10,7 +10,9 @@ import {NgIf, NgFor} from "angular2/common";
 import {NS_ROUTER_DIRECTIVES,NS_ROUTER_PROVIDERS} from "nativescript-angular/router";
 import {topmost} from "ui/frame";
 import {ActionItem} from "ui/action-bar";
-import {TitleTransform} from "../pipes/title"
+//pipes 
+import {TitleTransform} from "../pipes/title";
+import {DisplayDate} from "../pipes/dates"
 
 const _reflect: any = Reflect;
 
@@ -45,7 +47,7 @@ export function Page(config: IPageConfig={})
         
         var providers = [];
         var nxDirectives = [NxDrawer, NxCard, NxNav, NxList, NxListItem, NxHeader, IonIcon, NgIf, NgFor];
-        var pipes = [TitleTransform];
+        var pipes = [TitleTransform, DisplayDate];
         
         config.directives = config.directives 
             ? config.directives.concat(nxDirectives) 

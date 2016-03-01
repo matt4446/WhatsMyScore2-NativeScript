@@ -20,6 +20,7 @@ import {IonIcon} from "./controls/icons/ion-icon";
 
 import {RouteConfig} from "angular2/router";
 
+
 //app decorator - save some code writing. Wrapper around @Component
 @App({
     selector: "main",
@@ -35,7 +36,7 @@ import {RouteConfig} from "angular2/router";
     { path: "/", component: StartPage, name: "Start" },
     { path: "/regions", component: RegionsPage, name: "Regions" },
     { path: "/regions/:regionId", component: RegionPage, name: "Region" },
-    { path: "/regions/:regionId/competition/:competitionId", component: RegionCompetitionPage, name: "RegionCompetiton" } 
+    { path: "/regions/:regionId/competition/:competitionId", component: RegionCompetitionPage, name: "Region.Competition" } 
 ])
 export class AppMain {
     constructor(private logger:Logger)

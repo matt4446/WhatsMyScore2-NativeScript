@@ -12,10 +12,12 @@
         <StackLayout class="inset">
             <nx-list>
                                 
-                <nx-item *ngFor="#competition of list">
+                <nx-item *ngFor="#competition of list"
+                    [nxRoute]="['Region.Competition', { regionId: competition.Provider.Id, competitionId: competition.Id  }]">
                     <ion-icon item-left icon="ion-ios-star"></ion-icon>
                     <label [text]="competition.Name"></label>
                     <label class="note" [text]="competition.LocationName"></label>
+                    <label class="note" [text]="competition.StartDateTimeUtc | DisplayDate"></label>
                 </nx-item>
                                           
             </nx-list>
