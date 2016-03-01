@@ -25,7 +25,7 @@ import { Observable, Subscription, Subject} from 'rxjs/Rx';
     </Border>
     `,
     directives: [ NxListItem, NxHeader ],
-    inputs:["padding"]
+    //inputs:["padding"]
 })
 export class NxList {
     //@Input() //see @control - inputs
@@ -39,11 +39,11 @@ export class NxList {
     public padding : boolean = false;
     public children : Array<NxListItem>;
     
-    public HasPadding(){
-        if(this.padding){
-            return "padding";
-        }
-    }   
+    // public HasPadding(){
+    //     if(this.padding){
+    //         return "padding";
+    //     }
+    // }   
     
     //https://angular.io/docs/ts/latest/guide/lifecycle-hooks.html
     public ngAfterContentInit(){
