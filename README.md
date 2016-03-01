@@ -16,7 +16,7 @@ Make sure you have all the tools to run [NativeScript](http://docs.nativescript.
     - Region competitions page - *started*
     - Competition page - *started* 
 2. Menu navigation - *started*
-3. Angular2 Nativescript components
+3. Angular2 NativeScript components
     - List control: **nx-list** - *done* [link](https://github.com/matt4446/WhatsMyScore2-NativeScript/app/pages/startPage/startPage.html)
     - List item control: **nx-list-item** - *Started*
     - Animation - next

@@ -4,12 +4,12 @@ import { Logger } from "../../providers/logger";
 import { CardView } from "cardview";
 //var observable = require("data/observable");
 import { Observable, Subscription, Subject} from 'rxjs/Rx';
-
+import { Color } from "color"
 @Control({
     selector: "nx-card",
     //templateUrl: "controls/list/list.html",
     template:`
-    <CardView #item>
+    <CardView #item >
         <StackLayout>
             <ng-content></ng-content>
         </StackLayout>
@@ -23,6 +23,7 @@ export class NxCard {
     
     @ViewChild('item') 
     set _listItems(item: ElementRef){
-        let cardView: CardView = item.nativeElement
+        let cardView: CardView = item.nativeElement;
+        //cardView.backgroundColor = new Color("#FFFFFF");
     }
 }

@@ -3,37 +3,37 @@ import { EventEmitter, ViewChildren, ViewChild, ElementRef, HostListener, Host, 
 import { Logger} from "../../providers/logger";
 import { IonIcon,NavIcon} from "../icons/ion-icon";
 import { Observable, Subscription, Subject} from 'rxjs/Rx';
-
+import {Router, Location, Instruction} from 'angular2/router';
+import {NxNavBack} from "./nav-back";
 @Control({
     selector:"nx-nav",
     //create 1 row template; 3 columns; 2 for the icons on the sides
     template: `
         <StackLayout>
             <StackLayout class="nx-nav">
-                <StackLayout #nav >
-
-                    <GridLayout columns="42, *, 42" rows="auto" class="nx-nav-inner">
-                        <StackLayout col="0" class="icon-column" style="vertical-align:center;horizontal-align:center">
+                <StackLayout #nav>
+                    <GridLayout rows="auto" class="nx-nav-inner">
+                        <StackLayout class="icon-column" style="vertical-align:center;horizontal-align:left;padding-left:14" orientation="horizontal">
                             <nx-nav-back></nx-nav-back>
+                            
                             <ion-icon nav="true" (tap)="tapWrapper($event)" icon="ion-android-menu"></ion-icon>
-            
+                            
                             <ng-content select="[nav-left]"></ng-content>
                         </StackLayout>
-                        <StackLayout col="1">
+                        <StackLayout style="vertical-align:center;horizontal-align:center">
                             <ng-content></ng-content>
                         </StackLayout>
-                        <StackLayout col="2" class="icon-column" style="vertical-align:center;horizontal-align:center">
+                        <StackLayout class="icon-column" style="vertical-align:center;horizontal-align:right;padding-right:14">
                             <ng-content select="[nav-right]"></ng-content>
                         </StackLayout>
                     </GridLayout>
-                   
                 <StackLayout>
             </StackLayout>
             <Border borderRadius="0" borderWidth="2" borderColor="#eeeeee">
             </Border>
         </StackLayout>
     `,
-    directives: [IonIcon,NavIcon],
+    directives: [IonIcon,NavIcon, NxNavBack],
     providers: [],
     inputs: [ "showBack", "showMenu", "title" ],
     outputs: [ "showLeftSidebar", "showRightSidebar" ]
@@ -42,9 +42,11 @@ export class NxNav {
     @ViewChild('item') private container: ElementRef
 
     public constructor(
+        private router: Router, private location: Location,
         private element: ElementRef,
         private logger: Logger) {
             
+        
         this.logger.Notify("nx-nav");
     }
       
