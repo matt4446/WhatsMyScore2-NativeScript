@@ -1,7 +1,8 @@
 ﻿/* colours */
 
-@header-baclground: #0c60ee;
+@header-baclground: #4d75b8;
 @primary : #387ef5;
+@minor : #548CEC
 @primary-background : @primary;
 @primary-text: #FFF;
 @default-padding : 12;
@@ -29,6 +30,7 @@
     /* cheat sheet http://ionicons.com/cheatsheet.html */
     font-size: @font-size-h1 ;
     margin-right: @default-margin;
+    color: @header-baclground;
 }
 
 .fa-icon {
@@ -73,21 +75,27 @@ button {
 }
 
 .nx-header-outer {
-    background-color:#4d75b8;color:#ffffff;
+    
 }
 
 .nx-header-inner {
-    padding: @default-padding;
-    padding-top: @default-padding-top-bottom;
-    padding-bottom: @default-padding-top-bottom;
+    
 }
 
 
 .nx-header {
+    padding: @default-padding;
+    padding-top: @default-padding-top-bottom;
+    padding-bottom: @default-padding-top-bottom;
+    border-radius: 4;
     font-size: @font-size-h1;    
     background-color:#4d75b8;
     color:@primary-text;
 }
+.nx-header-ext {
+    background-color:#4d75b8;
+}
+
 .nx-header-title {
     font-weight: bold;
     color:@primary-text;

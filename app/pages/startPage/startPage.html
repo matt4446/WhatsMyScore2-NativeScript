@@ -12,30 +12,24 @@
         <StackLayout class="inset">
             <nx-list>
                 <nx-header item-top>
-                    <label text="START" class="nx-header-title"></label>
+                    <label [text]="'Start' | Title" class="nx-header-title"></label>
                 </nx-header>
-                <nx-item (tap)="loadRegions($event)">
+                <nx-item [nxRoute]="['Regions']">
                     <ion-icon item-left icon="ion-map"></ion-icon>
                     
-
                     <label text="Leagues & Regions"></label>
                     <label class="note" text="BUCS, SUTL ..."></label>
 
-
-                    <ion-icon item-right icon="ion-chevron-right"></ion-icon>
-                </nx-item>
-                <nx-item (tap)="incomplete($event)">
-                    <ion-icon item-left icon="ion-map"></ion-icon>
-                    <label text="Map"></label>
                     <ion-icon item-right icon="ion-chevron-right"></ion-icon>
                 </nx-item>
             </nx-list>
 
             <nx-list>
                 <nx-header item-top>
-                    <label text="SEARCH" class="nx-header-title"></label>
+                    <label [text]="'Search' | Title" class="nx-header-title"></label>
                 </nx-header>
                 <nx-item (tap)="incomplete($event)">
+                    <ion-icon item-left icon="ion-calendar"></ion-icon>
                     <label text="Competitions"></label>
                     <ion-icon item-right icon="ion-search"></ion-icon>
                 </nx-item>

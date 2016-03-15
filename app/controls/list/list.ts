@@ -38,7 +38,7 @@ export class NxList {
     
     public padding : boolean = false;
     public children : Array<NxListItem>;
-    
+    public headers : Array<NxHeader>;
     // public HasPadding(){
     //     if(this.padding){
     //         return "padding";
@@ -69,30 +69,24 @@ export class NxList {
         //this.logger.Notify("ngAfterViewChecked");
     }
     
+    @ContentChildren(NxHeader)
+    set _setHeader(items : any) {
+        this.headers = items.toArray();
+        
+        // if(this.headers.length > 0){
+        //     let top = this.headers[0];
+        //     top.getNativeElement().borderRadius = 4;
+            
+        //     return;
+        // }
+    }
     //this should give me a list of shadow elements in ng-content
     @ContentChildren(NxListItem)
     set _listItems(items: any){
         this.logger.Notify("Setting list item nodes");
         this.children  = items.toArray();
         this.logger.Notify("" + this.children.length);
-        
-        // this.children.forEach((row)=>{
-        //     
-        //     var s = row.itemReady.subscribe((item) => {
-        //         var width = item.width;
-        //         item.translateX + width;
-        //         item.opacity = 0;
-        //         
-        //         item.animate({
-        //             duration: 5000,
-        //             opacity: 1,
-        //             translate: { x: 0, y: 0}
-        //         });
-        //         
-        //     });
-        //     
-        // });
-        
+                
         var anyReady = this.children.map((item) => item.itemReady);
         var anySelected = this.children.map((item) => item.itemSelected);
                 

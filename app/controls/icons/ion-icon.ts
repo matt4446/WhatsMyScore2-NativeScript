@@ -81,11 +81,10 @@ export class IonIcon {
                 return "\uf2c7";
             case "ion-android-add-circle":
                 return "\uf359";
-            case "ion-ios-star":
-                return "\uf4b3";
+            case "ion-calendar":
+                return "\uf117";
             // .. 
-            case "ion-ios-people" : 
-                return "\uf47c";
+            
             case "ion-map" : 
                 return "\uf203";
             case "ion-search" : 
@@ -100,6 +99,15 @@ export class IonIcon {
                 return "\uf388";
             case "ion-android-menu":
                 return "\uf394";
+                
+            /*
+                ios 
+             */
+            case "ion-ios-star":
+                return "\uf4b3";
+            case "ion-ios-people" : 
+                return "\uf47c";
+            
             default: 
                 //ion-alert
                 return key;

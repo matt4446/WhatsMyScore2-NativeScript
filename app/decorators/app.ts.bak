@@ -12,7 +12,7 @@ export interface IRegisterElement {
 };
 
 export interface IAppConfig {
-    registerElements? : IRegisterElement[],
+    registerElements : IRegisterElement[],
     directives? : any[],
     selector: string,
     providers?: any[],

@@ -9,7 +9,7 @@
     
     <ScrollView>
         <StackLayout class="inset">
-            <nx-card *ngFor="#region of list">
+            <nx-list *ngFor="#region of list">
                 <nx-header>
                     <Label [text]='region.Name' class="nx-header-title"></Label>
                 </nx-header>
@@ -24,7 +24,7 @@
                     <Label [text]='region.CompetitionCount + " Competitions"'></Label>
                     <ion-icon item-right icon="ion-chevron-right"></ion-icon>
                 </nx-item>
-            </nx-card>
+            </nx-list>
         </StackLayout>
     </ScrollView>
 </nx-drawer>
