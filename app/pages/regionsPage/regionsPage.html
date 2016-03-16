@@ -14,12 +14,15 @@
                     <Label [text]='region.Name' class="nx-header-title"></Label>
                 </nx-header>
                 
-                <nx-item *ngIf="region.Logo">
+                <nx-item *ngIf="region.Logo" 
+                    [nxRoute]="['Region', { regionId: region.Id }]">
                     
                     <img [src]='"~/" + region.Logo' height="100" style="border-radius:4" />
                 </nx-item>
                 
-                <nx-item [nxRoute]="['Region', { regionId: region.Id }]">
+                <nx-item 
+                    [nxRoute]="['Region', { regionId: region.Id }]">
+                    
                     <ion-icon item-left icon="ion-ios-star"></ion-icon>
                     <Label [text]='region.CompetitionCount + " Competitions"'></Label>
                     <ion-icon item-right icon="ion-chevron-right"></ion-icon>

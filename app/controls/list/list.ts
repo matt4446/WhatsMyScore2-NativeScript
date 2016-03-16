@@ -100,15 +100,17 @@ export class NxList {
                 }
                 
                 var stackPanel = row.getNativeElement();
+                
                 stackPanel.animate({
                     opacity: 1,
-                    duration: 300,
+                    duration: 100,
                     translate: {
                         x : 40,
                         y: 0
                     }
                }).then(() => {
                    return stackPanel.animate({
+                       duration: 100,
                        translate: {
                            x: -200,
                            y: 0
@@ -118,6 +120,7 @@ export class NxList {
                }).then(() => {
                     stackPanel.translateX = 0;
                     return stackPanel.animate({
+                        duration: 200,
                         translate: {
                             x: 0,
                             y: 0
