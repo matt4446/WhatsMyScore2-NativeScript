@@ -87,11 +87,7 @@ export function App(config: IAppConfig) {
 
         config.selector = 'main';
         //config.template = "<nav></nav><router-outlet></router-outlet>";
-        config.template = `
-            <StackLayout>
-                <page-router-outlet></page-router-outlet>
-            </StackLayout>
-        `;
+        config.template = `<page-router-outlet></page-router-outlet>`;
 
         config.providers = config.providers ? config.providers.concat(NS_ROUTER_PROVIDERS, HTTP_PROVIDERS) : [NS_ROUTER_PROVIDERS, HTTP_PROVIDERS];
 
@@ -106,7 +102,7 @@ export function App(config: IAppConfig) {
             let page: Page = injector.get(Page);
             let router: LocationStrategy = injector.get(LocationStrategy);
             //router.
-            page.actionBarHidden = true;
+            //page.actionBarHidden = true;
             //page.
         });
 

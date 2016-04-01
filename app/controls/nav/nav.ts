@@ -33,6 +33,11 @@ import {NxNavBack} from "./nav-back";
             </Border>
         </StackLayout>
     `,
+    // template: `
+    // <ActionBar>
+        
+    // </ActionBar>
+    // `,
     directives: [IonIcon,NavIcon, NxNavBack],
     providers: [],
     inputs: [ "showBack", "showMenu", "title" ],
