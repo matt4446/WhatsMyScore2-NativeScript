@@ -105,9 +105,9 @@ export function App(config: IAppConfig) {
             let injector = appRef.injector;
             let page: Page = injector.get(Page);
             let router: LocationStrategy = injector.get(LocationStrategy);
-            router.
+            //router.
             page.actionBarHidden = true;
-            page.
+            //page.
         });
 
         return cls;
