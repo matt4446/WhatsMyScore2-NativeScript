@@ -55,7 +55,9 @@ export function Page(config: IPageConfig={})
             ? config.pipes.concat() 
             : pipes;
         
-        annotations.push(new Component(componentConfig));
+        let component = new Component(componentConfig);
+
+        annotations.push(component);
 
         _reflect.defineMetadata('annotations', annotations, cls);
 

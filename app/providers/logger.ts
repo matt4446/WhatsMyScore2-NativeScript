@@ -45,6 +45,14 @@ export class Logger {
             message: message
         });
     }
+    
+    public NotifyArray(items: any[])
+    {
+        for(let i = 0;i<items.length; i++)
+        {
+            this.Notify("i="+i + " " + items[i]);
+        }
+    }
 
     public Error(message: string) {
         this.distinctLog.next({

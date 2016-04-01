@@ -1,7 +1,7 @@
 import { Control } from "../../decorators/control";
 import { HostListener, ElementRef, Input, Output, EventEmitter, ContentChildren,ContentChild, ViewChild,TemplateRef } from "angular2/core";
 import { Logger } from "../../providers/logger";
-import { StackLayout, Button, Page } from "ui"
+import { StackLayout, Button, Page } from "ui";
 import { Observable, Subscription, Subject} from 'rxjs/Rx';
 import {Router, Location, Instruction} from 'angular2/router';
 
@@ -45,10 +45,10 @@ export class NxListItem {
             this.logger.Notify("nx-item ready");
         });
         this.itemSelected.subscribe(() => {
-           this.logger.Notify("nx-item selected");
+            this.logger.Notify("nx-item selected");
         });
     }
-    
+       
     private routeParams: any[];
     // the instruction passed to the router to navigate
     private navigationInstruction: Instruction;
@@ -56,6 +56,26 @@ export class NxListItem {
     set params(changes: any[]) {
         this.routeParams = changes;
         this.navigationInstruction = this.router.generate(this.routeParams);
+    }
+    
+    get isRouteActive(): boolean 
+    { 
+        let available =this.navigationInstruction; 
+        if(!available){
+            this.logger.Notify("no route specified."); 
+            return false;
+        }
+        this.logger.Notify("route parts:");
+        this.logger.NotifyArray(this.routeParams);
+        this.logger.Notify("current instruction");
+        //this.logger.Notify(this.router.currentInstruction.toStr);
+        
+        let active = this.router.isRouteActive(this.navigationInstruction);
+            
+
+        this.logger.Notify("test route - active: " + active);
+        
+        return active;
     }
     
     public itemReady: Subject<NxListItem> = new Subject<NxListItem>();

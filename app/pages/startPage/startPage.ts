@@ -49,9 +49,5 @@ export class StartPage
     public incomplete(args: EventData) : void {
         alert("Its not made yet");
     }
-    
-    public ngOnInit()
-    {
-        topmost().currentPage.actionBarHidden = true;
-    }
+  
 }

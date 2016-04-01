@@ -26,11 +26,14 @@ import {ActionItem} from "ui/action-bar";
 export class RegionsPage 
 {
     constructor(
+
         private http: Http,
         private logger: Logger, 
         private router: Router,
-        private regions: ProviderService)
+        private regions: ProviderService,
+        private page: Page)
     {
+
         this.logger.Notify("Regions page started");
     }
     
