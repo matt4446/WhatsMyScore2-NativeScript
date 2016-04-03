@@ -62,9 +62,9 @@ export class Logger {
     }
 
     public NotifyObjectProperties(object: any) {
-        for (let item in object) {
-            console.log("Property: " + item);
-        }
+        // for (let item in object) {
+        //     console.log("Property: " + item);
+        // }
     }
 
     public NotifyResponse(requestObservable: Observable<Response>) {

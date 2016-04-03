@@ -20,7 +20,6 @@ import {IonIcon} from "./controls/icons/ion-icon";
 
 import {RouteConfig} from "angular2/router";
 
-
 //app decorator - save some code writing. Wrapper around @Component
 @App({
     selector: "main",

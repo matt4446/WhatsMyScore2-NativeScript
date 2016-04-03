@@ -1,4 +1,3 @@
-"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,6 +17,9 @@ var regionCompetitionPage_1 = require("./pages/regionCompetitionPage/regionCompe
 //providers 
 var logger_1 = require("./providers/logger");
 var router_1 = require("angular2/router");
+// ---- ADD THIS LINE ----
+require('nativescript-liveedit');
+// -----------------------
 //app decorator - save some code writing. Wrapper around @Component
 var AppMain = (function () {
     function AppMain(logger) {
@@ -43,6 +45,6 @@ var AppMain = (function () {
         __metadata('design:paramtypes', [logger_1.Logger])
     ], AppMain);
     return AppMain;
-}());
+})();
 exports.AppMain = AppMain;
 //# sourceMappingURL=app.js.map

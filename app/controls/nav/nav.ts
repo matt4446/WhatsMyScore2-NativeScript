@@ -5,6 +5,8 @@ import { IonIcon,NavIcon} from "../icons/ion-icon";
 import { Observable, Subscription, Subject} from 'rxjs/Rx';
 import {Router, Location, Instruction} from 'angular2/router';
 import {NxNavBack} from "./nav-back";
+import {Page} from "ui/page";
+
 @Control({
     selector:"nx-nav",
     //create 1 row template; 3 columns; 2 for the icons on the sides
@@ -34,7 +36,7 @@ import {NxNavBack} from "./nav-back";
         </StackLayout>
     `,
     // template: `
-    // <ActionBar>
+    // <ActionBar title='Hi'>
         
     // </ActionBar>
     // `,
@@ -49,10 +51,16 @@ export class NxNav {
     public constructor(
         private router: Router, private location: Location,
         private element: ElementRef,
-        private logger: Logger) {
+        private logger: Logger,
+        private page : Page) {
             
         
         this.logger.Notify("nx-nav");
+    }
+    
+    ngOnInit() {
+        this.page.actionBarHidden = true;
+        this.page.actionBar.update();
     }
       
     public title : string = "Default Title";
