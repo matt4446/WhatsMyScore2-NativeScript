@@ -3,7 +3,7 @@ import { EmbeddedViewRef, EventEmitter, ContentChildren, ViewChildren, ViewChild
 import { Logger} from "../../providers/logger";
 import { NxNav } from "../nav/nav";
 import { Observable, Subscription, Subject} from 'rxjs/Rx';
-import { StackLayout,AbsoluteLayout, GridLayout, Button, Page, Frame } from "ui"
+import { StackLayout,AbsoluteLayout, GridLayout, Button, Page, Frame } from "ui";
 
 /*
  * GridLayout without rows and columns defined will overlap elements. 

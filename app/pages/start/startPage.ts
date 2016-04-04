@@ -1,7 +1,7 @@
 import {Observable, EventData } from "data/observable";
 import {alert} from "ui/dialogs";
 
-import {Inject, Component, View} from 'angular2/core';
+import {Inject, Component} from 'angular2/core';
 import {Page} from "../../decorators/page";
 import {Logger} from "../../providers/logger";
 import {Router} from "angular2/router";
@@ -16,7 +16,7 @@ import {ActionItem} from "ui/action-bar";
 @Page({
     selector: "start",
     //I've moved directives to Page decorator .. 
-    templateUrl: "pages/startPage/startPage.html",
+    templateUrl: "pages/start/page.html",
     directives: [StartNav]
 })
 export class StartPage 

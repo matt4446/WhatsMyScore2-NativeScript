@@ -9,7 +9,6 @@ import { ProviderService } from "../../providers/leagues/leagues";
 import { IProvider } from "../../models/models"
 
 /* directive */
-import { RegionItem } from "./region-item";
 import {Http} from 'angular2/http';
 import {Settings} from "../../providers/routes/routes";
 import {StartNav} from "../nav/start.nav"
@@ -19,7 +18,7 @@ import {ActionItem} from "ui/action-bar";
 
 @Page({
     selector: "regions-page",
-    templateUrl: "pages/regionsPage/regionsPage.html",
+    templateUrl: "pages/regions/regionsPage.html",
     providers: [ProviderService],
     directives: [StartNav]
 })

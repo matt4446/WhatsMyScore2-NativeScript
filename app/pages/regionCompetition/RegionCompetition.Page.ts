@@ -7,7 +7,7 @@ import {ICompetition} from "../../models/models"
 import {CompetitionNav} from "../nav/competition.nav";
 @Page({
     selector: "RegionCompetiton",
-	templateUrl: "pages/regionCompetitionPage/regionCompetitionPage.html",
+	templateUrl: "pages/regionCompetitionPage/Region.Competition.Page.html",
     directives: [CompetitionNav],
     providers: [CompetitionService]
 })
@@ -25,6 +25,7 @@ export class RegionCompetitionPage
         this.logger.Notify("ngOnInit: RegionPage");
         let regionId = this.params.get("regionId");
         let observable = this.competitionService.List(regionId);
+        
         observable
             .map((response)=> response.json())
             .subscribe((items : ICompetition[]) => { 

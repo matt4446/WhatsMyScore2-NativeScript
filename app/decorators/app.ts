@@ -73,8 +73,6 @@ export function App(config: IAppConfig) {
     return (cls) => {
         console.log("Setup App annotations");
 
-        console.log("Add CardView");
-
         let registerElements: IRegisterElement[] = config.registerElements ? config.registerElements : [];
 
         registerElements.forEach(element => {
@@ -86,7 +84,6 @@ export function App(config: IAppConfig) {
         let annotations = _reflect.getMetadata('annotations', cls) || [];
 
         config.selector = 'main';
-        //config.template = "<nav></nav><router-outlet></router-outlet>";
         config.template = `<page-router-outlet></page-router-outlet>`;
 
         config.providers = config.providers ? config.providers.concat(NS_ROUTER_PROVIDERS, HTTP_PROVIDERS) : [NS_ROUTER_PROVIDERS, HTTP_PROVIDERS];
@@ -100,7 +97,11 @@ export function App(config: IAppConfig) {
         start(cls,config.providers).then(appRef => {
             let injector = appRef.injector;
             let page: Page = injector.get(Page);
-            let router: LocationStrategy = injector.get(LocationStrategy);
+            page.actionBarHidden = true;
+                    
+            
+            // let locationStrategy: LocationStrategy = injector.get(LocationStrategy);
+            // locationStrategy.
             //router.
             //page.actionBarHidden = true;
             //page.
