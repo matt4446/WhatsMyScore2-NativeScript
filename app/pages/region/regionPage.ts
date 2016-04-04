@@ -7,7 +7,7 @@ import { ICompetition } from "../../models/models"
 import {StartNav} from "../nav/start.nav";
 @Page({
     selector: "Region",
-	templateUrl: "pages/regionPage/regionPage.html",
+	templateUrl: "pages/region/regionPage.html",
     directives: [StartNav],
     providers: [CompetitionService]
 })
