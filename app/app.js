@@ -22,6 +22,7 @@ var page_3 = require("./pages/competition/gradeList/page");
 var page_4 = require("./pages/competition/information/page");
 var page_5 = require("./pages/competition/startList/page");
 var page_6 = require("./pages/competition/stats/page");
+var page_7 = require("./pages/test/page");
 //providers 
 var logger_1 = require("./providers/logger");
 var router_1 = require("angular2/router");
@@ -38,11 +39,13 @@ var AppMain = (function () {
             registerElements: [{
                     name: "CardView",
                     resolver: function () { return require("nativescript-cardview").CardView; }
-                }],
+                },
+            ],
             directives: []
         }),
         router_1.RouteConfig([
             { path: "/", component: startPage_1.StartPage, name: "Start" },
+            { path: "/test", component: page_7.TestPage, name: "Test" },
             { path: "/regions", component: regionsPage_1.RegionsPage, name: "Regions" },
             { path: "/regions/:regionId", component: regionPage_1.RegionPage, name: "Region" },
             /* competition picked - new navigation level */

@@ -19,6 +19,7 @@
         "app/providers/leagues/leagues.ts",
         "node_modules/tns-core-modules/tns-core-modules.base.d.ts",
         "node_modules/nativescript-cardview/cardview.d.ts"
+        
     ],
     "exclude": [
         "node_modules",

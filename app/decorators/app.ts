@@ -75,10 +75,7 @@ export function App(config: IAppConfig) {
 
         let registerElements: IRegisterElement[] = config.registerElements ? config.registerElements : [];
 
-        registerElements.forEach(element => {
-            console.log("Add element: " + element.name);
-            registerElement(element.name, element.resolver)
-        });
+        
 
         // get current annotations
         let annotations = _reflect.getMetadata('annotations', cls) || [];
@@ -98,7 +95,11 @@ export function App(config: IAppConfig) {
             let injector = appRef.injector;
             let page: Page = injector.get(Page);
             page.actionBarHidden = true;
-                    
+                  
+            registerElements.forEach(element => {
+                console.log("Add element: " + element.name);
+                registerElement(element.name, element.resolver)
+            });  
             
             // let locationStrategy: LocationStrategy = injector.get(LocationStrategy);
             // locationStrategy.

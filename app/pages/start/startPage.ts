@@ -13,6 +13,7 @@ import {StartNav} from "../nav/start.nav"
 import {topmost} from "ui/frame";
 import {ActionItem} from "ui/action-bar";
 
+import {} from "../../"
 @Page({
     selector: "start",
     //I've moved directives to Page decorator .. 

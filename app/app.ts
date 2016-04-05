@@ -12,7 +12,7 @@ import { GradeListPage } from "./pages/competition/gradeList/page";
 import { InformationPage } from "./pages/competition/information/page";
 import { StartListPage } from "./pages/competition/startList/page";
 import { StatsPage } from "./pages/competition/stats/page"
-
+import { TestPage } from "./pages/test/page";
 //providers 
 import {Logger} from "./providers/logger";
 import {RouteConfig} from "angular2/router";
@@ -24,11 +24,17 @@ import {RouteConfig} from "angular2/router";
     registerElements: [{
         name: "CardView",
         resolver: () => require("nativescript-cardview").CardView
-    }],
+    },
+    // {
+    //     name: "PullToRefresh",
+    //     resolver: () => require("nativescript-pulltorefresh").PullToRefresh 
+    // }
+    ],
     directives: []
 })
 @RouteConfig([
     { path: "/", component: StartPage, name: "Start" },
+    { path: "/test", component : TestPage, name: "Test" },
     { path: "/regions", component: RegionsPage, name: "Regions" },
     { path: "/regions/:regionId", component: RegionPage, name: "Region" },
     /* competition picked - new navigation level */

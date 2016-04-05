@@ -4,6 +4,8 @@ import {NxList} from "../controls/list/list";
 import {NxListItem} from "../controls/list/list-item";
 import {NxHeader} from "../controls/list/header";
 import {NxCard} from "../controls/card/card";
+import {NxPullToRefresh} from "../controls/pullToRefresh/pullToRefresh";
+
 import {NxDrawer} from "../controls/drawer/drawer";
 import {IonIcon,NavIcon} from "../controls/icons/ion-icon";
 import {NgIf, NgFor} from "angular2/common";
@@ -44,7 +46,7 @@ export function Page(config: IPageConfig={})
         var componentConfig: any = config;
         
         var providers = [];
-        var nxDirectives = [NxDrawer, NxCard, NxNav, NxList, NxListItem, NxHeader, IonIcon, NgIf, NgFor];
+        var nxDirectives = [NxDrawer, NxCard, NxPullToRefresh, NxNav, NxList, NxListItem, NxHeader, IonIcon, NgIf, NgFor];
         var pipes = [TitleTransform, DisplayDate];
         
         config.directives = config.directives 

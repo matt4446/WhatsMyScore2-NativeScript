@@ -23,9 +23,9 @@ export class Logger {
             .subscribe((msg) => {
                 var d = new Date();
                 var ds = d.toISOString();
-                console.log("=Debug===============");
-                console.log(ds + ": " + msg);
-                console.log("======================");
+                // console.log("=Debug===============");
+                // console.log(ds + ": " + msg);
+                // console.log("======================");
             });
 
         let errorStream = varients
@@ -33,9 +33,9 @@ export class Logger {
             .distinctUntilChanged((x, y) => x === y)
             .map(e=> e.message)
             .subscribe((msg) => {
-                console.log("*ERROR*****************");
-                console.log(msg);
-                console.log("**********************");
+                // console.log("*ERROR*****************");
+                // console.log(msg);
+                // console.log("**********************");
             });
     }
 
