@@ -7,7 +7,7 @@ import {Logger} from "../../providers/logger";
 /* data */
 import { ProviderService } from "../../providers/leagues/leagues";
 import { IProvider } from "../../models/models"
-
+//import { LoadingService} from "../../providers/loadingService/loadingService";
 /* directive */
 import {Http} from 'angular2/http';
 import {Settings} from "../../providers/routes/routes";
@@ -30,7 +30,6 @@ export class RegionsPage
         private router: Router,
         private regions: ProviderService)
     {
-
         this.logger.Notify("Regions page started");
     }
     
@@ -65,7 +64,7 @@ export class RegionsPage
         
         
         this.logger.Notify("Region-page ngAfterViewInit");
-        
+        //this.loadingService.show();
         //time to load the data
         var response = this.regions.List();
         
@@ -74,6 +73,7 @@ export class RegionsPage
             .map(response => response.json())
             .subscribe((items : Array<IProvider>) => {
                 this.list = items;
+                //this.loadingService.hide();
             },(error) => {
                 this.logger.Error("Could not map items");
                 this.logger.Error(error);

@@ -1,7 +1,7 @@
 import { Control } from "../../decorators/control";
 import { Directive, HostListener, ElementRef, Input, Output, EventEmitter, ContentChildren,ContentChild, ViewChild,TemplateRef } from "angular2/core";
 import { Logger } from "../../providers/logger";
-import { Label } from "ui";
+import { Label } from "ui/label";
 
 @Directive({
     selector:"nav-icon",

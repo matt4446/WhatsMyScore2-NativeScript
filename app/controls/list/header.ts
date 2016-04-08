@@ -1,8 +1,8 @@
 import { Control } from "../../decorators/control";
 import { ElementRef, Input, Output, EventEmitter, ContentChildren, ViewChild } from "angular2/core";
 import { Logger } from "../../providers/logger";
-import { StackLayout, Button } from "ui";
-
+import { Button } from "ui/button";
+import { StackLayout} from "ui/layouts/stack-layout";
 import { NxListItem } from "./list-item";
 
 @Control({

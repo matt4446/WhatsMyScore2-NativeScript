@@ -38,21 +38,9 @@ export class StatsPage
         this.logger.Notify("Region-page ngAfterViewInit");
         
         //time to load the data
-        var response = this.regions.List();
-        
-        //transform the data to json -> array of IProvider
-        response
-            .map(response => response.json())
-            .subscribe((items : Array<IProvider>) => {
-                this.list = items;
-            },(error) => {
-                this.logger.Error("Could not map items");
-                this.logger.Error(error);
-            });
+
     }
     
-    public ngAfterViewInit(){
-        topmost().currentPage.actionBarHidden = true;
-    }
+
     
 }

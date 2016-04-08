@@ -26,7 +26,7 @@ export interface IAppConfig {
         template ? : string
 }
 
-function start(appComponentType, customProviders) : Promise<any,any> {
+function start(appComponentType, customProviders) : Promise<any> {
     let p = new Promise((resolve, reject) => {
 
         application.start({

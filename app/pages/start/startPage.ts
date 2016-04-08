@@ -35,7 +35,7 @@ export class StartPage
             //to do animate transition
         }
         
-        let promise: Promise<any,any> = this.router.navigate(["Regions"]);
+        let promise: Promise<any> = this.router.navigate(["Regions"]);
         
         promise.then(() => {
             this.logger.Notify("I Should have navigated from start -> regions");

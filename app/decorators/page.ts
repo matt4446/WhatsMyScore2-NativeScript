@@ -1,5 +1,5 @@
 import { Component, View } from "angular2/core";
-import {NxNav} from "../controls/nav/nav";
+import { NxNav} from "../controls/nav/nav";
 import {NxList} from "../controls/list/list";
 import {NxListItem} from "../controls/list/list-item";
 import {NxHeader} from "../controls/list/header";
@@ -8,8 +8,10 @@ import {NxPullToRefresh} from "../controls/pullToRefresh/pullToRefresh";
 
 import {NxDrawer} from "../controls/drawer/drawer";
 import {IonIcon,NavIcon} from "../controls/icons/ion-icon";
+//import {LoadingService} from "../providers/loadingService/loadingService";
 import {NgIf, NgFor} from "angular2/common";
 import {NS_ROUTER_DIRECTIVES,NS_ROUTER_PROVIDERS} from "nativescript-angular/router";
+
 
 //pipes 
 import {TitleTransform} from "../pipes/title";
@@ -45,8 +47,21 @@ export function Page(config: IPageConfig={})
         var annotations = _reflect.getMetadata('annotations', cls) || [];
         var componentConfig: any = config;
         
-        var providers = [];
-        var nxDirectives = [NxDrawer, NxCard, NxPullToRefresh, NxNav, NxList, NxListItem, NxHeader, IonIcon, NgIf, NgFor];
+        var providers = [
+        ];
+        var nxDirectives = [
+            NxDrawer, 
+            NxCard, 
+            NxPullToRefresh, 
+            NxNav, 
+            NxList, 
+            NxListItem, 
+            NxHeader, 
+            IonIcon, 
+            NgIf, 
+            NgFor
+        ];
+        
         var pipes = [TitleTransform, DisplayDate];
         
         config.directives = config.directives 
