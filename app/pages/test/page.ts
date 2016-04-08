@@ -8,7 +8,8 @@ import {Image} from "ui/image"
 @Page({
     selector: "start",
     template: `
-        <StackLayout class='inset'>
+        <StackLayout >
+
             <nx-card>
                 <nx-header item-top>
                     <label [text]="'Test Card' | Title" class="nx-header-title"></label>
@@ -24,9 +25,10 @@ import {Image} from "ui/image"
                     <ion-icon item-right icon="ion-chevron-right"></ion-icon>
                 </nx-item>
             </nx-card>
-            <StackLayout>
+
+            <StackLayout class='inset'>
                 <nx-pull-to-refresh (refresh)="refreshPage($event)">
-                    <img [src]="RandomImage" stretch ="none" style="margin-top:10"> 
+                    <img [src]="RandomImage" stretch ="none"> 
                 </nx-pull-to-refresh>
             </StackLayout>
         </StackLayout>

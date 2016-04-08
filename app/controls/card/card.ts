@@ -9,7 +9,7 @@ import { Color } from "color"
     selector: "nx-card",
     //templateUrl: "controls/list/list.html",
     template:`
-    <CardView #item>
+    <CardView #item shadowColor="#FE00FC" elevation="10" margin="10">
         <StackLayout>
             <ng-content></ng-content>
         </StackLayout>
@@ -24,6 +24,6 @@ export class NxCard {
     @ViewChild('item') 
     set _listItems(item: ElementRef){
         let cardView: any = item.nativeElement;
-        cardView.shadowColor = new Color("#FF0000").android;
+        //cardView.shadowColor = new Color("#FF0000").android;
     }
 }
