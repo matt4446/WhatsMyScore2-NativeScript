@@ -9,16 +9,15 @@
         "sourceMap": true
     },
     "files": [
+        "node_modules/tns-core-modules/tns-core-modules.base.d.ts",
+        "node_modules/angular2/typings/browser.d.ts",
         "typings/tsd.d.ts",
-        
         "app/app.ts",
         "app/decorators/app.ts",
         "app/decorators/page.ts",
         "app/decorators/control.ts",
         "app/decorators/pageControl.ts",
         "app/providers/leagues/leagues.ts",
-        "node_modules/angular2/typings/browser.d.ts",
-        "node_modules/tns-core-modules/tns-core-modules.base.d.ts",
         "node_modules/nativescript-angular/router.d.ts",
         "node_modules/nativescript-cardview/cardview.d.ts"
     ],
