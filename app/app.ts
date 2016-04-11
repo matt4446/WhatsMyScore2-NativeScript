@@ -5,7 +5,7 @@ import {App} from "./decorators/app";
 import { StartPage } from "./pages/start/startPage";
 import { RegionsPage } from "./pages/regions/regionsPage";
 import { RegionPage } from "./pages/region/regionPage";
-import { RegionCompetitionPage } from "./pages/regionCompetition/RegionCompetition.Page";
+import { CompetitionPage } from "./pages/competition/page";
 import { ClubListPage } from "./pages/competition/clubList/page";
 import { FindCompetitorPage } from "./pages/competition/findCompetitor/page";
 import { GradeListPage } from "./pages/competition/gradeList/page";
@@ -15,20 +15,25 @@ import { StatsPage } from "./pages/competition/stats/page"
 import { TestPage } from "./pages/test/page";
 //providers 
 import {Logger} from "./providers/logger";
+import {ApplicationCache, CompetitionCache, GradeCache, ClubCache} from "./providers/leagues/cache";
 import {RouteConfig} from "angular2/router";
 
 //app decorator - save some code writing. Wrapper around @Component
 @App({
     selector: "main",
-    providers: [Logger],
+    providers: [Logger, 
+        ApplicationCache, 
+        CompetitionCache, 
+        GradeCache, 
+        ClubCache],
     registerElements: [{
         name: "CardView",
         resolver: () => require("nativescript-cardview").CardView
     },
-    // {
-    //     name: "PullToRefresh",
-    //     resolver: () => require("nativescript-pulltorefresh").PullToRefresh 
-    // }
+    {
+        name: "PullToRefresh",
+        resolver: () => require("nativescript-pulltorefresh").PullToRefresh 
+    }
     ],
     directives: []
 })
@@ -36,21 +41,40 @@ import {RouteConfig} from "angular2/router";
     { path: "/", component: StartPage, name: "Start" },
     { path: "/test", component : TestPage, name: "Test" },
     { path: "/regions", component: RegionsPage, name: "Regions" },
-    { path: "/regions/:regionId", component: RegionPage, name: "Region" },
-    /* competition picked - new navigation level */
-    { path: "/regions/:regionId/competition/:competitionId", component: RegionCompetitionPage, name: "Region.Competition" },
+    { path: "/region/:regionId", component: RegionPage, name: "Region" }
+])
+/* 
+    region picked - new navigation level 
+    child route of Region 
+    /regions/1/...
+*/
+@RouteConfig([
+    { path: "/region/:regionId/competition/:competitionId", component: CompetitionPage, name: "Region.Competition" },
+])
+/* 
+    competition for a region is picked - new navigation level
+    child route of Region.Competition :  
+    /regions/1/competition/1/...
+*/
+@RouteConfig([
     //to-do - template & provider
-    { path: "/regions/:regionId/competition/:competitionId/information", component: InformationPage, name: "Region.Competition.Information" },
+    { path: "/region/:regionId/competition/:competitionId/information", component: InformationPage, name: "Region.Competition.Information" },
     //to-do - template & provider
-    { path: "/regions/:regionId/competition/:competitionId/startList", component: StartListPage, name : "Region.Competition.StartList"},
+    { path: "/region/:regionId/competition/:competitionId/startList", component: StartListPage, name : "Region.Competition.StartList"},
     //to-do - template & provider
-    { path: "/regions/:regionId/competition/:competitionId/clubList", component: ClubListPage, name: "Region.Competition.ClubList"},
+    { path: "/region/:regionId/competition/:competitionId/clubList", component: ClubListPage, name: "Region.Competition.ClubList"},
     //to-do - template & provider
-    { path: "/regions/:regionId/competition/:competitionId/gradeList", component: GradeListPage, name : "Region.Competition.GradeList" },
+    { path: "/region/:regionId/competition/:competitionId/gradeList", component: GradeListPage, name : "Region.Competition.GradeList" },
     //to-do - template & provider
-    { path: "/regions/:regionId/competition/:competitionId/findCompetitor", component: FindCompetitorPage, name: "Region.Competition.FindCompetitor"},
+    { path: "/region/:regionId/competition/:competitionId/findCompetitor", component: FindCompetitorPage, name: "Region.Competition.FindCompetitor"},
     //to-do - template & provider
-    { path: "/regions/:regionId/competition/:competitionId/stats", component: StatsPage, name: "Region.Competition.Stats"},
+    { path: "/region/:regionId/competition/:competitionId/stats", component: StatsPage, name: "Region.Competition.Stats"},
+])
+
+@RouteConfig([
+    { path: "/region/:regionId/competition/:competitionId/grade/:gradeId/competitors", component: GradeListPage, name : "Region.Competition.GradeList.Competitors" },
+    { path: "/region/:regionId/competition/:competitionId/club/:clubId/competitors", component: GradeListPage, name : "Region.Competition.GradeList.Competitors" },
+    //to-do - template & provider
 ])
 export class AppMain {
     constructor(private logger:Logger)

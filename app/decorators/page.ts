@@ -1,4 +1,4 @@
-import { Component, View } from "angular2/core";
+import { Component, View, provide } from "angular2/core";
 import { NxNav} from "../controls/nav/nav";
 import {NxList} from "../controls/list/list";
 import {NxListItem} from "../controls/list/list-item";
@@ -11,8 +11,10 @@ import {IonIcon,NavIcon} from "../controls/icons/ion-icon";
 //import {LoadingService} from "../providers/loadingService/loadingService";
 import {NgIf, NgFor} from "angular2/common";
 import {NS_ROUTER_DIRECTIVES,NS_ROUTER_PROVIDERS} from "nativescript-angular/router";
-
-
+import {RouteParams} from 'angular2/router';
+//providers
+import {AppRoutingService} from "../context/router.context";
+import {Logger} from "../providers/logger";
 //pipes 
 import {TitleTransform} from "../pipes/title";
 import {DisplayDate} from "../pipes/dates"
@@ -47,9 +49,14 @@ export function Page(config: IPageConfig={})
         var annotations = _reflect.getMetadata('annotations', cls) || [];
         var componentConfig: any = config;
         
-        var providers = [
+        var coreProviders = [
+            provide(AppRoutingService, {
+                useFactory : (routeParams, logger) => { return new AppRoutingService(routeParams, logger); },
+                deps: [RouteParams, Logger] 
+            })
         ];
-        var nxDirectives = [
+        
+        var coreDirectives = [
             NxDrawer, 
             NxCard, 
             NxPullToRefresh, 
@@ -62,15 +69,21 @@ export function Page(config: IPageConfig={})
             NgFor
         ];
         
-        var pipes = [TitleTransform, DisplayDate];
+        var corePipes = [TitleTransform, DisplayDate];
         
         config.directives = config.directives 
-            ? config.directives.concat(nxDirectives) 
-            : nxDirectives;
+            ? config.directives.concat(coreDirectives) 
+            : coreDirectives;
+       
+        config.providers = config.providers
+            ? config.providers.concat(coreProviders)
+            : coreProviders;
        
         config.pipes = config.pipes 
             ? config.pipes.concat() 
-            : pipes;
+            : corePipes;
+            
+            
         
         let component = new Component(componentConfig);
 

@@ -4,12 +4,11 @@ import { registerElement, ViewClass } from "nativescript-angular/element-registr
 import { HTTP_PROVIDERS } from "angular2/http";
 import { nativeScriptBootstrap, bootstrap } from "nativescript-angular/application";
 import { Page } from "ui/page";
-import {TextView} from 'ui/text-view';
+import { TextView} from 'ui/text-view';
 import { bind, provide, Inject, Component } from 'angular2/core';
 import { APP_BASE_HREF } from "angular2/router";
 import application = require('application');
 //import {NS_ROUTER_PROVIDERS} from "nativescript-angular/router/ns-router";
-
 
 const _reflect: any = Reflect;
 

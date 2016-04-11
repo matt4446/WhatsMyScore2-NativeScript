@@ -8,8 +8,6 @@ import { ViewChild, ElementRef, Directive, Input, Output, EventEmitter, ContentC
 import { registerElement, ViewClass } from "nativescript-angular/element-registry";
 import { PullToRefresh } from "nativescript-pulltorefresh";
 
-registerElement("PullToRefresh", () => require("nativescript-pulltorefresh").PullToRefresh);
-
 @Control({
     selector: "nx-pull-to-refresh",
     template:`

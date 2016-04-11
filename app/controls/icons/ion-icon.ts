@@ -36,7 +36,7 @@ export class IonIcon {
     private container: ElementRef;
     
     constructor(private logger:Logger){
-        this.logger.Notify("icon added");
+        //this.logger.Notify("icon added");
     }
     
     @ViewChild('item') 
@@ -58,7 +58,7 @@ export class IonIcon {
     public tap = new EventEmitter();
     
     public tapIcon($event){
-        this.logger.Notify("icon tapped");
+        //this.logger.Notify("icon tapped");
         let label : Label = this.container.nativeElement;
         label.animate({
             opacity: 0.7

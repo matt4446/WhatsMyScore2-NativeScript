@@ -2,22 +2,29 @@ import {Component} from 'angular2/core';
 import {Router} from "angular2/router";
 import {Page} from "../../../decorators/page";
 import {Logger} from "../../../providers/logger";
+import {AppRoutingService} from "../../../context/router.context";
 //import {SearchList, ISearchEvent} from "../../controls/searchList/searchList";
-
-
+import {CompetitionService} from "../../../providers/leagues/competitions";
+import {ClubService} from "../../../providers/leagues/club";
+import {GradeService} from "../../../providers/leagues/grade";
+import {ApplicationCache, CompetitionCache, GradeCache, ClubCache} from "../../../providers/leagues/cache";
 @Page({
     selector: "grade-list-page",
-    templateUrl: "./grade.list.page.html"
+    templateUrl: "pages/competition/information/page.html",
+    providers: [CompetitionService, GradeService, ClubService]
 })
 export class InformationPage 
 {
-    constructor(private logger: Logger)
+    constructor(
+        private logger: Logger,
+        private context: AppRoutingService,
+        private cache: CompetitionCache)
     {
 
         this.logger.Notify("grade list page started");
     }
     
-    public list : Array<any> = [];
+    public competition : any;
 
     
     //passed to the child component
@@ -33,12 +40,9 @@ export class InformationPage
     
     /* angular2 lifecycle */
     public ngOnInit(){
-        
-        
         this.logger.Notify("Region-page ngAfterViewInit");
         
-        //time to load the data
-
+        this.competition = this.cache.Competition;
     }
    
     

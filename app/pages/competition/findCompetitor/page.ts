@@ -1,17 +1,23 @@
-import {Component} from 'angular2/core';
+import {Component, OnInit } from 'angular2/core';
 import {Router} from "angular2/router";
 import {Page} from "../../../decorators/page";
 import {Logger} from "../../../providers/logger";
 //import {SearchList, ISearchEvent} from "../../controls/searchList/searchList";
-
-
+import {AppRoutingService} from "../../../context/router.context";
+import {CompetitionService} from "../../../providers/leagues/competitions";
+import {ClubService} from "../../../providers/leagues/club";
+import {GradeService} from "../../../providers/leagues/grade";
+import {ApplicationCache, CompetitionCache, GradeCache, ClubCache} from "../../../providers/leagues/cache";
 @Page({
     selector: "find-competitor-page",
-    templateUrl: "./page.html"
+    templateUrl: "pages/competition/findCompetitor/page.html",
+    providers: [CompetitionService, GradeService, ClubService]
 })
-export class FindCompetitorPage 
+export class FindCompetitorPage implements OnInit
 {
-    constructor(private logger: Logger)
+    constructor(
+        private logger: Logger,
+        private context: AppRoutingService)
     {
 
         this.logger.Notify("grade list page started");

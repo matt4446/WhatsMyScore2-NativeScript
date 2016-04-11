@@ -23,7 +23,7 @@ export class NxHeader
     private container: ElementRef;
     
     constructor(private logger: Logger){
-        this.logger.Notify("add header");
+        //this.logger.Notify("add header");
     }
     
     @ViewChild('item') 

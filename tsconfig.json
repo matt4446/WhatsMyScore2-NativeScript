@@ -19,7 +19,8 @@
         "app/decorators/pageControl.ts",
         "app/providers/leagues/leagues.ts",
         "node_modules/nativescript-angular/router.d.ts",
-        "node_modules/nativescript-cardview/cardview.d.ts"
+        "node_modules/nativescript-cardview/cardview.d.ts",
+        "app/pages/regionCompetition/page.ts"
     ],
     "exclude": [
         "node_modules",

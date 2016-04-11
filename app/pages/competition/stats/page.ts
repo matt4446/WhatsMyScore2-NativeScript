@@ -2,16 +2,22 @@ import {Component} from 'angular2/core';
 import {Router} from "angular2/router";
 import {Page} from "../../../decorators/page";
 import {Logger} from "../../../providers/logger";
+import {AppRoutingService} from "../../../context/router.context";
 //import {SearchList, ISearchEvent} from "../../controls/searchList/searchList";
-
-
+import {CompetitionService} from "../../../providers/leagues/competitions";
+import {ClubService} from "../../../providers/leagues/club";
+import {GradeService} from "../../../providers/leagues/grade";
+import {ApplicationCache, CompetitionCache, GradeCache, ClubCache} from "../../../providers/leagues/cache";
 @Page({
     selector: "stats-page",
-    templateUrl: "./page.html"
+    templateUrl: "pages/competition/stats/page.html",
+    providers: [CompetitionService, GradeService, ClubService]
 })
 export class StatsPage 
 {
-    constructor(private logger: Logger)
+    constructor(
+        private logger: Logger,
+        private context: AppRoutingService)
     {
 
         this.logger.Notify("grade list page started");

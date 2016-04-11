@@ -33,7 +33,7 @@ export class NxList {
     
     constructor(private logger: Logger)
     {
-        this.logger.Notify("NxList control Started");
+        //this.logger.Notify("NxList control Started");
     }
     
     public padding : boolean = false;
@@ -83,15 +83,15 @@ export class NxList {
     //this should give me a list of shadow elements in ng-content
     @ContentChildren(NxListItem)
     set _listItems(items: any){
-        this.logger.Notify("Setting list item nodes");
+        //this.logger.Notify("Setting list item nodes");
         this.children  = items.toArray();
-        this.logger.Notify("" + this.children.length);
+        //this.logger.Notify("" + this.children.length);
                 
         var anyReady = this.children.map((item) => item.itemReady);
         var anySelected = this.children.map((item) => item.itemSelected);
                 
         Observable.fromArray(anySelected).flatMap(x=> x).subscribe((item : NxListItem) => {
-            this.logger.Notify("one of the items was selected");
+            //this.logger.Notify("one of the items was selected");
             
             //get rid of all items except the selected one.
             this.children.forEach((row) => {
@@ -133,21 +133,7 @@ export class NxList {
             });
             
         });
-        
-       
-        //these items will be wrapped in a stack panel.
-        // children.forEach((item : NxListItem) => {
-        //     var stackPanel = item.Element;
-        //     stackPanel.animate({
-        //         opacity: 1,
-        //         duration: 3000,
-        //         translate: {
-        //             x : 10,
-        //             y: 0
-        //         }
-        //     })
-        // });
-        
+
     }
 }
 

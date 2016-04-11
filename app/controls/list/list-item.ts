@@ -40,14 +40,17 @@ export class NxListItem {
         this.itemReady.next(this);
     }
         
-    constructor(private router: Router, private location: Location, private logger:Logger){
-        this.logger.Notify("nx-item added");
-        this.itemReady.subscribe(() => {
-            this.logger.Notify("nx-item ready");
-        });
-        this.itemSelected.subscribe(() => {
-            this.logger.Notify("nx-item selected");
-        });
+    constructor(
+        private router: Router, 
+        private location: Location, 
+        private logger:Logger){
+        //this.logger.Notify("nx-item added");
+        // this.itemReady.subscribe(() => {
+        //     this.logger.Notify("nx-item ready");
+        // });
+        // this.itemSelected.subscribe(() => {
+        //     this.logger.Notify("nx-item selected");
+        // });
     }
        
     private routeParams: any[];
@@ -57,11 +60,14 @@ export class NxListItem {
     set params(changes: any[]) {
         this.routeParams = changes;
         this.navigationInstruction = this.router.generate(this.routeParams);
+        
+        this.logger.Notify("route params:");
+        this.logger.NotifyObject(changes);
     }
     
     get isRouteActive(): boolean 
     { 
-        let available =this.navigationInstruction; 
+        let available = this.navigationInstruction; 
         if(!available){
             this.logger.Notify("no route specified."); 
             return false;
@@ -84,12 +90,12 @@ export class NxListItem {
     
     public itemLoading($event)
     {
-        this.logger.Notify("item loading");
+        //this.logger.Notify("item loading");
     }
     
     public itemLoaded($event)
     {
-        this.logger.Notify("item loaded");
+        //this.logger.Notify("item loaded");
     }
     
     public getNativeElement() : StackLayout {
@@ -120,7 +126,11 @@ export class NxListItem {
             });
         }).then(() => {
             if(this.navigationInstruction){
-                this.router.navigate(this.routeParams);
+                this.logger.Notify("try to navigate!");
+                this.logger.NotifyObject(this.navigationInstruction);
+                
+                //this.router.navigate(this.routeParams);
+                this.router.navigateByInstruction(this.navigationInstruction);
             }else if(this.tap){
                 this.tap.next(args);
             } else {

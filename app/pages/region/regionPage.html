@@ -3,7 +3,7 @@
     <start-nav drawer-aside-left></start-nav>
     
     <nx-nav>
-        <label class="nx-header-title" text="League / Region" style="horizontal-align:center"></label>
+        <label class="nx-header-title" text="Competition list" style="horizontal-align:center"></label>
         
         <ion-icon nav-right nav="true" icon="ion-android-favorite"></ion-icon>
     </nx-nav>
@@ -13,7 +13,9 @@
             <nx-list>
                                 
                 <nx-item *ngFor="#competition of list"
-                    [nxRoute]="['Region.Competition', { regionId: competition.Provider.Id, competitionId: competition.Id  }]">
+                    [nxRoute]="['Region.Competition', 
+                        { regionId: context.RegionId, competitionId: competition.Id }
+                    ]">
                     <ion-icon item-left icon="ion-ios-star"></ion-icon>
                     <label [text]="competition.Name"></label>
                     <label class="note" [text]="competition.LocationName"></label>

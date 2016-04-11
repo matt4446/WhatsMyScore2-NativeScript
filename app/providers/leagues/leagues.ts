@@ -2,15 +2,16 @@ import {Injectable} from 'angular2/core';
 import {Http, Response} from "angular2/http";
 
 import {Logger} from "../logger";
-import {IProvider} from "../../models/models";
+import {IRegion} from "../../models/models";
 import {Settings} from "../routes/routes";
 import {Observable, Subscription, BehaviorSubject} from 'rxjs/Rx';
+import {ApplicationCache} from "./cache"
 
 @Injectable()
 export class ProviderService{
     
     
-    constructor(private http: Http, private logger: Logger){
+    constructor(private http: Http, private logger: Logger, private cache: ApplicationCache){
         logger.Notify("ProviderService created");
     }
     
@@ -23,6 +24,10 @@ export class ProviderService{
         this.logger.Notify("Load :" + route);
         
         let promise = this.http.get(route);
+        
+        promise.map(response => response.json()).subscribe((region : IRegion) => {
+            this.cache.Region = region;
+        });
         
         this.logger.NotifyResponse(promise);
                 

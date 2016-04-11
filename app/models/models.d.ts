@@ -1,4 +1,4 @@
-export interface IProvider 
+export interface IRegion 
 {
     Id: number;
     Name: string;
@@ -29,6 +29,10 @@ export interface ICompetition
     Published: boolean;
     Public: boolean;
 }
+
+export interface IClub {}
+export interface IGrade {}
+
 
 export interface IPage {
     title: string; 

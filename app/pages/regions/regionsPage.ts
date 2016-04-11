@@ -1,12 +1,13 @@
-import {Component} from 'angular2/core';
+import {Component, OnInit} from 'angular2/core';
 import {Router} from "angular2/router";
 import {Page} from "../../decorators/page";
 import {Logger} from "../../providers/logger";
+import {AppRoutingService} from "../../context/router.context";
 //import {SearchList, ISearchEvent} from "../../controls/searchList/searchList";
 
 /* data */
 import { ProviderService } from "../../providers/leagues/leagues";
-import { IProvider } from "../../models/models"
+import { IRegion } from "../../models/models"
 //import { LoadingService} from "../../providers/loadingService/loadingService";
 /* directive */
 import {Http} from 'angular2/http';
@@ -22,18 +23,19 @@ import {ActionItem} from "ui/action-bar";
     providers: [ProviderService],
     directives: [StartNav]
 })
-export class RegionsPage 
+export class RegionsPage implements OnInit
 {
     constructor(
         private http: Http,
         private logger: Logger, 
         private router: Router,
+        private appRoutingService: AppRoutingService,
         private regions: ProviderService)
     {
         this.logger.Notify("Regions page started");
     }
     
-    public list : Array<IProvider> = [];
+    public list : Array<IRegion> = [];
         
     public back(): void 
     {
@@ -71,7 +73,7 @@ export class RegionsPage
         //transform the data to json -> array of IProvider
         response
             .map(response => response.json())
-            .subscribe((items : Array<IProvider>) => {
+            .subscribe((items : Array<IRegion>) => {
                 this.list = items;
                 //this.loadingService.hide();
             },(error) => {
