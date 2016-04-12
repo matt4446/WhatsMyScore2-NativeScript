@@ -2,7 +2,9 @@ import {Page} from "../../decorators/page";
 import {Page as PageControl} from "ui/page";
 import {Logger} from "../../providers/logger";
 import {NxPullToRefresh} from "../../controls/pullToRefresh/pullToRefresh";
-import {Image} from "ui/image"
+import {Image} from "ui/image";
+import {PullToRefresh} from "nativescript-pulltorefresh";
+import {Color} from "color";
 //Page is a wrapper on @Component
 
 @Page({
@@ -50,6 +52,14 @@ export class TestPage
     
     public refreshPage(args: any) {
         console.log("page refresh -> go");
+        let control : PullToRefresh = args.object;
+        
+        let randromColor = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
+
+        
+        control.animate({
+            backgroundColor : new Color(randromColor)
+        });
         setTimeout(() => {
             args.object.refreshing = false;
             this.RefreshedTimes += 1;

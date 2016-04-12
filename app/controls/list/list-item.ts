@@ -130,7 +130,13 @@ export class NxListItem {
                 this.logger.NotifyObject(this.navigationInstruction);
                 
                 //this.router.navigate(this.routeParams);
-                this.router.navigateByInstruction(this.navigationInstruction);
+                this.router.navigateByInstruction(this.navigationInstruction)
+                .then(() => {
+                    this.logger.Notify("navigated from competitions - > competition");
+                }).catch((r) => {
+                    this.logger.Error("navigation rejected");
+                    this.logger.NotifyObject(r);
+                });;
             }else if(this.tap){
                 this.tap.next(args);
             } else {

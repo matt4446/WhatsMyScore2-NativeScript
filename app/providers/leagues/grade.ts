@@ -1,9 +1,11 @@
 import {Http, Response} from "angular2/http";
+import {Injectable} from "angular2/core";
 import {Logger} from "../logger";
 import {Settings} from "../routes/routes";
 import {ICompetition, IGrade} from "../../models/models";
 import {CompetitionCache, GradeCache} from "./cache";
 
+@Injectable()
 export class GradeService 
 {
     constructor(private http: Http, private logger: Logger,

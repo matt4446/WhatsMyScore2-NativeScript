@@ -1,9 +1,11 @@
 import {Http, Response} from "angular2/http";
+import {Injectable} from "angular2/core";
 import {Logger} from "../logger";
 import {Settings} from "../routes/routes";
 import {ICompetition, IClub} from "../../models/models";
 import {CompetitionCache, ClubCache} from "./cache";
 
+@Injectable()
 export class ClubService 
 {
     constructor(private http: Http, private logger: Logger, 
