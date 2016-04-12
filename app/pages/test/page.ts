@@ -55,16 +55,25 @@ export class TestPage
         let control : PullToRefresh = args.object;
         
         let randromColor = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
-
+        
+        let colors = {
+            a : "#FC000D",
+            b : "#19FF01"
+        };
+        control.color = new Color("#000000");
+        
         
         control.animate({
-            backgroundColor : new Color(randromColor)
+            backgroundColor : new Color(randromColor),
         });
+        
+        control.color = new Color(colors.a);
         setTimeout(() => {
             args.object.refreshing = false;
             this.RefreshedTimes += 1;
             this.Message = "Pull to refresh - " + this.RefreshedTimes;
             this.RandomImage = this._randomImage + this.RefreshedTimes;
+            control.color = new Color(colors.b);
         }, 1000);
     }
 }
