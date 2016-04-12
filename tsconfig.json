@@ -3,7 +3,7 @@
         "target": "es5",
         "module": "commonjs",
         "noEmitOnError": false,
-        "rootDir": ".",
+        "rootDir": "./app",
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
         "sourceMap": true
@@ -19,8 +19,7 @@
         "app/decorators/pageControl.ts",
         "app/providers/leagues/leagues.ts",
         "node_modules/nativescript-angular/router.d.ts",
-        "node_modules/nativescript-cardview/cardview.d.ts",
-        "app/pages/regionCompetition/page.ts"
+        "node_modules/nativescript-cardview/cardview.d.ts"
     ],
     "exclude": [
         "node_modules",

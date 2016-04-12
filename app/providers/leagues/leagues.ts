@@ -5,13 +5,13 @@ import {Logger} from "../logger";
 import {IRegion} from "../../models/models";
 import {Settings} from "../routes/routes";
 import {Observable, Subscription, BehaviorSubject} from 'rxjs/Rx';
-import {ApplicationCache} from "./cache"
+import {RegionCache} from "./cache"
 
 @Injectable()
 export class ProviderService{
     
     
-    constructor(private http: Http, private logger: Logger, private cache: ApplicationCache){
+    constructor(private http: Http, private logger: Logger, private cache: RegionCache){
         logger.Notify("ProviderService created");
     }
     

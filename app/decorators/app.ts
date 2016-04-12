@@ -2,10 +2,10 @@ import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, LocationStrategy } fr
 import { NS_ROUTER_DIRECTIVES, NS_ROUTER_PROVIDERS } from "nativescript-angular/router";
 import { registerElement, ViewClass } from "nativescript-angular/element-registry";
 import { HTTP_PROVIDERS } from "angular2/http";
-import { nativeScriptBootstrap, bootstrap } from "nativescript-angular/application";
+import { nativeScriptBootstrap, bootstrap, AppOptions } from "nativescript-angular/application";
 import { Page } from "ui/page";
 import { TextView} from 'ui/text-view';
-import { bind, provide, Inject, Component } from 'angular2/core';
+import { bind, provide, Inject, Component, ComponentRef } from 'angular2/core';
 import { APP_BASE_HREF } from "angular2/router";
 import application = require('application');
 //import {NS_ROUTER_PROVIDERS} from "nativescript-angular/router/ns-router";
@@ -19,94 +19,97 @@ export interface IRegisterElement {
 
 export interface IAppConfig {
     registerElements ? : IRegisterElement[],
-        directives ? : any[],
-        selector: string,
-        providers ? : any[],
-        template ? : string
+    directives ? : any[],
+    selector: string,
+    providers ? : any[],
+    template ? : string,
+    appOptions? : AppOptions,
+    appStartup? : (appRef: ComponentRef) => void
 }
 
-function start(appComponentType, customProviders) : Promise<any> {
-    let p = new Promise((resolve, reject) => {
+// function start(appComponentType, customProviders) : Promise<any> {
+//     let p = new Promise((resolve, reject) => {
 
-        application.start({
-            create: (): Page => {
-                let page = new Page();
+//         application.start({
+//             create: (): Page => {
+//                 let page = new Page();
 
-                let onLoadedHandler = function(args) {
-                    page.off('loaded', onLoadedHandler);
-                    //profiling.stop('application-start');
-                    console.log('Page loaded');
+//                 let onLoadedHandler = function(args) {
+//                     page.off('loaded', onLoadedHandler);
+//                     //profiling.stop('application-start');
+//                     console.log('Page loaded');
 
-                    //profiling.start('ng-bootstrap');
-                    console.log('BOOTSTRAPPING...');
-                    bootstrap(appComponentType, customProviders).then((appRef) => {
-                        //profiling.stop('ng-bootstrap');
-                        console.log('ANGULAR BOOTSTRAP DONE.');
+//                     //profiling.start('ng-bootstrap');
+//                     console.log('BOOTSTRAPPING...');
+//                     bootstrap(appComponentType, customProviders).then((appRef) => {
+//                         //profiling.stop('ng-bootstrap');
+//                         console.log('ANGULAR BOOTSTRAP DONE.');
 
-                        resolve(appRef);
-                    }, (err) => {
-                        console.log('ERROR BOOTSTRAPPING ANGULAR');
-                        let errorMessage = err.message + "\n\n" + err.stack;
-                        console.log(errorMessage);
+//                         resolve(appRef);
+//                     }, (err) => {
+//                         console.log('ERROR BOOTSTRAPPING ANGULAR');
+//                         let errorMessage = err.message + "\n\n" + err.stack;
+//                         console.log(errorMessage);
 
-                        let view = new TextView();
-                        view.text = errorMessage;
-                        page.content = view;
+//                         let view = new TextView();
+//                         view.text = errorMessage;
+//                         page.content = view;
 
-                        reject(Error(errorMessage));
-                    });
-                }
+//                         reject(Error(errorMessage));
+//                     });
+//                 }
 
-                page.on('loaded', onLoadedHandler);
+//                 page.on('loaded', onLoadedHandler);
 
-                return page;
-            }
-        })
+//                 return page;
+//             }
+//         })
 
-    });
+//     });
 
-    return p;
-}
+//     return p;
+// }
 
 export function App(config: IAppConfig) {
-    return (cls) => {
+    return (startingComponent) => {
         console.log("Setup App annotations");
 
-        let registerElements: IRegisterElement[] = config.registerElements ? config.registerElements : [];
-
-        
+        let registerElements: IRegisterElement[] = config.registerElements 
+            ? config.registerElements 
+            : [];
 
         // get current annotations
-        let annotations = _reflect.getMetadata('annotations', cls) || [];
+        let annotations = _reflect.getMetadata('annotations', startingComponent) || [];
 
         config.selector = 'main';
         config.template = `<page-router-outlet></page-router-outlet>`;
 
-        config.providers = config.providers ? config.providers.concat(NS_ROUTER_PROVIDERS, HTTP_PROVIDERS) : [NS_ROUTER_PROVIDERS, HTTP_PROVIDERS];
+        config.providers = config.providers 
+            ? config.providers.concat(NS_ROUTER_PROVIDERS, HTTP_PROVIDERS) 
+            : [NS_ROUTER_PROVIDERS, HTTP_PROVIDERS];
 
-        config.directives = config.directives ? config.directives.concat(NS_ROUTER_DIRECTIVES) : [NS_ROUTER_DIRECTIVES];
+        config.directives = config.directives 
+            ? config.directives.concat(NS_ROUTER_DIRECTIVES) 
+            : [NS_ROUTER_DIRECTIVES];
 
         annotations.push(new Component(config));
 
-        _reflect.defineMetadata('annotations', annotations, cls);
+        _reflect.defineMetadata('annotations', annotations, startingComponent);
         
-        start(cls,config.providers).then(appRef => {
-            let injector = appRef.injector;
-            let page: Page = injector.get(Page);
-            page.actionBarHidden = true;
-                  
+        nativeScriptBootstrap(startingComponent, config.providers, config.appOptions).then((appRef) => {
             registerElements.forEach(element => {
+                // let injector = appRef.injector;
+                // let page: Page = injector.get(Page);
+                
                 console.log("Add element: " + element.name);
                 registerElement(element.name, element.resolver)
-            });  
+            }); 
             
-            // let locationStrategy: LocationStrategy = injector.get(LocationStrategy);
-            // locationStrategy.
-            //router.
-            //page.actionBarHidden = true;
-            //page.
+            // if(config.appStartup){
+            //     config.appStartup(appRef);
+            // }
         });
-
-        return cls;
+        
+        return startingComponent;
     }
 }

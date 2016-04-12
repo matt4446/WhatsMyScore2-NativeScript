@@ -1,7 +1,7 @@
 import {Observable, EventData } from "data/observable";
 import {alert} from "ui/dialogs";
 
-import {Inject, Component, View} from 'angular2/core';
+import {Inject, Component} from 'angular2/core';
 import {PageControl} from "../../decorators/pageControl";
 import {Logger} from "../../providers/logger";
 import {Router} from "angular2/router";

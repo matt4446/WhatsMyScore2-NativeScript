@@ -1,4 +1,4 @@
-import { Component, View, provide } from "angular2/core";
+import { Component, provide } from "angular2/core";
 import { NxNav} from "../controls/nav/nav";
 import {NxList} from "../controls/list/list";
 import {NxListItem} from "../controls/list/list-item";

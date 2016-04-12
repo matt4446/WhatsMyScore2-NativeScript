@@ -2,11 +2,14 @@ import {Http, Response} from "angular2/http";
 import {Logger} from "../logger";
 import {Settings} from "../routes/routes";
 import {ICompetition, IGrade} from "../../models/models";
-import {ProviderCache} from "./cache";
+import {CompetitionCache, GradeCache} from "./cache";
 
 export class GradeService 
 {
-    constructor(private http: Http, private logger: Logger, private cache: ProviderCache){
+    constructor(private http: Http, private logger: Logger,
+        private competitionCache : CompetitionCache,
+        private gradeCache: GradeCache)
+    {
         logger.Notify("ProviderService created");
     }
     
@@ -18,7 +21,7 @@ export class GradeService
         let promise = this.http.get(route);
         
         promise.map(response => response.json()).subscribe((grade : ICompetition) => {
-            this.cache.Grade = grade;
+            this.gradeCache.Grade = grade;
         });
         
         return promise;
@@ -32,7 +35,7 @@ export class GradeService
         let promise = this.http.get(route);
         
         promise.map(response => response.json()).subscribe((grades : Array<IGrade>) => {
-            this.cache.Grades = grades;
+            this.competitionCache.Grades = grades;
         });
         
         return promise;

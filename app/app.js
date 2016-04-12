@@ -36,10 +36,11 @@ var AppMain = (function () {
         app_1.App({
             selector: "main",
             providers: [logger_1.Logger,
-                cache_1.ApplicationCache,
-                cache_1.CompetitionCache,
                 cache_1.GradeCache,
-                cache_1.ClubCache],
+                cache_1.ClubCache,
+                cache_1.CompetitionCache,
+                cache_1.RegionCache
+            ],
             registerElements: [{
                     name: "CardView",
                     resolver: function () { return require("nativescript-cardview").CardView; }
@@ -47,8 +48,7 @@ var AppMain = (function () {
                 {
                     name: "PullToRefresh",
                     resolver: function () { return require("nativescript-pulltorefresh").PullToRefresh; }
-                }
-            ],
+                }],
             directives: []
         }),
         router_1.RouteConfig([

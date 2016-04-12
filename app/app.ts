@@ -15,17 +15,18 @@ import { StatsPage } from "./pages/competition/stats/page"
 import { TestPage } from "./pages/test/page";
 //providers 
 import {Logger} from "./providers/logger";
-import {ApplicationCache, CompetitionCache, GradeCache, ClubCache} from "./providers/leagues/cache";
+import {RegionCache, CompetitionCache, GradeCache, ClubCache} from "./providers/leagues/cache";
 import {RouteConfig} from "angular2/router";
 
 //app decorator - save some code writing. Wrapper around @Component
 @App({
     selector: "main",
     providers: [Logger, 
-        ApplicationCache, 
-        CompetitionCache, 
         GradeCache, 
-        ClubCache],
+        ClubCache,
+        CompetitionCache, 
+        RegionCache
+    ],
     registerElements: [{
         name: "CardView",
         resolver: () => require("nativescript-cardview").CardView
@@ -33,8 +34,7 @@ import {RouteConfig} from "angular2/router";
     {
         name: "PullToRefresh",
         resolver: () => require("nativescript-pulltorefresh").PullToRefresh 
-    }
-    ],
+    }],
     directives: []
 })
 @RouteConfig([

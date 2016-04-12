@@ -5,7 +5,7 @@ import {Logger} from "../../providers/logger";
 import {CompetitionService} from "../../providers/leagues/competitions";
 import {ClubService} from "../../providers/leagues/club";
 import {GradeService} from "../../providers/leagues/grade";
-import {ApplicationCache, CompetitionCache, GradeCache, ClubCache} from "../../providers/leagues/cache";
+import {RegionCache, CompetitionCache, GradeCache, ClubCache} from "../../providers/leagues/cache";
 
 import {RouteParams} from "angular2/router";
 import {ICompetition} from "../../models/models"

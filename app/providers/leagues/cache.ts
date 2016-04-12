@@ -1,3 +1,4 @@
+import { Injectable, Inject } from 'angular2/core';
 import { Observable, Subscription, Subject} from 'rxjs/Rx';
 import {
     IRegion,
@@ -7,7 +8,8 @@ import {
 }
 from "../../models/models";
 
-export class ApplicationCache {
+@Injectable()
+export class RegionCache {
     private _region : IRegion; 
     public get Region(): IRegion {
         return this._region;
@@ -16,12 +18,12 @@ export class ApplicationCache {
         this._region = value;
     }
    
-    
-    constructor(public competitionCache: CompetitionCache) {
+    constructor() {
 
     }
 }
 
+@Injectable()
 export class ClubCache {
     public ClubChanges = new Subject<IClub>();
     
@@ -35,6 +37,7 @@ export class ClubCache {
     }
 }
 
+@Injectable()
 export class GradeCache {
     public GradeChanges = new Subject<IGrade>();
     
@@ -48,13 +51,15 @@ export class GradeCache {
     }
 }
 
+@Injectable()
 export class CompetitionCache {
 
     public CompetitionChanges = new Subject<ICompetition>();
     
 
-    constructor(public clubCache: ClubCache, public gradeCache: GradeCache){
-        
+    constructor(
+        @Inject(ClubCache) public clubCache: ClubCache, 
+        @Inject(GradeCache) public gradeCache: GradeCache){
     }
 
     private _competiton: ICompetition;
