@@ -28,7 +28,7 @@ import {IClub} from "../../../models/models.d.ts";
                             <label [text]="clubGroup.key" class="nx-header-title"></label>
                         </nx-header>
                         
-                        <nx-item *ngFor="#club of clubGroup.items">
+                        <nx-item *ngFor="#club of clubGroup.items | orderBy:'Name'">
                             <ion-icon item-left icon="ion-clipboard"></ion-icon>
                             <label [text]="club.Name"></label>
                             <ion-icon item-right icon="ion-ios-people"></ion-icon>
