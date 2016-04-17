@@ -11,7 +11,7 @@
     "files": [
         "node_modules/tns-core-modules/tns-core-modules.base.d.ts",
         "node_modules/angular2/typings/browser.d.ts",
-        "typings/tsd.d.ts",
+        "typings/main.d.ts",
         "app/pipes/orderBy.ts",
         "app/app.ts",
         "app/decorators/app.ts",

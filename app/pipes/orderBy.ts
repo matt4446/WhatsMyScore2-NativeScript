@@ -1,6 +1,9 @@
 import { PipeTransform, Pipe } from "angular2/core";
 import { Logger } from "../providers/logger";
 var _ = require("underscore");
+//import {orderBy} from 'lodash/orderBy';
+//var orderBy = require("lodash/orderBy")
+
 import {
     StringWrapper,
     isBlank,

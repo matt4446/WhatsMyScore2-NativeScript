@@ -15,6 +15,7 @@
 		"nativescript-loading-indicator": "^2.0.1",
 		"nativescript-pulltorefresh": "~1.1.0",
 		"underscore": "~1.8.3",
+		"lodash": "~4.11.1",
 		"font-awesome": "~4.5.0",
 		"ionicons": "~2.0.0",
 		"material-design-iconic-font": "~2.2.0",
