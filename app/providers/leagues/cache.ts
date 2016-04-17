@@ -17,7 +17,15 @@ export class RegionCache {
     public set Region(value: IRegion){
         this._region = value;
     }
-   
+    
+    private _regions : IRegion[]; 
+    public get Regions(): IRegion[] {
+        return this._regions;
+    }
+    public set Regions(value : IRegion[]){
+        this._regions = value;
+    }
+    
     constructor() {
 
     }

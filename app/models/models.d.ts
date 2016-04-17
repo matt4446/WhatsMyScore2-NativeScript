@@ -30,9 +30,29 @@ export interface ICompetition
     Public: boolean;
 }
 
-export interface IClub {}
-export interface IGrade {}
+export interface ICompetitionGrades {
+    Discipline : string, 
+    Grades : IGrade[]
+}
 
+//{"Id":3359,"Name":"Bournemouth University","Letter":"B","Competitors":1,"Teams":[]}
+export interface IClub {
+    Id: number;
+    Letter: string;
+    Name: string;
+    Competitors: number;
+}
+
+//{"Id":1719,"ClassName":"BUCS 1 Elite Male","CompetitorsInFinal":0,"Discipline":"Individual","Competitors":11,"Enabled":true,"Panel":3}
+export interface IGrade {
+    Id: number;
+    ClassName: string;
+    Discipline: string;
+    CompetitorsInFinal: number,
+    Competitors: number;
+    Enabled: boolean;
+    Panel : number;
+}
 
 export interface IPage {
     title: string; 

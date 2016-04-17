@@ -61,8 +61,7 @@ export class TestPage
             b : "#19FF01"
         };
         control.color = new Color("#000000");
-        
-        
+
         control.animate({
             backgroundColor : new Color(randromColor),
         });

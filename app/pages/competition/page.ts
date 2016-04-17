@@ -34,6 +34,9 @@ export class CompetitionPage implements OnInit, OnDestroy
         this.logger.Notify("region page loaded");
         
         let subscription = this.competitionCache.CompetitionChanges.subscribe(competition => {
+            this.logger.Notify("competition changed... load club and grade");
+            this.logger.NotifyObject(competition);
+            
             let clubObservable = this.clubService.List(competition.Id);
             let gradeObservable = this.gradeService.List(competition.Id);
             

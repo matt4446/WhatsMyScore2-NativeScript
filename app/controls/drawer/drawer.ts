@@ -37,7 +37,7 @@ export class NxDrawer {
     private centerContent: ElementRef;
     
     public constructor(private logger: Logger ){
-        this.logger.Notify("nx-drawer");
+        //this.logger.Notify("nx-drawer");
     }
     
     private State = {
@@ -71,14 +71,14 @@ export class NxDrawer {
         this.asideLeftContent = item;
         this.State.HasLeft = true;
         
-        this.logger.Notify("drawer.asideLeftContent set" + item);
+        //this.logger.Notify("drawer.asideLeftContent set" + item);
     }
     
     @ViewChild('asideRight') 
     set _asideRight(item: ElementRef){
         this.asideRightContent = item;
         this.State.HasRight = true;    
-        this.logger.Notify("drawer.asideRightContent set: item" + item);
+        //this.logger.Notify("drawer.asideRightContent set: item" + item);
     }
     
     @ViewChild('centerContent')
@@ -90,11 +90,11 @@ export class NxDrawer {
     set _setNav(items: any){
         if(this.State.NavAttached){ return; }
         
-        this.logger.Notify("drawer.nav set: " + items);
+        ///this.logger.Notify("drawer.nav set: " + items);
         this.State.NavAttached = true;
         this.childNavs = items.toArray();
         
-        this.logger.Notify("nav items: " + this.childNavs.length);
+        //this.logger.Notify("nav items: " + this.childNavs.length);
         
         var anySelected = this.childNavs.map((item) => item.menuSelected);
                 

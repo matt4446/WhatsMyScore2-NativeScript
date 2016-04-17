@@ -99,7 +99,10 @@ export class IonIcon {
                 return "\uf388";
             case "ion-android-menu":
                 return "\uf394";
-                
+            case "ion-ribbon-a":
+                return "\uf348;"
+            case "ion-ribbon-b":
+                return "\uf349;"
             /*
                 ios 
              */

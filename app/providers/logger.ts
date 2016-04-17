@@ -58,8 +58,14 @@ export class Logger {
     {
         for(let i = 0;i<items.length; i++)
         {
-            this.Notify("i="+i + " " + items[i]);
+            this.Notify("i="+i + " " + this.ObjextAsString(items[i]));
         }
+    }
+    
+    public NotifyObservableArray(items : Observable<Array<any>>){
+        
+        items.subscribe(x=> this.NotifyArray(x));
+        
     }
 
     public Error(message: string) {
@@ -80,9 +86,13 @@ export class Logger {
             let text = response.text();
             let json = response.json();
 
-            this.Notify(text);
+            //this.Notify(text);
             let jsonAsText = JSON.stringify(json)
             this.Notify(jsonAsText);
         });
+    }
+    
+    private ObjextAsString(any : any) : string {
+        return JSON.stringify(any);   
     }
 } 

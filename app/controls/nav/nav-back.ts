@@ -21,7 +21,7 @@ export class NxNavBack {
         private element: ElementRef,
         private logger: Logger) {
             
-        this.logger.Notify("nx-nav-back");
+        //this.logger.Notify("nx-nav-back");
     }
 
     public back()

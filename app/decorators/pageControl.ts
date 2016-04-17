@@ -7,6 +7,8 @@ import {NxHeader} from "../controls/list/header";
 import {NxCard} from "../controls/card/card";
 import {NxDrawer} from "../controls/drawer/drawer";
 import {IonIcon,NavIcon} from "../controls/icons/ion-icon";
+import {TitleTransform} from "../pipes/title";
+import {DisplayDate} from "../pipes/dates"
 import {NS_ROUTER_DIRECTIVES,NS_ROUTER_PROVIDERS} from "nativescript-angular/router";
 
 
@@ -32,10 +34,11 @@ export function PageControl(config: IPageControlConfig={}) {
         var annotations = _reflect.getMetadata('annotations', cls) || [];
         var componentConfig: any = config;
 
-        componentConfig.changeDetection = ChangeDetectionStrategy.OnPush;
+        //componentConfig.changeDetection = ChangeDetectionStrategy.OnPush;
         
         var nxDirectives = [NxDrawer, NxCard, NxNav, NxList, NxListItem, NxHeader, IonIcon, NgIf, NgFor];
         var providers = [];
+        var corePipes = [TitleTransform, DisplayDate];
         
         config.directives = config.directives 
             ? config.directives.concat(nxDirectives) 
@@ -44,6 +47,10 @@ export function PageControl(config: IPageControlConfig={}) {
         config.providers = config.providers
             ? config.providers.concat(providers)
             : providers;
+            
+        config.pipes = config.pipes 
+            ? config.pipes.concat() 
+            : corePipes;
 
         annotations.push(new Component(componentConfig));
 

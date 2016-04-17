@@ -5,7 +5,6 @@ import { Logger } from "../providers/logger"
 export class TitleTransform implements PipeTransform {
    constructor(private logger: Logger)
    {
-       this.logger.Notify("title pipe created");
    }
    
    transform(value: any, args: any[] = []) {

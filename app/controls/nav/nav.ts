@@ -55,7 +55,7 @@ export class NxNav {
         private page : Page) {
             
         
-        this.logger.Notify("nx-nav");
+        //this.logger.Notify("nx-nav");
     }
     
     ngOnInit() {
@@ -74,7 +74,7 @@ export class NxNav {
     public menuSelected = new Subject<boolean>();
        
     public tapWrapper = (args: any) => {
-        this.logger.Notify("tap clicked on menu");
+        //this.logger.Notify("tap clicked on menu");
         this.menuSelected.next(true);
         
     };

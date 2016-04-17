@@ -13,7 +13,7 @@ export class NxTitle {
     @ViewChild('item') private container: ElementRef
     
     public constructor(private logger: Logger ){
-        this.logger.Notify("nx-nav-title");
+        //this.logger.Notify("nx-nav-title");
     }
           
     private ngAfterViewInit()

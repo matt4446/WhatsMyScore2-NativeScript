@@ -1,4 +1,4 @@
-import { Component, provide } from "angular2/core";
+import { Component, provide, ChangeDetectionStrategy } from "angular2/core";
 import { NxNav} from "../controls/nav/nav";
 import {NxList} from "../controls/list/list";
 import {NxListItem} from "../controls/list/list-item";
@@ -17,7 +17,8 @@ import {AppRoutingService} from "../context/router.context";
 import {Logger} from "../providers/logger";
 //pipes 
 import {TitleTransform} from "../pipes/title";
-import {DisplayDate} from "../pipes/dates"
+import {DisplayDate} from "../pipes/dates";
+import {GroupByTransform, OrderByTransform} from "../pipes/orderBy";
 
 const _reflect: any = Reflect;
 
@@ -39,6 +40,7 @@ export interface IPageConfig {
     directives?: any[];
     providers?: any[];
     pipes?: any[];
+    changeDetection? : ChangeDetectionStrategy
 }
 
 export function Page(config: IPageConfig={})
@@ -69,7 +71,7 @@ export function Page(config: IPageConfig={})
             NgFor
         ];
         
-        var corePipes = [TitleTransform, DisplayDate];
+        var corePipes = [TitleTransform, DisplayDate, GroupByTransform, OrderByTransform];
         
         config.directives = config.directives 
             ? config.directives.concat(coreDirectives) 
@@ -83,7 +85,7 @@ export function Page(config: IPageConfig={})
             ? config.pipes.concat() 
             : corePipes;
             
-            
+        ///config.changeDetection = ChangeDetectionStrategy.OnPush;
         
         let component = new Component(componentConfig);
 

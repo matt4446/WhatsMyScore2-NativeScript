@@ -1,5 +1,33 @@
-<nx-list>
-    <nx-header item-top>
-        <label [text]="'start list' | Title" class="nx-header-title"></label>
-    </nx-header>
-</nx-list>
+
+
+<nx-drawer>
+    <competition-nav drawer-aside-left></competition-nav>
+    
+    <nx-nav>
+        <label class="nx-header-title" text="Start List" style="horizontal-align:center"></label>
+        <ion-icon nav-right nav="true" icon="ion-android-favorite"></ion-icon>
+    </nx-nav>
+
+    <ScrollView>
+        <StackLayout class="inset">
+            <nx-list *ngFor="#gradeGroup of list | async">
+                <!--<StartListItems [title]='gradeGroup.key' [items]='gradeGroup'></StartListItems>
+                -->
+                <nx-header item-top>
+                    <label [text]="gradeGroup.Discipline | Title" class="nx-header-title"></label>
+                </nx-header>
+                <nx-item *ngFor="#grade of gradeGroup.Grades">
+                     <ion-icon item-left icon="ion-clipboard"></ion-icon>
+                     
+                     <label [text]="grade.ClassName"></label>
+                     
+                     <label class="note" [text]="'Panel ' + grade.Panel"></label>
+                     <ion-icon item-right icon="ion-ios-people"></ion-icon>
+                     <label item-right class="note" [text]="grade.Competitors"></label>
+                </nx-item>
+            </nx-list>
+        </StackLayout>
+    </ScrollView>
+    
+</nx-drawer>
+

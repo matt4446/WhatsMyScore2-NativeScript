@@ -8,7 +8,7 @@ import {Observable, Subscription, BehaviorSubject} from 'rxjs/Rx';
 import {RegionCache} from "./cache"
 
 @Injectable()
-export class ProviderService{
+export class RegionService{
     
     
     constructor(private http: Http, private logger: Logger, private cache: RegionCache){
@@ -42,11 +42,15 @@ export class ProviderService{
         this.logger.Notify("Load :" + route);
         
         //var observableRequest = this.http.get(route);
-        let observableRequest = this.http.get(route);
+        let promise = this.http.get(route);
         
-        this.logger.NotifyResponse(observableRequest);
+        promise.map(response => response.json()).subscribe((regions: IRegion[]) => {
+            this.cache.Regions = regions;
+        });
         
-        return observableRequest;
+        this.logger.NotifyResponse(promise);
+        
+        return promise;
     }
    
 }

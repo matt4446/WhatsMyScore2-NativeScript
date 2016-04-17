@@ -20,6 +20,7 @@ export class ClubService
         route+= "/Clubs/" + clubId;
         
         let promise = this.http.get(route);
+        this.logger.NotifyResponse(promise);
         
         promise.map(response => response.json()).subscribe((club : IClub) => {
             this.clubCache.Club = club;
@@ -31,10 +32,12 @@ export class ClubService
     public List(competitionId: number)
     {
         let base = Settings.WebApiBaseUrl;
-        let route = base + "Api/Competition/" + competitionId;
+        let route = base + "/Api/Competition/" + competitionId;
         route += "/Clubs";
         
         let promise = this.http.get(route);
+        
+        this.logger.NotifyResponse(promise);
         
         promise.map(response => response.json()).subscribe((clubs : Array<IClub>) => {
             this.competitionCache.Clubs = clubs;

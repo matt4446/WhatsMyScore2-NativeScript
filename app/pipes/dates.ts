@@ -6,7 +6,6 @@ var moment  = require("moment");
 export class DisplayDate implements PipeTransform {
    constructor(private logger: Logger)
    {
-       this.logger.Notify("title pipe created");
    }
    
    transform(value: any, args: any[] = []) {

@@ -6,7 +6,7 @@ import {AppRoutingService} from "../../context/router.context";
 //import {SearchList, ISearchEvent} from "../../controls/searchList/searchList";
 
 /* data */
-import { ProviderService } from "../../providers/leagues/leagues";
+import { RegionService } from "../../providers/leagues/leagues";
 import { IRegion } from "../../models/models"
 //import { LoadingService} from "../../providers/loadingService/loadingService";
 /* directive */
@@ -20,7 +20,7 @@ import {ActionItem} from "ui/action-bar";
 @Page({
     selector: "regions-page",
     templateUrl: "pages/regions/regionsPage.html",
-    providers: [ProviderService],
+    providers: [RegionService],
     directives: [StartNav]
 })
 export class RegionsPage implements OnInit
@@ -30,7 +30,7 @@ export class RegionsPage implements OnInit
         private logger: Logger, 
         private router: Router,
         private appRoutingService: AppRoutingService,
-        private regions: ProviderService)
+        private regions: RegionService)
     {
         this.logger.Notify("Regions page started");
     }
@@ -81,9 +81,5 @@ export class RegionsPage implements OnInit
                 this.logger.Error(error);
             });
     }
-    
-    public ngAfterViewInit(){
-        topmost().currentPage.actionBarHidden = true;
-    }
-    
+       
 }

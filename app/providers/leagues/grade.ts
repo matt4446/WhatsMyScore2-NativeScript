@@ -22,7 +22,9 @@ export class GradeService
         
         let promise = this.http.get(route);
         
-        promise.map(response => response.json()).subscribe((grade : ICompetition) => {
+        this.logger.NotifyResponse(promise);
+        
+        promise.map(response => response.json()).subscribe((grade : IGrade) => {
             this.gradeCache.Grade = grade;
         });
         
@@ -32,9 +34,12 @@ export class GradeService
     public List(competitionId: number)
     {
         let base = Settings.WebApiBaseUrl;
-        let route = base + "Api/Competition/" + competitionId + "/Grades";
+        let route = base + "/Api/Competition/" + competitionId + "/Grades";
         
         let promise = this.http.get(route);
+        
+        this.logger.NotifyResponse(promise);
+        
         
         promise.map(response => response.json()).subscribe((grades : Array<IGrade>) => {
             this.competitionCache.Grades = grades;

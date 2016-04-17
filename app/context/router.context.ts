@@ -2,7 +2,20 @@ import {RouteParams} from 'angular2/router';
 import {Logger} from "../providers/logger"
 import {IRegion, ICompetition} from "../models/models"
 
-export class AppRoutingService
+export interface IRegionRoute {
+    RegionId : any;
+}
+export interface ICompetitionRoute {
+    CompetitionId: any;
+}
+export interface IGradeRoute {
+    GradeId : any;
+}
+export interface IClubRoute {
+    ClubId : any;
+}
+
+export class AppRoutingService implements IRegionRoute, ICompetitionRoute, IGradeRoute, IClubRoute
 {
     public RegionId : any;
     public CompetitionId: any;

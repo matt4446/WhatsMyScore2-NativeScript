@@ -17,7 +17,6 @@ import { TestPage } from "./pages/test/page";
 import {Logger} from "./providers/logger";
 import {RegionCache, CompetitionCache, GradeCache, ClubCache} from "./providers/leagues/cache";
 import {RouteConfig} from "angular2/router";
-
 //app decorator - save some code writing. Wrapper around @Component
 @App({
     selector: "main",

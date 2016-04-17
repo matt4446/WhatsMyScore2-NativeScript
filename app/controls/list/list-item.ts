@@ -61,26 +61,26 @@ export class NxListItem {
         this.routeParams = changes;
         this.navigationInstruction = this.router.generate(this.routeParams);
         
-        this.logger.Notify("route params:");
-        this.logger.NotifyObject(changes);
+        //this.logger.Notify("route params:");
+        //this.logger.NotifyObject(changes);
     }
     
     get isRouteActive(): boolean 
     { 
         let available = this.navigationInstruction; 
         if(!available){
-            this.logger.Notify("no route specified."); 
+            //this.logger.Notify("no route specified."); 
             return false;
         }
-        this.logger.Notify("route parts:");
+        //this.logger.Notify("route parts:");
         this.logger.NotifyArray(this.routeParams);
-        this.logger.Notify("current instruction");
+        //this.logger.Notify("current instruction");
         //this.logger.Notify(this.router.currentInstruction.toStr);
         
         let active = this.router.isRouteActive(this.navigationInstruction);
             
 
-        this.logger.Notify("test route - active: " + active);
+        //this.logger.Notify("test route - active: " + active);
         
         return active;
     }
