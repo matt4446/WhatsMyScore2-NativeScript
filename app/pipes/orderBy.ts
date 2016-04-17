@@ -14,7 +14,7 @@ from 'angular2/src/facade/lang';
     name: 'orderBy',
     pure: true
 })
-export class OrderByTransform implements PipeTransform {
+export class OrderByPipe implements PipeTransform {
     constructor(private logger: Logger) {}
 
     transform(value: any, args: any[] = []) {
@@ -35,7 +35,7 @@ export class OrderByTransform implements PipeTransform {
     name: "groupBy",
     pure: true
 })
-export class GroupByTransform {
+export class GroupByPipe {
     constructor(private logger: Logger) {}
 
     transform(value: any, args: any[] = []) {

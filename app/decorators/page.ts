@@ -18,7 +18,7 @@ import {Logger} from "../providers/logger";
 //pipes 
 import {TitleTransform} from "../pipes/title";
 import {DisplayDate} from "../pipes/dates";
-import {GroupByTransform, OrderByTransform} from "../pipes/orderBy";
+import {GroupByPipe, OrderByPipe} from "../pipes/orderBy";
 
 const _reflect: any = Reflect;
 
@@ -71,7 +71,7 @@ export function Page(config: IPageConfig={})
             NgFor
         ];
         
-        var corePipes = [TitleTransform, DisplayDate, GroupByTransform, OrderByTransform];
+        var corePipes = [TitleTransform, DisplayDate, GroupByPipe, OrderByPipe];
         
         config.directives = config.directives 
             ? config.directives.concat(coreDirectives) 
