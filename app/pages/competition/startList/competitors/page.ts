@@ -10,7 +10,7 @@ import {GradeService} from "../../../../providers/leagues/grade";
 import {RegionCache, CompetitionCache, GradeCache, ClubCache} from "../../../../providers/leagues/cache";
 import {IGrade} from "../../../../models/models.d.ts";
 @Page({
-    selector: "grade-list-page",
+    selector: "start-list-grade-page",
     //templateUrl: "pages/competition/gradeList/page.html",
     template: `
         <nx-drawer>

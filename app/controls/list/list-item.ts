@@ -13,7 +13,7 @@ import { Router, Location, Instruction} from 'angular2/router';
     template: `
     <StackLayout #item style="opacity:1">
         <Border height="2" borderRadius="0" borderWidth="1" borderColor="#548CEC"></Border>
-        <GridLayout  columns="50, *, 42" rows="auto" class="nx-item" (tap)="tapWrapper($event)">
+        <GridLayout  columns="50, *, 42" rows="auto" class="nx-item visible" (tap)="tapWrapper($event)">
             <StackLayout col="0" class="icon-column" style="vertical-align:center;horizontal-align:center" >
                 <ng-content select="[item-left]"></ng-content>
             </StackLayout>

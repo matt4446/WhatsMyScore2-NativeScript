@@ -2,14 +2,14 @@
 	"nativescript": {
 		"id": "whatsmyscore.breakoutdeveloper.com",
 		"tns-android": {
-			"version": "1.7.1"
+			"version": "2.0.0"
 		}
 	},
 	"dependencies": {
-        "angular2": "2.0.0-beta.14",
+		"angular2": "2.0.0-beta.14",
 		"es6-shim": "^0.35.0",
-        "zone.js": "^0.6.6",
-		"nativescript-angular": "~0.0.41",
+		"zone.js": "^0.6.6",
+		"nativescript-angular": "~0.0.45",
 		"nativescript-cardview": "~1.0.1",
 		"nativescript-intl": "^0.0.2",
 		"nativescript-loading-indicator": "^2.0.1",
@@ -30,11 +30,16 @@
 		"url": "0.10.3"
 	},
 	"devDependencies": {
+		"babel-traverse": "6.7.6",
+		"babel-types": "6.7.7",
+		"babylon": "6.7.0",
+		"filewalker": "0.1.2",
 		"grunt": "0.4.5",
 		"grunt-contrib-clean": "0.6.0",
 		"grunt-contrib-copy": "0.8.0",
 		"grunt-shell": "1.1.2",
 		"grunt-ts": "5.0.0-beta.5",
+		"lazy": "1.0.11",
 		"nativescript-dev-less": "0.0.9",
 		"nativescript-dev-typescript": "^0.3.1",
 		"nativescript-dev-webpack": "0.0.7",

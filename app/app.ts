@@ -5,6 +5,7 @@ import {App} from "./decorators/app";
 //level 1 
 import { StatsPage } from "./pages/competition/stats/page"
 import { TestPage } from "./pages/test/page";
+import { ParallaxTestPage } from "./pages/test/parallax";
 import { StartPage } from "./pages/start/startPage";
 import { RegionsPage } from "./pages/regions/regionsPage";
 import { RegionPage } from "./pages/region/regionPage";
@@ -28,11 +29,11 @@ import {Logger} from "./providers/logger";
 import {RegionCache, CompetitionCache, GradeCache, ClubCache} from "./providers/leagues/cache";
 import {RouteConfig} from "angular2/router";
 
-
 //level 1 
 @RouteConfig([
     { path: "/", component: StartPage, name: "Start" },
     { path: "/test", component : TestPage, name: "Test" },
+    { path: "/test2", component : ParallaxTestPage, name: "ParallaxTestPage" },
     { path: "/regions", component: RegionsPage, name: "Regions" },
     { path: "/region/:regionId", component: RegionPage, name: "Region" }
 ])
@@ -77,11 +78,11 @@ import {RouteConfig} from "angular2/router";
 //level 4 
 @RouteConfig([
     //to-do - template & provider
-    { path: "/region/:regionId/competition/:competitionId/startList/:gradeId/competitors", component:StartListGradePage, name: "Region.Competition.StartList.Competitors"},
+    //{ path: "/region/:regionId/competition/:competitionId/startList/:gradeId/competitors", component:StartListGradePage, name: "Region.Competition.StartList.Competitors"},
     //to-do - template & provider
-    { path: "/region/:regionId/competition/:competitionId/grade/:gradeId/competitors", component: GradePage, name : "Region.Competition.GradeList.Competitors" },
+    //{ path: "/region/:regionId/competition/:competitionId/grade/:gradeId/competitors", component: GradePage, name : "Region.Competition.GradeList.Competitors" },
     //to-do - template & provider
-    { path: "/region/:regionId/competition/:competitionId/club/:clubId/competitors", component: ClubPage, name : "Region.Competition.GradeList.Competitors" },
+    //{ path: "/region/:regionId/competition/:competitionId/club/:clubId/competitors", component: ClubPage, name : "Region.Competition.GradeList.Competitors" },
 ])
 
 //app decorator - save some code writing. Wrapper around @Component
