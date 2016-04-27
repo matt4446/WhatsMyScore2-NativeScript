@@ -7,8 +7,7 @@ import {PullToRefresh} from "nativescript-pulltorefresh";
 import {Color} from "color";
 import {NxPullToRefresh} from "../../controls/pullToRefresh/pullToRefresh";
 import {Paralax, ParallaxCollapsableItem} from "../../controls/parallax/parallax";
-//Page is a wrapper on @Component
-//
+
 @Page({
     selector: "parallax-test-page",
     template: `

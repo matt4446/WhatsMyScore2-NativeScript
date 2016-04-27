@@ -18,7 +18,7 @@ export class ParallaxCollapsableItem{
 }
 
 /* todo - convert to table and float header above content */
-
+// original by https://github.com/TheOriginalJosh I've taken out the find by ids and added directives
 @Control({
     selector: "nx-parallax",
     template:`
@@ -117,20 +117,18 @@ export class Paralax {
 					header.height = this.getTopViewHeight(this.headerHeight, scrollView.verticalOffset);
 				}
 			}
-			//fades in and out label in topView
+
 			if (scrollView.verticalOffset < this.headerHeight) {
 				topOpacity = parseFloat((1 - (scrollView.verticalOffset * 0.01)).toString());
 				if (topOpacity > 0 && topOpacity <= 1) {
                     
-                    //this.logger.NotifyObject(this.__collapseItems2);
-
                     let controlsToFade = this.__collapseItems2.toArray();   
-                    this.logger.Notify("controls to fade: " + controlsToFade.length);
 					//fade each control
 					controlsToFade.forEach((directiveItems) => {
                         let view : ContentView = directiveItems.element.nativeElement;
 						view.opacity = topOpacity;
 					});
+                    //todo fade in 
 				}
 			}
 			prevOffset = scrollView.verticalOffset;
