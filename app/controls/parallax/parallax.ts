@@ -86,12 +86,9 @@ export class Paralax {
     set _setBodyView(item: ElementRef){
         this.bodyAvailable.next(item);
     }
-    
-    @ViewChildren(ParallaxCollapsableItem)
-    __collapseItems : QueryList<ParallaxCollapsableItem>
-      
+
     @ContentChildren(ParallaxCollapsableItem)
-    __collapseItems2 : QueryList<ParallaxCollapsableItem>
+    __collapseItems : QueryList<ParallaxCollapsableItem>
       
       
     private EvaluateScroll(scrollViewRef: ElementRef, headerRef : ElementRef, bodyRef: ElementRef){
@@ -122,7 +119,7 @@ export class Paralax {
 				topOpacity = parseFloat((1 - (scrollView.verticalOffset * 0.01)).toString());
 				if (topOpacity > 0 && topOpacity <= 1) {
                     
-                    let controlsToFade = this.__collapseItems2.toArray();   
+                    let controlsToFade = this.__collapseItems.toArray();   
 					//fade each control
 					controlsToFade.forEach((directiveItems) => {
                         let view : ContentView = directiveItems.element.nativeElement;
