@@ -4,7 +4,7 @@ import { Logger } from "../../providers/logger";
 import { Button } from "ui/button";
 import { StackLayout} from "ui/layouts/stack-layout";
 import { Observable, Subscription, Subject} from 'rxjs/Rx';
-import { Router, Location, Instruction} from 'angular2/router';
+import { Router, Instruction} from 'angular2/router';
 
 @Control({
     selector:"nx-item",
@@ -42,7 +42,6 @@ export class NxListItem {
         
     constructor(
         private router: Router, 
-        private location: Location, 
         private logger:Logger){
     }
        

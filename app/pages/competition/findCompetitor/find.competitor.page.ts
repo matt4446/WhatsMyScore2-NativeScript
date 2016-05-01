@@ -8,16 +8,15 @@ import {CompetitionService} from "../../../providers/leagues/competitions";
 import {ClubService} from "../../../providers/leagues/club";
 import {GradeService} from "../../../providers/leagues/grade";
 import {RegionCache, CompetitionCache, GradeCache, ClubCache} from "../../../providers/leagues/cache";
-import {IClub} from "../../../models/models.d.ts";
+import {CompetitionNav} from "../../nav/competition.nav";
 @Page({
-    selector: "club-list-page",
-    //templateUrl: "pages/competition/clubList/page.html",
+    selector: "find-competitor-page",
     template: `
         <nx-drawer>
             <competition-nav drawer-aside-left></competition-nav>
             
             <nx-nav>
-                <label class="nx-header-title" [text]="'Club List' | Title" style="horizontal-align:center"></label>
+                <label class="nx-header-title" [text]="'Find Competitors' | Title" style="horizontal-align:center"></label>
                 <ion-icon nav-right nav="true" icon="ion-android-favorite"></ion-icon>
             </nx-nav>
 
@@ -40,59 +39,41 @@ import {IClub} from "../../../models/models.d.ts";
             
         </nx-drawer>
     `,
+    directives: [CompetitionNav],
     providers: [CompetitionService, GradeService, ClubService]
 })
-export class ClubListPage implements OnInit
+export class FindCompetitorPage implements OnInit
 {
-    
     constructor(
-        private logger: Logger, 
-        private clubService: ClubService,
-        private context: AppRoutingService,
-        private cache: CompetitionCache)
+        private logger: Logger,
+        private context: AppRoutingService)
     {
-        this.logger.Notify("club list page started");
+
+        this.logger.Notify("grade list page started");
     }
     
-    public list : IClub[] = [];
+    public list : Array<any> = [];
 
     
     //passed to the child component
     public regionsHintText = "Hi from regions";
     
     //action to 
-    public clubSearch($event : any)
+    public regionSearch($event : any)
     {
         this.logger.Notify("Search passed to region");
         this.logger.Notify($event);
         //this.logger.Notify("Search Term in Regions Page: " + $event.Value);
     } 
     
+    /* angular2 lifecycle */
     public ngOnInit(){
-        this.logger.Notify("club-list-page ngOnInit");
+        
+        
+        this.logger.Notify("Region-page ngAfterViewInit");
         
         //time to load the data
-        if(this.cache.Clubs && this.cache.Clubs.length > 0){
-            this.list = this.cache.Clubs;
-            return;
-        }
-
-        this.loadDetail();
-    }
-    
-    public loadDetail(){
-        let observable = this.clubService.List(this.cache.Competition.Id).map(e=> e.json());
-        observable.subscribe(e=> {
-            this.list = e;
-        });
         
-        return observable;
-    }
-    
-    public refresh(args: any){      
-        this.loadDetail().subscribe(() => {
-            args.completed();
-        });
     }
     
     

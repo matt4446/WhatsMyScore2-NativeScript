@@ -13,16 +13,16 @@ import { RegionPage } from "./pages/region/region.page";
 import { CompetitionPage } from "./pages/competition/competition.page";
 
 //level 3
-import { ClubListPage } from "./pages/competition/clubList/page";
-import { FindCompetitorPage } from "./pages/competition/findCompetitor/page";
-import { GradeListPage } from "./pages/competition/gradeList/page";
-import { InformationPage } from "./pages/competition/information/page";
-import { StartListPage } from "./pages/competition/startList/startList.Page";
+import { ClubListPage } from "./pages/competition/clubList/club.list.page";
+import { FindCompetitorPage } from "./pages/competition/findCompetitor/find.competitor.page";
+import { GradeListPage } from "./pages/competition/gradeList/grade.list.page";
+import { InformationPage } from "./pages/competition/information/information.page";
+import { StartListPage } from "./pages/competition/startList/start.list.page";
 
 //level 4
-import {StartListGradePage } from "./pages/competition/startList/competitors/page";
-import {GradePage} from "./pages/competition/grade/page";
-import {ClubPage} from "./pages/competition/club/page.ts";
+import {StartListGradePage } from "./pages/competition/startList/competitors/competitors.page";
+import {GradePage} from "./pages/competition/grade/grade.page";
+import {ClubPage} from "./pages/competition/club/club.page";
 
 //providers 
 import {Logger} from "./providers/logger";

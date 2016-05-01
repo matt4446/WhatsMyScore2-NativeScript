@@ -1,4 +1,4 @@
-import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, LocationStrategy } from "angular2/router";
+import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from "angular2/router";
 import { NS_ROUTER_DIRECTIVES, NS_ROUTER_PROVIDERS } from "nativescript-angular/router";
 import { registerElement, ViewClass } from "nativescript-angular/element-registry";
 import { HTTP_PROVIDERS } from "angular2/http";
@@ -6,7 +6,6 @@ import { nativeScriptBootstrap, bootstrap, AppOptions } from "nativescript-angul
 import { Page } from "ui/page";
 import { TextView} from 'ui/text-view';
 import { bind, provide, Inject, Component, ComponentRef } from 'angular2/core';
-import { APP_BASE_HREF } from "angular2/router";
 import application = require('application');
 //import {NS_ROUTER_PROVIDERS} from "nativescript-angular/router/ns-router";
 
@@ -26,49 +25,6 @@ export interface IAppConfig {
     appOptions? : AppOptions,
     appStartup? : (appRef: ComponentRef) => void
 }
-
-// function start(appComponentType, customProviders) : Promise<any> {
-//     let p = new Promise((resolve, reject) => {
-
-//         application.start({
-//             create: (): Page => {
-//                 let page = new Page();
-
-//                 let onLoadedHandler = function(args) {
-//                     page.off('loaded', onLoadedHandler);
-//                     //profiling.stop('application-start');
-//                     console.log('Page loaded');
-
-//                     //profiling.start('ng-bootstrap');
-//                     console.log('BOOTSTRAPPING...');
-//                     bootstrap(appComponentType, customProviders).then((appRef) => {
-//                         //profiling.stop('ng-bootstrap');
-//                         console.log('ANGULAR BOOTSTRAP DONE.');
-
-//                         resolve(appRef);
-//                     }, (err) => {
-//                         console.log('ERROR BOOTSTRAPPING ANGULAR');
-//                         let errorMessage = err.message + "\n\n" + err.stack;
-//                         console.log(errorMessage);
-
-//                         let view = new TextView();
-//                         view.text = errorMessage;
-//                         page.content = view;
-
-//                         reject(Error(errorMessage));
-//                     });
-//                 }
-
-//                 page.on('loaded', onLoadedHandler);
-
-//                 return page;
-//             }
-//         })
-
-//     });
-
-//     return p;
-// }
 
 export function App(config: IAppConfig) {
     return (startingComponent) => {

@@ -1,4 +1,3 @@
-"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -22,11 +21,11 @@ var region_page_1 = require("./pages/region/region.page");
 //level 2
 var competition_page_1 = require("./pages/competition/competition.page");
 //level 3
-var page_2 = require("./pages/competition/clubList/page");
-var page_3 = require("./pages/competition/findCompetitor/page");
-var page_4 = require("./pages/competition/gradeList/page");
-var page_5 = require("./pages/competition/information/page");
-var startList_Page_1 = require("./pages/competition/startList/startList.Page");
+var club_list_page_1 = require("./pages/competition/clubList/club.list.page");
+var find_competitor_page_1 = require("./pages/competition/findCompetitor/find.competitor.page");
+var grade_list_page_1 = require("./pages/competition/gradeList/grade.list.page");
+var information_page_1 = require("./pages/competition/information/information.page");
+var start_list_page_1 = require("./pages/competition/startList/start.list.page");
 //providers 
 var logger_1 = require("./providers/logger");
 var cache_1 = require("./providers/leagues/cache");
@@ -50,12 +49,12 @@ var AppMain = (function () {
         ]),
         router_1.RouteConfig([
             //to-do - template & provider
-            { path: "/region/:regionId/competition/:competitionId/information", component: page_5.InformationPage, name: "Region.Competition.Information" },
-            { path: "/region/:regionId/competition/:competitionId/startList", component: startList_Page_1.StartListPage, name: "Region.Competition.StartList" },
-            { path: "/region/:regionId/competition/:competitionId/clubList", component: page_2.ClubListPage, name: "Region.Competition.ClubList" },
-            { path: "/region/:regionId/competition/:competitionId/gradeList", component: page_4.GradeListPage, name: "Region.Competition.GradeList" },
+            { path: "/region/:regionId/competition/:competitionId/information", component: information_page_1.InformationPage, name: "Region.Competition.Information" },
+            { path: "/region/:regionId/competition/:competitionId/startList", component: start_list_page_1.StartListPage, name: "Region.Competition.StartList" },
+            { path: "/region/:regionId/competition/:competitionId/clubList", component: club_list_page_1.ClubListPage, name: "Region.Competition.ClubList" },
+            { path: "/region/:regionId/competition/:competitionId/gradeList", component: grade_list_page_1.GradeListPage, name: "Region.Competition.GradeList" },
             //to-do - template & provider
-            { path: "/region/:regionId/competition/:competitionId/findCompetitor", component: page_3.FindCompetitorPage, name: "Region.Competition.FindCompetitor" },
+            { path: "/region/:regionId/competition/:competitionId/findCompetitor", component: find_competitor_page_1.FindCompetitorPage, name: "Region.Competition.FindCompetitor" },
             //to-do - template & provider
             { path: "/region/:regionId/competition/:competitionId/stats", component: page_1.StatsPage, name: "Region.Competition.Stats" },
         ]),
@@ -81,6 +80,6 @@ var AppMain = (function () {
         __metadata('design:paramtypes', [logger_1.Logger])
     ], AppMain);
     return AppMain;
-}());
+})();
 exports.AppMain = AppMain;
 //# sourceMappingURL=app.js.map

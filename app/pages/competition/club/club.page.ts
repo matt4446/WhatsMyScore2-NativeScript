@@ -9,6 +9,7 @@ import {ClubService} from "../../../providers/leagues/club";
 import {GradeService} from "../../../providers/leagues/grade";
 import {RegionCache, CompetitionCache, GradeCache, ClubCache} from "../../../providers/leagues/cache";
 import {IClub} from "../../../models/models.d.ts";
+import {CompetitionNav} from "../../nav/competition.nav";
 @Page({
     selector: "club-list-page",
     //templateUrl: "pages/competition/clubList/page.html",
@@ -43,6 +44,7 @@ import {IClub} from "../../../models/models.d.ts";
             
         </nx-drawer>
     `,
+    directives: [CompetitionNav],
     providers: [CompetitionService, GradeService, ClubService]
 })
 export class ClubPage implements OnInit

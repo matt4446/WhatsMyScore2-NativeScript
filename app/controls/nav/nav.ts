@@ -3,7 +3,7 @@ import { EventEmitter, ViewChildren, ViewChild, ElementRef, HostListener, Host, 
 import { Logger} from "../../providers/logger";
 import { IonIcon,NavIcon} from "../icons/ion-icon";
 import { Observable, Subscription, Subject} from 'rxjs/Rx';
-import {Router, Location, Instruction} from 'angular2/router';
+import {Router, Instruction} from 'angular2/router';
 import {NxNavBack} from "./nav-back";
 import {Page} from "ui/page";
 
@@ -49,7 +49,7 @@ export class NxNav {
     @ViewChild('item') private container: ElementRef
 
     public constructor(
-        private router: Router, private location: Location,
+        private router: Router, 
         private element: ElementRef,
         private logger: Logger,
         private page : Page) {

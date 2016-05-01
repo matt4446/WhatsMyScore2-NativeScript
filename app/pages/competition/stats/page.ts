@@ -8,9 +8,11 @@ import {CompetitionService} from "../../../providers/leagues/competitions";
 import {ClubService} from "../../../providers/leagues/club";
 import {GradeService} from "../../../providers/leagues/grade";
 import {RegionCache, CompetitionCache, GradeCache, ClubCache} from "../../../providers/leagues/cache";
+import {CompetitionNav} from "../../nav/competition.nav";
 @Page({
     selector: "stats-page",
     templateUrl: "pages/competition/stats/page.html",
+    directives: [CompetitionNav],
     providers: [CompetitionService, GradeService, ClubService]
 })
 export class StatsPage 

@@ -1,16 +1,17 @@
 import {Component, OnInit} from 'angular2/core';
 import {Router} from "angular2/router";
-import {Page} from "../../../../decorators/page";
-import {Logger} from "../../../../providers/logger";
+import {Page} from "../../../decorators/page";
+import {Logger} from "../../../providers/logger";
 //import {SearchList, ISearchEvent} from "../../controls/searchList/searchList";
-import {AppRoutingService} from "../../../../context/router.context";
-import {CompetitionService} from "../../../../providers/leagues/competitions";
-import {ClubService} from "../../../../providers/leagues/club";
-import {GradeService} from "../../../../providers/leagues/grade";
-import {RegionCache, CompetitionCache, GradeCache, ClubCache} from "../../../../providers/leagues/cache";
-import {IGrade} from "../../../../models/models.d.ts";
+import {AppRoutingService} from "../../../context/router.context";
+import {CompetitionService} from "../../../providers/leagues/competitions";
+import {ClubService} from "../../../providers/leagues/club";
+import {GradeService} from "../../../providers/leagues/grade";
+import {RegionCache, CompetitionCache, GradeCache, ClubCache} from "../../../providers/leagues/cache";
+import {IGrade} from "../../../models/models.d.ts";
+import {CompetitionNav} from "../../nav/competition.nav";
 @Page({
-    selector: "start-list-grade-page",
+    selector: "grade-list-page",
     //templateUrl: "pages/competition/gradeList/page.html",
     template: `
         <nx-drawer>
@@ -21,7 +22,7 @@ import {IGrade} from "../../../../models/models.d.ts";
                 <ion-icon nav-right nav="true" icon="ion-android-favorite"></ion-icon>
             </nx-nav>
 
-            <ScrollView>
+            <nx-content (refreshStarted)="refresh($event)">
                 <StackLayout class="inset">
                     <nx-list *ngFor="#group of list | groupBy: 'Discipline' | orderBy:'key'">
                         <nx-header item-top>
@@ -36,13 +37,14 @@ import {IGrade} from "../../../../models/models.d.ts";
                         </nx-item>
                     </nx-list>
                 </StackLayout>
-            </ScrollView>
+            </nx-content>
             
         </nx-drawer>
     `,
+    directives: [CompetitionNav],
     providers: [CompetitionService, GradeService, ClubService]
 })
-export class StartListGradePage implements OnInit
+export class GradeListPage implements OnInit
 {
     constructor(
         private logger: Logger, 
@@ -75,10 +77,21 @@ export class StartListGradePage implements OnInit
             return;
         }
         
-        this.gradeService.List(this.cache.Competition.Id).map(e=> e.json()).subscribe(e=> {
-            this.list = e;
-        });
-
+        this.loadDetail();
     }
     
+    public loadDetail() {
+        let observable = this.gradeService.List(this.cache.Competition.Id).map(e=> e.json());
+        observable.subscribe(e=> {
+            this.list = e;
+        });
+        
+        return observable;
+    }
+    
+    public refresh(args: any){
+        this.loadDetail().subscribe(() => {
+            args.completed();
+        });
+    }
 }
