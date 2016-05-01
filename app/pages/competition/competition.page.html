@@ -6,7 +6,8 @@
         <ion-icon nav-right nav="true" icon="ion-android-favorite"></ion-icon>
     </nx-nav>
     
-    <ScrollView>
+    <nx-content (refreshStarted)="refresh($event)">
+    
         <StackLayout class="inset">
             <nx-list>
                 <nx-header item-top>
@@ -16,14 +17,14 @@
                         'Region.Competition.Information',
                         { regionId: context.RegionId, competitionId: context.CompetitionId }]">
                     <ion-icon item-left icon="ion-map"></ion-icon>
-                    <label text="Information"></label>
+                    <label [text]="'Information' | Title"></label>
                     <ion-icon item-right icon="ion-chevron-right"></ion-icon>
                 </nx-item>
                 <nx-item [nxRoute]="[
                         'Region.Competition.StartList',
                         { regionId: context.RegionId, competitionId: context.CompetitionId }]">
                     <ion-icon item-left icon="ion-map"></ion-icon>
-                    <label text="Start List"></label>
+                    <label [text]="'Start List'| Title"></label>
                     <ion-icon item-right icon="ion-chevron-right"></ion-icon>
                 </nx-item>
             </nx-list>
@@ -35,32 +36,32 @@
                 <nx-item [nxRoute]="[
                         'Region.Competition.GradeList',
                         { regionId: context.RegionId, competitionId: context.CompetitionId }]">
-                    <label text="Grades"></label>
+                    <label [text]="'Grades' | Title"></label>
                     <ion-icon item-right icon="ion-search"></ion-icon>
                 </nx-item>
                 <nx-item [nxRoute]="[
                         'Region.Competition.ClubList',
                         { regionId: context.RegionId, competitionId: context.CompetitionId }]">
                     <ion-icon item-left icon="ion-ios-people"></ion-icon>
-                    <label text="Clubs"></label>
+                    <label [text]="'Clubs'| Title"></label>
                     <ion-icon item-right icon="ion-search"></ion-icon>
                 </nx-item>
                 <nx-item [nxRoute]="[
                         'Region.Competition.FindCompetitor',
                         { regionId: context.RegionId, competitionId: context.CompetitionId }]">
                     <ion-icon item-left icon="ion-ios-people"></ion-icon>
-                    <label text="Find a Competitor"></label>
+                    <label [text]="'Find a Competitor' | Title"></label>
                 </nx-item>
                 <nx-item [nxRoute]="[
                         'Region.Competition.Stats',
                         { regionId: context.RegionId, competitionId: context.CompetitionId }]">
                     <ion-icon item-left icon="ion-ios-people"></ion-icon>
-                    <label text="Stats"></label>
+                    <label [text]="'Stats'| Title"></label>
                 </nx-item>
             </nx-list>
 
         </StackLayout>
-    </ScrollView>
+    </nx-content>
     
     
 </nx-drawer>

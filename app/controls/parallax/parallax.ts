@@ -10,9 +10,17 @@ import { ContentView } from "ui/content-view";
 import { Observable, Subscription, Subject} from 'rxjs/Rx';
 
 @Directive({
-    selector: "[collapse-parallax]",
+    selector: "[parallax-hide]",
 })
 export class ParallaxCollapsableItem{
+    constructor(public element: ElementRef){
+    }
+}
+
+@Directive({
+    selector : "[parallax-show]"
+})
+export class ParallaxExpandableItem{
     constructor(public element: ElementRef){
     }
 }
@@ -22,16 +30,25 @@ export class ParallaxCollapsableItem{
 @Control({
     selector: "nx-parallax",
     template:`
-        <ScrollView #scrollView>
-            <StackLayout>
-                <StackLayout #header>
+        <GridLayout >
+            <ScrollView #scrollView>
+                <GridLayout>
+                    <StackLayout #body horizontalAlignment="stretch" style="margin-top:200">
+                        <ng-content></ng-content>
+                    </StackLayout>  
+                </GridLayout>
+            </ScrollView>
+            
+            <AbsoluteLayout verticalAlignment="top" horizontalAlignment="left">
+                <StackLayout #header top="0" left="0" height="200" style="background-color:#FFFFFF">
                     <ng-content select="[header]"></ng-content>
                 </StackLayout>
-                <StackLayout #body>
-                    <ng-content></ng-content>
-                </StackLayout>
-            </StackLayout>
-        </ScrollView>
+            </AbsoluteLayout>  
+            
+            <StackLayout #pinned top="0" left="0">
+                <ng-content select="[pinned]"></ng-content>
+            </StackLayout> 
+        </GridLayout>
     `,
     directives : [ParallaxCollapsableItem]
 })
@@ -40,95 +57,138 @@ export class Paralax {
     private scrollViewAvailable: Subject<ElementRef>;
     private headerAvailable : Subject<ElementRef>;
     private bodyAvailable : Subject<ElementRef>;
-    private actions : Observable<{ scrollView: ElementRef, header: ElementRef, body: ElementRef }>;
+    private pinnedAvailable: Subject<ElementRef>;
+    
+    private actions : Observable<{ scrollView: ElementRef, header: ElementRef, body: ElementRef, pinned: ElementRef }>;
     
     constructor(private logger: Logger) 
     {        
         this.scrollViewAvailable = new Subject<ElementRef>();
         this.headerAvailable = new Subject<ElementRef>();
         this.bodyAvailable = new Subject<ElementRef>();
+        this.pinnedAvailable = new Subject<ElementRef>();
+        
         this.headerHeight = 200;
         this.minHeaderHeight = 50;
         
         this.actions = Observable.zip(this.scrollViewAvailable,
             this.headerAvailable, 
-            this.bodyAvailable, (scrollViewRef :ElementRef,headerRef: ElementRef, bodyRef: ElementRef)=>
+            this.bodyAvailable,
+            this.pinnedAvailable, 
+            (scrollViewRef :ElementRef,headerRef: ElementRef, bodyRef: ElementRef, pinnedRef: ElementRef) =>
             {
                 let headerElement : ScrollView = headerRef.nativeElement
                 headerElement.height = this.headerHeight;
                 return {
                     scrollView: scrollViewRef,
                     header: headerRef,
-                    body: bodyRef
+                    body: bodyRef,
+                    pinned: pinnedRef
                 };
             });
                 
         this.actions.subscribe(values => {
-            this.EvaluateScroll(values.scrollView, values.header, values.body);
+            this.EvaluateScroll(values.scrollView, values.header, values.body, values.pinned);
         });
     }
     
     @Input('header-height') public headerHeight: number;
 	@Input('header-min-height') public minHeaderHeight: number;
     
+    private scrollView : ElementRef;
     @ViewChild('scrollView') 
-    set _scrollView(item: ElementRef){
+    set _setScrollView(item: ElementRef){
+        this.scrollView = item;
         this.scrollViewAvailable.next(item);
     }
-        
+     
+    private headerView : ElementRef;
     @ViewChild('header')
     set _setHeaderView(item: ElementRef){
+        this.headerView = item;
         this.headerAvailable.next(item);
-        
     }
     
+    private pinnedView :ElementRef; 
+    @ViewChild('pinned')
+    set _setPinnedView(item: ElementRef){
+        this.pinnedView = item;
+        this.pinnedAvailable.next(item);
+    }
+    
+    private bodyView : ElementRef; 
     @ViewChild('body')
     set _setBodyView(item: ElementRef){
+        this.bodyView = item;
         this.bodyAvailable.next(item);
     }
 
     @ContentChildren(ParallaxCollapsableItem)
-    __collapseItems : QueryList<ParallaxCollapsableItem>
-      
-      
-    private EvaluateScroll(scrollViewRef: ElementRef, headerRef : ElementRef, bodyRef: ElementRef){
-        let prevOffset = -10;
-		let topOpacity = 1;
+    __collapseItems : QueryList<ParallaxCollapsableItem>;
+    
+    @ContentChildren(ParallaxExpandableItem)
+    __expandItems : QueryList<ParallaxCollapsableItem>;
+    
+    private topOpactity : number = 1;
+    
+    private FadeItems(){
+        let scrollView = this.scrollView.nativeElement;
+        
+        let topOpacity = parseFloat((1 - (scrollView.verticalOffset * 0.01)).toString());
+        
+        if (topOpacity > 0 && topOpacity <= 1) {
+            
+            let controlsToFadeOut = this.__collapseItems.toArray();   
+            //fade each control
+            controlsToFadeOut.forEach((directiveItems) => {
+                let view : ContentView = directiveItems.element.nativeElement;
+                view.opacity = topOpacity;
+            });
+            //fade in each control 
+            let controlsToFadeIn = this.__expandItems.toArray();
 
-        let scrollView = scrollViewRef.nativeElement;
+            controlsToFadeIn.forEach((directiveItem) => {
+                let view : ContentView = directiveItem.element.nativeElement;
+                view.opacity = -topOpacity;
+            });
+        }
+    }
+    
+    private prevOffset : number = -10;
+    
+    private GrowEffect(){
+        let newHeight = 0; 
+        let scrollView = this.scrollView.nativeElement;
+        let header = this.headerView.nativeElement;
+        let body = this.bodyView.nativeElement;
+        
+        if (this.prevOffset <= scrollView.verticalOffset) {
+            //scroll down
+            newHeight = this.getTopViewHeight(this.headerHeight, scrollView.verticalOffset);
+        } else {
+            //scroll up
+            if (header.height <= this.headerHeight) {
+                newHeight = this.getTopViewHeight(this.headerHeight, scrollView.verticalOffset);
+            }
+        }
+        
+        let changeHeight = newHeight > this.minHeaderHeight;
+        header.height = changeHeight ? newHeight : this.minHeaderHeight;
+        
+        this.prevOffset = scrollView.verticalOffset;
+        body.marginTop = header.height;
+    }
+    
+    private EvaluateScroll(scrollViewRef: ElementRef, headerRef : ElementRef, bodyRef: ElementRef, pinnedRef: ElementRef){
+        let scrollView :ScrollView = scrollViewRef.nativeElement;
 
 		scrollView.on(ScrollView.scrollEvent, (args: ScrollEventData) => {
             let header : StackLayout = headerRef.nativeElement;
             let body : StackLayout = bodyRef.nativeElement;
-            
-            this.logger.Notify("scrolling");
-            this.logger.Notify("header height: "+ header.height);
-            let shrink = prevOffset <= scrollView.verticalOffset; 
-			if (shrink) {
-				if (header.height >= this.minHeaderHeight) {
-					header.height = this.getTopViewHeight(this.headerHeight, scrollView.verticalOffset);
-				}
-			} else {
-                
-				if (header.height <= this.headerHeight) {
-					header.height = this.getTopViewHeight(this.headerHeight, scrollView.verticalOffset);
-				}
-			}
-
-			if (scrollView.verticalOffset < this.headerHeight) {
-				topOpacity = parseFloat((1 - (scrollView.verticalOffset * 0.01)).toString());
-				if (topOpacity > 0 && topOpacity <= 1) {
+            let pinned : StackLayout = pinnedRef.nativeElement;
                     
-                    let controlsToFade = this.__collapseItems.toArray();   
-					//fade each control
-					controlsToFade.forEach((directiveItems) => {
-                        let view : ContentView = directiveItems.element.nativeElement;
-						view.opacity = topOpacity;
-					});
-                    //todo fade in 
-				}
-			}
-			prevOffset = scrollView.verticalOffset;
+            this.GrowEffect();
+			this.FadeItems();
 		});
     }
         

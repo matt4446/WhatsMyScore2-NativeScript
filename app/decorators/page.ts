@@ -3,9 +3,9 @@ import { NxNav} from "../controls/nav/nav";
 import {NxList} from "../controls/list/list";
 import {NxListItem} from "../controls/list/list-item";
 import {NxHeader} from "../controls/list/header";
-import {NxCard} from "../controls/card/card";
-import {NxPullToRefresh} from "../controls/pullToRefresh/pullToRefresh";
-
+import {NxCard} from "../controls/card/card.control";
+import {NxPullToRefresh} from "../controls/pullToRefresh/pullToRefresh.control";
+import {NxContent} from "../controls/content/content.control";
 import {NxDrawer} from "../controls/drawer/drawer";
 import {IonIcon,NavIcon} from "../controls/icons/ion-icon";
 //import {LoadingService} from "../providers/loadingService/loadingService";
@@ -65,6 +65,7 @@ export function Page(config: IPageConfig={})
             NxNav, 
             NxList, 
             NxListItem, 
+            NxContent,
             NxHeader, 
             IonIcon, 
             NgIf, 

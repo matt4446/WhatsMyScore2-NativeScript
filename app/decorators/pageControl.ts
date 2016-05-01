@@ -4,8 +4,10 @@ import {NxNav} from "../controls/nav/nav";
 import {NxList} from "../controls/list/list";
 import {NxListItem} from "../controls/list/list-item";
 import {NxHeader} from "../controls/list/header";
-import {NxCard} from "../controls/card/card";
+import {NxCard} from "../controls/card/card.control";
 import {NxDrawer} from "../controls/drawer/drawer";
+import {NxContent} from "../controls/content/content.control";
+import {NxPullToRefresh} from "../controls/pullToRefresh/pullToRefresh.control";
 import {IonIcon,NavIcon} from "../controls/icons/ion-icon";
 import {TitleTransform} from "../pipes/title";
 import {DisplayDate} from "../pipes/dates"
@@ -36,7 +38,7 @@ export function PageControl(config: IPageControlConfig={}) {
 
         //componentConfig.changeDetection = ChangeDetectionStrategy.OnPush;
         
-        var nxDirectives = [NxDrawer, NxCard, NxNav, NxList, NxListItem, NxHeader, IonIcon, NgIf, NgFor];
+        var nxDirectives = [NxDrawer, NxCard, NxPullToRefresh, NxNav, NxList, NxListItem, NxHeader, NxContent, IonIcon, NgIf, NgFor];
         var providers = [];
         var corePipes = [TitleTransform, DisplayDate];
         

@@ -21,7 +21,7 @@ import {IClub} from "../../../models/models.d.ts";
                 <ion-icon nav-right nav="true" icon="ion-android-favorite"></ion-icon>
             </nx-nav>
 
-            <ScrollView>
+            <nx-content (refreshStarted)="refresh($event)">
                 <StackLayout class="inset">
                     <nx-list *ngFor="#clubGroup of list | groupBy: 'Grade.ClassName' | orderBy:'key'">
                         <nx-header item-top>
@@ -39,7 +39,7 @@ import {IClub} from "../../../models/models.d.ts";
                         </nx-item>
                     </nx-list>
                 </StackLayout>
-            </ScrollView>
+            </nx-content>
             
         </nx-drawer>
     `,
@@ -71,7 +71,6 @@ export class ClubPage implements OnInit
         //this.logger.Notify("Search Term in Regions Page: " + $event.Value);
     } 
     
-
     public ngOnInit(){
         this.logger.Notify("club-list-page ngOnInit");
         
@@ -81,10 +80,22 @@ export class ClubPage implements OnInit
             return;
         }
 
-        this.clubService.List(this.cache.Competition.Id).map(e=> e.json()).subscribe(e=> {
+        this.loadDetail();
+    }
+    
+    public loadDetail() {
+        let observable = this.clubService.List(this.cache.Competition.Id).map(e=> e.json());
+        observable.subscribe(e=> {
             this.list = e;
         });
-
+        
+        return observable;
+    }
+    
+    public refresh(args: any){      
+        this.loadDetail().subscribe(() => {
+            args.completed();
+        });
     }
     
     

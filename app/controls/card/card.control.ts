@@ -4,7 +4,7 @@ import { Logger } from "../../providers/logger";
 import { CardView } from "cardview";
 //var observable = require("data/observable");
 import { Observable, Subscription, Subject} from 'rxjs/Rx';
-import { Color } from "color"
+import { Color } from "color";
 @Control({
     selector: "nx-card",
     //templateUrl: "controls/list/list.html",

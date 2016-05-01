@@ -44,13 +44,6 @@ export class NxListItem {
         private router: Router, 
         private location: Location, 
         private logger:Logger){
-        //this.logger.Notify("nx-item added");
-        // this.itemReady.subscribe(() => {
-        //     this.logger.Notify("nx-item ready");
-        // });
-        // this.itemSelected.subscribe(() => {
-        //     this.logger.Notify("nx-item selected");
-        // });
     }
        
     private routeParams: any[];

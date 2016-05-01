@@ -1,5 +1,5 @@
 /// <reference path="../../../node_modules/nativescript-pulltorefresh/pulltorefresh.d.ts" />
-
+import { Logger } from "../../providers/logger";
 import { Control } from "../../decorators/control";
 import { Component } from "angular2/core";
 //var observable = require("data/observable");
@@ -11,7 +11,7 @@ import { PullToRefresh } from "nativescript-pulltorefresh";
 @Control({
     selector: "nx-pull-to-refresh",
     template:`
-    <PullToRefresh (refresh)="refreshMe($event)">
+    <PullToRefresh #item (refresh)="refreshMe($event)">
         <ScrollView>
             <StackLayout>
                 <ng-content></ng-content>
@@ -19,36 +19,27 @@ import { PullToRefresh } from "nativescript-pulltorefresh";
         </ScrollView>
     </PullToRefresh>
     `,
-    outputs: ["refresh"],
+    outputs: ["refreshStarted"],
     //inputs: ["complete"]
 })
 
 export class NxPullToRefresh {
     
-    private pullToRefreshControl : PullToRefresh;
-    
-    constructor(public element: ElementRef)
+    constructor(private logger: Logger)
     {
-        console.log("PullToRefreshComponent added");
-        let pullToRefreshElement: PullToRefresh = element.nativeElement;
-        console.log(pullToRefreshElement);
+        this.logger.Notify("NxPullToRefresh - started");
     }
     
-    private complete: boolean;
+    @ViewChild("item")
+    public pullToRefreshElement : ElementRef;
     
-    // @Input("complete")
-    // set _complete (value: boolean){
-    //     this.complete = value;
-    // }
-    
-    public refreshMe(args : any){
+    private refreshMe(args : any){
         console.log("refresh called. args:");
         console.log(args);
         
-        this.refresh.next(args);
+        this.refreshStarted.next(args);
     }
-    
-    public refresh = new EventEmitter()
-    
+       
+    public refreshStarted = new EventEmitter();
 }
 

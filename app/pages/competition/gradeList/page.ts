@@ -21,7 +21,7 @@ import {IGrade} from "../../../models/models.d.ts";
                 <ion-icon nav-right nav="true" icon="ion-android-favorite"></ion-icon>
             </nx-nav>
 
-            <ScrollView>
+            <nx-content (refreshStarted)="refresh($event)">
                 <StackLayout class="inset">
                     <nx-list *ngFor="#group of list | groupBy: 'Discipline' | orderBy:'key'">
                         <nx-header item-top>
@@ -36,7 +36,7 @@ import {IGrade} from "../../../models/models.d.ts";
                         </nx-item>
                     </nx-list>
                 </StackLayout>
-            </ScrollView>
+            </nx-content>
             
         </nx-drawer>
     `,
@@ -75,10 +75,21 @@ export class GradeListPage implements OnInit
             return;
         }
         
-        this.gradeService.List(this.cache.Competition.Id).map(e=> e.json()).subscribe(e=> {
-            this.list = e;
-        });
-
+        this.loadDetail();
     }
     
+    public loadDetail() {
+        let observable = this.gradeService.List(this.cache.Competition.Id).map(e=> e.json());
+        observable.subscribe(e=> {
+            this.list = e;
+        });
+        
+        return observable;
+    }
+    
+    public refresh(args: any){
+        this.loadDetail().subscribe(() => {
+            args.completed();
+        });
+    }
 }

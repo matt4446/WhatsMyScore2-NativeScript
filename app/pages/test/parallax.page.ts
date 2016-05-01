@@ -5,7 +5,7 @@ import {Logger} from "../../providers/logger";
 import {Image} from "ui/image";
 import {PullToRefresh} from "nativescript-pulltorefresh";
 import {Color} from "color";
-import {NxPullToRefresh} from "../../controls/pullToRefresh/pullToRefresh";
+import {NxPullToRefresh} from "../../controls/pullToRefresh/pullToRefresh.control";
 import {Paralax, ParallaxCollapsableItem} from "../../controls/parallax/parallax";
 
 @Page({
@@ -13,12 +13,17 @@ import {Paralax, ParallaxCollapsableItem} from "../../controls/parallax/parallax
     template: `
         <StackLayout class="inset">           
             <nx-card>
-                <nx-header item-top>
+                <nx-header item-top parallax-show>
                     <label [text]="'Test parallax' | Title" class="nx-header-title"></label>
                 </nx-header>
                 <nx-parallax>
                     <StackLayout header>
-                        <img collapse-parallax src="https://unsplash.it/1600/1600/?random=1" stretch="none">
+                        <img parallax-hide src="https://unsplash.it/1600/1600/?random=1" stretch="none">
+                    </StackLayout>
+                    <StackLayout pinned>
+                        <nx-item>
+                            <label text="hi"></label>
+                        </nx-item>
                     </StackLayout>
                     <StackLayout>
                         <nx-list>
@@ -30,6 +35,7 @@ import {Paralax, ParallaxCollapsableItem} from "../../controls/parallax/parallax
                         </nx-list>
                     </StackLayout>
                 </nx-parallax>
+                
             </nx-card>
         </StackLayout>
     `,

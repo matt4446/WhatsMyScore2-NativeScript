@@ -6,9 +6,10 @@
         
         <ion-icon nav-right nav="true" icon="ion-android-favorite"></ion-icon>
     </nx-nav>
-    
-    <ScrollView>
+    <nx-content (refreshStarted)="refresh($event)">
+        
         <StackLayout class="inset">
+            
             <nx-list *ngFor="#region of list">
                 <nx-header>
                     <Label [text]='region.Name' class="nx-header-title"></Label>
@@ -29,5 +30,6 @@
                 </nx-item>
             </nx-list>
         </StackLayout>
-    </ScrollView>
+        
+    </nx-content>
 </nx-drawer>

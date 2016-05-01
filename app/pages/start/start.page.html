@@ -7,8 +7,7 @@
         <ion-icon nav-right nav="true" icon="ion-android-favorite"></ion-icon>
     </nx-nav>
 
-    <ScrollView>
-
+    <nx-content (refreshStarted)="refresh($event)">
         <StackLayout class="inset">
             
             <nx-list>
@@ -56,6 +55,7 @@
             </nx-list>
 
         </StackLayout>
+    </nx-content>
+        
 
-    </ScrollView>
 </nx-drawer>

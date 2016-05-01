@@ -4,20 +4,20 @@ import {App} from "./decorators/app";
 //pages 
 //level 1 
 import { StatsPage } from "./pages/competition/stats/page"
-import { TestPage } from "./pages/test/page";
-import { ParallaxTestPage } from "./pages/test/parallax";
-import { StartPage } from "./pages/start/startPage";
-import { RegionsPage } from "./pages/regions/regionsPage";
-import { RegionPage } from "./pages/region/regionPage";
+import { TestPage } from "./pages/test/test.page";
+import { ParallaxTestPage } from "./pages/test/parallax.page";
+import { StartPage } from "./pages/start/start.page";
+import { RegionsPage } from "./pages/regions/regions.page";
+import { RegionPage } from "./pages/region/region.page";
 //level 2
-import { CompetitionPage } from "./pages/competition/page";
+import { CompetitionPage } from "./pages/competition/competition.page";
 
 //level 3
 import { ClubListPage } from "./pages/competition/clubList/page";
 import { FindCompetitorPage } from "./pages/competition/findCompetitor/page";
 import { GradeListPage } from "./pages/competition/gradeList/page";
 import { InformationPage } from "./pages/competition/information/page";
-import { StartListPage } from "./pages/competition/startList/page";
+import { StartListPage } from "./pages/competition/startList/startList.Page";
 
 //level 4
 import {StartListGradePage } from "./pages/competition/startList/competitors/page";

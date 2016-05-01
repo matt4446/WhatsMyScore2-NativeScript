@@ -11,7 +11,7 @@ import {RegionCache, CompetitionCache, GradeCache, ClubCache} from "../../../pro
 import {Observable, Subscription, Subject} from 'rxjs/Rx';
 import {GroupedObservable} from "rxjs/operator/groupBy";
 import {IGrade, ICompetitionGrades} from "../../../models/models.d.ts";
-import {StartListItems} from "./StartListItems";
+import {StartListItems} from "./StartListItems.control";
 
 @Page({
     selector: "start-list-page",
@@ -25,7 +25,7 @@ import {StartListItems} from "./StartListItems";
                 <ion-icon nav-right nav="true" icon="ion-android-favorite"></ion-icon>
             </nx-nav>
 
-            <ScrollView>
+            <nx-content (refreshStarted)="refresh($event)">
                 <StackLayout class="inset">
                     <nx-list *ngFor="#group of list | groupBy: 'Discipline' | orderBy:'key'">
                         <nx-header item-top>
@@ -40,7 +40,7 @@ import {StartListItems} from "./StartListItems";
                         </nx-item>
                     </nx-list>
                 </StackLayout>
-            </ScrollView>
+            </nx-content>
             
         </nx-drawer>
     `,
@@ -78,10 +78,21 @@ export class StartListPage implements OnInit
             return;
         }
         
-        this.gradeService.List(this.cache.Competition.Id).map(e=> e.json()).subscribe(e=> {
-            this.list = e;
-        });
+        
     }
     
+    public loadDetail(){
+        let observable = this.gradeService.List(this.cache.Competition.Id);
+        observable.map(e=> e.json()).subscribe(e=> {
+            this.list = e;
+        });
+        
+        return observable;
+    }
     
+    public refresh(args: any){
+        this.loadDetail().subscribe(() => {
+            args.completed();
+        });
+    }
 }

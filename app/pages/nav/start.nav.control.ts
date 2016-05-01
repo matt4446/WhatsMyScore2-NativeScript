@@ -14,7 +14,7 @@ import {NS_ROUTER_DIRECTIVES} from 'nativescript-angular/router';
 
 @PageControl({
     selector: "start-nav",
-    templateUrl: "pages/nav/start.nav.html"
+    templateUrl: "pages/nav/start.nav.control.html"
 })
 export class StartNav
 {

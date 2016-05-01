@@ -1,4 +1,4 @@
-import {Component, OnInit} from 'angular2/core';
+import {Component, OnInit, ViewChild, ElementRef} from 'angular2/core';
 import {Router} from "angular2/router";
 import {Page} from "../../decorators/page";
 import {Logger} from "../../providers/logger";
@@ -12,14 +12,17 @@ import { IRegion } from "../../models/models"
 /* directive */
 import {Http} from 'angular2/http';
 import {Settings} from "../../providers/routes/routes";
-import {StartNav} from "../nav/start.nav"
+import {StartNav} from "../nav/start.nav.control";
+
 
 import {topmost} from "ui/frame";
 import {ActionItem} from "ui/action-bar";
+import {NxContent} from "../../controls/content/content.control"
+import {PullToRefresh} from "nativescript-pulltorefresh";
 
 @Page({
     selector: "regions-page",
-    templateUrl: "pages/regions/regionsPage.html",
+    templateUrl: "pages/regions/regions.page.html",
     providers: [RegionService],
     directives: [StartNav]
 })
@@ -61,13 +64,16 @@ export class RegionsPage implements OnInit
         //this.logger.Notify("Search Term in Regions Page: " + $event.Value);
     } 
     
-    /* angular2 lifecycle */
-    public ngOnInit(){
+    private contentViewRef : ElementRef;
         
-        
-        this.logger.Notify("Region-page ngAfterViewInit");
-        //this.loadingService.show();
-        //time to load the data
+    public refresh(args: any){
+        this.loadDetail().subscribe(() => {
+            args.completed();
+        });
+    }
+    
+    public loadDetail(){
+        this.logger.Notify("load regions");
         var response = this.regions.List();
         
         //transform the data to json -> array of IProvider
@@ -80,6 +86,14 @@ export class RegionsPage implements OnInit
                 this.logger.Error("Could not map items");
                 this.logger.Error(error);
             });
+            
+        return response;
+    }
+    
+    
+    /* angular2 lifecycle */
+    public ngOnInit(){
+        this.loadDetail();
     }
        
 }

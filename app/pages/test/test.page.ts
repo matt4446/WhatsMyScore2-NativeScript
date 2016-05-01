@@ -1,7 +1,7 @@
 import {Page} from "../../decorators/page";
 import {Page as PageControl} from "ui/page";
 import {Logger} from "../../providers/logger";
-import {NxPullToRefresh} from "../../controls/pullToRefresh/pullToRefresh";
+import {NxPullToRefresh} from "../../controls/pullToRefresh/pullToRefresh.control";
 import {Image} from "ui/image";
 import {PullToRefresh} from "nativescript-pulltorefresh";
 import {Color} from "color";

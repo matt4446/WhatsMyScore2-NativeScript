@@ -3,11 +3,12 @@ import {OnInit, OnDestroy} from 'angular2/core';
 import {Page} from "../../decorators/page";
 import {Logger} from "../../providers/logger";
 import {CompetitionService} from "../../providers/leagues/competitions";
-import {ClubService} from "../../providers/leagues/club";
+
 import {GradeService} from "../../providers/leagues/grade";
 import {RegionCache, CompetitionCache, GradeCache, ClubCache} from "../../providers/leagues/cache";
 
 import {RouteParams} from "angular2/router";
+import {ClubService} from "../../providers/leagues/club";
 import {ICompetition} from "../../models/models"
 import {CompetitionNav} from "../nav/competition.nav";
 import {AppRoutingService} from "../../context/router.context";
@@ -15,7 +16,7 @@ import {Subscription} from 'rxjs/Rx';
 
 @Page({
     selector: "Competiton",
-	templateUrl: "pages/competition/page.html",
+	templateUrl: "pages/competition/competition.page.html",
     directives: [CompetitionNav],
     providers: [CompetitionService, GradeService, ClubService]
 })
@@ -60,6 +61,10 @@ export class CompetitionPage implements OnInit, OnDestroy
     ngOnInit()
     {
         this.logger.Notify("ngOnInit: RegionPage");
+        this.loadDetail();  
+    } 
+    
+    public loadDetail (){
         let competitionId = this.context.CompetitionId;
         let observable = this.competitionService.Get(competitionId);
         
@@ -70,6 +75,14 @@ export class CompetitionPage implements OnInit, OnDestroy
             }, (error)=> {
                 this.logger.Error(error);
             });
-    } 
+            
+        return observable;
+    }
+    
+    public refresh(args: any){      
+        this.loadDetail().subscribe(() => {
+            args.completed();
+        });
+    }
 }
 

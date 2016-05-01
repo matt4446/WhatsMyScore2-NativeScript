@@ -9,15 +9,14 @@ import {Router} from "angular2/router";
 import {Http} from 'angular2/http';
 import {Settings} from "../../providers/routes/routes";
 import {NxDrawer} from "../../controls/drawer/drawer";
-import {StartNav} from "../nav/start.nav"
+import {StartNav} from "../nav/start.nav.control";
 import {topmost} from "ui/frame";
 import {ActionItem} from "ui/action-bar";
 
-import {} from "../../"
 @Page({
     selector: "start",
     //I've moved directives to Page decorator .. 
-    templateUrl: "pages/start/page.html",
+    templateUrl: "pages/start/start.page.html",
     directives: [StartNav]
 })
 export class StartPage implements OnInit
@@ -35,4 +34,10 @@ export class StartPage implements OnInit
         alert("Its not made yet");
     }
   
+    public refresh(args: any){
+        setTimeout(()=> {
+            args.completed();
+        }, 1000);
+        
+    }
 }
