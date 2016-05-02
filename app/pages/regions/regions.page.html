@@ -10,7 +10,7 @@
         
         <StackLayout class="inset">
             
-            <nx-list *ngFor="#region of list">
+            <nx-list *ngFor="let region of list">
                 <nx-header>
                     <Label [text]='region.Name' class="nx-header-title"></Label>
                 </nx-header>

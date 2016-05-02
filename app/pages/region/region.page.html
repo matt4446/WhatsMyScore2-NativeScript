@@ -14,7 +14,7 @@
                 <nx-header item-top>
                     <label [text]="'Competitions' | Title" class="nx-header-title"></label>
                 </nx-header>               
-                <nx-item *ngFor="#competition of list"
+                <nx-item *ngFor="let competition of list"
                     [nxRoute]="['Region.Competition', 
                         { regionId: context.RegionId, competitionId: competition.Id }
                     ]">

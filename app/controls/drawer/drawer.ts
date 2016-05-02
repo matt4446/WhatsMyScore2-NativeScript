@@ -86,6 +86,9 @@ export class NxDrawer {
         this.centerContent = item;
     }
     
+    private 
+    
+    
     @ContentChildren(NxNav)
     set _setNav(items: any){
         if(this.State.NavAttached){ return; }
@@ -98,9 +101,10 @@ export class NxDrawer {
         
         var anySelected = this.childNavs.map((item) => item.menuSelected);
                 
-        Observable.fromArray(anySelected).flatMap(x=> x).subscribe(() => { 
+        Observable.from(anySelected).flatMap(x=>x).filter(e => e).subscribe(() => { 
             this.logger.Notify("nav menu tapped -> open side");
             let grid: StackLayout = this.grid.nativeElement;
+            
             
             let leftParent: AbsoluteLayout = this.asideLeftParent.nativeElement;
             let left: StackLayout = this.asideLeftContent.nativeElement;

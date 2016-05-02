@@ -27,7 +27,7 @@ import {Paralax, ParallaxCollapsableItem} from "../../controls/parallax/parallax
                     </StackLayout>
                     <StackLayout>
                         <nx-list>
-                            <nx-item *ngFor="#item of items | orderBy:'ClassName'">
+                            <nx-item *ngFor="let item of items | orderBy:'ClassName'">
                                 <ion-icon item-left icon="ion-clipboard"></ion-icon>
                                 <label [text]="item.number"></label>
                                 <ion-icon item-right icon="ion-ios-people"></ion-icon>

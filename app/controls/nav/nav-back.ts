@@ -5,7 +5,7 @@ import { Logger} from "../../providers/logger";
 import { IonIcon,NavIcon} from "../icons/ion-icon";
 import { Observable, Subscription, Subject} from 'rxjs/Rx';
 import { Router, Instruction,  } from 'angular2/router';
-
+import { Location } from 'angular2/platform/common'
 @Control({
     selector:"nx-nav-back",
     //create 1 row template; 3 columns; 2 for the icons on the sides
@@ -19,7 +19,7 @@ export class NxNavBack {
     
     public constructor(
         private router: Router, 
-        private locationStrategy: LocationStrategy,
+        private location: Location,
         private element: ElementRef,
         private logger: Logger) {
             
@@ -29,7 +29,9 @@ export class NxNavBack {
     public back()
     {
         this.logger.Notify("Back");
-        this.locationStrategy.back();
+        
+        this.location.back();
+        
     }
        
     public menuSelected = new Subject<boolean>();

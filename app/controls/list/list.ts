@@ -4,7 +4,8 @@ import { Logger } from "../../providers/logger";
 import { NxListItem } from "./list-item";
 import { NxHeader } from "./header";
 //var observable = require("data/observable");
-import { Observable, Subscription, Subject} from 'rxjs/Rx';
+import { Observable, Subscription, Subject } from 'rxjs/Rx';
+//import { from } from "rxjs/observable/from";
 
 @Control({
     selector: "nx-list",
@@ -71,9 +72,9 @@ export class NxList {
                 
         var anyReady = this.children.map((item) => item.itemReady);
         var anySelected = this.children.map((item) => item.itemSelected);
-                
-        Observable.fromArray(anySelected).flatMap(x=> x).subscribe((item : NxListItem) => {
-
+        
+        Observable.from(anySelected).flatMap(x=> x).subscribe((item) => {
+            
             this.children.forEach((row) => {
                 if(item == row){
                     return;
