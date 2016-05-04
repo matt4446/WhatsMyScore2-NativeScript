@@ -1,5 +1,5 @@
-import {Component} from 'angular2/core';
-import {Router} from "angular2/router";
+import {Component} from '@angular/core';
+import {Router} from "@angular/router";
 import {Page} from "../../../decorators/page";
 import {Logger} from "../../../providers/logger";
 import {AppRoutingService} from "../../../context/router.context";
@@ -11,7 +11,7 @@ import {RegionCache, CompetitionCache, GradeCache, ClubCache} from "../../../pro
 import {CompetitionNav} from "../../nav/competition.nav";
 @Page({
     selector: "stats-page",
-    templateUrl: "pages/competition/stats/page.html",
+    templateUrl: "pages/competition/stats/stats.page.html",
     directives: [CompetitionNav],
     providers: [CompetitionService, GradeService, ClubService]
 })

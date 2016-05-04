@@ -1,6 +1,6 @@
 //import {Observable, Subscription, Subject} from 'rxjs/Rx';
 //import { NSLocationStrategy } from '../ns-location-strategy'
-// import {APP_BASE_HREF, RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, LocationStrategy} from "angular2/router";
+// import {APP_BASE_HREF, RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, LocationStrategy} from "@angular/router";
 // export class NavHelper
 // {
 //     

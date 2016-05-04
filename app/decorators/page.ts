@@ -1,4 +1,6 @@
-import { Component, provide, ChangeDetectionStrategy } from "angular2/core";
+import { Component, provide, ChangeDetectionStrategy } from "@angular/core";
+import {NgIf, NgFor} from "@angular/common";
+import {RouteParams} from '@angular/router';
 import { NxNav} from "../controls/nav/nav";
 import {NxList} from "../controls/list/list";
 import {NxListItem} from "../controls/list/list-item";
@@ -9,9 +11,9 @@ import {NxContent} from "../controls/content/content.control";
 import {NxDrawer} from "../controls/drawer/drawer";
 import {IonIcon,NavIcon} from "../controls/icons/ion-icon";
 //import {LoadingService} from "../providers/loadingService/loadingService";
-import {NgIf, NgFor} from "angular2/common";
+
 import {NS_ROUTER_DIRECTIVES,NS_ROUTER_PROVIDERS} from "nativescript-angular/router";
-import {RouteParams} from 'angular2/router';
+
 //providers
 import {AppRoutingService} from "../context/router.context";
 import {Logger} from "../providers/logger";

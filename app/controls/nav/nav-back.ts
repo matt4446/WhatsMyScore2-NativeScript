@@ -1,11 +1,11 @@
 import { Control } from "../../decorators/control";
-import { LocationStrategy } from 'angular2/platform/common';
-import { EventEmitter, ViewChildren, ViewChild, ElementRef, HostListener, Host, Directive, Component, ContentChild, TemplateRef, ViewContainerRef} from 'angular2/core';
+import { LocationStrategy } from '@angular/common';
+import { EventEmitter, ViewChildren, ViewChild, ElementRef, HostListener, Host, Directive, Component, ContentChild, TemplateRef, ViewContainerRef} from '@angular/core';
 import { Logger} from "../../providers/logger";
 import { IonIcon,NavIcon} from "../icons/ion-icon";
 import { Observable, Subscription, Subject} from 'rxjs/Rx';
-import { Router, Instruction,  } from 'angular2/router';
-import { Location } from 'angular2/platform/common'
+import { Router, Instruction,  } from '@angular/router';
+import { Location } from '@angular/common'
 @Control({
     selector:"nx-nav-back",
     //create 1 row template; 3 columns; 2 for the icons on the sides

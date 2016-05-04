@@ -1,5 +1,5 @@
-import { Component, ChangeDetectionStrategy } from 'angular2/core';
-import {NgIf, NgFor} from "angular2/common";
+import { Component, ChangeDetectionStrategy } from '@angular/core';
+import {NgIf, NgFor} from "@angular/common";
 import {NxNav} from "../controls/nav/nav";
 import {NxList} from "../controls/list/list";
 import {NxListItem} from "../controls/list/list-item";

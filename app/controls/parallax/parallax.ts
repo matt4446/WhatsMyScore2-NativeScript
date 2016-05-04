@@ -1,5 +1,6 @@
 import { Control } from "../../decorators/control";
-import { QueryList, ViewChild,ViewChildren, ElementRef, Directive, Input, Output, EventEmitter, ContentChildren } from "angular2/core";
+import { QueryList, ViewChild,ViewChildren, ElementRef, Directive, Input, Output, EventEmitter, ContentChildren } 
+from "@angular/core";
 import { Logger } from "../../providers/logger";
 import { Page } from "ui/page";
 import { StackLayout} from 'ui/layouts/stack-layout';
@@ -70,7 +71,6 @@ export class Paralax {
         
         this.headerHeight = 200;
         this.minHeaderHeight = 50;
-        
         this.actions = Observable.zip(this.scrollViewAvailable,
             this.headerAvailable, 
             this.bodyAvailable,
@@ -92,8 +92,10 @@ export class Paralax {
         });
     }
     
-    @Input('header-height') public headerHeight: number;
-	@Input('header-min-height') public minHeaderHeight: number;
+    @Input('header-height') 
+    public headerHeight: number;
+	@Input('header-min-height') 
+    public minHeaderHeight: number;
     
     private scrollView : ElementRef;
     @ViewChild('scrollView') 

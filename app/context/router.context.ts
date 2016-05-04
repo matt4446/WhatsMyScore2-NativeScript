@@ -1,4 +1,4 @@
-import {RouteParams} from 'angular2/router';
+import {RouteParams} from '@angular/router';
 import {Logger} from "../providers/logger"
 import {IRegion, ICompetition} from "../models/models"
 

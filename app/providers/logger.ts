@@ -1,6 +1,5 @@
-//import {Injectable} from 'angular2/core';
+//import {Injectable} from '@angular/core';
 import {Observable, Subscription, Subject} from 'rxjs/Rx';
-import {Http, Response} from "angular2/http";
 
 interface ILogMessage {
     level: string;

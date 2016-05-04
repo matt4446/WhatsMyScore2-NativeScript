@@ -1,11 +1,10 @@
-import {Injectable} from 'angular2/core';
-import {Http, Response} from "angular2/http";
-
+import {Injectable} from '@angular/core';
+import {} from "@angular/http";
 import {Logger} from "../logger";
 import {IRegion} from "../../models/models";
 import {Settings} from "../routes/routes";
 import {Observable, Subscription, BehaviorSubject} from 'rxjs/Rx';
-import {RegionCache} from "./cache"
+import {RegionCache} from "./cache";
 
 @Injectable()
 export class RegionService{

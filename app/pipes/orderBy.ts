@@ -1,18 +1,18 @@
-import { PipeTransform, Pipe } from "angular2/core";
+import { PipeTransform, Pipe } from "@angular/core";
 import { Logger } from "../providers/logger";
 var _ = require("underscore");
 //import {orderBy} from 'lodash/orderBy';
 //var orderBy = require("lodash/orderBy")
 
-import {
-    StringWrapper,
-    isBlank,
-    isString,
-    isArray,
-    CONST,
-    FunctionWrapper
-}
-from 'angular2/src/facade/lang';
+// import {
+//     StringWrapper,
+//     isBlank,
+//     isString,
+//     isArray,
+//     CONST,
+//     FunctionWrapper
+// }
+// from 'angular2/src/facade/lang';
 @Pipe({
     name: 'orderBy',
     pure: true

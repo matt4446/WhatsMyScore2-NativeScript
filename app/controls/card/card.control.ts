@@ -1,5 +1,5 @@
 import { Control } from "../../decorators/control";
-import { ViewChild, ElementRef, Directive, Input, Output, EventEmitter, ContentChildren } from "angular2/core";
+import { ViewChild, ElementRef, Directive, Input, Output, EventEmitter, ContentChildren } from "@angular/core";
 import { Logger } from "../../providers/logger";
 import { CardView } from "cardview";
 //var observable = require("data/observable");

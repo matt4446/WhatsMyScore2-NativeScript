@@ -1,2 +1,2 @@
 //to-do - assign primary colours 
-import {Directive} from 'angular2/angular2';
+import {Directive} from '@angular/core';

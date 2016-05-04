@@ -1,27 +1,15 @@
 {
     "compilerOptions": {
-        "target": "es5",
+        "outDir": "app",
+        "rootDir": "app",
         "module": "commonjs",
-        "noEmitOnError": false,
-        "rootDir": "./app",
-        "emitDecoratorMetadata": true,
+        "target": "es5",
+        "inlineSourceMap": true,
         "experimentalDecorators": true,
-        "sourceMap": true
+        "removeComments": false,
+        "emitDecoratorMetadata": true,
+        "noEmitOnError": true
     },
-    "files": [
-        "node_modules/tns-core-modules/tns-core-modules.base.d.ts",
-        "node_modules/angular2/typings/browser.d.ts",
-        "typings/main.d.ts",
-        "app/pipes/orderBy.ts",
-        "app/app.ts",
-        "app/decorators/app.ts",
-        "app/decorators/page.ts",
-        "app/decorators/control.ts",
-        "app/decorators/pageControl.ts",
-        "app/providers/leagues/leagues.ts",
-        "node_modules/nativescript-angular/router.d.ts",
-        "node_modules/nativescript-cardview/cardview.d.ts"
-    ],
     "exclude": [
         "node_modules",
         "platforms"

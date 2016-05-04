@@ -1,5 +1,6 @@
 import { Control } from "../../decorators/control";
-import { HostListener, ElementRef, Input, Output, EventEmitter, ContentChildren,ContentChild, ViewChild, TemplateRef, OnInit, AfterViewInit } from "angular2/core";
+import { HostListener, ElementRef, Input, Output, EventEmitter, 
+    ContentChildren,ContentChild, ViewChild, TemplateRef, OnInit, AfterViewInit } from "@angular/core";
 import { Logger } from "../../providers/logger";
 import { Button } from "ui/button";
 import { StackLayout} from "ui/layouts/stack-layout";

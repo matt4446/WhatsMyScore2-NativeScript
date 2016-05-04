@@ -1,10 +1,10 @@
 import { Control } from "../../decorators/control";
-import { HostListener, ElementRef, Input, Output, EventEmitter, ContentChildren,ContentChild, ViewChild,TemplateRef } from "angular2/core";
+import { HostListener, ElementRef, Input, Output, EventEmitter, ContentChildren,ContentChild, ViewChild,TemplateRef } from "@angular/core";
 import { Logger } from "../../providers/logger";
 import { Button } from "ui/button";
 import { StackLayout} from "ui/layouts/stack-layout";
 import { Observable, Subscription, Subject} from 'rxjs/Rx';
-import { Router, Instruction} from 'angular2/router';
+import { Router, Instruction} from '@angular/router';
 
 @Control({
     selector:"nx-item",

@@ -1,4 +1,4 @@
-import {Component, OnInit, Injectable} from 'angular2/core';
+import {Component, OnInit, Injectable} from '@angular/core';
 import {Logger} from "../../providers/logger";
 import {AppRoutingService, IClubRoute, ICompetitionRoute, IGradeRoute, IRegionRoute} from "../../context/router.context";
 //import {SearchList, ISearchEvent} from "../../controls/searchList/searchList";

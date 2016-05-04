@@ -1,5 +1,5 @@
 import { Control } from "../../decorators/control";
-import { ViewChild, ViewChildren, ElementRef, HostListener, Host, Directive, Component, ContentChild, TemplateRef, ViewContainerRef} from 'angular2/core';
+import { ViewChild, ViewChildren, ElementRef, HostListener, Host, Directive, Component, ContentChild, TemplateRef, ViewContainerRef} from '@angular/core';
 
 import { Logger} from "../../providers/logger";
 

@@ -1,4 +1,4 @@
-import {OnInit, OnDestroy} from 'angular2/core';
+import {OnInit, OnDestroy} from '@angular/core';
 
 import {Page} from "../../decorators/page";
 import {Logger} from "../../providers/logger";
@@ -7,7 +7,7 @@ import {CompetitionService} from "../../providers/leagues/competitions";
 import {GradeService} from "../../providers/leagues/grade";
 import {RegionCache, CompetitionCache, GradeCache, ClubCache} from "../../providers/leagues/cache";
 
-import {RouteParams} from "angular2/router";
+import {RouteParams} from "@angular/router";
 import {ClubService} from "../../providers/leagues/club";
 import {ICompetition} from "../../models/models"
 import {CompetitionNav} from "../nav/competition.nav";

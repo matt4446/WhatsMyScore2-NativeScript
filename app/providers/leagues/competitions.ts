@@ -1,10 +1,9 @@
-import {Injectable} from 'angular2/core';
-import {Http, Response} from "angular2/http";
+import {Injectable} from '@angular/core';
+import {Observable, Subscription, BehaviorSubject} from 'rxjs/Rx';
 
 import {Logger} from "../logger";
 import {IRegion, ICompetition} from "../../models/models";
 import {Settings} from "../routes/routes";
-import {Observable, Subscription, BehaviorSubject} from 'rxjs/Rx';
 import {CompetitionCache} from "./cache"
 
 @Injectable()

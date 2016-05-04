@@ -1,11 +1,12 @@
-import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from "angular2/router";
+import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from "@angular/router";
+import { bind, provide, Inject, Component, ComponentRef } from '@angular/core';
 import { NS_ROUTER_DIRECTIVES, NS_ROUTER_PROVIDERS } from "nativescript-angular/router";
 import { registerElement, ViewClass } from "nativescript-angular/element-registry";
-import { HTTP_PROVIDERS } from "angular2/http";
+
 import { nativeScriptBootstrap, bootstrap, AppOptions } from "nativescript-angular/application";
 import { Page } from "ui/page";
 import { TextView} from 'ui/text-view';
-import { bind, provide, Inject, Component, ComponentRef } from 'angular2/core';
+
 import application = require('application');
 //import {NS_ROUTER_PROVIDERS} from "nativescript-angular/router/ns-router";
 
@@ -41,8 +42,8 @@ export function App(config: IAppConfig) {
         config.template = `<page-router-outlet></page-router-outlet>`;
 
         config.providers = config.providers 
-            ? config.providers.concat(NS_ROUTER_PROVIDERS, HTTP_PROVIDERS) 
-            : [NS_ROUTER_PROVIDERS, HTTP_PROVIDERS];
+            ? config.providers.concat(NS_ROUTER_PROVIDERS) 
+            : [NS_ROUTER_PROVIDERS];
 
         config.directives = config.directives 
             ? config.directives.concat(NS_ROUTER_DIRECTIVES) 

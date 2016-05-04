@@ -1,9 +1,9 @@
 import { Control } from "../../decorators/control";
-import { EventEmitter, ViewChildren, ViewChild, ElementRef, HostListener, Host, Directive, Component, ContentChild, TemplateRef, ViewContainerRef} from 'angular2/core';
+import { EventEmitter, ViewChildren, ViewChild, ElementRef, HostListener, Host, Directive, Component, ContentChild, TemplateRef, ViewContainerRef} from '@angular/core';
 import { Logger} from "../../providers/logger";
 import { IonIcon,NavIcon} from "../icons/ion-icon";
 import { Observable, Subscription, Subject} from 'rxjs/Rx';
-import {Router, Instruction} from 'angular2/router';
+import {Router, Instruction} from '@angular/router';
 import {NxNavBack} from "./nav-back";
 import {Page} from "ui/page";
 

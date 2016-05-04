@@ -1,5 +1,4 @@
-import {Http, Response} from "angular2/http";
-import {Injectable} from "angular2/core";
+import {Injectable} from "@angular/core";
 import {Logger} from "../logger";
 import {Settings} from "../routes/routes";
 import {ICompetition, IClub} from "../../models/models";

@@ -1,5 +1,5 @@
 import { Control } from "../../decorators/control";
-import { Input, Output, EventEmitter, ContentChildren } from "angular2/core";
+import { Input, Output, EventEmitter, ContentChildren } from "@angular/core";
 import { Logger } from "../../providers/logger";
 import { NxListItem } from "./list-item";
 import { NxHeader } from "./header";
@@ -73,7 +73,7 @@ export class NxList {
         var anyReady = this.children.map((item) => item.itemReady);
         var anySelected = this.children.map((item) => item.itemSelected);
         
-        Observable.from(anySelected).flatMap(x=> x).subscribe((item) => {
+        Observable.fromArray(anySelected).flatMap(x=> x).subscribe((item) => {
             
             this.children.forEach((row) => {
                 if(item == row){

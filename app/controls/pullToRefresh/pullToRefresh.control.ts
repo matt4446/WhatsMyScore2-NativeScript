@@ -1,10 +1,10 @@
 /// <reference path="../../../node_modules/nativescript-pulltorefresh/pulltorefresh.d.ts" />
 import { Logger } from "../../providers/logger";
 import { Control } from "../../decorators/control";
-import { Component } from "angular2/core";
+import { Component } from "@angular/core";
 //var observable = require("data/observable");
 import { Observable, Subscription, Subject} from 'rxjs/Rx';
-import { ViewChild, ElementRef, Directive, Input, Output, EventEmitter, ContentChildren } from "angular2/core";
+import { ViewChild, ElementRef, Directive, Input, Output, EventEmitter, ContentChildren } from "@angular/core";
 import { registerElement, ViewClass } from "nativescript-angular/element-registry";
 import { PullToRefresh } from "nativescript-pulltorefresh";
 

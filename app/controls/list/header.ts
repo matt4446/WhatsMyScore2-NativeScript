@@ -1,5 +1,5 @@
 import { Control } from "../../decorators/control";
-import { ElementRef, Input, Output, EventEmitter, ContentChildren, ViewChild } from "angular2/core";
+import { ElementRef, Input, Output, EventEmitter, ContentChildren, ViewChild } from "@angular/core";
 import { Logger } from "../../providers/logger";
 import { Button } from "ui/button";
 import { StackLayout} from "ui/layouts/stack-layout";

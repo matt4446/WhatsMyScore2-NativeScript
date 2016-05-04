@@ -1,8 +1,8 @@
-import {Component, OnInit } from 'angular2/core';
+import {Component, OnInit } from '@angular/core';
 import {Page} from "../../decorators/page";
 import {Logger} from "../../providers/logger";
 import {CompetitionService} from "../../providers/leagues/competitions";
-import {RouteParams} from "angular2/router";
+import {RouteParams} from "@angular/router";
 import {ICompetition, IRegion } from "../../models/models"
 import {StartNav} from "../nav/start.nav.control";
 import {AppRoutingService} from "../../context/router.context";

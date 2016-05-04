@@ -1,13 +1,10 @@
 import {Observable, EventData } from "data/observable";
 import {alert} from "ui/dialogs";
 
-import {Inject, Component} from 'angular2/core';
+import {Inject, Component} from '@angular/core';
 import {PageControl} from "../../decorators/pageControl";
 import {Logger} from "../../providers/logger";
-import {Router} from "angular2/router";
-
-
-import {Http} from 'angular2/http';
+import {Router} from "@angular/router";
 import {Settings} from "../../providers/routes/routes";
 import {NxDrawer} from "../../controls/drawer/drawer";
 import {NS_ROUTER_DIRECTIVES} from 'nativescript-angular/router';
@@ -18,7 +15,7 @@ import {NS_ROUTER_DIRECTIVES} from 'nativescript-angular/router';
 })
 export class StartNav
 {
-    constructor(private logger:Logger, private http: Http, private router: Router)
+    constructor(private logger:Logger, private router: Router)
     {
         this.logger.Notify("Start Page - constructor hit"); 
     }
@@ -27,7 +24,7 @@ export class StartNav
         this.logger.Notify("time to load regions");
         
         
-        let promise: Promise<any> = this.router.navigate(["Regions"]);
+        let promise: Promise<any,any> = this.router.navigate(["Regions"]);
         
         promise.then(() => {
             this.logger.Notify("I Should have navigated from start -> regions");

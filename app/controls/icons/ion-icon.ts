@@ -1,5 +1,5 @@
 import { Control } from "../../decorators/control";
-import { Directive, HostListener, ElementRef, Input, Output, EventEmitter, ContentChildren,ContentChild, ViewChild,TemplateRef } from "angular2/core";
+import { Directive, ElementRef, Input, Output, EventEmitter, ContentChildren,ContentChild, ViewChild,TemplateRef } from "@angular/core";
 import { Logger } from "../../providers/logger";
 import { Label } from "ui/label";
 

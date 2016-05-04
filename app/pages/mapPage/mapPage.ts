@@ -1,10 +1,10 @@
 import {Observable, EventData } from "data/observable";
 import {alert} from "ui/dialogs";
 
-import {Inject, Component, View} from 'angular2/core';
+import {Inject, Component} from '@angular/core';
 import {Page} from "../../decorators/page";
 import {Logger} from "../../providers/logger";
-import {Router} from "angular2/router";
+import {Router} from "@angular/router";
 import {NxNav} from "../../controls/nav/nav";
 import {NxList} from "../../controls/list/list";
 import {NxListItem} from "../../controls/list/list-item";
@@ -39,15 +39,15 @@ export class MapPage
         
         alert("nav is broken - not sure why.");
         
-        let promise: Promise<any> = this.router.navigate(["Regions"]);
+        //let promise: Promise<any> = this.router.navigate(["Regions"]);
         
-        promise.then(() => {
-            this.logger.Notify("I Should have navigated from start -> regions");
-        });
+        // promise.then(() => {
+        //     this.logger.Notify("I Should have navigated from start -> regions");
+        // });
         
-        promise.catch(() => {
-            this.logger.Notify("I failed navigating from start -> regions");
-        });
+        // promise.catch(() => {
+        //     this.logger.Notify("I failed navigating from start -> regions");
+        // });
     }
     
     public incomplete(args: EventData) : void {

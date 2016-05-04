@@ -1,5 +1,5 @@
 import { Control } from "../../decorators/control";
-import { Input , Output,EventEmitter } from "angular2/core";
+import { Input , Output,EventEmitter } from "@angular/core";
 import { Logger} from "../../providers/logger";
 import { Observable } from "data/observable";
 //var observable = require("data/observable");

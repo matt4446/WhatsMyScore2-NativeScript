@@ -1,17 +1,15 @@
+import {Inject, Component, OnInit } from '@angular/core';
+import {Router} from "@angular/router";
 import {Observable, EventData } from "data/observable";
 import {alert} from "ui/dialogs";
+import {ActionItem} from "ui/action-bar";
 
-import {Inject, Component, OnInit } from 'angular2/core';
 import {Page} from "../../decorators/page";
 import {Logger} from "../../providers/logger";
-import {Router} from "angular2/router";
 
-import {Http} from 'angular2/http';
 import {Settings} from "../../providers/routes/routes";
 import {NxDrawer} from "../../controls/drawer/drawer";
 import {StartNav} from "../nav/start.nav.control";
-import {topmost} from "ui/frame";
-import {ActionItem} from "ui/action-bar";
 
 @Page({
     selector: "start",

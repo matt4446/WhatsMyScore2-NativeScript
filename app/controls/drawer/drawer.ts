@@ -1,5 +1,5 @@
 import { Control } from "../../decorators/control";
-import { EmbeddedViewRef, EventEmitter, ContentChildren, ViewChildren, ViewChild, ElementRef, HostListener, Host, Directive, Component, ContentChild, TemplateRef, ViewContainerRef} from 'angular2/core';
+import { EmbeddedViewRef, EventEmitter, ContentChildren, ViewChildren, ViewChild, ElementRef, HostListener, Host, Directive, Component, ContentChild, TemplateRef, ViewContainerRef} from '@angular/core';
 import { Logger} from "../../providers/logger";
 import { NxNav } from "../nav/nav";
 import { Observable, Subscription, Subject} from 'rxjs/Rx';
@@ -101,7 +101,7 @@ export class NxDrawer {
         
         var anySelected = this.childNavs.map((item) => item.menuSelected);
                 
-        Observable.from(anySelected).flatMap(x=>x).filter(e => e).subscribe(() => { 
+        Observable.fromArray(anySelected).flatMap(x=>x).subscribe(() => { 
             this.logger.Notify("nav menu tapped -> open side");
             let grid: StackLayout = this.grid.nativeElement;
             

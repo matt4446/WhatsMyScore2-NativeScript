@@ -3,7 +3,7 @@ import 'reflect-metadata';
 import {App} from "./decorators/app";
 //pages 
 //level 1 
-import { StatsPage } from "./pages/competition/stats/page"
+import { StatsPage } from "./pages/competition/stats/stats.page";
 import { TestPage } from "./pages/test/test.page";
 import { ParallaxTestPage } from "./pages/test/parallax.page";
 import { StartPage } from "./pages/start/start.page";
@@ -27,7 +27,7 @@ import {ClubPage} from "./pages/competition/club/club.page";
 //providers 
 import {Logger} from "./providers/logger";
 import {RegionCache, CompetitionCache, GradeCache, ClubCache} from "./providers/leagues/cache";
-import {RouteConfig} from "angular2/router";
+import {RouteConfig} from "@angular/router";
 
 //level 1 
 @RouteConfig([
