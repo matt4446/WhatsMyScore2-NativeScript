@@ -1,4 +1,6 @@
-import {Component, OnInit, ViewChild, ElementRef} from '@angular/core';
+import {OnInit, ViewChild} from '@angular/core';
+import {Page} from "../../decorators/page";
+
 import {Logger} from "../../providers/logger";
 //import {SearchList, ISearchEvent} from "../../controls/searchList/searchList";
 
@@ -6,9 +8,8 @@ import {Logger} from "../../providers/logger";
 import { RegionService } from "../../providers/leagues/leagues";
 import { IRegion } from "../../models/models";
 
-import {Settings} from "../../providers/routes/routes";
+//import {Settings} from "../../providers/routes/routes";
 import {StartNav} from "../nav/start.nav.control";
-
 
 @Page({
     selector: "regions-page",
@@ -19,7 +20,6 @@ import {StartNav} from "../nav/start.nav.control";
 export class RegionsPage implements OnInit
 {
     constructor(
-        private http: Http,
         private logger: Logger, 
         private regions: RegionService)
     {
@@ -27,19 +27,6 @@ export class RegionsPage implements OnInit
     }
     
     public list : Array<IRegion> = [];
-        
-    public back(): void 
-    {
-        this.logger.Notify("regions - page - back pressed");
-        //todo- back pressed
-        this.router.navigate(["Start"])
-    }
-    
-    public start() : void
-    {
-        this.logger.Notify("regions - page - start pressed");
-        this.router.navigate(["Start"])
-    }
     
     //passed to the child component
     public regionsHintText = "Hi from regions";
@@ -51,8 +38,6 @@ export class RegionsPage implements OnInit
         this.logger.Notify($event);
         //this.logger.Notify("Search Term in Regions Page: " + $event.Value);
     } 
-    
-    private contentViewRef : ElementRef;
         
     public refresh(args: any){
         this.loadDetail().subscribe(() => {

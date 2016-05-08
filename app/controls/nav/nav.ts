@@ -3,7 +3,7 @@ import { EventEmitter, ViewChildren, ViewChild, ElementRef, HostListener, Host, 
 import { Logger} from "../../providers/logger";
 import { IonIcon,NavIcon} from "../icons/ion-icon";
 import { Observable, Subscription, Subject} from 'rxjs/Rx';
-import {Router, Instruction} from '@angular/router';
+import {Router, Instruction} from "@angular/router-deprecated";
 import {NxNavBack} from "./nav-back";
 import {Page} from "ui/page";
 

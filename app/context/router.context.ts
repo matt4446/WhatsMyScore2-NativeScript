@@ -1,4 +1,4 @@
-import {RouteParams} from '@angular/router';
+import {RouteParams} from "@angular/router-deprecated";
 import {Logger} from "../providers/logger"
 import {IRegion, ICompetition} from "../models/models"
 

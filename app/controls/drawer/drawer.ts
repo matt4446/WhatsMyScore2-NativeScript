@@ -1,11 +1,16 @@
-import { Control } from "../../decorators/control";
 import { EmbeddedViewRef, EventEmitter, ContentChildren, ViewChildren, ViewChild, ElementRef, HostListener, Host, Directive, Component, ContentChild, TemplateRef, ViewContainerRef} from '@angular/core';
+
+import { Control } from "../../decorators/control";
 import { Logger} from "../../providers/logger";
 import { NxNav } from "../nav/nav";
 import { Observable, Subscription, Subject} from 'rxjs/Rx';
 import { AbsoluteLayout } from "ui/layouts/absolute-layout";
 import { StackLayout } from "ui/layouts/stack-layout"; 
 import { Button } from "ui/button";
+
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/from';
+
 /*
  * GridLayout without rows and columns defined will overlap elements. 
  */
@@ -101,7 +106,7 @@ export class NxDrawer {
         
         var anySelected = this.childNavs.map((item) => item.menuSelected);
                 
-        Observable.fromArray(anySelected).flatMap(x=>x).subscribe(() => { 
+        Observable.from(anySelected).flatMap(x=>x).subscribe(() => { 
             this.logger.Notify("nav menu tapped -> open side");
             let grid: StackLayout = this.grid.nativeElement;
             

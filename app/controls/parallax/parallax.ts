@@ -7,6 +7,11 @@ import { StackLayout} from 'ui/layouts/stack-layout';
 import { ScrollView, ScrollEventData } from 'ui/scroll-view';
 import { ContentView } from "ui/content-view";
 
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/zip';
+import 'rxjs/add/operator/from';
+
+
 //var observable = require("data/observable");
 import { Observable, Subscription, Subject} from 'rxjs/Rx';
 
@@ -60,7 +65,12 @@ export class Paralax {
     private bodyAvailable : Subject<ElementRef>;
     private pinnedAvailable: Subject<ElementRef>;
     
-    private actions : Observable<{ scrollView: ElementRef, header: ElementRef, body: ElementRef, pinned: ElementRef }>;
+    private actions : Observable<{ 
+        scrollView: ElementRef, 
+        header: ElementRef,
+        body: ElementRef, 
+        pinned: ElementRef 
+        }>;
     
     constructor(private logger: Logger) 
     {        

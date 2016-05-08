@@ -5,6 +5,7 @@ import {Logger} from "../logger";
 import {IRegion, ICompetition} from "../../models/models";
 import {Settings} from "../routes/routes";
 import {CompetitionCache} from "./cache"
+import {Http} from "@angular/http";
 
 @Injectable()
 export class CompetitionService{

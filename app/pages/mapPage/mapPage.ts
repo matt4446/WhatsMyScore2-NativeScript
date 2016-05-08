@@ -4,7 +4,7 @@ import {alert} from "ui/dialogs";
 import {Inject, Component} from '@angular/core';
 import {Page} from "../../decorators/page";
 import {Logger} from "../../providers/logger";
-import {Router} from "@angular/router";
+//import {Router} from "@angular/router-deprecated";
 import {NxNav} from "../../controls/nav/nav";
 import {NxList} from "../../controls/list/list";
 import {NxListItem} from "../../controls/list/list-item";
@@ -19,7 +19,7 @@ import {IonIcon,NavIcon} from "../../controls/icons/ion-icon";
 })
 export class MapPage 
 {
-    constructor(private logger:Logger, private router: Router)
+    constructor(private logger:Logger)
     {
         this.logger.Notify("Start Page - constructor hit");   
     }

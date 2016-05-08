@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {} from "@angular/http";
+import {Http} from "@angular/http";
 import {Logger} from "../logger";
 import {IRegion} from "../../models/models";
 import {Settings} from "../routes/routes";

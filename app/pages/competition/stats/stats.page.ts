@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {Router} from "@angular/router";
+//import {Router} from "@angular/router-deprecated";
 import {Page} from "../../../decorators/page";
 import {Logger} from "../../../providers/logger";
 import {AppRoutingService} from "../../../context/router.context";

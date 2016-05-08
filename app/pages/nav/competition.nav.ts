@@ -4,7 +4,7 @@ import {alert} from "ui/dialogs";
 import {Inject, Component} from '@angular/core';
 import {PageControl} from "../../decorators/pageControl";
 import {Logger} from "../../providers/logger";
-import {Router} from "@angular/router";
+//import {Router} from "@angular/router-deprecated";
 
 
 import {Settings} from "../../providers/routes/routes";
@@ -15,7 +15,7 @@ import {Settings} from "../../providers/routes/routes";
 })
 export class CompetitionNav
 {
-    constructor(private logger:Logger, private router: Router)
+    constructor(private logger:Logger)
     {
         this.logger.Notify("competition-nav - constructor hit"); 
     }

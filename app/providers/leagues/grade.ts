@@ -3,6 +3,7 @@ import {Logger} from "../logger";
 import {Settings} from "../routes/routes";
 import {ICompetition, IGrade} from "../../models/models";
 import {CompetitionCache, GradeCache} from "./cache";
+import {Http} from "@angular/http";
 
 @Injectable()
 export class GradeService 

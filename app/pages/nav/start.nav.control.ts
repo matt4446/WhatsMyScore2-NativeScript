@@ -4,7 +4,7 @@ import {alert} from "ui/dialogs";
 import {Inject, Component} from '@angular/core';
 import {PageControl} from "../../decorators/pageControl";
 import {Logger} from "../../providers/logger";
-import {Router} from "@angular/router";
+import {Router} from "@angular/router-deprecated";
 import {Settings} from "../../providers/routes/routes";
 import {NxDrawer} from "../../controls/drawer/drawer";
 import {NS_ROUTER_DIRECTIVES} from 'nativescript-angular/router';
@@ -24,7 +24,7 @@ export class StartNav
         this.logger.Notify("time to load regions");
         
         
-        let promise: Promise<any,any> = this.router.navigate(["Regions"]);
+        let promise: Promise<any> = this.router.navigate(["Regions"]);
         
         promise.then(() => {
             this.logger.Notify("I Should have navigated from start -> regions");

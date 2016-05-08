@@ -1,6 +1,9 @@
 import { PipeTransform, Pipe } from "@angular/core";
 import { Logger } from "../providers/logger";
+import { isBlank } from "../../node_modules/@angular/compiler/src/facade/lang";
+
 var _ = require("underscore");
+
 //import {orderBy} from 'lodash/orderBy';
 //var orderBy = require("lodash/orderBy")
 

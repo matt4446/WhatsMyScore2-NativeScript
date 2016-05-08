@@ -10,6 +10,10 @@
         "emitDecoratorMetadata": true,
         "noEmitOnError": true
     },
+    "files": [
+        "references.d.ts",
+        "app/app.ts"
+    ],
     "exclude": [
         "node_modules",
         "platforms"

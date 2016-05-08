@@ -1,5 +1,5 @@
 import {Component, OnInit } from '@angular/core';
-import {Router} from "@angular/router";
+import {Router} from "@angular/router-deprecated";
 import {Page} from "../../../decorators/page";
 import {Logger} from "../../../providers/logger";
 //import {SearchList, ISearchEvent} from "../../controls/searchList/searchList";
@@ -10,6 +10,10 @@ import {GradeService} from "../../../providers/leagues/grade";
 import {RegionCache, CompetitionCache, GradeCache, ClubCache} from "../../../providers/leagues/cache";
 import {IClub} from "../../../models/models.d.ts";
 import {CompetitionNav} from "../../nav/competition.nav";
+
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/zip';
+import 'rxjs/add/operator/from';
 @Page({
     selector: "club-list-page",
     //templateUrl: "pages/competition/clubList/page.html",

@@ -1,10 +1,13 @@
+import { HostListener, ElementRef, Input, Output, EventEmitter, ContentChildren, ContentChild, ViewChild } from "@angular/core";
+import { Router, Instruction} from '@angular/router-deprecated';
+
+
 import { Control } from "../../decorators/control";
-import { HostListener, ElementRef, Input, Output, EventEmitter, ContentChildren,ContentChild, ViewChild,TemplateRef } from "@angular/core";
+
 import { Logger } from "../../providers/logger";
 import { Button } from "ui/button";
 import { StackLayout} from "ui/layouts/stack-layout";
 import { Observable, Subscription, Subject} from 'rxjs/Rx';
-import { Router, Instruction} from '@angular/router';
 
 @Control({
     selector:"nx-item",
@@ -31,7 +34,7 @@ import { Router, Instruction} from '@angular/router';
     outputs: ["tap"]
 })
 export class NxListItem {
-    private template: TemplateRef;
+    //private template: TemplateRef;
     private container: ElementRef;
     
     @ViewChild('item') 

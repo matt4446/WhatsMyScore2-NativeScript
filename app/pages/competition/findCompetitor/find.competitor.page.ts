@@ -1,5 +1,5 @@
 import {Component, OnInit } from '@angular/core';
-import {Router} from "@angular/router";
+//import {Router} from "@angular/router-deprecated";
 import {Page} from "../../../decorators/page";
 import {Logger} from "../../../providers/logger";
 //import {SearchList, ISearchEvent} from "../../controls/searchList/searchList";

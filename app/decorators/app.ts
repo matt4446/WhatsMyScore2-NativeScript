@@ -1,4 +1,5 @@
-import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from "@angular/router";
+import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from "@angular/router-deprecated";
+
 import { bind, provide, Inject, Component, ComponentRef } from '@angular/core';
 import { NS_ROUTER_DIRECTIVES, NS_ROUTER_PROVIDERS } from "nativescript-angular/router";
 import { registerElement, ViewClass } from "nativescript-angular/element-registry";
@@ -17,17 +18,17 @@ export interface IRegisterElement {
     resolver: () => ViewClass
 };
 
-export interface IAppConfig {
+export interface IAppConfig<T> {
     registerElements ? : IRegisterElement[],
     directives ? : any[],
     selector: string,
     providers ? : any[],
     template ? : string,
     appOptions? : AppOptions,
-    appStartup? : (appRef: ComponentRef) => void
+    appStartup? : (appRef: ComponentRef<T>) => void
 }
 
-export function App(config: IAppConfig) {
+export function App<T>(config: IAppConfig<T>) {
     return (startingComponent) => {
         console.log("Setup App annotations");
 

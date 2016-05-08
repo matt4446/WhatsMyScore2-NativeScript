@@ -3,6 +3,7 @@ import {Logger} from "../logger";
 import {Settings} from "../routes/routes";
 import {ICompetition, IClub} from "../../models/models";
 import {CompetitionCache, ClubCache} from "./cache";
+import {Http} from "@angular/http";
 
 @Injectable()
 export class ClubService 

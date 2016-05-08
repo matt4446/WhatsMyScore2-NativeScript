@@ -1,5 +1,12 @@
 import 'reflect-metadata';
-//docorators
+
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/zip';
+import 'rxjs/add/operator/from';
+import 'rxjs/add/operator/toArray';
+
+import {RouteConfig} from "@angular/router-deprecated";
+//decorators
 import {App} from "./decorators/app";
 //pages 
 //level 1 
@@ -27,7 +34,8 @@ import {ClubPage} from "./pages/competition/club/club.page";
 //providers 
 import {Logger} from "./providers/logger";
 import {RegionCache, CompetitionCache, GradeCache, ClubCache} from "./providers/leagues/cache";
-import {RouteConfig} from "@angular/router";
+
+
 
 //level 1 
 @RouteConfig([

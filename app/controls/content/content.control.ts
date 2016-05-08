@@ -26,7 +26,7 @@ import { AnimationPromise } from "ui/animation";
     outputs: ["refreshStarted", "refreshCompleted"]
 })
 export class NxContent implements OnInit, AfterViewInit {
-    private template: TemplateRef;
+    //private template: TemplateRef;
     private container: ElementRef;
     
     constructor(private logger:Logger)

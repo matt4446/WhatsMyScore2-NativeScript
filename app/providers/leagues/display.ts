@@ -27,7 +27,7 @@ export class DisplayService
         let useCache = this.competitionCache.Clubs && this.competitionCache.Clubs.length;
         
         clubResults = useCache 
-            ? Observable.fromArray(this.competitionCache.Clubs) 
+            ? Observable.from(this.competitionCache.Clubs) 
             : this.clubService.List(this.context.ClubId).map(e=> e.json());
             
         let grouped = clubResults.groupBy(e=> e.Letter, e=> e).map(group => {
@@ -46,7 +46,7 @@ export class DisplayService
         let useCache = this.competitionCache.Grades && this.competitionCache.Grades.length;
         
         gradeResults = useCache 
-            ? Observable.fromArray(this.competitionCache.Grades)
+            ? Observable.from(this.competitionCache.Grades)
             : this.gradeService.List(this.context.CompetitionId).map(e=> e.json());
 
         let grouped = gradeResults.groupBy(e=> e.Discipline, e=> e).map(group=> { 

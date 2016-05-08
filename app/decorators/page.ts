@@ -1,6 +1,6 @@
 import { Component, provide, ChangeDetectionStrategy } from "@angular/core";
 import {NgIf, NgFor} from "@angular/common";
-import {RouteParams} from '@angular/router';
+import {RouteParams} from "@angular/router-deprecated";
 import { NxNav} from "../controls/nav/nav";
 import {NxList} from "../controls/list/list";
 import {NxListItem} from "../controls/list/list-item";
