@@ -1,3 +1,10 @@
 {
-  "ambientDependencies": {}
+  "ambientDependencies": {
+    "jasmine": "registry:dt/jasmine#2.2.0+20160412134438"
+  },
+  "ambientDevDependencies": {
+    "babel-traverse": "registry:dt/babel-traverse#6.7.0+20160423062108",
+    "babel-types": "registry:dt/babel-types#6.7.0+20160423062108",
+    "babylon": "registry:dt/babylon#6.7.0+20160423062108"
+  }
 }

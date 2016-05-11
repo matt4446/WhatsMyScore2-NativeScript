@@ -75,7 +75,7 @@ export class NxDrawer {
     set _asideLeft(item: ElementRef){
         this.asideLeftContent = item;
         this.State.HasLeft = true;
-        
+        //hi
         //this.logger.Notify("drawer.asideLeftContent set" + item);
     }
     

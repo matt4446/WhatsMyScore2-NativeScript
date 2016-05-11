@@ -1,17 +1,20 @@
 {
     "compilerOptions": {
-        "outDir": "app",
-        "rootDir": "app",
-        "module": "commonjs",
         "target": "es5",
-        "inlineSourceMap": true,
+        "module": "commonjs",
+        "sourceMap": true,
         "experimentalDecorators": true,
-        "removeComments": false,
         "emitDecoratorMetadata": true,
-        "noEmitOnError": true
+        "noEmitHelpers": true,
+        "noEmitOnError": false,
+        "isolatedModules": false,
+        "moduleResolution": "node",
+        "declaration": false
     },
     "exclude": [
         "node_modules",
-        "platforms"
+        "platforms",
+        "typings/main.d.ts",
+        "typings/main"
     ]
 }

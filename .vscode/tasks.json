@@ -4,7 +4,8 @@
 	"isShellCommand": true,
 	// Show the output window only if unrecognized errors occur.
 	"showOutput": "silent",
-	"args": [],
+	"args": [ "--watch","-p", "."],
+	"isWatching": true,
 	// use the standard tsc problem matcher to find compile problems
 	// in the output.
 	"problemMatcher": "$tsc"
