@@ -28,6 +28,8 @@ export interface IAppConfig<T> {
     appStartup? : (appRef: ComponentRef<T>) => void
 }
 
+
+
 export function App<T>(config: IAppConfig<T>) {
     return (startingComponent) => {
         console.log("Setup App annotations");
