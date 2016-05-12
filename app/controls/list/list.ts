@@ -6,8 +6,8 @@ import { NxHeader } from "./header";
 //var observable = require("data/observable");
 import { Observable, Subscription, Subject } from 'rxjs/Rx';
 //import { from } from "rxjs/observable/from";
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/from';
+// import 'rxjs/add/operator/map';
+// import 'rxjs/add/operator/from';
 
 @Control({
     selector: "nx-list",

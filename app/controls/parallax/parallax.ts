@@ -7,9 +7,9 @@ import { StackLayout} from 'ui/layouts/stack-layout';
 import { ScrollView, ScrollEventData } from 'ui/scroll-view';
 import { ContentView } from "ui/content-view";
 
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/zip';
-import 'rxjs/add/operator/from';
+// import 'rxjs/add/operator/map';
+// import 'rxjs/add/operator/zip';
+// import 'rxjs/add/operator/from';
 
 
 //var observable = require("data/observable");

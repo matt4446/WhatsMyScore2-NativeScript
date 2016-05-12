@@ -11,9 +11,9 @@ import {RegionCache, CompetitionCache, GradeCache, ClubCache} from "../../../pro
 import {IClub} from "../../../models/models.d.ts";
 import {CompetitionNav} from "../../nav/competition.nav";
 
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/zip';
-import 'rxjs/add/operator/from';
+// import 'rxjs/add/operator/map';
+// import 'rxjs/add/operator/zip';
+// import 'rxjs/add/operator/from';
 
 @Page({
     selector: "club-list-page",

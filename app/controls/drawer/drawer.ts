@@ -8,8 +8,8 @@ import { AbsoluteLayout } from "ui/layouts/absolute-layout";
 import { StackLayout } from "ui/layouts/stack-layout"; 
 import { Button } from "ui/button";
 
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/from';
+// import 'rxjs/add/operator/map';
+// import 'rxjs/add/operator/from';
 
 /*
  * GridLayout without rows and columns defined will overlap elements. 

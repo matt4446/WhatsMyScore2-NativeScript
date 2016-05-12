@@ -1,9 +1,9 @@
 "use strict";
 require('reflect-metadata');
-require('rxjs/add/operator/map');
-require('rxjs/add/operator/zip');
-require('rxjs/add/operator/from');
-require('rxjs/add/operator/toArray');
+// import 'rxjs/add/operator/map';
+// import 'rxjs/add/operator/zip';
+// import 'rxjs/add/operator/from';
+// import 'rxjs/add/operator/toArray';
 var router_deprecated_1 = require("@angular/router-deprecated");
 //decorators
 var app_1 = require("./decorators/app");

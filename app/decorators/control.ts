@@ -1,6 +1,4 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-
-
 const _reflect: any = Reflect;
 
 export interface IControlConfig {

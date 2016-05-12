@@ -11,6 +11,12 @@
         "moduleResolution": "node",
         "declaration": false
     },
+    "files": [
+        "references.d.ts",
+        "node_modules/nativescript-cardview/cardview.d.ts",
+        "typings/browser.d.ts",
+        "app/app.ts"
+    ],
     "exclude": [
         "node_modules",
         "platforms",
