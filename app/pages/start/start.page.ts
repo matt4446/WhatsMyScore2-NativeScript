@@ -1,6 +1,6 @@
 import {Inject, Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router-deprecated";
-import {Observable, EventData } from "data/observable";
+//import {Observable, EventData } from "data/observable";
 import {alert} from "ui/dialogs";
 import {ActionItem} from "ui/action-bar";
 
@@ -28,9 +28,6 @@ export class StartPage implements OnInit
     {
     }
 
-    public incomplete(args: EventData) : void {
-        alert("Its not made yet");
-    }
   
     public refresh(args: any){
         setTimeout(()=> {

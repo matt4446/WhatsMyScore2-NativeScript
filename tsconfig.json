@@ -1,26 +1,19 @@
 {
     "compilerOptions": {
-        "target": "es5",
+        "outDir": "app",
+        "rootDir": "app",
         "module": "commonjs",
-        "sourceMap": true,
+        "target": "es5",
+        "inlineSourceMap": true,
         "experimentalDecorators": true,
+        "removeComments": false,
         "emitDecoratorMetadata": true,
-        "noEmitHelpers": true,
-        "noEmitOnError": false,
-        "isolatedModules": false,
-        "moduleResolution": "node",
-        "declaration": false
+        "noEmitOnError": true
     },
-    "files": [
-        "references.d.ts",
-        "node_modules/nativescript-cardview/cardview.d.ts",
-        "typings/browser.d.ts",
-        "app/app.ts"
-    ],
     "exclude": [
         "node_modules",
         "platforms",
-        "typings/main.d.ts",
-        "typings/main"
+        "typings/browser.d.ts",
+        "typings/browser"
     ]
 }

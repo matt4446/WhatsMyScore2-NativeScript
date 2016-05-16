@@ -8,7 +8,7 @@ import { nativeScriptBootstrap, bootstrap, AppOptions } from "nativescript-angul
 import { Page } from "ui/page";
 import { TextView} from 'ui/text-view';
 
-import application = require('application');
+//import application = require('application');
 //import {NS_ROUTER_PROVIDERS} from "nativescript-angular/router/ns-router";
 
 const _reflect: any = Reflect;

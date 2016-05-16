@@ -1,7 +1,5 @@
 import { PipeTransform, Pipe } from "@angular/core";
 import { Logger } from "../providers/logger";
-import { isBlank } from "../../node_modules/@angular/compiler/src/facade/lang";
-
 var _ = require("underscore");
 
 //import {orderBy} from 'lodash/orderBy';
@@ -16,6 +14,11 @@ var _ = require("underscore");
 //     FunctionWrapper
 // }
 // from 'angular2/src/facade/lang';
+
+export function isBlank(obj: any): boolean {
+  return obj === undefined || obj === null;
+}
+
 @Pipe({
     name: 'orderBy',
     pure: true
@@ -24,8 +27,8 @@ export class OrderByPipe implements PipeTransform {
     constructor(private logger: Logger) {}
 
     transform(value: any, args: any[] = []) {
-
-        if (isBlank(args)) return value;
+        
+        if ( isBlank(args)) return value;
         var expression = args.length > 0 ? args[0] : null;
         var descending: boolean = args.length > 1 ? args[1] : false;
 

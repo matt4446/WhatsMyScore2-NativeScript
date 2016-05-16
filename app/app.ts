@@ -1,10 +1,4 @@
 import 'reflect-metadata';
-
-// import 'rxjs/add/operator/map';
-// import 'rxjs/add/operator/zip';
-// import 'rxjs/add/operator/from';
-// import 'rxjs/add/operator/toArray';
-
 import {RouteConfig} from "@angular/router-deprecated";
 //decorators
 import {App} from "./decorators/app";
