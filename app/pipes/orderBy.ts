@@ -16,7 +16,13 @@ var _ = require("underscore");
 // from 'angular2/src/facade/lang';
 
 export function isBlank(obj: any): boolean {
-  return obj === undefined || obj === null;
+    return obj === undefined || obj === null;
+}
+export function isArray(obj: any): boolean {
+    return Array.isArray(obj);
+}
+export function isString(obj: any): boolean {
+    return typeof obj === "string";
 }
 
 @Pipe({
@@ -26,17 +32,30 @@ export function isBlank(obj: any): boolean {
 export class OrderByPipe implements PipeTransform {
     constructor(private logger: Logger) {}
 
-    transform(value: any, args: any[] = []) {
+    transform(value: any, args: any = []) {
+        console.log("orderBy pipe - transform");
+        let expression: string = null;
+        let ascending: boolean = true;
         
-        if ( isBlank(args)) return value;
-        var expression = args.length > 0 ? args[0] : null;
-        var descending: boolean = args.length > 1 ? args[1] : false;
+        if (isBlank(args)) return value;
+        if (isString(args)){
+            expression = args;
+        }else{
+            expression = args[0];
+        }
+        if (isArray(args) && args.length > 1){
+            ascending = args[1];
+        }
+        //var descending: boolean = args.length > 1 ? args[1] : false;
 
         let orderedAsc = _.sortBy(value, expression);
         
-        let result = descending ? orderedAsc.reverse() : orderedAsc;
+        if(ascending) { return orderedAsc; }
+        
+        return orderedAsc.reverse();
+        //let result = descending ? orderedAsc.reverse() : orderedAsc;
 
-        return result;
+        //return result;
     }
 }
 
@@ -47,9 +66,13 @@ export class OrderByPipe implements PipeTransform {
 export class GroupByPipe {
     constructor(private logger: Logger) {}
 
-    transform(value: any, args: any[] = []) {
+    transform(value: any, args: string) {
+        console.log("groupBy by pipe - transform");
+
         if (isBlank(args)) return value;
-        var expression = args.length > 0 ? args[0] : null;
+
+        
+        var expression = args; //args.length > 0 ? args[0] : null;
         
         let grouped = _.chain(value).groupBy(expression).map((value, key) => {
             return {

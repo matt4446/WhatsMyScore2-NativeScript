@@ -28,12 +28,12 @@ import {CompetitionNav} from "../../nav/competition.nav";
 
             <nx-content (refreshStarted)="refresh($event)">
                 <StackLayout class="inset">
-                    <nx-list *ngFor="#clubGroup of list | groupBy: 'Letter' | orderBy:'key'">
+                    <nx-list *ngFor="let clubGroup of list | groupBy: 'Letter' | orderBy:'key'">
                         <nx-header item-top>
                             <label [text]="clubGroup.key" class="nx-header-title"></label>
                         </nx-header>
                         
-                        <nx-item *ngFor="#club of clubGroup.items | orderBy:'Name'">
+                        <nx-item *ngFor="let club of clubGroup.items | orderBy:'Name'">
                             <ion-icon item-left icon="ion-clipboard"></ion-icon>
                             <label [text]="club.Name"></label>
                             <ion-icon item-right icon="ion-ios-people"></ion-icon>

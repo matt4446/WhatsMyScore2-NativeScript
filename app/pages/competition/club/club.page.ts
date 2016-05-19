@@ -29,13 +29,13 @@ import {CompetitionNav} from "../../nav/competition.nav";
 
             <nx-content (refreshStarted)="refresh($event)">
                 <StackLayout class="inset">
-                    <nx-list *ngFor="#clubGroup of list | groupBy: 'Grade.ClassName' | orderBy:'key'">
+                    <nx-list *ngFor="let clubGroup of list | groupBy: 'Grade.ClassName' | orderBy:'key'">
                         <nx-header item-top>
                             <!-- grade name --> 
                             <label [text]="clubGroup.key" class="nx-header-title"></label>
                         </nx-header>
                         <!-- competitors in that grade --> 
-                        <nx-item *ngFor="#competitor of gradeGroup.items | orderBy:'Rank'">
+                        <nx-item *ngFor="let competitor of gradeGroup.items | orderBy:'Rank'">
                             <!-- going to need some expanding panel like v1 -->
                             <!-- name, club, rank + score -->
                             <ion-icon item-left icon="ion-clipboard"></ion-icon>

@@ -27,12 +27,12 @@ import {CompetitionNav} from "../../nav/competition.nav";
 
             <nx-content (refreshStarted)="refresh($event)">
                 <StackLayout class="inset">
-                    <nx-list *ngFor="#group of list | groupBy: 'Discipline' | orderBy:'key'">
+                    <nx-list *ngFor="let group of list | groupBy: 'Discipline' | orderBy:'key'">
                         <nx-header item-top>
                             <label [text]="group.key | Title" class="nx-header-title"></label>
                         </nx-header>
                         
-                        <nx-item *ngFor="#grade of group.items | orderBy:'ClassName'">
+                        <nx-item *ngFor="let grade of group.items | orderBy:'ClassName'">
                             <ion-icon item-left icon="ion-clipboard"></ion-icon>
                             <label [text]="grade.ClassName"></label>
                             <ion-icon item-right icon="ion-ios-people"></ion-icon>

@@ -14,10 +14,6 @@ import {CompetitionNav} from "../nav/competition.nav";
 import {AppRoutingService} from "../../context/router.context";
 import {Subscription} from 'rxjs/Rx';
 
-// import 'rxjs/add/operator/map';
-// import 'rxjs/add/operator/zip';
-// import 'rxjs/add/operator/from';
-
 @Page({
     selector: "Competiton",
 	templateUrl: "pages/competition/competition.page.html",
