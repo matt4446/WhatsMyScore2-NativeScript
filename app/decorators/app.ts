@@ -3,7 +3,7 @@ import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from "@angular/route
 import { bind, provide, Inject, Component, ComponentRef } from '@angular/core';
 import { NS_ROUTER_DIRECTIVES, NS_ROUTER_PROVIDERS } from "nativescript-angular/router";
 import { registerElement, ViewClass } from "nativescript-angular/element-registry";
-
+import { HTTP_PROVIDERS } from "@angular/http";
 import { nativeScriptBootstrap, bootstrap, AppOptions } from "nativescript-angular/application";
 import { Page } from "ui/page";
 import { TextView} from 'ui/text-view';
@@ -45,8 +45,8 @@ export function App<T>(config: IAppConfig<T>) {
         config.template = `<page-router-outlet></page-router-outlet>`;
 
         config.providers = config.providers 
-            ? config.providers.concat(NS_ROUTER_PROVIDERS) 
-            : [NS_ROUTER_PROVIDERS];
+            ? config.providers.concat(NS_ROUTER_PROVIDERS, HTTP_PROVIDERS) 
+            : [NS_ROUTER_PROVIDERS, HTTP_PROVIDERS];
 
         config.directives = config.directives 
             ? config.directives.concat(NS_ROUTER_DIRECTIVES) 
