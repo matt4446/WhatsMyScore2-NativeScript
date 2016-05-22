@@ -32,7 +32,11 @@ import {CompetitionNav} from "../../nav/competition.nav";
                             <label [text]="group.key | Title" class="nx-header-title"></label>
                         </nx-header>
                         
-                        <nx-item *ngFor="let grade of group.items | orderBy:'ClassName'">
+                        <nx-item *ngFor="let grade of group.items | orderBy:'ClassName'" 
+                            [nxRoute]="[
+                                'Region.Competition.StartList.Competitors', 
+                                { regionId: context.RegionId, competitionId: context.CompetitionId, gradeId: grade.Id }
+                            ]">
                             <ion-icon item-left icon="ion-clipboard"></ion-icon>
                             <label [text]="grade.ClassName"></label>
                             <ion-icon item-right icon="ion-ios-people"></ion-icon>

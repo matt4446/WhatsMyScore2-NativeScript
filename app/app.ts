@@ -80,7 +80,7 @@ import {RegionCache, CompetitionCache, GradeCache, ClubCache} from "./providers/
 //level 4 
 @RouteConfig([
     //to-do - template & provider
-    //{ path: "/region/:regionId/competition/:competitionId/startList/:gradeId/competitors", component:StartListGradePage, name: "Region.Competition.StartList.Competitors"},
+    { path: "/region/:regionId/competition/:competitionId/startList/:gradeId/competitors", component: StartListGradePage, name: "Region.Competition.StartList.Competitors"},
     //to-do - template & provider
     //{ path: "/region/:regionId/competition/:competitionId/grade/:gradeId/competitors", component: GradePage, name : "Region.Competition.GradeList.Competitors" },
     //to-do - template & provider

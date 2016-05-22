@@ -58,3 +58,56 @@ export interface IPage {
     title: string; 
     page: any;
 }
+
+export interface ICompetitor {
+    Id: number;
+    FullName: string;
+    Group: string;
+    ScoreLines: Array<ICompetitiorScoreLine>;
+    Pass1: ICompetitiorScoreLine;
+    Pass2: ICompetitiorScoreLine;
+    Pass3: ICompetitiorScoreLine;
+    Pass4: ICompetitiorScoreLine;
+    Rank: number;
+    FinalRank: number;
+    FinalRankDisplay: () => string;
+
+    StartGroup?: number;
+    StartNumber?: number;
+    showDetail?: boolean;
+}
+
+export interface ICompetitiorScoreLine {
+    Difficulty: number;
+
+    Form1: number;
+    Form2: number;
+    Form3: number;
+    Form4: number;
+    Form5: number;
+
+    Sync1: number;
+    Sync2: number;
+    Sync3: number;
+
+    Min: number;
+    Max: number;
+    Position: number;
+    Score: number;
+    StartNumber: number;
+    Total: number;
+    Bonus: number;
+    Penalty: number;
+    Exclude: (index: number) => boolean;
+    ExcludeSync: (index: number) => boolean;
+
+    Scores: Array<number>;
+    TrsExecutionScores: Array<number>;
+    TrsDesyncScores: Array<number>;
+
+    CorrectedScores: Array<ICorrectedScore>;
+}
+
+interface ICorrectedScore {
+    Value: number; Corrected: boolean; Correction: number
+}

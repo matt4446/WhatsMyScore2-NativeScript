@@ -20,6 +20,7 @@
 		"rxjs": "5.0.0-beta.6",
 		"nativescript-cardview": "1.0.1",
 		"nativescript-pulltorefresh": "1.1.4",
+		"nativescript-enumerable": "~2.2.0",
 		"underscore": "~1.8.3",
 		"moment": "~2.11.2",
 		"ionicons": "~2.0.0"
