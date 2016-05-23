@@ -11,9 +11,8 @@ import { NxListItem } from "./list-item";
         <StackLayout #item class="nx-header">
             <ng-content></ng-content>
         </StackLayout>
-        <Border borderWidth="2" class="nx-header-ext" style="margin-top:-4">
-        </Border>
-        
+        <StackLayout borderWidth="2" class="nx-header-ext" style="margin-top:-4">
+        </StackLayout>
     `,
     providers: [],
     directives:[ NxListItem ]

@@ -3,6 +3,7 @@ import { Input, Output, EventEmitter, ContentChildren } from "@angular/core";
 import { Logger } from "../../providers/logger";
 import { NxListItem } from "./list-item";
 import { NxHeader } from "./header";
+//import { Page } from "ui/page";
 //var observable = require("data/observable");
 import { Observable, Subscription, Subject } from 'rxjs/Rx';
 //import { from } from "rxjs/observable/from";
@@ -83,6 +84,7 @@ export class NxList {
                 }
                 
                 var stackPanel = row.getNativeElement();
+                
                 
                 stackPanel.animate({
                     opacity: 1,

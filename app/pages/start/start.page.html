@@ -14,21 +14,21 @@
                 <nx-header item-top>
                     <label [text]="'Start' | Title" class="nx-header-title"></label>
                 </nx-header>
-                <nx-item [nxRoute]="['Test']">
+                <nx-item [nxRoute]="['Test']" animate="true">
                     <ion-icon item-left icon="ion-map"></ion-icon>
 
                     <label text="Test Page"></label>
                     
                     <ion-icon item-right icon="ion-chevron-right"></ion-icon>
                 </nx-item>
-                <nx-item [nxRoute]="['ParallaxTestPage']">
+                <nx-item [nxRoute]="['ParallaxTestPage']" animate="true">
                     <ion-icon item-left icon="ion-map"></ion-icon>
 
                     <label text="Parallax Test Page"></label>
                     
                     <ion-icon item-right icon="ion-chevron-right"></ion-icon>
                 </nx-item>
-                <nx-item [nxRoute]="['Regions']">
+                <nx-item [nxRoute]="['Regions']" animate="true">
                     <ion-icon item-left icon="ion-map"></ion-icon>
 
                     <label text="Leagues & Regions"></label>
@@ -42,12 +42,12 @@
                 <nx-header item-top>
                     <label [text]="'Search' | Title" class="nx-header-title"></label>
                 </nx-header>
-                <nx-item (tap)="incomplete($event)">
+                <nx-item (tap)="incomplete($event)" animate="true">
                     <ion-icon item-left icon="ion-calendar"></ion-icon>
                     <label text="Competitions"></label>
                     <ion-icon item-right icon="ion-search"></ion-icon>
                 </nx-item>
-                <nx-item (tap)="incomplete($event)">
+                <nx-item (tap)="incomplete($event)" animate="true">
                     <ion-icon item-left icon="ion-ios-people"></ion-icon>
                     <label text="Competitors"></label>
                     <ion-icon item-right icon="ion-search"></ion-icon>

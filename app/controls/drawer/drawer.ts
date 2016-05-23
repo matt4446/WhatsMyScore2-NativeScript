@@ -5,9 +5,10 @@ import { Logger} from "../../providers/logger";
 import { NxNav } from "../nav/nav";
 import { Observable, Subscription, Subject} from 'rxjs/Rx';
 import { AbsoluteLayout } from "ui/layouts/absolute-layout";
-import { StackLayout } from "ui/layouts/stack-layout"; 
+import { StackLayout } from "ui/layouts/stack-layout";
+import { GridLayout } from "ui/layouts/grid-layout";  
 import { Button } from "ui/button";
-
+import { PanGestureEventData} from "ui/gestures";
 // import 'rxjs/add/operator/map';
 // import 'rxjs/add/operator/from';
 
@@ -19,18 +20,16 @@ import { Button } from "ui/button";
     selector:"nx-drawer",
     template:`
         <GridLayout>
-            <AbsoluteLayout #asideLeftParent opacity="0" verticalAlignment="top" horizontalAlignment="left">
-                <StackLayout top="0" left="0" width="300" #asideLeft>
+            <StackLayout #asideLeftParent opacity="0" verticalAlignment="top" horizontalAlignment="left">
+                <StackLayout width="300" #asideLeft>
                     <ng-content select="[drawer-aside-left]"></ng-content>
                 </StackLayout>
-            </AbsoluteLayout>  
+            </StackLayout>  
         
-            <StackLayout #grid horizontalAlignment="stretch">
-                
-                <StackLayout #centerContent >
+            <StackLayout #grid>
+                <StackLayout #centerContent>
                     <ng-content></ng-content>
                 </StackLayout>
-
             </StackLayout>  
         </GridLayout>
     `
@@ -67,8 +66,16 @@ export class NxDrawer {
     private ngOnInit(){
         //let center: StackLayout = this.centerContent.nativeElement;
     } 
+        
+    @ViewChild('grid')
+    set _grid(item: ElementRef){
+        this.logger.Notify("set pan on grid");
+        let g : GridLayout = item.nativeElement;
+        // g.on("pan", (args: PanGestureEventData) => {
+        //     this.logger.Notify("Pan delta: [" + args.deltaX + ", " + args.deltaY + "] state: " + args.state);
+        // });
+    }
     
-    @ViewChild('grid')private grid: ElementRef;
     @ViewChild("asideLeftParent")private asideLeftParent: ElementRef;
     
     @ViewChild('asideLeft') 
@@ -77,6 +84,11 @@ export class NxDrawer {
         this.State.HasLeft = true;
         //hi
         //this.logger.Notify("drawer.asideLeftContent set" + item);
+        this.logger.Notify("set pan on asideLeft");
+        let g : GridLayout = item.nativeElement;
+        g.on("pan", (args: PanGestureEventData) => {
+            this.logger.Notify("Pan asideLeft delta: [" + args.deltaX + ", " + args.deltaY + "] state: " + args.state);
+        });
     }
     
     @ViewChild('asideRight') 
@@ -89,11 +101,13 @@ export class NxDrawer {
     @ViewChild('centerContent')
     set _setCenter(item: ElementRef){
         this.centerContent = item;
+        this.logger.Notify("set pan on centerContent");
+        let g : GridLayout = item.nativeElement;
+        g.on("pan", (args: PanGestureEventData) => {
+            this.logger.Notify("Pan centerContent delta: [" + args.deltaX + ", " + args.deltaY + "] state: " + args.state);
+        });
     }
-    
-    private 
-    
-    
+        
     @ContentChildren(NxNav)
     set _setNav(items: any){
         if(this.State.NavAttached){ return; }
@@ -108,7 +122,7 @@ export class NxDrawer {
                 
         Observable.from(anySelected).flatMap(x=>x).subscribe(() => { 
             this.logger.Notify("nav menu tapped -> open side");
-            let grid: StackLayout = this.grid.nativeElement;
+            //let grid: StackLayout = this.grid.nativeElement;
             
             
             let leftParent: AbsoluteLayout = this.asideLeftParent.nativeElement;

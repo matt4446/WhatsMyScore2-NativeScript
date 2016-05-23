@@ -15,13 +15,13 @@
                     <Label [text]='region.Name' class="nx-header-title"></Label>
                 </nx-header>
                 
-                <nx-item *ngIf="region.Logo" 
+                <nx-item *ngIf="region.Logo" animate="true"
                     [nxRoute]="['Region', { regionId: region.Id }]">
                     
                     <img [src]='"~/" + region.Logo' height="100" style="border-radius:4" />
                 </nx-item>
                 
-                <nx-item 
+                <nx-item animate="true"
                     [nxRoute]="['Region', { regionId: region.Id }]">
                     
                     <ion-icon item-left icon="ion-ios-star"></ion-icon>

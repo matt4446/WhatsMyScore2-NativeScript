@@ -13,6 +13,7 @@ import * as Models from "../../../../models/models.d.ts";
 import {CompetitionNav} from "../../../nav/competition.nav";
 import * as rx from "rxjs";
 import 'rxjs/add/operator/max';
+import 'rxjs/add/operator/distinct';
 
 @Page({
     selector: "start-list-grade-page",
@@ -30,7 +31,7 @@ import 'rxjs/add/operator/max';
                     <nx-list *ngFor="let startGroup of list | groupBy: 'StartGroup'">
                         <nx-header item-top>
                             <label *ngIf="groups > 1" [text]="'StartGroup: ' + startGroup.key | Title" class="nx-header-title"></label>
-                            <label *ngIf="groups == 1" [text]="'StartGroup'| Title" class="nx-header-title"></label>
+                            <label *ngIf="groups <= 1" [text]="'StartGroup'| Title" class="nx-header-title"></label>
                         </nx-header>
                         <nx-item *ngFor="let person of startGroup.items | orderBy:'StartNumber'">
                             <label item-left [text]="person.StartNumber"></label>
@@ -59,7 +60,7 @@ export class StartListGradePage implements OnInit
     }
     
     public list : Models.ICompetitor[] = [];
-    public groups : number = 0; 
+    public groups : number = 0; //if more than one group change the label
 
     //action to 
     public gradeSearch($event : any)
@@ -79,16 +80,15 @@ export class StartListGradePage implements OnInit
     public loadDetail(){
         let obseravable = this.competitorService.ListGradeCompetitors(this.context.CompetitionId, this.context.GradeId);
         
-        this.logger.NotifyResponse(obseravable);
+        //this.logger.NotifyResponse(obseravable);
         
         obseravable.map(e=> e.json()).subscribe(e => {
             this.list = e;
             let max = rx.Observable.from(this.list).map(e=> e.StartGroup).max();
+            
             max.subscribe(m=> {
                 this.groups = m;
             });
-            //this.list.
-            
         });
         
         return obseravable;
