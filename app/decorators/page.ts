@@ -1,15 +1,17 @@
 import { Component, provide, ChangeDetectionStrategy } from "@angular/core";
 import {NgIf, NgFor} from "@angular/common";
 import {RouteParams} from "@angular/router-deprecated";
-import { NxNav} from "../controls/nav/nav";
-import {NxList} from "../controls/list/list";
-import {NxListItem} from "../controls/list/list-item";
-import {NxHeader} from "../controls/list/header";
-import {NxCard} from "../controls/card/card.control";
-import {NxPullToRefresh} from "../controls/pullToRefresh/pullToRefresh.control";
-import {NxContent} from "../controls/content/content.control";
-import {NxDrawer} from "../controls/drawer/drawer";
-import {IonIcon,NavIcon} from "../controls/icons/ion-icon";
+// import { NxNav} from "../controls/nav/nav";
+// import {NxList} from "../controls/list/list";
+// import {NxListItem} from "../controls/list/list-item";
+// import {NxHeader} from "../controls/list/header";
+// import {NxCard} from "../controls/card/card.control";
+// import {NxPullToRefresh} from "../controls/pullToRefresh/pullToRefresh.control";
+// import {NxContent} from "../controls/content/content.control";
+// import {NxDrawer} from "../controls/drawer/drawer";
+// import {IonIcon,NavIcon} from "../controls/icons/ion-icon";
+import {controls} from "../controls/all";
+
 //import {LoadingService} from "../providers/loadingService/loadingService";
 
 import {NS_ROUTER_DIRECTIVES,NS_ROUTER_PROVIDERS} from "nativescript-angular/router";
@@ -61,15 +63,7 @@ export function Page(config: IPageConfig={})
         ];
         
         var coreDirectives = [
-            NxDrawer, 
-            NxCard, 
-            NxPullToRefresh, 
-            NxNav, 
-            NxList, 
-            NxListItem, 
-            NxContent,
-            NxHeader, 
-            IonIcon, 
+            controls, 
             NgIf, 
             NgFor
         ];

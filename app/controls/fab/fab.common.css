@@ -1,0 +1,75 @@
+.fab-container {
+}
+
+/* 
+    to-do: follow the rules
+    http://google.github.io/material-design-icons/ 
+    Styling icons in material design
+ */
+
+.fab-font {    
+    font-size: 36;
+    color: #ffffff;
+    text-align: center;
+    horizontal-align: center; 
+    vertical-align: center; 
+    height: 50;
+    width: 50;
+    margin: 15;
+    padding-top: 4;
+}
+
+.left {
+    horizontal-align: left; 
+}
+.right {
+    horizontal-align: right; 
+}
+.h-center {
+    horizontal-align: center;
+}
+.top {
+    vertical-align: top;
+}
+.bottom {
+    vertical-align: bottom;
+}
+.v-center {
+    vertical-align: center;
+}
+
+.fab-button {
+    background-color: #ff4081; 
+    
+    height: 50;
+    width: 50;
+    margin: 15;
+}
+
+.fab-button-content {
+    height: 50;
+    width: 50;
+    margin: 15;
+    horizontal-align: center; 
+    vertical-align: center;
+}
+
+.fab-icon {
+    text-align: center;
+}
+
+.material-icons {
+    font-family: "Material Icons", "MaterialIcons-Regular";
+    font-style: normal;
+    font-weight: 400;
+}
+.md-18 { font-size: 18; height: 18; }
+.md-24 { font-size: 24; height: 24; }
+.md-36 { font-size: 36; height: 36; }
+.md-48 { font-size: 48; height: 48; }
+
+/* Rules for using icons as black on a light background. */
+.md-dark { color: rgba(0, 0, 0, 0.54); }
+
+/* Rules for using icons as white on a dark background. */
+.md-light { color: rgba(255, 255, 255, 1); }

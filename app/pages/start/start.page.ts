@@ -13,7 +13,6 @@ import {StartNav} from "../nav/start.nav.control";
 
 @Page({
     selector: "start",
-    //I've moved directives to Page decorator .. 
     templateUrl: "pages/start/start.page.html",
     directives: [StartNav]
 })
