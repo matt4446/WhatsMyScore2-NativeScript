@@ -46,14 +46,17 @@ export function App<T>(config: IAppConfig<T>) {
         config.selector = 'main';
         config.template = `<page-router-outlet></page-router-outlet>`;
 
+        //switch to design mode (remembers the previous page that was navigated to. )
         let baseConfig = config.designMode ? [
             HTTP_PROVIDERS,
             NS_ROUTER_PROVIDERS,
-            //overide again,
+            //overide again
             NSRememberLocationStrategy,
             provide(LocationStrategy, { useExisting: NSRememberLocationStrategy})
-        ] : [HTTP_PROVIDERS,
-            NS_ROUTER_PROVIDERS];
+        ] : [
+            HTTP_PROVIDERS,
+            NS_ROUTER_PROVIDERS
+        ];
 
         config.providers = config.providers 
             ? config.providers.concat(baseConfig) 
