@@ -146,8 +146,9 @@ export class NxListItem {
                     this.logger.Notify("navigated from competitions - > competition");
                 }).catch((r) => {
                     this.logger.Error("navigation rejected");
+                    this.logger.Error(r.message);
                     this.logger.NotifyObject(r);
-                });;
+                });
             }else if(this.tap){
                 this.tap.next(args);
             } else {

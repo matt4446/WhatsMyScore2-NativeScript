@@ -1,5 +1,6 @@
 import { Injectable, Inject } from '@angular/core';
-import { Observable, Subscription, Subject} from 'rxjs/Rx';
+import * as Rx from 'rxjs/Rx';
+import * as appSettings from "application-settings"; 
 import {
     IRegion,
     ICompetition,
@@ -10,25 +11,26 @@ from "../../models/models";
 
 @Injectable()
 export class RegionCache {
-    public RegionsChange : Subject<IRegion[]> = new Subject<IRegion[]>(); 
-    public RegionChange: Subject<IRegion> = new Subject<IRegion>();
+    public RegionsChange : Rx.Subject<IRegion[]> = new Rx.Subject<IRegion[]>(); 
+    public RegionChange : Rx.Subject<IRegion> = new Rx.Subject<IRegion>();
     
+    //region 
     private _region : IRegion; 
-    
+
     public get Region(): IRegion {
         return this._region;
     }
-    
     public set Region(value: IRegion){
         this._region = value;
     }
     
+    
+    //regions
     private _regions : IRegion[]; 
     
     public get Regions(): IRegion[] {
         return this._regions;
     }
-    
     public set Regions(value : IRegion[]){
         this._regions = value;
         this.RegionsChange.next(this._regions);
@@ -41,9 +43,10 @@ export class RegionCache {
 
 @Injectable()
 export class ClubCache {
-    public ClubChanges = new Subject<IClub>();
+    public ClubChanges = new Rx.Subject<IClub>();
     
     private _club: IClub;
+    
     public get Club(): IClub {
         return this._club;
     }
@@ -55,7 +58,7 @@ export class ClubCache {
 
 @Injectable()
 export class GradeCache {
-    public GradeChanges = new Subject<IGrade>();
+    public GradeChanges = new Rx.Subject<IGrade>();
     
     private _grade: IGrade;
     public get Grade(): IGrade {
@@ -70,9 +73,8 @@ export class GradeCache {
 @Injectable()
 export class CompetitionCache {
 
-    public CompetitionChanges = new Subject<ICompetition>();
+    public CompetitionChanges = new Rx.BehaviorSubject<ICompetition>(null);
     
-
     constructor(
         @Inject(ClubCache) public clubCache: ClubCache, 
         @Inject(GradeCache) public gradeCache: GradeCache){
@@ -83,14 +85,13 @@ export class CompetitionCache {
         return this._competiton;
     }
     public set Competition(value: ICompetition) {
-        if (this._competiton) {
-            if (value) {
-                if (this._competiton.Id !== value.Id) {
-                    this.Grades = null;
-                    this.Clubs = null;
-                    this.clubCache.Club = null;
-                    this.gradeCache.Grade = null;
-                }
+        if (this._competiton && value) {
+            //if its different from the previous data invalidate current values and collections. 
+            if (this._competiton.Id !== value.Id) {
+                this.Grades = null;
+                this.Clubs = null;
+                this.clubCache.Club = null;
+                this.gradeCache.Grade = null;
             }
         }
 

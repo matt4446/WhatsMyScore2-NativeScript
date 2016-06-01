@@ -135,7 +135,7 @@ export class NSRememberLocationStrategy extends LocationStrategy {
 
     // Methods for syncing with page navigation in PageRouterOutlet
     public beginBackPageNavigation() {
-        console.log("NSLocationStrategy.startGoBack()");
+        console.log("NSRememberLocationStrategy.startGoBack()");
         if (this._isPageNavigationgBack) {
             throw new Error("Calling startGoBack while going back.")
         }
@@ -143,7 +143,7 @@ export class NSRememberLocationStrategy extends LocationStrategy {
     }
 
     public finishBackPageNavigation() {
-        console.log("NSLocationStrategy.finishBackPageNavigation()");
+        console.log("NSRememberLocationStrategy.finishBackPageNavigation()");
         if (!this._isPageNavigationgBack) {
             throw new Error("Calling endGoBack while not going back.")
         }
@@ -155,7 +155,7 @@ export class NSRememberLocationStrategy extends LocationStrategy {
     }
 
     public navigateToNewPage() {
-        console.log("NSLocationStrategy.navigateToNewPage()");
+        console.log("NSRememberLocationStrategy.navigateToNewPage()");
         if (this._isPageNavigatingForward) {
             throw new Error("Calling navigateToNewPage while already navigating to new page.")
         }

@@ -46,6 +46,24 @@ button {
   background-color: #4d75b8;
   color: #FFF;
 }
+.text-left {
+  text-align: left;
+}
+.float-left {
+  horizontal-align: left;
+}
+.float-right {
+  horizontal-align: right;
+}
+.float-center {
+  horizontal-align: center;
+}
+.text-right {
+  text-align: right;
+}
+.text-center {
+  text-align: center;
+}
 .nx-header {
   padding: 12;
   padding-top: 8;

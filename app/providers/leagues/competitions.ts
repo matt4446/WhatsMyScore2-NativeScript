@@ -23,8 +23,9 @@ export class CompetitionService{
         this.logger.Notify("Load :" + route);
         
         let promise = this.http.get(route);
-        promise.map(response => response.json()).subscribe((region : ICompetition) => {
-            this.competitionCache.Competition = region;
+        
+        promise.map(response => response.json()).subscribe((competition : ICompetition) => {
+            this.competitionCache.Competition = competition;
         });
         
         this.logger.NotifyResponse(promise);

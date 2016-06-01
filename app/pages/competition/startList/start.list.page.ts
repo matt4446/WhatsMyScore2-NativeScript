@@ -39,8 +39,11 @@ import {CompetitionNav} from "../../nav/competition.nav";
                             ]">
                             <ion-icon item-left icon="ion-clipboard"></ion-icon>
                             <label [text]="grade.ClassName"></label>
-                            <ion-icon item-right icon="ion-ios-people"></ion-icon>
-                            <label item-right class="note" [text]="grade.Competitors"></label>
+                            <StackLayout item-right class="float-center" >
+                                <ion-icon icon="ion-ios-people"></ion-icon>
+                                <label class="note text-center" [text]="grade.Competitors"></label>
+                            </StackLayout>
+                            
                         </nx-item>
                     </nx-list>
                 </StackLayout>

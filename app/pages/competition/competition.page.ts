@@ -12,7 +12,7 @@ import {ClubService} from "../../providers/leagues/club";
 import {ICompetition} from "../../models/models"
 import {CompetitionNav} from "../nav/competition.nav";
 import {AppRoutingService} from "../../context/router.context";
-import {Subscription} from 'rxjs/Rx';
+import * as Rx from 'rxjs/Rx';
 
 @Page({
     selector: "Competiton",
@@ -22,8 +22,6 @@ import {Subscription} from 'rxjs/Rx';
 })
 export class CompetitionPage implements OnInit, OnDestroy
 {
-    private subscription: Subscription;
-    
     constructor(
         private logger: Logger, 
         private context: AppRoutingService,
@@ -32,9 +30,28 @@ export class CompetitionPage implements OnInit, OnDestroy
         private clubService: ClubService,
         private gradeService: GradeService)
     {
-        this.logger.Notify("a region page loaded");
+        this.logger.Notify("a competition is being loaded");
+    }
+  
+    public list : Array<ICompetition> = []; 
+    public subscriptions : Rx.Subscription[] = [];
+    
+    ngOnDestroy(){
+        this.subscriptions.forEach((subscription)=> {
+            subscription.unsubscribe();    
+        });
+    }
+    
+    ngOnInit()
+    {
+        this.logger.Notify("ngOnInit: CompetitionPage");
+        this.loadCompetition(); 
+        this.loadCompetitionDetails(); 
+    } 
+    
+    public loadCompetitionDetails (){
         
-        let subscription = this.competitionCache.CompetitionChanges.subscribe(competition => {
+        let detailSubscription = this.competitionCache.CompetitionChanges.filter(e=> e!== null).subscribe(competition => {
             this.logger.Notify("competition changed... load club and grade");
             this.logger.NotifyObject(competition);
             
@@ -48,39 +65,29 @@ export class CompetitionPage implements OnInit, OnDestroy
                 this.competitionCache.Grades = e;
             });
         });
-
-        this.subscription = subscription;
-    }
-  
-    public list : Array<ICompetition> = []; 
-    
-    ngOnDestroy(){
-        this.subscription.unsubscribe();
+        
+        this.subscriptions.push(detailSubscription);
     }
     
-    ngOnInit()
-    {
-        this.logger.Notify("ngOnInit: RegionPage");
-        this.loadDetail();  
-    } 
-    
-    public loadDetail (){
+    public loadCompetition (){
         let competitionId = this.context.CompetitionId;
+        
         let observable = this.competitionService.Get(competitionId);
         
-        observable
-            .map((response)=> response.json())
-            .subscribe((competition : ICompetition) => { 
-                this.competitionCache.Competition = competition;
-            }, (error)=> {
-                this.logger.Error(error);
-            });
+        // already done at the service
+        // observable
+        //     .map((response)=> response.json())
+        //     .subscribe((competition : ICompetition) => { 
+        //         this.competitionCache.Competition = competition;
+        //     }, (error)=> {
+        //         this.logger.Error(error);
+        //     });
             
         return observable;
     }
-    
+        
     public refresh(args: any){      
-        this.loadDetail().subscribe(() => {
+        this.loadCompetition().subscribe(() => {
             args.completed();
         });
     }

@@ -2,6 +2,7 @@ import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from "@angular/route
 
 import { bind, provide, Inject, Component, ComponentRef } from '@angular/core';
 import { NS_ROUTER_DIRECTIVES, NS_ROUTER_PROVIDERS } from "nativescript-angular/router";
+import { NSLocationStrategy } from "nativescript-angular/router/ns-location-strategy";
 import { registerElement, ViewClass } from "nativescript-angular/element-registry";
 import { HTTP_PROVIDERS } from "@angular/http";
 import { nativeScriptBootstrap, bootstrap, AppOptions } from "nativescript-angular/application";
@@ -52,7 +53,8 @@ export function App<T>(config: IAppConfig<T>) {
             NS_ROUTER_PROVIDERS,
             //overide again
             NSRememberLocationStrategy,
-            provide(LocationStrategy, { useExisting: NSRememberLocationStrategy})
+            provide(LocationStrategy, { useExisting: NSRememberLocationStrategy}),
+            provide(NSLocationStrategy, { useExisting: NSRememberLocationStrategy})
         ] : [
             HTTP_PROVIDERS,
             NS_ROUTER_PROVIDERS

@@ -24,7 +24,7 @@ export class NavIcon
     // `, 
     template: `   
     <label (tap)="tapIcon($event)" #item 
-        class="ion-icon"
+        class="ion-icon text-center"
         [text]="GetIcon()"></label>
     `, 
     providers: [],

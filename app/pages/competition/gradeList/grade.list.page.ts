@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, OnDestroy} from '@angular/core';
 import {Router} from "@angular/router-deprecated";
 import {Page} from "../../../decorators/page";
 import {Logger} from "../../../providers/logger";
@@ -10,6 +10,8 @@ import {GradeService} from "../../../providers/leagues/grade";
 import {RegionCache, CompetitionCache, GradeCache, ClubCache} from "../../../providers/leagues/cache";
 import {IGrade} from "../../../models/models.d.ts";
 import {CompetitionNav} from "../../nav/competition.nav";
+import * as Rx from "rxjs";
+
 @Page({
     selector: "grade-list-page",
     //templateUrl: "pages/competition/gradeList/page.html",
@@ -31,9 +33,14 @@ import {CompetitionNav} from "../../nav/competition.nav";
                         
                         <nx-item *ngFor="let grade of group.items | orderBy:'ClassName'">
                             <ion-icon item-left icon="ion-clipboard"></ion-icon>
+                            
                             <label [text]="grade.ClassName"></label>
-                            <ion-icon item-right icon="ion-ios-people"></ion-icon>
-                            <label item-right class="note" [text]="grade.Competitors"></label>
+                            <label text ="hi"></label>
+                            <StackLayout item-right class="float-center" >
+                                <ion-icon icon="ion-ios-people"></ion-icon>
+                                <label class="note text-center" [text]="grade.Competitors"></label>
+                            </StackLayout>
+                            
                         </nx-item>
                     </nx-list>
                 </StackLayout>
@@ -44,10 +51,11 @@ import {CompetitionNav} from "../../nav/competition.nav";
     directives: [CompetitionNav],
     providers: [CompetitionService, GradeService, ClubService]
 })
-export class GradeListPage implements OnInit
+export class GradeListPage implements OnInit, OnDestroy
 {
     constructor(
         private logger: Logger, 
+        private competitionService : CompetitionService,
         private gradeService: GradeService,
         private context: AppRoutingService,
         private cache: CompetitionCache)
@@ -57,31 +65,28 @@ export class GradeListPage implements OnInit
     }
     
     public list : IGrade[] = [];
-
-    //passed to the child component
-    public regionsHintText = "Hi from regions";
+    
+    //subscriptions which need to be unbound on destroy. 
+    public subscriptions : Rx.Subscription[] = [];
     
     //action to 
     public gradeSearch($event : any)
     {
-        this.logger.Notify("Search passed to region");
         this.logger.Notify($event);
         //this.logger.Notify("Search Term in Regions Page: " + $event.Value);
     } 
     
-    public ngOnInit(){
-        this.logger.Notify("grade-list-page ngOnInit");
-        //time to load the data
-        if(this.cache.Grades && this.cache.Grades.length > 0){
-            this.list = this.cache.Grades;
-            return;
+    public loadCompetition() {
+        if(this.cache.Competition == null){
+            this.competitionService.Get(this.context.CompetitionId);
         }
-        
-        this.loadDetail();
     }
     
     public loadDetail() {
-        let observable = this.gradeService.List(this.cache.Competition.Id).map(e=> e.json());
+        //this.cache.Competition.Id is missing due to parent loads it. 
+       
+        
+        let observable = this.gradeService.List(this.context.CompetitionId).map(e=> e.json());
         observable.subscribe(e=> {
             this.list = e;
         });
@@ -94,4 +99,22 @@ export class GradeListPage implements OnInit
             args.completed();
         });
     }
+    
+     public ngOnInit(){
+        this.logger.Notify("grade-list-page ngOnInit");
+        //time to load the data
+        if(this.cache.Grades && this.cache.Grades.length > 0){
+            this.list = this.cache.Grades;
+            return;
+        }
+        
+        this.loadDetail();
+    }
+    
+    public ngOnDestroy(){
+        this.subscriptions.forEach((subscription) => {
+            subscription.unsubscribe();
+        });
+    }
+    
 }
