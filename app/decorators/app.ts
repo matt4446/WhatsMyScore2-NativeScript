@@ -7,7 +7,8 @@ import { HTTP_PROVIDERS } from "@angular/http";
 import { nativeScriptBootstrap, bootstrap, AppOptions } from "nativescript-angular/application";
 import { Page } from "ui/page";
 import { TextView} from 'ui/text-view';
-
+import { NSRememberLocationStrategy } from "../router/remember-location-strategy";
+import {LocationStrategy} from '@angular/common';
 //import application = require('application');
 //import {NS_ROUTER_PROVIDERS} from "nativescript-angular/router/ns-router";
 
@@ -44,9 +45,17 @@ export function App<T>(config: IAppConfig<T>) {
         config.selector = 'main';
         config.template = `<page-router-outlet></page-router-outlet>`;
 
+        let baseConfig = [
+            HTTP_PROVIDERS,
+            NS_ROUTER_PROVIDERS,
+            //overide again,
+            NSRememberLocationStrategy,
+            provide(LocationStrategy, { useExisting: NSRememberLocationStrategy})
+        ];
+
         config.providers = config.providers 
-            ? config.providers.concat(NS_ROUTER_PROVIDERS, HTTP_PROVIDERS) 
-            : [NS_ROUTER_PROVIDERS, HTTP_PROVIDERS];
+            ? config.providers.concat(baseConfig) 
+            : [baseConfig];
 
         config.directives = config.directives 
             ? config.directives.concat(NS_ROUTER_DIRECTIVES) 

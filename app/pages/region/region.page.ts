@@ -1,4 +1,4 @@
-import {Component, OnInit } from '@angular/core';
+import {Component, OnInit, OnDestroy } from '@angular/core';
 import {Page} from "../../decorators/page";
 import {Logger} from "../../providers/logger";
 import {CompetitionService} from "../../providers/leagues/competitions";
@@ -8,20 +8,22 @@ import {StartNav} from "../nav/start.nav.control";
 import {AppRoutingService} from "../../context/router.context";
 import {RegionCache, CompetitionCache, GradeCache, ClubCache} from "../../providers/leagues/cache";
 import {PullToRefresh} from "nativescript-pulltorefresh";
-
+import { RegionService } from "../../providers/leagues/leagues";
+import * as Rx from "rxjs";
 @Page({
     selector: "Region",
 	templateUrl: "pages/region/region.page.html",
     directives: [StartNav],
-    providers: [CompetitionService]
+    providers: [CompetitionService, RegionService]
 })
-export class RegionPage implements OnInit
+export class RegionPage implements OnInit, OnDestroy
 {
     constructor(
         public context : AppRoutingService,
         private params: RouteParams, 
         private logger: Logger, 
         private regionCache: RegionCache,
+        private regionService: RegionService,
         private competitionService: CompetitionService)
     {
         this.logger.Notify("region page loaded");
@@ -30,7 +32,11 @@ export class RegionPage implements OnInit
     }
   
     public list : Array<ICompetition> = []; 
-    public region : IRegion; 
+    public region : IRegion = {
+        Name : "",
+        Id: 0,
+        Logo: ""
+    }; 
     
     public refresh(args: any){
         let control : PullToRefresh = args.object;
@@ -54,15 +60,34 @@ export class RegionPage implements OnInit
         return observable;
     }
     
-    ngOnInit()
-    {
-        this.logger.Notify("ngOnInit: RegionPage");
-
+    private SetRegion(){
         this.region = this.regionCache.Region 
             ? this.regionCache.Region  
             : this.regionCache.Regions.filter(e=> e.Id == this.context.RegionId)[0];
         
+    }
+    
+    private regionsSubscription : Rx.Subscription; 
+    
+    ngOnInit()
+    {
+        this.logger.Notify("ngOnInit: RegionPage");
+        this.regionsSubscription = this.regionCache.RegionsChange.subscribe(all => {
+            this.region = all.filter(e=> e.Id == this.context.RegionId)[0];
+        });
+        
+        if(this.regionCache.Regions == null){
+            this.regionService.List();
+        }else{
+            this.SetRegion();
+        }
+        
         this.loadDetail();
     }  
+    
+    ngOnDestroy(){
+        this.regionsSubscription.unsubscribe();
+    }
+    
 }
 

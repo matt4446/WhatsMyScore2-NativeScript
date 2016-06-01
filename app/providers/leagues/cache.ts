@@ -10,20 +10,28 @@ from "../../models/models";
 
 @Injectable()
 export class RegionCache {
+    public RegionsChange : Subject<IRegion[]> = new Subject<IRegion[]>(); 
+    public RegionChange: Subject<IRegion> = new Subject<IRegion>();
+    
     private _region : IRegion; 
+    
     public get Region(): IRegion {
         return this._region;
     }
+    
     public set Region(value: IRegion){
         this._region = value;
     }
     
     private _regions : IRegion[]; 
+    
     public get Regions(): IRegion[] {
         return this._regions;
     }
+    
     public set Regions(value : IRegion[]){
         this._regions = value;
+        this.RegionsChange.next(this._regions);
     }
     
     constructor() {
