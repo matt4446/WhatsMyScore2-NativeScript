@@ -26,7 +26,8 @@ export interface IAppConfig<T> {
     providers ? : any[],
     template ? : string,
     appOptions? : AppOptions,
-    appStartup? : (appRef: ComponentRef<T>) => void
+    appStartup? : (appRef: ComponentRef<T>) => void,
+    designMode? : boolean
 }
 
 
@@ -45,13 +46,14 @@ export function App<T>(config: IAppConfig<T>) {
         config.selector = 'main';
         config.template = `<page-router-outlet></page-router-outlet>`;
 
-        let baseConfig = [
+        let baseConfig = config.designMode ? [
             HTTP_PROVIDERS,
             NS_ROUTER_PROVIDERS,
             //overide again,
             NSRememberLocationStrategy,
             provide(LocationStrategy, { useExisting: NSRememberLocationStrategy})
-        ];
+        ] : [HTTP_PROVIDERS,
+            NS_ROUTER_PROVIDERS];
 
         config.providers = config.providers 
             ? config.providers.concat(baseConfig) 

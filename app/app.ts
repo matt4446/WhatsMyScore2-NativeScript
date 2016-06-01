@@ -90,6 +90,7 @@ import {RegionCache, CompetitionCache, GradeCache, ClubCache} from "./providers/
 //app decorator - save some code writing. Wrapper around @Component
 @App({
     selector: "main",
+    designMode: true,
     providers: [Logger, 
         GradeCache, 
         ClubCache,
