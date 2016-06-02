@@ -23,7 +23,7 @@ export class NavIcon
     //     [text]="GetIcon()"></label>
     // `, 
     template: `   
-    <label (tap)="tapIcon($event)" #item 
+    <label (tap)="tapIcon($event)" #item style="text-align:center;"
         class="ion-icon text-center"
         [text]="GetIcon()"></label>
     `, 

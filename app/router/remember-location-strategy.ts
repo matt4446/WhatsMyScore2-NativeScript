@@ -5,7 +5,7 @@ import { LocationStrategy } from '@angular/common';
 import { NgZone, ApplicationRef, Inject, forwardRef } from '@angular/core';
 
 import { topmost } from "ui/frame";
-import {   } from "nativescript-angular/router";
+import { NSLocationStrategy } from "nativescript-angular/router/ns-location-strategy";
 
 interface LocationState {
     state: any,

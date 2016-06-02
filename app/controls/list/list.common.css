@@ -1,0 +1,27 @@
+.nx-header {
+    padding: 12;
+    padding-top: 8;
+    padding-bottom: 8;
+    border-radius: 4;
+    background-color:#4d75b8;
+}
+.nx-header-ext {
+    background-color:#4d75b8;
+}
+
+
+
+.nx-list {
+    margin-bottom: 12;
+    border-width: 1;
+    border-radius: 4;
+    border-color: #eee;
+}
+
+.nx-item {
+    border-bottom-width: 1;
+    border-color: #c8c7cc;
+    border-style: solid;
+    padding-top: 12;
+    padding-bottom: 12;
+}

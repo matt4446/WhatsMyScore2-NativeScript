@@ -13,7 +13,8 @@ export interface IControlConfig {
     pipes?: any[];
     host?: {
         'class' : string 
-    }
+    },
+    styleUrls?: string[];
 }
 export function Control(config: IControlConfig={})
 {

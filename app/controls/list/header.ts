@@ -15,7 +15,8 @@ import { NxListItem } from "./list-item";
         </StackLayout>
     `,
     providers: [],
-    directives:[ NxListItem ]
+    directives:[ NxListItem ],
+    styleUrls: ["./controls/list/list.common.css"]
 })
 export class NxHeader
 {

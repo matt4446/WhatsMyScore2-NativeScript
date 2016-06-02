@@ -14,7 +14,7 @@ import { Observable, Subscription, Subject } from 'rxjs/Rx';
     selector: "nx-list",
     //templateUrl: "controls/list/list.html",
     template:`
-    <Border borderRadius="4" borderWidth="1" borderColor="#eeeeee" class="nx-list">
+    <StackLayout class="nx-list">
     <GridLayout>
         <StackLayout>
             <StackLayout>
@@ -27,11 +27,11 @@ import { Observable, Subscription, Subject } from 'rxjs/Rx';
                 <ng-content select="[item-bottom]"></ng-content>
             </StackLayout>
         </StackLayout>
-        
     </GridLayout>
-    </Border>
+    </StackLayout>
     `,
     directives: [ NxListItem, NxHeader ],
+    styleUrls: ["./controls/list/list.common.css"]
     //inputs:["padding"]
 })
 export class NxList {

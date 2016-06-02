@@ -11,7 +11,7 @@ import {CompetitorService} from "../../../../providers/leagues/competitors";
 import {RegionCache, CompetitionCache, GradeCache, ClubCache} from "../../../../providers/leagues/cache";
 import * as Models from "../../../../models/models.d.ts";
 import {CompetitionNav} from "../../../nav/competition.nav";
-import * as rx from "rxjs";
+import * as Rx from "rxjs";
 import 'rxjs/add/operator/max';
 import 'rxjs/add/operator/distinct';
 
@@ -20,27 +20,30 @@ import 'rxjs/add/operator/distinct';
     //templateUrl: "pages/competition/gradeList/page.html",
     template: `
         <nx-drawer>
-           
             <competition-nav drawer-aside-left></competition-nav>
             <nx-nav>
                 <label class="nx-header-title" [text]="'Competitors' | Title" style="horizontal-align:center"></label>
                 <ion-icon nav-right nav="true" icon="ion-android-favorite"></ion-icon>
             </nx-nav>
             <nx-content (refreshStarted)="refresh($event)">
-                <StackLayout class="inset">
-                    <nx-list *ngFor="let startGroup of list | groupBy: 'StartGroup'">
-                        <nx-header item-top>
-                            <label *ngIf="groups > 1" [text]="'StartGroup: ' + startGroup.key | Title" class="nx-header-title"></label>
-                            <label *ngIf="groups <= 1" [text]="'StartGroup'| Title" class="nx-header-title"></label>
-                        </nx-header>
-                        <nx-item *ngFor="let person of startGroup.items | orderBy:'StartNumber'">
-                            <label item-left [text]="person.StartNumber"></label>
-                                              
-                            <label [text]="person.FullName"></label>
-                            <label [text]="person.Club" class="note"></label>
-                        </nx-item>
-                    </nx-list>
-                </StackLayout>
+                <GridLayout>
+                    <StackLayout class="inset">
+                        <nx-list *ngFor="let startGroup of list | groupBy: 'StartGroup'">
+                            <nx-header item-top>
+                                <label *ngIf="groups > 1" [text]="'StartGroup: ' + startGroup.key | Title" class="nx-header-title"></label>
+                                <label *ngIf="groups <= 1" [text]="'StartGroup'| Title" class="nx-header-title"></label>
+                            </nx-header>
+                            <nx-item *ngFor="let person of startGroup.items | orderBy:'StartNumber'">
+                                <label item-left [text]="person.StartNumber"></label>
+                                                
+                                <label [text]="person.FullName"></label>
+                                <label [text]="person.Club" class="note"></label>
+                            </nx-item>
+                        </nx-list>
+                    </StackLayout>
+                    <material-fab text="face" vertical-align="top" horizontal-align="right"></material-fab>
+                </GridLayout>
+                
             </nx-content>
         </nx-drawer>
     `,
@@ -84,7 +87,7 @@ export class StartListGradePage implements OnInit
         
         obseravable.map(e=> e.json()).subscribe(e => {
             this.list = e;
-            let max = rx.Observable.from(this.list).map(e=> e.StartGroup).max();
+            let max = Rx.Observable.from(this.list).map(e=> e.StartGroup).max();
             
             max.subscribe(m=> {
                 this.groups = m;

@@ -37,13 +37,12 @@ import {CompetitionNav} from "../../nav/competition.nav";
                                 'Region.Competition.StartList.Competitors', 
                                 { regionId: context.RegionId, competitionId: context.CompetitionId, gradeId: grade.Id }
                             ]">
-                            <ion-icon item-left icon="ion-clipboard"></ion-icon>
-                            <label [text]="grade.ClassName"></label>
-                            <StackLayout item-right class="float-center" >
-                                <ion-icon icon="ion-ios-people"></ion-icon>
-                                <label class="note text-center" [text]="grade.Competitors"></label>
-                            </StackLayout>
                             
+                            <label [text]="grade.ClassName"></label>
+                            <label class="note" [text]="grade.Competitors + ' competitors' "></label>
+                            
+                            <Label item-left class="material-icons text-center icon-default" text="assignment" textWrap="true"></Label>
+                            <ion-icon item-right icon="ion-chevron-right"></ion-icon>
                         </nx-item>
                     </nx-list>
                 </StackLayout>
@@ -83,13 +82,15 @@ export class StartListPage implements OnInit
         if(this.cache.Grades && this.cache.Grades.length > 0){
             this.list = this.cache.Grades;
             return;
+        }else{
+            this.loadDetail();
         }
         
         
     }
     
     public loadDetail(){
-        let observable = this.gradeService.List(this.cache.Competition.Id);
+        let observable = this.gradeService.List(this.context.CompetitionId);
         observable.map(e=> e.json()).subscribe(e=> {
             this.list = e;
         });

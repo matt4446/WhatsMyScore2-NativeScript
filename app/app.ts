@@ -39,6 +39,8 @@ import {RegionCache, CompetitionCache, GradeCache, ClubCache} from "./providers/
     { path: "/regions", component: RegionsPage, name: "Regions" },
     { path: "/region/:regionId", component: RegionPage, name: "Region" }
 ])
+
+
 /* 
     region picked - new navigation level 
     child route of Region 

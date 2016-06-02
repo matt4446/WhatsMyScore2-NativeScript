@@ -20,7 +20,7 @@ import { Observable, Subscription, Subject} from 'rxjs/Rx';
             <StackLayout col="0" class="icon-column" style="vertical-align:center;horizontal-align:center" >
                 <ng-content select="[item-left]"></ng-content>
             </StackLayout>
-            <StackLayout col="1">
+            <StackLayout col="1" style="vertical-align:center">
                 <ng-content></ng-content>
             </StackLayout>
             <StackLayout col="2" class="icon-column" style="vertical-align:center;horizontal-align:center">
@@ -31,7 +31,8 @@ import { Observable, Subscription, Subject} from 'rxjs/Rx';
     `,
     providers: [],
     inputs: ['params: nxRoute'],
-    outputs: ["tap"]
+    outputs: ["tap"],
+    styleUrls: ["./controls/list/list.common.css"]
 })
 export class NxListItem {
     //private template: TemplateRef;

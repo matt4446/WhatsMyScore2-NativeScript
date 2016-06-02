@@ -20,10 +20,64 @@
   /* app/fonts/FontAwesome.ttf */
   /* cheat sheet https://fortawesome.github.io/Font-Awesome/cheatsheet/ */
 }
-.material-icon {
-  font-family: 'Material-Design-Iconic-Font';
-  /* file must match exactly (indluding case) Ionicons.ttf */
-  /* app/fonts/Material-Design-Iconic-Font.ttf */
+.material-icons {
+  font-family: "Material Icons", "MaterialIcons-Regular";
+  font-style: normal;
+  font-weight: 400;
+}
+.blue {
+  color: #2196F3;
+}
+.blue-100 {
+  color: #BBDEFB;
+}
+.blue-200 {
+  color: #90CAF9;
+}
+.blue-300 {
+  color: #64B5F6;
+}
+.blue-400 {
+  color: #42A5F5;
+}
+.blue-500 {
+  color: #2196F3;
+}
+.blue-600 {
+  color: #1E88E5;
+}
+.blue-700 {
+  color: #1976D2;
+}
+.blue-800 {
+  color: #1565C0;
+}
+.blue-900 {
+  color: #0D47A1;
+}
+.blue-a1 {
+  color: #82B1FF;
+}
+.blue-a2 {
+  color: #448AFF;
+}
+.blue-a4 {
+  color: #2979FF;
+}
+.blue-a7 {
+  color: #2962FF;
+}
+.icon-default {
+  font-size: 24;
+  color: #1976D2;
+}
+.icon-circle {
+  border-width: 2;
+  border-style: solid;
+  border-color: #B3E5FC;
+  border-radius: 15;
+  height: 30;
+  width: 30;
 }
 .inset {
   padding: 12;
@@ -46,9 +100,6 @@ button {
   background-color: #4d75b8;
   color: #FFF;
 }
-.text-left {
-  text-align: left;
-}
 .float-left {
   horizontal-align: left;
 }
@@ -58,37 +109,38 @@ button {
 .float-center {
   horizontal-align: center;
 }
+.text-left {
+  text-align: left;
+}
 .text-right {
   text-align: right;
 }
 .text-center {
   text-align: center;
 }
-.nx-header {
-  padding: 12;
-  padding-top: 8;
-  padding-bottom: 8;
-  border-radius: 4;
-  font-size: 26;
-  background-color: #4d75b8;
-  color: #FFF;
+.h1 {
+  font-size: 36;
+  font-weight: 700;
 }
-.nx-header-ext {
-  background-color: #4d75b8;
+.h2 {
+  font-size: 30;
+}
+.h3 {
+  font-size: 24;
+}
+.h4 {
+  font-size: 18;
+}
+.h5 {
+  font-size: 14;
+}
+.h6 {
+  font-size: 12;
+  margin: 10 0 10 0;
 }
 .nx-header-title {
   font-weight: bold;
-  color: #FFF;
-}
-.nx-list {
-  margin-bottom: 12;
-}
-.nx-item {
-  border-bottom-width: 1;
-  border-color: #c8c7cc;
-  border-style: solid;
-  padding-top: 12;
-  padding-bottom: 12;
+  color: #fff;
 }
 .hidden {
   opacity: 0;
