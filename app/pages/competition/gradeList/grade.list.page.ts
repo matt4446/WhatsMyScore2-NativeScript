@@ -31,15 +31,17 @@ import * as Rx from "rxjs";
                             <label [text]="group.key | Title" class="nx-header-title"></label>
                         </nx-header>
                         
-                        <nx-item *ngFor="let grade of group.items | orderBy:'ClassName'">
-                            <ion-icon item-left icon="ion-clipboard"></ion-icon>
-                            
+                        <nx-item *ngFor="let grade of group.items | orderBy:'ClassName'"
+                            [nxRoute]="[
+                                'Region.Competition.GradeList.Competitors', 
+                                { regionId: context.RegionId, competitionId: context.CompetitionId, gradeId: grade.Id }
+                            ]"
+                        >
                             <label [text]="grade.ClassName"></label>
-                            <label text ="hi"></label>
-                            <StackLayout item-right class="float-center" >
-                                <ion-icon icon="ion-ios-people"></ion-icon>
-                                <label class="note text-center" [text]="grade.Competitors"></label>
-                            </StackLayout>
+                            <label class="note" [text]="grade.Competitors + ' competitors' "></label>
+                            
+                            <Label item-left class="material-icons text-center icon-default" text="assignment" textWrap="true"></Label>
+                            <ion-icon item-right icon="ion-chevron-right"></ion-icon>
                             
                         </nx-item>
                     </nx-list>

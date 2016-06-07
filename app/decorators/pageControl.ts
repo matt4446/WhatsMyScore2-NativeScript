@@ -29,7 +29,9 @@ export interface IPageControlConfig {
     pipes?: any[];
     host?: {
         'class' : string 
-    }
+    },
+    changeDetection? : any;
+    styleUrls?: string[];
 }
 export function PageControl(config: IPageControlConfig={}) {
     return (cls) =>

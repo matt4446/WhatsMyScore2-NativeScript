@@ -16,7 +16,7 @@ import { Observable, Subscription, Subject} from 'rxjs/Rx';
     template: `
     <StackLayout #item style="opacity:1">
         <Border height="2" borderRadius="0" borderWidth="1" borderColor="#548CEC"></Border>
-        <GridLayout #animateItem columns="50, *, 42" rows="auto" class="nx-item" (tap)="tapWrapper($event)">
+        <GridLayout #animateItem columns="50, *, 50" rows="auto" class="nx-item" (tap)="tapWrapper($event)">
             <StackLayout col="0" class="icon-column" style="vertical-align:center;horizontal-align:center" >
                 <ng-content select="[item-left]"></ng-content>
             </StackLayout>
@@ -25,6 +25,9 @@ import { Observable, Subscription, Subject} from 'rxjs/Rx';
             </StackLayout>
             <StackLayout col="2" class="icon-column" style="vertical-align:center;horizontal-align:center">
                 <ng-content select="[item-right]"></ng-content>
+            </StackLayout>
+            <StackLayout colSpan="3" style="vertical-align:center">
+                <ng-content select="[full-item]"></ng-content>
             </StackLayout>
         </GridLayout>
     </StackLayout>

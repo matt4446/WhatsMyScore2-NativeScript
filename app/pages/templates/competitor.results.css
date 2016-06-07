@@ -1,0 +1,52 @@
+GridLayout {
+    margin-left:  10;
+    margin-right:  10;
+}
+GridLayout Label {
+    
+    padding: 5;
+}
+
+GridLayout.header{
+    border-top-left-radius: 4;
+    border-top-right-radius: 4;
+}
+GridLayout.header Label {
+    background-color: #4d75b8;
+    color: #90CAF9;
+    font-size: 14;
+}
+GridLayout.result Label {
+    font-size: 14;
+    color: #37474F;
+    
+}
+GridLayout.result Label.invalid {
+    color: #90A4AE;
+}
+
+.blue { color: #2196F3; }
+.blue-100 { color: #BBDEFB; }
+.blue-200 { color: #90CAF9; }
+.blue-300 { color: #64B5F6; }
+.blue-400 { color: #42A5F5; }
+.blue-500 { color: #2196F3; }
+.blue-600 { color: #1E88E5; }
+.blue-700 { color: #1976D2; }
+.blue-800 { color: #1565C0; }
+.blue-900 { color: #0D47A1; }
+.blue-a1 { color: #82B1FF; }
+.blue-a2 { color: #448AFF; }
+.blue-a4 { color: #2979FF; }
+.blue-a7 { color: #2962FF; }
+
+.blue-grey { color: #607D8B; }
+.blue-grey-100 { color: #CFD8DC; }
+.blue-grey-200 { color: #B0BEC5; }
+.blue-grey-300 { color: #90A4AE; }
+.blue-grey-400 { color: #78909C; }
+.blue-grey-500 { color: #607D8B; }
+.blue-grey-600 { color: #546E7A; }
+.blue-grey-700 { color: #455A64; }
+.blue-grey-800 { color: #37474F; }
+.blue-grey-900 { color: #263238; }

@@ -22,8 +22,9 @@ import { StartListPage } from "./pages/competition/startList/start.list.page";
 
 //level 4
 import {StartListGradePage } from "./pages/competition/startList/competitors/competitors.page";
-import {GradePage} from "./pages/competition/grade/grade.page";
 import {ClubPage} from "./pages/competition/club/club.page";
+import {GradeCompetitorsPage} from "./pages/competition/grade/grade.page";
+
 
 //providers 
 import {Logger} from "./providers/logger";
@@ -84,7 +85,7 @@ import {RegionCache, CompetitionCache, GradeCache, ClubCache} from "./providers/
     //to-do - template & provider
     { path: "/region/:regionId/competition/:competitionId/startList/:gradeId/competitors", component: StartListGradePage, name: "Region.Competition.StartList.Competitors"},
     //to-do - template & provider
-    //{ path: "/region/:regionId/competition/:competitionId/grade/:gradeId/competitors", component: GradePage, name : "Region.Competition.GradeList.Competitors" },
+    { path: "/region/:regionId/competition/:competitionId/grade/:gradeId/competitors", component: GradeCompetitorsPage, name : "Region.Competition.GradeList.Competitors" },
     //to-do - template & provider
     //{ path: "/region/:regionId/competition/:competitionId/club/:clubId/competitors", component: ClubPage, name : "Region.Competition.GradeList.Competitors" },
 ])

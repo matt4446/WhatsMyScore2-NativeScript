@@ -1,22 +1,20 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router-deprecated";
-import {Page} from "../../../decorators/page";
-import {Logger} from "../../../providers/logger";
+import {Page} from "../../../../decorators/page";
+import {Logger} from "../../../../providers/logger";
 //import {SearchList, ISearchEvent} from "../../controls/searchList/searchList";
-import {AppRoutingService} from "../../../context/router.context";
-import {CompetitionService} from "../../../providers/leagues/competitions";
-import {ClubService} from "../../../providers/leagues/club";
-import {GradeService} from "../../../providers/leagues/grade";
-import {CompetitorService} from "../../../providers/leagues/competitors";
-import {RegionCache, CompetitionCache, GradeCache, ClubCache} from "../../../providers/leagues/cache";
-import * as Models from "../../../models/models.d.ts";
-
+import {AppRoutingService} from "../../../../context/router.context";
+import {CompetitionService} from "../../../../providers/leagues/competitions";
+import {ClubService} from "../../../../providers/leagues/club";
+import {GradeService} from "../../../../providers/leagues/grade";
+import {CompetitorService} from "../../../../providers/leagues/competitors";
+import {RegionCache, CompetitionCache, GradeCache, ClubCache} from "../../../../providers/leagues/cache";
+import * as Models from "../../../../models/models.d.ts";
+import {CompetitionNav} from "../../../nav/competition.nav";
 import * as Rx from "rxjs";
 import 'rxjs/add/operator/max';
 import 'rxjs/add/operator/distinct';
 
-import {CompetitionNav} from "../../nav/competition.nav";
-import {CompetitorResult} from "../../templates/competitor.results";
 @Page({
     selector: "grade-competitors-page",
     template: `
@@ -27,12 +25,19 @@ import {CompetitorResult} from "../../templates/competitor.results";
                 <ion-icon nav-right nav="true" icon="ion-android-favorite"></ion-icon>
             </nx-nav>
             <nx-content (refreshStarted)="refresh($event)">
-
                 <GridLayout>
                     <StackLayout class="inset">
-                        <nx-list>
-                            <competitor-result *ngFor="let item of list; #i = index" [competitor]="item"></competitor-result>
-                             
+                        <nx-list *ngFor="let startGroup of list | groupBy: 'StartGroup'">
+                            <nx-header item-top>
+                                <label *ngIf="groups > 1" [text]="'StartGroup: ' + startGroup.key | Title" class="nx-header-title"></label>
+                                <label *ngIf="groups <= 1" [text]="'StartGroup'| Title" class="nx-header-title"></label>
+                            </nx-header>
+                            <nx-item *ngFor="let person of startGroup.items | orderBy:'StartNumber'">
+                                <label item-left [text]="person.StartNumber"></label>
+                                                
+                                <label [text]="person.FullName"></label>
+                                <label [text]="person.Club" class="note"></label>
+                            </nx-item>
                         </nx-list>
                     </StackLayout>
                     <material-fab text="face" vertical-align="top" horizontal-align="right"></material-fab>
@@ -41,7 +46,7 @@ import {CompetitorResult} from "../../templates/competitor.results";
             </nx-content>
         </nx-drawer>
     `,
-    directives: [CompetitionNav, CompetitorResult],
+    directives: [CompetitionNav],
     providers: [CompetitionService, GradeService, ClubService, CompetitorService]
 })
 export class GradeCompetitorsPage implements OnInit {

@@ -1,15 +1,6 @@
 import { Component, provide, ChangeDetectionStrategy } from "@angular/core";
 import {NgIf, NgFor} from "@angular/common";
 import {RouteParams} from "@angular/router-deprecated";
-// import { NxNav} from "../controls/nav/nav";
-// import {NxList} from "../controls/list/list";
-// import {NxListItem} from "../controls/list/list-item";
-// import {NxHeader} from "../controls/list/header";
-// import {NxCard} from "../controls/card/card.control";
-// import {NxPullToRefresh} from "../controls/pullToRefresh/pullToRefresh.control";
-// import {NxContent} from "../controls/content/content.control";
-// import {NxDrawer} from "../controls/drawer/drawer";
-// import {IonIcon,NavIcon} from "../controls/icons/ion-icon";
 import {controls} from "../controls/all";
 
 //import {LoadingService} from "../providers/loadingService/loadingService";
@@ -23,7 +14,7 @@ import {Logger} from "../providers/logger";
 import {TitleTransform} from "../pipes/title";
 import {DisplayDate} from "../pipes/dates";
 import {GroupByPipe, OrderByPipe} from "../pipes/orderBy";
-
+import {FormScoreFormatter, ScoreFormatter} from "../pipes/score";
 const _reflect: any = Reflect;
 
 /*
@@ -68,7 +59,8 @@ export function Page(config: IPageConfig={})
             NgFor
         ];
         
-        var corePipes = [TitleTransform, DisplayDate, GroupByPipe, OrderByPipe];
+        var corePipes = [TitleTransform, DisplayDate, GroupByPipe, OrderByPipe, ScoreFormatter, FormScoreFormatter];
+        
         
         config.directives = config.directives 
             ? config.directives.concat(coreDirectives) 
