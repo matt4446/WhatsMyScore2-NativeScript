@@ -16,7 +16,7 @@ import {CompetitorResultRow, CompetitorResultRowHeader} from "./competitor.resul
             <Label class='note' [text]="person.Total | number:'3.3-3'" textWrap="true"></Label>
         </StackLayout>
     </nx-item>
-    <nx-item *ngIf="expanded"> 
+    <nx-item *ngIf="expanded"  (tap)="ShowHideResults()"> 
       <StackLayout full-item>
         <competitor-result-row-header></competitor-result-row-header>
         <competitor-result-row *ngIf="person.Pass1" [scoreline]="person.Pass1"></competitor-result-row>

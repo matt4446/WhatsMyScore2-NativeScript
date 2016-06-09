@@ -32,7 +32,6 @@ import {CompetitorResult} from "../../templates/competitor.results";
                     <StackLayout class="inset">
                         <nx-list>
                             <competitor-result *ngFor="let item of list; #i = index" [competitor]="item"></competitor-result>
-                             
                         </nx-list>
                     </StackLayout>
                     <material-fab text="face" vertical-align="top" horizontal-align="right"></material-fab>
@@ -55,7 +54,6 @@ export class GradeCompetitorsPage implements OnInit {
     }
 
     public list: Models.ICompetitor[] = [];
-    public groups: number = 0; //if more than one group change the label
 
     //action to 
     public gradeSearch($event: any) {
@@ -65,24 +63,23 @@ export class GradeCompetitorsPage implements OnInit {
     }
 
     public ngOnInit() {
-        this.logger.Notify("grade-list-page ngOnInit");
+        this.logger.Notify("grade-page ngOnInit");
         //time to load the data
 
         this.loadDetail();
     }
 
     public loadDetail() {
-        let obseravable = this.competitorService.ListGradeCompetitors(this.context.CompetitionId, this.context.GradeId);
+        let obseravable = this.competitorService
+            .ListGradeCompetitors(this.context.CompetitionId, this.context.GradeId);
 
         //this.logger.NotifyResponse(obseravable);
 
-        obseravable.map(e => e.json()).subscribe(e => {
+        obseravable.map(e => e.json()).subscribe((e : Models.ICompetitor[]) => {
             this.list = e;
-            let max = Rx.Observable.from(this.list).map(e => e.StartGroup).max();
+            //let max = Rx.Observable.from(this.list).map(e => e.StartGroup).max();
 
-            max.subscribe(m => {
-                this.groups = m;
-            });
+            
         });
 
         return obseravable;

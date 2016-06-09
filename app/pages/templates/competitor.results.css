@@ -3,7 +3,6 @@ GridLayout {
     margin-right:  10;
 }
 GridLayout Label {
-    
     padding: 5;
 }
 
@@ -19,10 +18,11 @@ GridLayout.header Label {
 GridLayout.result Label {
     font-size: 14;
     color: #37474F;
-    
+
 }
 GridLayout.result Label.invalid {
     color: #90A4AE;
+    text-decoration: line-through;
 }
 
 .blue { color: #2196F3; }
