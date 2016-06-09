@@ -10,7 +10,6 @@
 }
 
 
-
 .nx-list {
     margin-bottom: 12;
     border-width: 1;
@@ -22,6 +21,41 @@
     border-bottom-width: 1;
     border-color: #c8c7cc;
     border-style: solid;
+}
+
+.nx-item-top-border {
+    /* height="2" borderRadius="0" borderWidth="1" borderColor="#548CEC" */
+    height: 2;
+    border-radius: 0;
+    border-width: 1;
+    border-color: #548CEC;
+}
+
+.icon-column{
+    vertical-align: center;
+    horizontal-align: center;
+}
+
+.nx-item-column {
+   vertical-align: center;
+   /*
+   border-width: 1;
+   border-style: solid;
+   border-color: red;
+   */
+}
+
+.inset {
+    padding: 12;
+}
+.inset-sides
+{
+    padding-left: 12;
+    padding-right:12;
+}
+.inset-top {
     padding-top: 12;
+}
+.inset-bottom {
     padding-bottom: 12;
 }

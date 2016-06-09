@@ -11,25 +11,45 @@ import { Observable, Subscription, Subject} from 'rxjs/Rx';
 
 @Control({
     selector:"nx-item",
+    
     //create a 1 row template; 3 columns; 2 for the icons on the sides
     //https://github.com/NativeScript/NativeScript/issues/859 -- cant get per side border yet. 
     template: `
-    <StackLayout #item style="opacity:1">
-        <Border height="2" borderRadius="0" borderWidth="1" borderColor="#548CEC"></Border>
-        <GridLayout #animateItem columns="50, *, 50" rows="auto" class="nx-item" (tap)="tapWrapper($event)">
-            <StackLayout col="0" class="icon-column" style="vertical-align:center;horizontal-align:center" >
-                <ng-content select="[item-left]"></ng-content>
-            </StackLayout>
-            <StackLayout col="1" style="vertical-align:center">
-                <ng-content></ng-content>
-            </StackLayout>
-            <StackLayout col="2" class="icon-column" style="vertical-align:center;horizontal-align:center">
-                <ng-content select="[item-right]"></ng-content>
-            </StackLayout>
-            <StackLayout colSpan="3" style="vertical-align:center">
-                <ng-content select="[full-item]"></ng-content>
-            </StackLayout>
-        </GridLayout>
+    <StackLayout #item>
+        <StackLayout class="nx-item-top-border"></StackLayout>
+        <StackLayout class="nx-item inset-top inset-bottom">
+            <GridLayout #animateItem columns="40, *, 50" rows="auto" (tap)="tapWrapper($event)">
+                <!-- default layout --> 
+                <StackLayout col="0" class="icon-column icon-left nx-item-column" >
+                    <ng-content select="[item-left]"></ng-content>
+                </StackLayout>
+
+                <StackLayout col="1" class="nx-item-column">
+                    <ng-content></ng-content>
+                </StackLayout>
+
+                <StackLayout col="2" class="icon-column icon-right nx-item-column">
+                    <ng-content select="[item-right]"></ng-content>
+                </StackLayout>
+                
+                <!-- first two colums --> 
+                <StackLayout col="0" colSpan="2" class="nx-item-column inset-sides">
+                    <ng-content select="[item-left-center]"></ng-content>
+                </StackLayout>
+
+                <!-- third column -->
+                <StackLayout col="1" colSpan="2" class="nx-item-column icon-column">
+                    <ng-content select="[item-center-right]"></ng-content>
+                </StackLayout>
+
+                <!-- all three columns  -->
+                <StackLayout col="0" colSpan="3" class="nx-item-column inset-sides">
+                    <ng-content select="[item-left-center-right]"></ng-content>
+                </StackLayout>
+                
+            </GridLayout>
+        </StackLayout>
+        
     </StackLayout>
     `,
     providers: [],

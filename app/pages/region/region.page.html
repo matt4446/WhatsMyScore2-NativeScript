@@ -19,7 +19,7 @@
                     [nxRoute]="['Region.Competition', 
                         { regionId: context.RegionId, competitionId: competition.Id }
                     ]">
-                    <ion-icon item-left icon="ion-ios-star"></ion-icon>
+                    <ion-icon item-left icon="ion-ios-star" [align-right]></ion-icon>
                     <label [text]="competition.Name"></label>
                     <label class="note" [text]="competition.LocationName"></label>
                     <label class="note" [text]="competition.StartDateTimeUtc | DisplayDate"></label>

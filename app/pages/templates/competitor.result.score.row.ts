@@ -14,7 +14,7 @@ import {Logger} from "../../providers/logger";
             <Label text="E3" textWrap="true" col="2"></Label>
             <Label text="E4" textWrap="true" col="3"></Label>
             <Label text="E5" textWrap="true" col="4"></Label>
-            <Label text="Diff" textWrap="true" col="5"></Label>
+            <Label text="DIFF" textWrap="true" col="5"></Label>
             
         </GridLayout>  
     `,

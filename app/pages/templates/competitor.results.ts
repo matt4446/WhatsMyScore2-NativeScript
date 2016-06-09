@@ -8,16 +8,18 @@ import {CompetitorResultRow, CompetitorResultRowHeader} from "./competitor.resul
   selector: 'competitor-result',
   template: `
     <nx-item (tap)="ShowHideResults()">
-        <label [text]="person.FullName"></label>
-        <label [text]="person.Club" class="note"></label>
+        <StackLayout item-left-center>
+            <label [text]="person.FullName | Title"></label>
+            <label [text]="person.Club | Title" class="note"></label>
+        </StackLayout>
         
         <StackLayout item-right>
-            <Label class='note' [text]="GetRank()" textWrap="true"></Label>
+            <Label class='note' [text]="GetRank() | Title" textWrap="true"></Label>
             <Label class='note' [text]="person.Total | number:'3.3-3'" textWrap="true"></Label>
         </StackLayout>
     </nx-item>
-    <nx-item *ngIf="expanded"  (tap)="ShowHideResults()"> 
-      <StackLayout full-item>
+    <nx-item *ngIf="expanded" (tap)="ShowHideResults()"> 
+      <StackLayout item-left-center-right>
         <competitor-result-row-header></competitor-result-row-header>
         <competitor-result-row *ngIf="person.Pass1" [scoreline]="person.Pass1"></competitor-result-row>
         <competitor-result-row *ngIf="person.Pass2" [scoreline]="person.Pass2"></competitor-result-row> 

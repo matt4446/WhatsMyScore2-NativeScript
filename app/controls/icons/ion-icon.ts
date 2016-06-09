@@ -14,6 +14,23 @@ export class NavIcon
     
 }
 
+@Directive({
+    selector:"[align-left]",
+    host: {
+        "class" : "text-left" 
+    }
+})
+export class AlignLeft{
+
+}
+@Directive({
+    selector: "[align-right]",
+    host: {
+        "class" : "text-right"
+    }
+})
+export class AlignRight {}
+
 @Control({
     selector:"ion-icon",
     // template: `   
@@ -29,7 +46,8 @@ export class NavIcon
     `, 
     providers: [],
     inputs:["icon", "nav"],
-    outputs:["tap"]
+    outputs:["tap"],
+    styleUrls: ["./controls/icons/ion-icon.css"]
     //pipes: [IconPipe]
 })
 export class IonIcon {

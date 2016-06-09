@@ -2,7 +2,9 @@ import {NxCard} from "./card/card.control";
 import {NxContent} from "./content/content.control";
 import {NxDrawer} from "./drawer/drawer";
 import {MaterialFab} from "./fab/fab.component";
-import {IonIcon} from "./icons/ion-icon";
+import {IonIcon,AlignLeft,AlignRight,NavIcon} from "./icons/ion-icon";
+
+
 import {NxHeader} from "./list/header";
 import {NxListItem} from "./list/list-item";
 import {NxList} from "./list/list";
@@ -17,7 +19,8 @@ export var controls = [
     NxContent,
     NxDrawer,
     MaterialFab,
-    IonIcon,
+    IonIcon, AlignLeft,AlignRight,NavIcon,
+
     NxHeader,
     NxListItem,
     NxList,

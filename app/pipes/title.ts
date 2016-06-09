@@ -7,10 +7,8 @@ export class TitleTransform implements PipeTransform {
    {
    }
    
-   transform(value: any, args: any[] = []) {
-       
-       let k : string = value;
-       k = k.toUpperCase();
+   transform(value: string, args: any[] = []) {
+       let k = value.toUpperCase();
        
        return k;
    }

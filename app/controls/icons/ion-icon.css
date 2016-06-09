@@ -1,0 +1,21 @@
+.icon {
+    font-size: 20;
+    margin: 3;
+}
+
+.ion-icon {
+    font-family: "Ionicons";
+    /* file must match exactly (indluding case) Ionicons.ttf */
+    /* app/fonts/Ionicons.ttf */
+    /* cheat sheet http://ionicons.com/cheatsheet.html */
+    font-size: 26 ;
+    color: #4d75b8;
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+.text-right {
+    text-align: right;
+}

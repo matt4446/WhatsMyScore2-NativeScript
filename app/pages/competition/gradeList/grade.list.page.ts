@@ -37,10 +37,12 @@ import * as Rx from "rxjs";
                                 { regionId: context.RegionId, competitionId: context.CompetitionId, gradeId: grade.Id }
                             ]"
                         >
+                            <Label item-left class="material-icons icon-default" text="assignment" textWrap="true"></Label>
+
                             <label [text]="grade.ClassName"></label>
                             <label class="note" [text]="grade.Competitors + ' competitors' "></label>
                             
-                            <Label item-left class="material-icons text-center icon-default" text="assignment" textWrap="true"></Label>
+                            
                             <ion-icon item-right icon="ion-chevron-right"></ion-icon>
                             
                         </nx-item>
