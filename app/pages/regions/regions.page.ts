@@ -40,6 +40,7 @@ export class RegionsPage implements OnInit
     } 
         
     public refresh(args: any){
+        this.logger.Notify("regions page refresh => load data");
         this.loadDetail().subscribe(() => {
             args.completed();
         });

@@ -26,18 +26,27 @@ import {CompetitorResult} from "../../templates/competitor.results";
                 <label class="nx-header-title" [text]="'Competitors' | Title" style="horizontal-align:center"></label>
                 <ion-icon nav-right nav="true" icon="ion-android-favorite"></ion-icon>
             </nx-nav>
-            <nx-content (refreshStarted)="refresh($event)">
+            <!-- why do you have height ... is it the nx-content scroller? --> 
+            <!-- yes :) ... so i need a better one --> 
+                 
+            <StackLayout class="inset">
+                <nx-list>
 
-                <GridLayout>
-                    <StackLayout class="inset">
-                        <nx-list>
-                            <competitor-result *ngFor="let item of list; #i = index" [competitor]="item"></competitor-result>
-                        </nx-list>
-                    </StackLayout>
-                    <material-fab text="face" vertical-align="top" horizontal-align="right"></material-fab>
-                </GridLayout>
-                
-            </nx-content>
+                    <PullToRefresh [pull-list-view] 
+                        (refreshStarted)="refreshStarted($event)"
+                        (refreshCompleted)="refreshCompleted()">
+                        <ListView [items]="list">
+                            <template let-item="item">
+                                <StackLayout>
+                                    <competitor-result [competitor]="item"></competitor-result>
+                                </StackLayout>
+                            </template>
+                        </ListView>
+                    </PullToRefresh>
+
+                </nx-list>
+            </StackLayout>
+      
         </nx-drawer>
     `,
     directives: [CompetitionNav, CompetitorResult],
@@ -54,6 +63,16 @@ export class GradeCompetitorsPage implements OnInit {
     }
 
     public list: Models.ICompetitor[] = [];
+
+    public onLoaded($event) : void {
+
+    }
+    public onItemLoading($event) : void{
+
+    }
+    public onItemTap($event): void {
+
+    }
 
     //action to 
     public gradeSearch($event: any) {
@@ -78,17 +97,19 @@ export class GradeCompetitorsPage implements OnInit {
         obseravable.map(e => e.json()).subscribe((e : Models.ICompetitor[]) => {
             this.list = e;
             //let max = Rx.Observable.from(this.list).map(e => e.StartGroup).max();
-
-            
         });
 
         return obseravable;
     }
 
-    public refresh(args: any) {
+    public refreshStarted(args: any){
+        this.logger.Notify("Grade: refresh starting");
         this.loadDetail().subscribe(() => {
             args.completed();
         });
+    }
+    public refreshCompleted(){
+        this.logger.Notify("Grade: refresh completed");
     }
 
 }

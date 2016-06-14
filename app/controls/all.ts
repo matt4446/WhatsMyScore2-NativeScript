@@ -12,7 +12,7 @@ import {NxNavBack} from "./nav/nav-back";
 import {NxTitle} from "./nav/nav-title";
 import {NxNav} from "./nav/nav";
 import {Paralax,ParallaxCollapsableItem,ParallaxExpandableItem} from "./parallax/parallax";
-import {NxPullToRefresh} from "./pullToRefresh/pullToRefresh.control";
+import {NxPullToRefresh, NxPullListView, PullToRefreshAnimateBody} from "./pullToRefresh/pullToRefresh.control";
 
 export var controls = [
     NxCard,
@@ -28,5 +28,5 @@ export var controls = [
     NxTitle,
     NxNav,
     Paralax, ParallaxCollapsableItem, ParallaxExpandableItem,
-    NxPullToRefresh
+    NxPullToRefresh, NxPullListView
 ];

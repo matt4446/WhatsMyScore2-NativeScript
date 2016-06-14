@@ -5,7 +5,7 @@ import { Logger } from "../../providers/logger";
 import { Button } from "ui/button";
 import { StackLayout} from "ui/layouts/stack-layout";
 import { Observable, Subscription, Subject} from 'rxjs/Rx';
-import { NxPullToRefresh } from '../pullToRefresh/pullToRefresh.control'; 
+import { NxPullToRefresh, PullToRefreshAnimateBody } from '../pullToRefresh/pullToRefresh.control'; 
 import { PullToRefresh } from "nativescript-pulltorefresh";
 import { AnimationPromise } from "ui/animation";
 
@@ -13,8 +13,10 @@ import { AnimationPromise } from "ui/animation";
     selector:"nx-content",
     template: `
     <GridLayout>
-        <nx-pull-to-refresh #refreshControl (refreshStarted)="refreshPage($event)">
-            <StackLayout #body>
+        <nx-pull-to-refresh #refreshControl 
+            (refreshStarted)="refreshPage($event)"
+            (refreshCompleted)="refreshPageCompleted($event)">
+            <StackLayout [pull-to-animate]>
                 <ng-content></ng-content>
             </StackLayout>
         </nx-pull-to-refresh>
@@ -22,8 +24,7 @@ import { AnimationPromise } from "ui/animation";
     </GridLayout>
     `,
     providers: [],
-    directives: [NxPullToRefresh],
-    outputs: ["refreshStarted", "refreshCompleted"]
+    directives: [NxPullToRefresh, PullToRefreshAnimateBody]
 })
 export class NxContent implements OnInit, AfterViewInit {
     //private template: TemplateRef;
@@ -34,17 +35,12 @@ export class NxContent implements OnInit, AfterViewInit {
         this.logger.Notify("nx-content added");    
     }
 
-    public ngOnInit(){
-    }
+    public ngOnInit(){ }
     
-    public ngAfterViewInit(){
-    }
+    public ngAfterViewInit(){ }
 
     @Input()
     public isLoading : boolean = false;
-    
-    @ViewChild("body")
-    private body : ElementRef; 
     
     @ContentChild(NxPullToRefresh)
     private content : ElementRef;
@@ -53,53 +49,20 @@ export class NxContent implements OnInit, AfterViewInit {
     public refreshComplete : boolean = true;
         
     private transition: AnimationPromise = null; 
-    
-    private shrink(){
-        let stackLayout: StackLayout = this.body.nativeElement;
-        let animation = stackLayout.animate({ opacity : 0.2, scale: { x : 0.5, y: 0.5 } });
-        animation.then(() => {
-            let innerAnimation = stackLayout.animate({ opacity: 0, translate: { x: -1000, y: 0 }});
-            return innerAnimation;
-        });
-        this.transition = animation;
-    }
-    private grow(){
-        let stackLayout: StackLayout = this.body.nativeElement;
         
-        let fadeIn = () => { 
-            this.logger.Notify("fade in");
-            stackLayout.translateX = 0;
-            return stackLayout.animate({ opacity : 1, scale: { x : 1, y: 1 }, translate: { x: 0, y: 0} }) 
-        };
-        
-        this.logger.Notify("add animation to previous");
-        this.transition
-            .then(fadeIn);
-        
+    private refreshPage(args){      
+        this.logger.Notify("content restart ->"); 
+        this.refreshStarted.next(args);
+        this.isLoading = true;
     }
     
-    private refreshPage(args){
-        let refreshCompleted = () => { 
-                this.logger.Notify("refresh completed");
-                args.object.refreshing = false;
-                this.refreshContentCompleted({});
-            };
-        
-        this.refreshStarted.next({
-            object: args.object,
-            complete: refreshCompleted,
-            completed : refreshCompleted,
-            
-        });
-        
-        this.shrink();
+    private refreshPageCompleted($event){
+        this.refreshCompleted.next($event); 
+        this.isLoading = false; 
     }
     
-    private refreshContentCompleted($event){
-        this.refreshCompleted.next($event);
-        this.grow();   
-    }
-        
+    @Output("refreshStarted")
     public refreshStarted = new EventEmitter();
+    @Output("refreshCompleted")
     public refreshCompleted = new EventEmitter();
 }

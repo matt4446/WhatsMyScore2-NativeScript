@@ -1,5 +1,5 @@
 import { Control } from "../../decorators/control";
-import { Input, Output, EventEmitter, ContentChildren } from "@angular/core";
+import { Directive, Input, Output, EventEmitter, ContentChildren } from "@angular/core";
 import { Logger } from "../../providers/logger";
 import { NxListItem } from "./list-item";
 import { NxHeader } from "./header";
