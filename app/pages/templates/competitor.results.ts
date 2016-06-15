@@ -13,7 +13,7 @@ import {CompetitorResultRow, CompetitorResultRowHeader} from "./competitor.resul
             <label [text]="person.Club | Title" class="note"></label>
         </StackLayout>
         
-        <StackLayout item-right>
+        <StackLayout class="text-right" item-right>
             <Label class='note' [text]="GetRank() | Title" textWrap="true"></Label>
             <Label class='note' [text]="person.Total | number:'3.3-3'" textWrap="true"></Label>
         </StackLayout>
@@ -28,7 +28,7 @@ import {CompetitorResultRow, CompetitorResultRowHeader} from "./competitor.resul
       </StackLayout>
     </nx-item>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush, 
+  //changeDetection: ChangeDetectionStrategy., 
   directives: [CompetitorResultRow, CompetitorResultRowHeader],
   styleUrls: ["./pages/templates/competitor.results.css"]
 })

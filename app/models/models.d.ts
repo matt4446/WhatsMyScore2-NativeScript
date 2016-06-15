@@ -98,14 +98,7 @@ export interface ICompetitiorScoreLine {
     Total: number;
     Bonus: number;
     Penalty: number;
-    Exclude: (index: number) => boolean;
-    ExcludeSync: (index: number) => boolean;
 
-    Scores: Array<number>;
-    TrsExecutionScores: Array<number>;
-    TrsDesyncScores: Array<number>;
-
-    CorrectedScores: Array<ICorrectedScore>;
 }
 
 interface ICorrectedScore {

@@ -26,16 +26,14 @@ import {CompetitorResult} from "../../templates/competitor.results";
                 <label class="nx-header-title" [text]="'Competitors' | Title" style="horizontal-align:center"></label>
                 <ion-icon nav-right nav="true" icon="ion-android-favorite"></ion-icon>
             </nx-nav>
-            <!-- why do you have height ... is it the nx-content scroller? --> 
-            <!-- yes :) ... so i need a better one --> 
-                 
+
             <StackLayout class="inset">
                 <nx-list>
 
                     <PullToRefresh [pull-list-view] 
                         (refreshStarted)="refreshStarted($event)"
                         (refreshCompleted)="refreshCompleted()">
-                        <ListView [items]="list">
+                        <ListView [items]="list" [pull-to-animate]>
                             <template let-item="item">
                                 <StackLayout>
                                     <competitor-result [competitor]="item"></competitor-result>
@@ -43,6 +41,7 @@ import {CompetitorResult} from "../../templates/competitor.results";
                             </template>
                         </ListView>
                     </PullToRefresh>
+
 
                 </nx-list>
             </StackLayout>
@@ -95,7 +94,9 @@ export class GradeCompetitorsPage implements OnInit {
         //this.logger.NotifyResponse(obseravable);
 
         obseravable.map(e => e.json()).subscribe((e : Models.ICompetitor[]) => {
-            this.list = e;
+            this.list = e.sort((a,b) => {
+                return a.FinalRank - b.FinalRank;               
+            });;
             //let max = Rx.Observable.from(this.list).map(e => e.StartGroup).max();
         });
 

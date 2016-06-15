@@ -5,7 +5,7 @@ import { Logger } from "../../providers/logger";
 import { Button } from "ui/button";
 import { StackLayout} from "ui/layouts/stack-layout";
 import { Observable, Subscription, Subject} from 'rxjs/Rx';
-import { NxPullToRefresh, PullToRefreshAnimateBody } from '../pullToRefresh/pullToRefresh.control'; 
+import { NxPullToRefresh, PullToRefreshAnimateElement } from '../pullToRefresh/pullToRefresh.control'; 
 import { PullToRefresh } from "nativescript-pulltorefresh";
 import { AnimationPromise } from "ui/animation";
 
@@ -24,7 +24,7 @@ import { AnimationPromise } from "ui/animation";
     </GridLayout>
     `,
     providers: [],
-    directives: [NxPullToRefresh, PullToRefreshAnimateBody]
+    directives: [NxPullToRefresh, PullToRefreshAnimateElement]
 })
 export class NxContent implements OnInit, AfterViewInit {
     //private template: TemplateRef;
