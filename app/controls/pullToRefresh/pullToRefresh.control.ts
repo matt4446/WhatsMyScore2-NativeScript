@@ -36,9 +36,9 @@ export class PullToRefreshAnimateElement{
 export class NxPullToRefreshView{
     
     constructor(private element: ElementRef, private logger: Logger){
-        this.logger.Notify("listview - that i want to pull");
-        this.logger.NotifyObjectProperties(element.nativeElement);
-        this.logger.Notify(element.nativeElement.typeName);
+        // this.logger.Notify("listview - that i want to pull");
+        // this.logger.NotifyObjectProperties(element.nativeElement);
+        // this.logger.Notify(element.nativeElement.typeName);
     }
 
     public get Component(): ListView{

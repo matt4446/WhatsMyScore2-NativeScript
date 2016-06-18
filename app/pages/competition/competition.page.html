@@ -55,7 +55,7 @@
                         'Region.Competition.FindCompetitor',
                         { regionId: context.RegionId, competitionId: context.CompetitionId }]">
                     <ion-icon item-left icon="ion-ios-people"></ion-icon>
-                    <label text="'Find a Competitor' | Title"></label>
+                    <label [text]="'Find a Competitor' | Title"></label>
                 </nx-item>
                 <nx-item animate="true" 
                     [nxRoute]="[

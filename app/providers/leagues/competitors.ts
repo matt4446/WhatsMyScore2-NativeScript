@@ -1,11 +1,12 @@
 import {Injectable} from "@angular/core"
 import {Http} from "@angular/http";
 import {Settings} from "../routes/routes";
+import {Logger} from "../logger";
 
 @Injectable()
 export class CompetitorService
 {
-    constructor(private http : Http){
+    constructor(private http : Http, private logger: Logger){
         
     }
     
@@ -20,6 +21,8 @@ export class CompetitorService
         
         var observable = this.http.get(route);
         
+        //this.logger.NotifyResponse(observable);
+
         return observable;
     }
     
@@ -33,6 +36,8 @@ export class CompetitorService
             
         var observable = this.http.get(route);
         
+        this.logger.NotifyResponse(observable);
+
         return observable;
     }
 }

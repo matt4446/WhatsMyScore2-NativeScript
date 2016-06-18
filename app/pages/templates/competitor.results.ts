@@ -14,18 +14,25 @@ import {CompetitorResultRow, CompetitorResultRowHeader} from "./competitor.resul
         </StackLayout>
         
         <StackLayout class="text-right" item-right>
-            <Label class='note' [text]="GetRank() | Title" textWrap="true"></Label>
-            <Label class='note' [text]="person.Total | number:'3.3-3'" textWrap="true"></Label>
+            <Label class='note' *ngIf="!person.Removed" [text]="GetRank() | Title" textWrap="true"></Label>
+            <Label class='note' *ngIf="!person.Removed" [text]="person.Total | number:'3.3-3'" textWrap="true"></Label>
+            <Label class='note' *ngIf="person.Removed" text="x" textWrap="true"></Label>
+            
         </StackLayout>
     </nx-item>
     <nx-item *ngIf="expanded" (tap)="ShowHideResults()"> 
-      <StackLayout item-left-center-right>
-        <competitor-result-row-header></competitor-result-row-header>
-        <competitor-result-row *ngIf="person.Pass1" [scoreline]="person.Pass1"></competitor-result-row>
-        <competitor-result-row *ngIf="person.Pass2" [scoreline]="person.Pass2"></competitor-result-row> 
-        <competitor-result-row *ngIf="person.Pass3" [scoreline]="person.Pass3"></competitor-result-row>
-        <competitor-result-row *ngIf="person.Pass4" [scoreline]="person.Pass4"></competitor-result-row>
-      </StackLayout>
+        
+        <StackLayout item-left-center-right>
+            <Label *ngIf="person.Removed" text="Withdrawn" textWrap="true"></Label>
+            <nx-list *ngIf="!person.Removed">
+                <competitor-result-row-header></competitor-result-row-header>
+                <competitor-result-row *ngIf="person.Pass1" [scoreline]="person.Pass1"></competitor-result-row>
+                <competitor-result-row *ngIf="person.Pass2" [scoreline]="person.Pass2"></competitor-result-row> 
+                <competitor-result-row *ngIf="person.Pass3" [scoreline]="person.Pass3"></competitor-result-row>
+                <competitor-result-row *ngIf="person.Pass4" [scoreline]="person.Pass4"></competitor-result-row>
+            </nx-list>
+            
+        </StackLayout>
     </nx-item>
   `,
   //changeDetection: ChangeDetectionStrategy., 
@@ -46,7 +53,7 @@ export class CompetitorResult {
   public set competitor(value: ICompetitor){
     // var t = typeof(value);
     // console.log("set person: " + t);
-    //this.logger.NotifyObjectProperties(value);
+    this.logger.NotifyObjectProperties(value);
     this.person = value;
   }
 

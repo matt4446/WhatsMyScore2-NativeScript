@@ -28,8 +28,8 @@
 	},
 	"devDependencies": {
 		"babel-traverse": "6.9.0",
-		"babel-types": "6.9.1",
-		"babylon": "6.8.0",
+		"babel-types": "6.10.2",
+		"babylon": "6.8.1",
 		"filewalker": "0.1.2",
 		"lazy": "1.0.11",
 		"nativescript-dev-typescript": "^0.3.2",
