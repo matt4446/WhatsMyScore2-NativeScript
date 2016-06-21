@@ -45,5 +45,21 @@ export class ClubService
         
         return promise;
     }
+
+    public ListCompetitors(competitionId: number, clubId: number){
+        //var route = kendo.format("{0}/Api/Competition/{1}/Competitors/Club2/{2}", Settings.WebApiBaseUrl, this.competitionId, this.clubId);
+        //var promise = this.$http.get(route);
+        let base = Settings.WebApiBaseUrl;
+        let route = "{0}/Api/Competition/{1}/Competitors/Club2/{2}";
+        route = route
+            .replace("{0}", base)
+            .replace("{1}", <any>competitionId)
+            .replace("{2}", <any>clubId);
+
+        let promise = this.http.get(route);
+        this.logger.NotifyResponse(promise);
+
+        return promise;
+    }
     
 }

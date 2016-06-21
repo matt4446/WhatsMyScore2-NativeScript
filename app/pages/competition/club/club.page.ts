@@ -10,7 +10,7 @@ import {GradeService} from "../../../providers/leagues/grade";
 import {RegionCache, CompetitionCache, GradeCache, ClubCache} from "../../../providers/leagues/cache";
 import {IClub} from "../../../models/models.d.ts";
 import {CompetitionNav} from "../../nav/competition.nav";
-
+import * as Models from "../../../models/models.d.ts";
 // import 'rxjs/add/operator/map';
 // import 'rxjs/add/operator/zip';
 // import 'rxjs/add/operator/from';
@@ -23,26 +23,20 @@ import {CompetitionNav} from "../../nav/competition.nav";
             <competition-nav drawer-aside-left></competition-nav>
             
             <nx-nav>
-                <label class="nx-header-title" [text]="'Club List' | Title" style="horizontal-align:center"></label>
+                <label class="nx-header-title" [text]="'Club' | Title" style="horizontal-align:center"></label>
                 <ion-icon nav-right nav="true" icon="ion-android-favorite"></ion-icon>
             </nx-nav>
 
             <nx-content (refreshStarted)="refresh($event)">
                 <StackLayout class="inset">
-                    <nx-list *ngFor="let clubGroup of list | groupBy: 'Grade.ClassName' | orderBy:'key'">
+                    <nx-list *ngFor="let group of list | groupBy: 'Group' | orderBy:'key'">
+                        <!-- {"Competitor":{"FullName":"Katherine Allot & Dayle Walker","Club":"Bath","Group":"SS1","Class":null,"Team":null,"Competition":"Synchro"} -->
                         <nx-header item-top>
                             <!-- grade name --> 
-                            <label [text]="clubGroup.key" class="nx-header-title"></label>
+                            <label [text]="group.key" class="nx-header-title"></label>
                         </nx-header>
                         <!-- competitors in that grade --> 
-                        <nx-item *ngFor="let competitor of gradeGroup.items | orderBy:'Rank'">
-                            <!-- going to need some expanding panel like v1 -->
-                            <!-- name, club, rank + score -->
-                            <ion-icon item-left icon="ion-clipboard"></ion-icon>
-                            <label [text]="club.Name"></label>
-                            <ion-icon item-right icon="ion-ios-people"></ion-icon>
-                            <label item-right class="note" [text]="club.Competitors"></label>
-                        </nx-item>
+                        
                     </nx-list>
                 </StackLayout>
             </nx-content>
@@ -61,10 +55,10 @@ export class ClubPage implements OnInit
         private context: AppRoutingService,
         private cache: CompetitionCache)
     {
-        this.logger.Notify("club list page started");
+        this.logger.Notify("club page started");
     }
     
-    public list : IClub[] = [];
+    public list : Models.ICompetitor[] = [];
 
     
     //passed to the child component
@@ -79,19 +73,15 @@ export class ClubPage implements OnInit
     } 
     
     public ngOnInit(){
-        this.logger.Notify("club-list-page ngOnInit");
-        
-        //time to load the data
-        if(this.cache.Clubs && this.cache.Clubs.length > 0){
-            this.list = this.cache.Clubs;
-            return;
-        }
+        this.logger.Notify("club-page ngOnInit");
 
         this.loadDetail();
     }
     
     public loadDetail() {
-        let observable = this.clubService.List(this.cache.Competition.Id).map(e=> e.json());
+        let observable = this.clubService
+            .ListCompetitors(this.context.CompetitionId, this.context.ClubId)
+            .map(e=> e.json());
         
         observable.subscribe(e=> {
             this.list = e;
@@ -106,5 +96,11 @@ export class ClubPage implements OnInit
         });
     }
     
-    
+    private groupByCompetition(){
+        let groups :{key: string, items: any[] }[] = [];
+
+        // this.list.forEach(item => {
+        //     item.
+        // });
+    }
 }

@@ -87,7 +87,7 @@ import {RegionCache, CompetitionCache, GradeCache, ClubCache} from "./providers/
     //to-do - template & provider
     { path: "/region/:regionId/competition/:competitionId/grade/:gradeId/competitors", component: GradeCompetitorsPage, name : "Region.Competition.GradeList.Competitors" },
     //to-do - template & provider
-    //{ path: "/region/:regionId/competition/:competitionId/club/:clubId/competitors", component: ClubPage, name : "Region.Competition.GradeList.Competitors" },
+    { path: "/region/:regionId/competition/:competitionId/club/:clubId/competitors", component: ClubPage, name : "Region.Competition.ClubList.Competitors" },
 ])
 
 //app decorator - save some code writing. Wrapper around @Component

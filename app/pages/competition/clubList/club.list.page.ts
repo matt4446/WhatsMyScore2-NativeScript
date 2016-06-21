@@ -33,11 +33,17 @@ import {CompetitionNav} from "../../nav/competition.nav";
                             <label [text]="clubGroup.key" class="nx-header-title"></label>
                         </nx-header>
                         
-                        <nx-item *ngFor="let club of clubGroup.items | orderBy:'Name'">
+                        <nx-item *ngFor="let club of clubGroup.items | orderBy:'Name'"
+                            [nxRoute]="[
+                                'Region.Competition.ClubList.Competitors', 
+                                { regionId: context.RegionId, competitionId: context.CompetitionId, clubId: club.Id }
+                            ]">
                             <ion-icon item-left icon="ion-clipboard"></ion-icon>
+                             
                             <label [text]="club.Name"></label>
-                            <ion-icon item-right icon="ion-ios-people"></ion-icon>
-                            <label item-right class="note" [text]="club.Competitors"></label>
+                            <label class="note" [text]="club.Competitors + ' competitors' "></label>
+
+                            <ion-icon item-right icon="ion-chevron-right"></ion-icon>
                         </nx-item>
                     </nx-list>
                 </StackLayout>
@@ -74,20 +80,10 @@ export class ClubListPage implements OnInit
         //this.logger.Notify("Search Term in Regions Page: " + $event.Value);
     } 
     
-    public ngOnInit(){
-        this.logger.Notify("club-list-page ngOnInit");
-        
-        //time to load the data
-        if(this.cache.Clubs && this.cache.Clubs.length > 0){
-            this.list = this.cache.Clubs;
-            return;
-        }
-
-        this.loadDetail();
-    }
+    
     
     public loadDetail(){
-        let observable = this.clubService.List(this.cache.Competition.Id).map(e=> e.json());
+        let observable = this.clubService.List(this.context.CompetitionId).map(e=> e.json());
         observable.subscribe(e=> {
             this.list = e;
         });
@@ -99,6 +95,18 @@ export class ClubListPage implements OnInit
         this.loadDetail().subscribe(() => {
             args.completed();
         });
+    }
+
+    public ngOnInit(){
+        this.logger.Notify("club-list-page ngOnInit");
+        
+        //time to load the data
+        if(this.cache.Clubs && this.cache.Clubs.length > 0){
+            this.list = this.cache.Clubs;
+            return;
+        }
+
+        this.loadDetail();
     }
     
     

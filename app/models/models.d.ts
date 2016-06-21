@@ -59,6 +59,11 @@ export interface IPage {
     page: any;
 }
 
+export interface ICompetitorContext {
+    Expanded : boolean,
+    Competitor : ICompetitor
+}
+
 export interface ICompetitor {
     Id: number;
     FullName: string;

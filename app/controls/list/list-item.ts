@@ -1,4 +1,7 @@
-import { HostListener, ElementRef, Input, Output, EventEmitter, ContentChildren, ContentChild, ViewChild } from "@angular/core";
+import {
+    ChangeDetectionStrategy,
+    HostListener, ElementRef, 
+    Input, Output, EventEmitter, ContentChildren, ContentChild, ViewChild } from "@angular/core";
 import { Router, Instruction} from '@angular/router-deprecated';
 
 
@@ -34,17 +37,17 @@ import { Observable, Subscription, Subject} from 'rxjs/Rx';
                 
                 <!-- first two colums --> 
                 <StackLayout col="0" colSpan="2" class="nx-item-column inset-sides">
-                    <ng-content select="[item-left-center]"></ng-content>
+                    <ng-content select="[item-col-2-left]"></ng-content>
                 </StackLayout>
 
                 <!-- third column -->
                 <StackLayout col="1" colSpan="2" class="nx-item-column icon-column">
-                    <ng-content select="[item-center-right]"></ng-content>
+                    <ng-content select="[item-col-2-right]"></ng-content>
                 </StackLayout>
 
                 <!-- all three columns  -->
                 <StackLayout col="0" colSpan="3" class="nx-item-column inset-sides">
-                    <ng-content select="[item-left-center-right]"></ng-content>
+                    <ng-content select="[item-col-3]"></ng-content>
                 </StackLayout>
                 
             </GridLayout>
@@ -52,6 +55,7 @@ import { Observable, Subscription, Subject} from 'rxjs/Rx';
         
     </StackLayout>
     `,
+    changeDetection: ChangeDetectionStrategy.OnPush,
     providers: [],
     inputs: ['params: nxRoute'],
     outputs: ["tap"],

@@ -14,6 +14,7 @@ export interface IControlConfig {
     host?: {
         'class' : string 
     },
+    changeDetection?: ChangeDetectionStrategy,
     styleUrls?: string[];
 }
 export function Control(config: IControlConfig={})

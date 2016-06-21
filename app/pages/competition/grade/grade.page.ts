@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, ChangeDetectionStrategy, OnInit} from '@angular/core';
 import {Router} from "@angular/router-deprecated";
 import {Page} from "../../../decorators/page";
 import {Logger} from "../../../providers/logger";
@@ -35,9 +35,9 @@ import {CompetitorResult} from "../../templates/competitor.results";
                         (refreshCompleted)="refreshCompleted()">
                         <ListView [items]="list" [pull-to-animate]>
                             <template let-item="item">
-                                <StackLayout>
-                                    <competitor-result [competitor]="item"></competitor-result>
-                                </StackLayout>
+                        
+                                <competitor-result [competitor]="item"></competitor-result>
+                       
                             </template>
                         </ListView>
                     </PullToRefresh>
@@ -49,7 +49,8 @@ import {CompetitorResult} from "../../templates/competitor.results";
         </nx-drawer>
     `,
     directives: [CompetitionNav, CompetitorResult],
-    providers: [CompetitionService, GradeService, ClubService, CompetitorService]
+    providers: [CompetitionService, GradeService, ClubService, CompetitorService],
+    //changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class GradeCompetitorsPage implements OnInit {
     constructor(
@@ -61,7 +62,7 @@ export class GradeCompetitorsPage implements OnInit {
         this.logger.Notify("grade list page started");
     }
 
-    public list: Models.ICompetitor[] = [];
+    public list: Models.ICompetitorContext[] = [];
 
     public onLoaded($event) : void {
 
@@ -93,12 +94,22 @@ export class GradeCompetitorsPage implements OnInit {
 
         //this.logger.NotifyResponse(obseravable);
 
-        obseravable.map(e => e.json()).subscribe((e : Models.ICompetitor[]) => {
-            this.list = e.sort((a,b) => {
-                return a.FinalRank - b.FinalRank;               
-            });;
-            //let max = Rx.Observable.from(this.list).map(e => e.StartGroup).max();
-        });
+        obseravable.map(e => e.json())
+            .map((e : Models.ICompetitor[]) => { 
+                let contexts = e.map(item => {
+                    return {
+                        Expanded : false,
+                        Competitor : item
+                    }
+                });
+                return contexts;
+            })
+            .subscribe((e : Models.ICompetitorContext[]) => {
+                this.list = e.sort((a,b) => {
+                    return a.Competitor.FinalRank - b.Competitor.FinalRank;               
+                });
+                //let max = Rx.Observable.from(this.list).map(e => e.StartGroup).max();
+            });
 
         return obseravable;
     }
