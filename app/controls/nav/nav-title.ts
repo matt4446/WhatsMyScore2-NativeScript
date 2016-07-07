@@ -5,9 +5,9 @@ import { Logger} from "../../providers/logger";
 
 @Directive({
     selector: "[nav-title]",
-    properties: [
-        "class: nav-title" 
-    ]
+    host: {
+        "class" : "nav-title" 
+    }
 })
 export class NxTitle {
     @ViewChild('item') private container: ElementRef

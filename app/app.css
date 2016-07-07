@@ -1,12 +1,6 @@
 /* colours */
 /* font */
 /* elements */
-.fa-icon {
-  font-family: "FontAwesome";
-  /* file must match exactly (indluding case) Ionicons.ttf */
-  /* app/fonts/FontAwesome.ttf */
-  /* cheat sheet https://fortawesome.github.io/Font-Awesome/cheatsheet/ */
-}
 .material-icons {
   font-family: "Material Icons", "MaterialIcons-Regular";
   font-style: normal;
@@ -54,6 +48,7 @@
 .blue-a7 {
   color: #2962FF;
 }
+
 .icon-default {
   font-size: 24;
   color: #1976D2;
@@ -87,6 +82,18 @@ button {
   background-color: #4d75b8;
   color: #FFF;
 }
+
+.nx-nav .ion-icon {
+  color: #FFF;
+}
+.nx-nav Label {
+  color: #FFF;
+}
+.nav-title {
+  color: #FFF;
+}
+
+
 .float-left {
   horizontal-align: left;
 }
@@ -132,6 +139,24 @@ button {
 .hidden {
   opacity: 0;
 }
+
+.item-button {
+  font-size: 20;
+  background-color: #c8c7cc;
+  color: #FFF;
+}
+
+.sidebar {
+  border-right-width: 1;
+  border-color: #c8c7cc;
+  border-style: solid;
+  padding-top: 12;
+  padding-bottom: 12;
+}
+.active {
+  background-color: #387ef5;
+}
+
 .visible {
   animation-name: show;
   animation-duration: 1s;
@@ -143,35 +168,4 @@ button {
   to {
     opacity: 1;
   }
-}
-.item-button {
-  font-size: 20;
-  background-color: #c8c7cc;
-  color: #FFF;
-}
-.nx-nav-inner {
-  margin-bottom: 6;
-  margin-top: 24;
-}
-.nx-nav {
-  background-color: #4d75b8;
-}
-.nx-nav .ion-icon {
-  color: #FFF;
-}
-.nx-nav Label {
-  color: #FFF;
-}
-.nav-title {
-  color: #FFF;
-}
-.sidebar {
-  border-right-width: 1;
-  border-color: #c8c7cc;
-  border-style: solid;
-  padding-top: 12;
-  padding-bottom: 12;
-}
-.active {
-  background-color: #387ef5;
 }

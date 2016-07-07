@@ -7,10 +7,11 @@ GridLayout.header{
     border-top-right-radius: 4;
 }
 GridLayout.header Label {
-    background-color: #4d75b8;
+    background-color: #1E88E5;
     color: #BBDEFB;
     font-size: 14;
 }
+
 GridLayout.result Label {
     font-size: 14;
     color: #37474F;

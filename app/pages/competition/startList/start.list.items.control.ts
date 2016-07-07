@@ -1,7 +1,7 @@
 import {PageControl} from "../../../decorators/pageControl";
 import {Observable, Subscription, Subject} from 'rxjs/Rx';
 import {GroupedObservable} from "rxjs/operator/groupBy";
-import {IGrade} from "../../../models/models.d.ts";
+import {IGrade} from "../../../models/models";
 import {Logger} from "../../../providers/logger";
 
 @PageControl({

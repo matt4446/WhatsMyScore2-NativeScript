@@ -10,9 +10,11 @@ import {GradeService} from "../../../providers/leagues/grade";
 import {RegionCache, CompetitionCache, GradeCache, ClubCache} from "../../../providers/leagues/cache";
 import {Observable, Subscription, Subject} from 'rxjs/Rx';
 import {GroupedObservable} from "rxjs/operator/groupBy";
-import {IGrade, ICompetitionGrades} from "../../../models/models.d.ts";
+
 import {StartListItems} from "./start.list.items.control";
 import {CompetitionNav} from "../../nav/competition.nav";
+import * as Models from "../../../models/models";
+
 @Page({
     selector: "start-list-page",
     //templateUrl: "pages/competition/startList/page.html",
@@ -91,7 +93,7 @@ export class StartListPage implements OnInit
     
     public loadDetail(){
         let observable = this.gradeService.List(this.context.CompetitionId);
-        observable.map(e=> e.json()).subscribe(e=> {
+        observable.map(e=> e.json()).subscribe((e : Models.ICompetitor[]) => {
             this.list = e;
         });
         

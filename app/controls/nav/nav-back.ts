@@ -5,17 +5,23 @@ import { Location,LocationStrategy } from '@angular/common';
 
 import { Control } from "../../decorators/control";
 import { Logger} from "../../providers/logger";
-import { IonIcon,NavIcon} from "../icons/ion-icon";
-import { Observable, Subscription, Subject} from 'rxjs/Rx';
 
+import { Observable, Subscription, Subject} from 'rxjs/Rx';
+import { MaterialIcon } from "../icons/material-icon";
 
 @Control({
     selector:"nx-nav-back",
-    //create 1 row template; 3 columns; 2 for the icons on the sides
+    styleUrls: ["./controls/nav/nav.common.css"], 
+    // template: `
+    //     <ion-icon item-left icon="ion-chevron-left" ></ion-icon>
+    // `,
     template: `
-        <ion-icon item-left icon="ion-chevron-left" (tap)="back($event)"></ion-icon>
+        <StackLayout orientation="horizontal" (tap)="back($event)">
+            <Label text="chevron_left" [material-icon] class="title" (tap)="back($event)"></Label>
+            <Label text="Back" class="title" (tap)="back($event)"></Label>
+        </StackLayout>
     `,
-    directives: [IonIcon,NavIcon],
+    directives: [MaterialIcon],
     providers: [],
 })
 export class NxNavBack {
@@ -24,9 +30,7 @@ export class NxNavBack {
         private router: Router, 
         private location: Location,
         private element: ElementRef,
-        private logger: Logger) {
-            
-        //this.logger.Notify("nx-nav-back");
+        private logger: Logger) {       
     }
 
     public back()

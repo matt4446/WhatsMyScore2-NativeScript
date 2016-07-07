@@ -1,7 +1,6 @@
 {
   "ambientDependencies": {
-    "underscore": "registry:dt/underscore#1.7.0+20160505190121"
+    "lodash": "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/master/lodash/lodash.d.ts"
   },
-  "ambientDevDependencies": {
-  }
+  "ambientDevDependencies": {}
 }

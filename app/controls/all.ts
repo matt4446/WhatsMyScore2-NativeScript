@@ -3,7 +3,7 @@ import {NxContent} from "./content/content.control";
 import {NxDrawer} from "./drawer/drawer";
 import {MaterialFab} from "./fab/fab.component";
 import {IonIcon,AlignLeft,AlignRight,NavIcon} from "./icons/ion-icon";
-
+import {MaterialIcon} from "./icons/material-icon";
 
 import {NxHeader} from "./list/header";
 import {NxListItem} from "./list/list-item";
@@ -19,6 +19,7 @@ export var controls = [
     NxContent,
     NxDrawer,
     MaterialFab,
+    MaterialIcon,
     IonIcon, AlignLeft,AlignRight,NavIcon,
 
     NxHeader,

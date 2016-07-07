@@ -9,7 +9,7 @@ import {ClubService} from "../../../providers/leagues/club";
 import {GradeService} from "../../../providers/leagues/grade";
 import {CompetitorService} from "../../../providers/leagues/competitors";
 import {RegionCache, CompetitionCache, GradeCache, ClubCache} from "../../../providers/leagues/cache";
-import * as Models from "../../../models/models.d.ts";
+import * as Models from "../../../models/models";
 
 import * as Rx from "rxjs";
 import 'rxjs/add/operator/max';

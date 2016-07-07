@@ -8,9 +8,9 @@ import {CompetitionService} from "../../../providers/leagues/competitions";
 import {ClubService} from "../../../providers/leagues/club";
 import {GradeService} from "../../../providers/leagues/grade";
 import {RegionCache, CompetitionCache, GradeCache, ClubCache} from "../../../providers/leagues/cache";
-import {IClub} from "../../../models/models.d.ts";
 import {CompetitionNav} from "../../nav/competition.nav";
-import * as Models from "../../../models/models.d.ts";
+import * as Models from "../../../models/models";
+
 // import 'rxjs/add/operator/map';
 // import 'rxjs/add/operator/zip';
 // import 'rxjs/add/operator/from';

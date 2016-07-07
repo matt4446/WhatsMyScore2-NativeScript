@@ -109,3 +109,8 @@ export interface ICompetitiorScoreLine {
 interface ICorrectedScore {
     Value: number; Corrected: boolean; Correction: number
 }
+
+export interface IGroupOfItem<T> {
+    key: any;
+    items: Array<T>
+}

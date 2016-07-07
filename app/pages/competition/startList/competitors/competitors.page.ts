@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 import {Router} from "@angular/router-deprecated";
 import {Page} from "../../../../decorators/page";
+import {PageControl} from "../../../../decorators/pageControl";
 import {Logger} from "../../../../providers/logger";
 //import {SearchList, ISearchEvent} from "../../controls/searchList/searchList";
 import {AppRoutingService} from "../../../../context/router.context";
@@ -9,11 +10,49 @@ import {ClubService} from "../../../../providers/leagues/club";
 import {GradeService} from "../../../../providers/leagues/grade";
 import {CompetitorService} from "../../../../providers/leagues/competitors";
 import {RegionCache, CompetitionCache, GradeCache, ClubCache} from "../../../../providers/leagues/cache";
-import * as Models from "../../../../models/models.d.ts";
+import * as Models from "../../../../models/models";
 import {CompetitionNav} from "../../../nav/competition.nav";
 import * as Rx from "rxjs";
 import 'rxjs/add/operator/max';
 import 'rxjs/add/operator/distinct';
+import * as _ from 'lodash';
+
+@PageControl({
+    selector: "start-group-list",
+    template: `
+        <!--
+        <ListView [items]="startGroup">
+            <template let-person="item">
+                <nx-item>
+                    <label item-left [text]="person.StartNumber"></label>
+                                    
+                    <label [text]="person.FullName"></label>
+                    <label [text]="person.Club" class="note"></label>
+                </nx-item>
+            </template>
+        </ListView>
+        -->
+        <nx-item *ngFor="let person of startGroup">
+            <label item-left [text]="person.StartNumber"></label>
+                            
+            <label [text]="person.FullName"></label>
+            <label [text]="person.Club" class="note"></label>
+        </nx-item>
+
+    `
+})
+export class StartGroup{
+    @Input("data")
+    public set data(value: Models.ICompetitor[]){
+        this.startGroup = value;
+        this.logger.Notify("items in group: " + value.length);
+    }
+    public startGroup: Models.ICompetitor[];
+
+    constructor(private logger: Logger){
+        
+    }
+}
 
 @Page({
     selector: "start-list-grade-page",
@@ -25,10 +64,37 @@ import 'rxjs/add/operator/distinct';
                 <label class="nx-header-title" [text]="'Competitors' | Title" style="horizontal-align:center"></label>
                 <ion-icon nav-right nav="true" icon="ion-android-favorite"></ion-icon>
             </nx-nav>
+            <!--
+            <GridLayout>
+                <StackLayout class="inset">
+                    
+                
+                <PullToRefresh [pull-list-view] 
+                    (refreshStarted)="refreshStarted($event)"
+                    (refreshCompleted)="refreshCompleted()">
+                    <ListView [items]="groupedStartList" [pull-to-animate]>
+                        <template let-item="item">
+                           <nx-list>
+                                <nx-header item-top>
+                                    <label *ngIf="groups > 1" [text]="'StartGroup: ' + item.key | Title" class="nx-header-title"></label>
+                                    <label *ngIf="groups <= 1" [text]="'StartGroup'| Title" class="nx-header-title"></label>
+                                </nx-header>
+                                <start-group-list [data]="item.items"></start-group-list>
+                           </nx-list> 
+                        </template>
+                    </ListView>
+                </PullToRefresh>
+	            </StackLayout>
+                <material-fab text="face" vertical-align="top" horizontal-align="right"></material-fab>
+
+            </GridLayout>
+            -->
+
+            
             <nx-content (refreshStarted)="refresh($event)">
                 <GridLayout>
                     <StackLayout class="inset">
-                        <nx-list *ngFor="let startGroup of list | groupBy: 'StartGroup'">
+                        <nx-list *ngFor="let startGroup of groupedStartList">
                             <nx-header item-top>
                                 <label *ngIf="groups > 1" [text]="'StartGroup: ' + startGroup.key | Title" class="nx-header-title"></label>
                                 <label *ngIf="groups <= 1" [text]="'StartGroup'| Title" class="nx-header-title"></label>
@@ -45,9 +111,10 @@ import 'rxjs/add/operator/distinct';
                 </GridLayout>
                 
             </nx-content>
+            
         </nx-drawer>
     `,
-    directives: [CompetitionNav],
+    directives: [CompetitionNav, StartGroup],
     providers: [CompetitionService, GradeService, ClubService, CompetitorService]
 })
 export class StartListGradePage implements OnInit
@@ -62,8 +129,14 @@ export class StartListGradePage implements OnInit
         this.logger.Notify("grade list page started");
     }
     
-    public list : Models.ICompetitor[] = [];
-    public groups : number = 0; //if more than one group change the label
+    public groupedStartList : Models.IGroupOfItem<Models.ICompetitor>[];
+    public orderedCompetitors : Models.ICompetitor[] = [];
+    public startList : Models.IGroupOfItem<Models.ICompetitor>;
+    //public groups : number = 0; //if more than one group change the label
+
+    public get groups (){
+        return this.orderedCompetitors.length;
+    }
 
     //action to 
     public gradeSearch($event : any)
@@ -85,22 +158,60 @@ export class StartListGradePage implements OnInit
         
         //this.logger.NotifyResponse(obseravable);
         
-        obseravable.map(e=> e.json()).subscribe(e => {
-            this.list = e;
-            let max = Rx.Observable.from(this.list).map(e=> e.StartGroup).max();
-            
-            max.subscribe(m=> {
-                this.groups = m;
+        obseravable.map(e=> e.json()).subscribe((e : Models.ICompetitor[]) => {
+            this.logger.Notify("sort competitiors : " + e.length);
+
+            this.orderedCompetitors = e.sort((a,b) => {
+
+                if(a.StartGroup == b.StartGroup){
+                    return a.StartNumber < b.StartNumber ? -1 : 1 ;
+                }
+
+                return a.StartGroup < b.StartGroup ? -1 : 1
             });
+
+            this.logger.Notify("sorted: " + this.orderedCompetitors.length);
+
+            let maxStartGroup = 0 ;
+            let startListGroups: Models.IGroupOfItem<Models.ICompetitor>[] = 
+                this.groupedStartList = [];
+
+            this.logger.Notify("group");
+
+            for(let i=0;i<this.orderedCompetitors.length;i++)
+            {
+                let item = this.orderedCompetitors[i];
+                let collection = startListGroups.filter(e=> e.key === item.StartGroup);
+
+                if(item.StartGroup > maxStartGroup)
+                {
+                    maxStartGroup = item.StartGroup; 
+                }
+
+                if(collection.length > 0){
+                    let group = collection[0];
+                    group.items.push(item);
+                }else{
+                    startListGroups.push({
+                        key: item.StartGroup,
+                        items: [item]
+                    });
+                }
+
+            }
+
+            this.logger.Notify("Start Groups: " + startListGroups.length);
+        }, error => {
+            this.logger.Notify(error);
         });
         
         return obseravable;
     }
     
-    public refresh(args: any){
+    public refreshStarted(args: any){
         this.loadDetail().subscribe(() => {
             args.completed();
         });
     }
-    
+    public refreshCompleted(){}
 }

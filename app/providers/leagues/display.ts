@@ -8,7 +8,7 @@ import {GradeService} from "./grade";
 import {RegionCache, CompetitionCache, GradeCache, ClubCache} from "./cache";
 import {Observable, Subscription, Subject} from 'rxjs/Rx';
 import {GroupedObservable} from "rxjs/operator/groupBy";
-import {IGrade, IClub, ICompetitionGrades} from "../../models/models.d.ts";
+import {IGrade, IClub, ICompetitionGrades} from "../../models/models";
 
 @Injectable()
 export class DisplayService

@@ -8,7 +8,7 @@ import {CompetitionService} from "../../../providers/leagues/competitions";
 import {ClubService} from "../../../providers/leagues/club";
 import {GradeService} from "../../../providers/leagues/grade";
 import {RegionCache, CompetitionCache, GradeCache, ClubCache} from "../../../providers/leagues/cache";
-import {IGrade} from "../../../models/models.d.ts";
+import {IGrade} from "../../../models/models";
 import {CompetitionNav} from "../../nav/competition.nav";
 import * as Rx from "rxjs";
 

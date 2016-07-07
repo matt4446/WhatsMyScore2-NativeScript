@@ -1,28 +1,14 @@
 import {Component, Input, ChangeDetectionStrategy} from '@angular/core';
-import {ICompetitorContext } from "../../models/models.d";
+import {ICompetitorContext } from "../../models/models";
 import {PageControl} from "../../decorators/pageControl";
 import {Logger} from "../../providers/logger";
 import {CompetitorResultRow, CompetitorResultRowHeader} from "./competitor.result.score.row";
 
 @PageControl({
     selector: 'competitor-result-detail-row',
-    directives: [CompetitorResultRow, CompetitorResultRowHeader],
+    directives: [],
     template: `
-        <nx-item > 
         
-            <StackLayout item-col-3>
-                <Label *ngIf="person.Removed" text="Withdrawn" textWrap="true"></Label>
-                
-                <nx-list *ngIf="!person.Removed">
-                    <competitor-result-row-header></competitor-result-row-header>
-                    <competitor-result-row *ngIf="person.Pass1" [scoreline]="person.Pass1"></competitor-result-row>
-                    <competitor-result-row *ngIf="person.Pass2" [scoreline]="person.Pass2"></competitor-result-row> 
-                    <competitor-result-row *ngIf="person.Pass3" [scoreline]="person.Pass3"></competitor-result-row>
-                    <competitor-result-row *ngIf="person.Pass4" [scoreline]="person.Pass4"></competitor-result-row>
-                </nx-list>
-                
-            </StackLayout>
-        </nx-item>
     `
 })
 export class ResultsDetailRow{
@@ -32,13 +18,14 @@ export class ResultsDetailRow{
 
 @PageControl({
   selector: 'competitor-result',
+  styleUrls: ["./pages/templates/competitor.results.css"],
   template: `
     <nx-item (tap)="ShowHideResults()">
         <StackLayout item-col-2-left>
             <label [text]="context.Competitor.FullName | Title"></label>
             <label [text]="context.Competitor.Club | Title" class="note"></label>
         </StackLayout>
-        
+ 
         <StackLayout class="text-right" item-right>
             <Label class='note' *ngIf="!context.Competitor.Removed" [text]="GetRank() | Title" textWrap="true"></Label>
             <Label class='note' *ngIf="!context.Competitor.Removed" [text]="context.Competitor.Total | number:'3.3-3'" textWrap="true"></Label>
@@ -46,13 +33,27 @@ export class ResultsDetailRow{
             
         </StackLayout>
     </nx-item>
-    
-    <competitor-result-detail-row [person]="context.Competitor" *ngIf="IsExpanded()" (tap)="ShowHideResults()"></competitor-result-detail-row>
+
+    <nx-item *ngIf="IsExpanded()" (tap)="ShowHideResults()" > 
+        
+        <StackLayout item-col-3>
+            <Label *ngIf="context.Competitor.Removed" text="Withdrawn" textWrap="true"></Label>
+            
+            <nx-list *ngIf="!context.Competitor.Removed">
+                <competitor-result-row-header></competitor-result-row-header>
+                <competitor-result-row *ngIf="context.Competitor.Pass1" [scoreline]="context.Competitor.Pass1"></competitor-result-row>
+                <competitor-result-row *ngIf="context.Competitor.Pass2" [scoreline]="context.Competitor.Pass2"></competitor-result-row> 
+                <competitor-result-row *ngIf="context.Competitor.Pass3" [scoreline]="context.Competitor.Pass3"></competitor-result-row>
+                <competitor-result-row *ngIf="context.Competitor.Pass4" [scoreline]="context.Competitor.Pass4"></competitor-result-row>
+            </nx-list>
+            
+        </StackLayout>
+    </nx-item>
   `,
   //changeDetection: ChangeDetectionStrategy.,
   changeDetection: ChangeDetectionStrategy.Default,
-  directives: [ResultsDetailRow],
-  styleUrls: ["./pages/templates/competitor.results.css"]
+  directives: [ResultsDetailRow, CompetitorResultRow, CompetitorResultRowHeader],
+  
 })
 
 export class CompetitorResult {

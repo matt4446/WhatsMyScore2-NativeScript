@@ -1,6 +1,6 @@
 import {PageControl} from "../../decorators/pageControl";
 import {Component, Input, ChangeDetectionStrategy} from '@angular/core';
-import {ICompetitiorScoreLine} from "../../models/models.d";
+import {ICompetitiorScoreLine} from "../../models/models";
 import {Logger} from "../../providers/logger";
 
 @PageControl({

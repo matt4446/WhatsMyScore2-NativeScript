@@ -59,3 +59,13 @@
 .inset-bottom {
     padding-bottom: 12;
 }
+
+.highlight-left {
+    border-radius: 2;
+    border-color: #90CAF9;
+    background-color: #90CAF9;
+    width: 5;
+    height: 45;
+    horizontal-align:left;
+    margin-left: 2; 
+}
