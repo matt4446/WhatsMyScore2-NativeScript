@@ -19,6 +19,7 @@ import { Observable, Subscription, Subject} from 'rxjs/Rx';
     //https://github.com/NativeScript/NativeScript/issues/859 -- cant get per side border yet. 
     template: `
     <GridLayout #item>
+
         <StackLayout>
             <StackLayout class="nx-item-top-border"></StackLayout>
 
@@ -59,7 +60,7 @@ import { Observable, Subscription, Subject} from 'rxjs/Rx';
         </StackLayout>
         
 
-        <StackLayout class="highlight-left" horizontal-align="left"></StackLayout>
+        
 
     </GridLayout>
     `,

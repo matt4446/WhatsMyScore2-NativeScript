@@ -8,4 +8,19 @@ ActionBar {
 
 .title {
     color: #ffffff;
+    font-size: 20;
+
+}
+
+.nav-icon {
+    font-size: 30;
+    color: #ffffff;
+}
+
+.nav-icon-bold {
+    font-weight: bold;
+}
+
+.v-center {
+    vertical-align: center;
 }

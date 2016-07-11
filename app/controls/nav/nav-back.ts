@@ -17,8 +17,8 @@ import { MaterialIcon } from "../icons/material-icon";
     // `,
     template: `
         <StackLayout orientation="horizontal" (tap)="back($event)">
-            <Label text="chevron_left" [material-icon] class="title" (tap)="back($event)"></Label>
-            <Label text="Back" class="title" (tap)="back($event)"></Label>
+            <Label text="chevron_left" [material-icon] class="title nav-icon nav-icon-bold" (tap)="back($event)"></Label>
+            <!--<Label text="BACK" class="title" (tap)="back($event)"></Label>-->
         </StackLayout>
     `,
     directives: [MaterialIcon],

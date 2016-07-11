@@ -6,21 +6,28 @@ import { Observable, Subscription, Subject} from 'rxjs/Rx';
 import {Router, Instruction} from "@angular/router-deprecated";
 import {NxNavBack} from "./nav-back";
 import {Page} from "ui/page";
+import { MaterialIcon } from "../icons/material-icon";
 
 @Control({
     selector:"nx-nav",
     styleUrls: ["./controls/nav/nav.common.css"], 
     template:`
         <ActionBar title="">
-            <StackLayout orientation="horizontal">
-                <StackLayout>
+            <StackLayout orientation="horizontal" class="v-center">
+
+                <StackLayout orientation="horizontal">
                     <ng-content select="[nav-left]"></ng-content>
+                    
+                    <Label text="menu" [material-icon] class="title nav-icon" (tap)="menuButtonTap($event)"></Label>
+                    
                     <nx-nav-back></nx-nav-back>
                 </StackLayout>
-                <StackLayout>
+
+                <StackLayout orientation="horizontal">
                     <ng-content></ng-content>
-                </StackLayout>                
-                <StackLayout>
+                </StackLayout>  
+
+                <StackLayout orientation="horizontal">
                     <ng-content select="[nav-right]"></ng-content>    
                 </StackLayout>                
                 
@@ -54,7 +61,7 @@ import {Page} from "ui/page";
     //         </Border>
     //     </StackLayout>
     // `,
-    directives: [IonIcon,NavIcon, NxNavBack],
+    directives: [IonIcon,NavIcon, NxNavBack, MaterialIcon],
     providers: [],
     inputs: [ "showBack", "showMenu", "title" ],
     outputs: [ "showLeftSidebar", "showRightSidebar" ]
@@ -87,7 +94,7 @@ export class NxNav {
        
     public menuSelected = new Subject<boolean>();
        
-    public tapWrapper = (args: any) => {
+    public menuButtonTap(args: any){
         //this.logger.Notify("tap clicked on menu");
         this.menuSelected.next(true);
         
