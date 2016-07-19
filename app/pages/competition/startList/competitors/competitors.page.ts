@@ -104,6 +104,9 @@ export class StartGroup{
                                                 
                                 <label [text]="person.FullName"></label>
                                 <label [text]="person.Club" class="note"></label>
+                                <!-- todo : change to score. --> 
+                                <ion-icon item-right icon="ion-flame"></ion-icon>
+                                <Label item-right text="person.Total" textWrap="true"></Label>
                             </nx-item>
                         </nx-list>
                     </StackLayout>
@@ -153,6 +156,15 @@ export class StartListGradePage implements OnInit
         this.loadDetail();
     }
     
+    public refresh(args: any){
+        var observable = this.loadDetail();
+        observable.subscribe(() => {
+            args.completed();
+        }, () => {
+            args.completed();
+        })        
+    }
+
     public loadDetail(){
         let obseravable = this.competitorService.ListGradeCompetitors(this.context.CompetitionId, this.context.GradeId);
         

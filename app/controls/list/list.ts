@@ -15,19 +15,19 @@ import { Observable, Subscription, Subject } from 'rxjs/Rx';
     //templateUrl: "controls/list/list.html",
     template:`
     <StackLayout class="nx-list">
-    <GridLayout>
-        <StackLayout>
+
             <StackLayout>
-                <ng-content select="[item-top]"></ng-content>
+                <StackLayout>
+                    <ng-content select="[item-top]"></ng-content>
+                </StackLayout>
+                <StackLayout>
+                    <ng-content></ng-content>
+                </StackLayout>
+                <StackLayout>
+                    <ng-content select="[item-bottom]"></ng-content>
+                </StackLayout>
             </StackLayout>
-            <StackLayout>
-                <ng-content></ng-content>
-            </StackLayout>
-            <StackLayout>
-                <ng-content select="[item-bottom]"></ng-content>
-            </StackLayout>
-        </StackLayout>
-    </GridLayout>
+
     </StackLayout>
     `,
     directives: [ NxListItem, NxHeader ],

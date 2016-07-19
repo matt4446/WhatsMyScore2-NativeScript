@@ -18,7 +18,7 @@ import { AnimationPromise } from "ui/animation";// animation = require("ui/anima
  */
 
 @Directive({
-    selector : "[nx-drawer-close]"
+    selector : "[nx-drawer-close]",
 })
 export class NxCloseDrawer
 {
@@ -27,27 +27,23 @@ export class NxCloseDrawer
 
 @Control({
     selector:"nx-drawer",
+    styleUrls: ["./controls/drawer/drawer.common.css"],
     template:`
     
-        <GridLayout rows="*" columns="*">
+        <GridLayout #grid rows="*" columns="300, *">
             
-   
-
-        
-            
-        
-            <StackLayout #grid row="0" col="0">
+            <StackLayout  row="0" col="0" colSpan="2">
                 <StackLayout #centerContent>
                     <ng-content></ng-content>
                 </StackLayout>
             </StackLayout> 
-            <!-- need the AbsoluteLayout as it gets confused for some reason  --> 
-            <AbsoluteLayout>
-                <StackLayout horizontalAlignment="left" #asideLeftParent opacity="0" width="300">
-                    <StackLayout  #asideLeft>
-                        <ng-content select="[drawer-aside-left]"></ng-content>
-                    </StackLayout>
-                </StackLayout> 
+
+            <AbsoluteLayout class="side-page" #asideLeftParent  opacity="0">
+              
+                <StackLayout #asideLeft col="0">
+                    <ng-content select="[drawer-aside-left]"></ng-content>
+                </StackLayout>   
+                        
             </AbsoluteLayout>
              
         </GridLayout>
@@ -84,7 +80,8 @@ export class NxDrawer {
         center.animate({
             translate: {
                 y: 0,
-                x: 300
+                x: 0
+                //x: 300
             },
             opacity: 0.7
         });
@@ -117,7 +114,7 @@ export class NxDrawer {
         });
         
         leftParent.animate({
-            opacity: 0
+            opacity: 0.8
         });
 
     }
@@ -127,7 +124,7 @@ export class NxDrawer {
         let leftParent: AbsoluteLayout = this.asideLeftParent.nativeElement;
         
         if(x > 0){
-            center.translateX = 300;
+            //center.translateX = 300;
             leftParent.translateX = 0;
             return;
         }
@@ -136,12 +133,12 @@ export class NxDrawer {
         var newOpacity = (Math.abs(x)/100) * 1; 
 
         //go a little over 
-        newPosition = newPosition > 400 ? 400 : newPosition;
+        newPosition = newPosition > 300 ? 300 : newPosition;
         newOpacity = newOpacity > 1 
             ? 1 
             : newOpacity < 0.2 ? 0.2 : newOpacity;
 
-        center.translateX = 300 - newPosition;
+        //center.translateX = 300 - newPosition;
         center.opacity =  newOpacity;
 
         leftParent.translateX = -newPosition;
@@ -154,18 +151,10 @@ export class NxDrawer {
 
     private ngOnInit(){
         //let center: StackLayout = this.centerContent.nativeElement;
-    } 
+        let leftParent: AbsoluteLayout = this.asideLeftParent.nativeElement;
+        leftParent.translateX = -300;
 
-
-    @ViewChild('grid')
-    set _grid(item: ElementRef){
-        this.logger.Notify("set pan on grid");
-        let g : GridLayout = item.nativeElement;
-        // g.on("pan", (args: PanGestureEventData) => {
-        //     this.logger.Notify("Pan delta: [" + args.deltaX + ", " + args.deltaY + "] state: " + args.state);
-        // });
-
-        var pan = Rx.Observable.fromEvent<PanGestureEventData>(g, "pan");
+        var pan = Rx.Observable.fromEvent<PanGestureEventData>(leftParent, "pan");
         pan.filter(e=> e.state === 2).subscribe((args) => {
             this.logger.Notify("Pan delta: [" + args.deltaX + ", " + args.deltaY + "] state: " + args.state);
             this.AnimateCenterToPosition(args.deltaX);
@@ -178,6 +167,18 @@ export class NxDrawer {
                 this.OpenLeftAside();
             }
         });
+    } 
+
+
+    @ViewChild('grid')
+    set _grid(item: ElementRef){
+        this.logger.Notify("set pan on grid");
+        let g : GridLayout = item.nativeElement;
+        // g.on("pan", (args: PanGestureEventData) => {
+        //     this.logger.Notify("Pan delta: [" + args.deltaX + ", " + args.deltaY + "] state: " + args.state);
+        // });
+
+        
     }
     
     @ViewChild("asideLeftParent")private asideLeftParent: ElementRef;

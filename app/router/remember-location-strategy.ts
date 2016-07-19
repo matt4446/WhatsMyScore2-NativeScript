@@ -73,8 +73,27 @@ export class NSRememberLocationStrategy extends LocationStrategy {
     }
 
     replaceState(state: any, title: string, url: string, queryParams: string): void {
-        console.log(`NSRememberLocationStrategy.replaceState state: ${state}, title: ${title}, url: ${url}, queryParams: ${queryParams}`);
-        throw new Error("Not implemented");
+        console.log(`NSLocationStrategy.replaceState state: ${state}, title: ${title}, url: ${url}, queryParams: ${queryParams}`);
+        
+        if (this.states.length > 0) {
+            let oldState = this.states.pop();
+            console.log(`NSLocationStrategy.replaceState state poped: ${oldState.state}, title: ${oldState.title}, url: ${oldState.url}, queryParams: ${oldState.queryParams}`);
+        }
+
+        this.pushStateInternal(state, title, url, queryParams);
+    }
+
+    pushStateInternal(state: any, title: string, url: string, queryParams: string): void {
+        let isNewPage = this._isPageNavigatingForward;
+
+        this._isPageNavigatingForward = false;
+        this.states.push({
+            state: state,
+            title: title,
+            url: url,
+            queryParams: queryParams,
+            isPageNavigation: isNewPage
+        });
     }
 
     forward(): void {
@@ -149,6 +168,7 @@ export class NSRememberLocationStrategy extends LocationStrategy {
         }
         this._isPageNavigationgBack = false;
     }
+
 
     public isPageNavigatingBack() {
         return this._isPageNavigationgBack;

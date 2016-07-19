@@ -18,7 +18,7 @@ import { Observable, Subscription, Subject} from 'rxjs/Rx';
     //create a 1 row template; 3 columns; 2 for the icons on the sides
     //https://github.com/NativeScript/NativeScript/issues/859 -- cant get per side border yet. 
     template: `
-    <GridLayout #item>
+    <StackLayout #item>
 
         <StackLayout>
             <StackLayout class="nx-item-top-border"></StackLayout>
@@ -26,30 +26,30 @@ import { Observable, Subscription, Subject} from 'rxjs/Rx';
             <StackLayout class="nx-item inset-top inset-bottom">
                 <GridLayout #animateItem columns="40, *, 50" rows="auto" (tap)="tapWrapper($event)">
                     <!-- default layout --> 
-                    <StackLayout col="0" class="icon-column icon-left nx-item-column" >
+                    <StackLayout col="0" row="0" class="icon-column icon-left nx-item-column" >
                         <ng-content select="[item-left]"></ng-content>
                     </StackLayout>
 
-                    <StackLayout col="1" class="nx-item-column">
+                    <StackLayout col="1" row="0" class="nx-item-column">
                         <ng-content></ng-content>
                     </StackLayout>
 
-                    <StackLayout col="2" class="icon-column icon-right nx-item-column">
+                    <StackLayout col="2" row="0" class="icon-column icon-right nx-item-column">
                         <ng-content select="[item-right]"></ng-content>
                     </StackLayout>
                     
                     <!-- first two colums --> 
-                    <StackLayout col="0" colSpan="2" class="nx-item-column inset-sides">
+                    <StackLayout col="0" row="0" colSpan="2" class="nx-item-column inset-sides">
                         <ng-content select="[item-col-2-left]"></ng-content>
                     </StackLayout>
 
                     <!-- third column -->
-                    <StackLayout col="1" colSpan="2" class="nx-item-column icon-column">
+                    <StackLayout col="1" row="0" colSpan="2" class="nx-item-column icon-column">
                         <ng-content select="[item-col-2-right]"></ng-content>
                     </StackLayout>
 
                     <!-- all three columns  -->
-                    <StackLayout col="0" colSpan="3" class="nx-item-column inset-sides">
+                    <StackLayout col="0" row="0" colSpan="3" class="nx-item-column inset-sides">
                         <ng-content select="[item-col-3]"></ng-content>
                     </StackLayout>
                     
@@ -62,7 +62,7 @@ import { Observable, Subscription, Subject} from 'rxjs/Rx';
 
         
 
-    </GridLayout>
+    </StackLayout>
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
     providers: [],

@@ -101,6 +101,8 @@ export class IonIcon {
                 return "\uf359";
             case "ion-calendar":
                 return "\uf117";
+            case "ion-flame":
+                return "\uf31a"
             // .. 
             
             case "ion-map" : 

@@ -45,6 +45,8 @@ import * as Models from "../../../models/models";
                             
                             <Label item-left class="material-icons text-center icon-default" text="assignment" textWrap="true"></Label>
                             <ion-icon item-right icon="ion-chevron-right"></ion-icon>
+                            
+                            
                         </nx-item>
                     </nx-list>
                 </StackLayout>

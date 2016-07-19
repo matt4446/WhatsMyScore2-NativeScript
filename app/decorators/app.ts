@@ -66,9 +66,9 @@ export function App<T>(config: IAppConfig<T>) {
             http,
             NS_ROUTER_PROVIDERS,
             //overide again
-            //NSRememberLocationStrategy,
-            //provide(LocationStrategy, { useExisting: NSRememberLocationStrategy}),
-            //provide(NSLocationStrategy, { useExisting: NSRememberLocationStrategy})
+            NSRememberLocationStrategy,
+            provide(LocationStrategy, { useExisting: NSRememberLocationStrategy}),
+            provide(NSLocationStrategy, { useExisting: NSRememberLocationStrategy})
         ] : [
             http,
             NS_ROUTER_PROVIDERS
