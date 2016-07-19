@@ -1,22 +1,10 @@
-<nx-nav>
+<!--<nx-nav>
     <label class="nx-header-title" text="Menu" style="horizontal-align:center"></label>
-</nx-nav>
-<StackLayout class="inset">
-    <nx-list>
-        <nx-item [nxRoute]="['Start']" >
-            <ion-icon item-left icon="ion-map"></ion-icon>
-            
-            <label text="Start"></label>
-            
-            <ion-icon item-right icon="ion-chevron-right"></ion-icon>
-        </nx-item>
-        <nx-item [nxRoute]="['Regions']">
-            <ion-icon item-left icon="ion-map"></ion-icon>
-            
-            <label text="Leagues & Regions"></label>
-            <label class="note" text="BUCS, SUTL ..."></label>
+</nx-nav>-->
 
-            <ion-icon item-right icon="ion-chevron-right"></ion-icon>
-        </nx-item>
-    </nx-list>
+<StackLayout class="inset">
+    <start-list-main></start-list-main>
+
+    <start-list-search></start-list-search>
+    
 </StackLayout>

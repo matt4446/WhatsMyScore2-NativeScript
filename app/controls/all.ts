@@ -2,6 +2,7 @@ import {NxCard} from "./card/card.control";
 import {NxContent} from "./content/content.control";
 import {NxDrawer} from "./drawer/drawer";
 import {MaterialFab} from "./fab/fab.component";
+import {NxFakeFab} from "./fab/fakeFab.component";
 import {IonIcon,AlignLeft,AlignRight,NavIcon} from "./icons/ion-icon";
 import {MaterialIcon} from "./icons/material-icon";
 

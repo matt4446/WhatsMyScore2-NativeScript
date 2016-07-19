@@ -1,9 +1,19 @@
 .nx-nav {
-  background-color: #4d75b8;
+  background-color: #548CEC;
+  height: 40;
 }
 
 ActionBar {
+
+    vertical-align: center;
+
+}
+
+.nx-nav-main{
     background-color: #4d75b8;
+    padding: 0;
+    margin: 0;
+    height: 40;
 }
 
 .title {
@@ -21,6 +31,9 @@ ActionBar {
     font-weight: bold;
 }
 
-.v-center {
-    vertical-align: center;
+.highlight {
+
+    border-width: 1;
+    border-color: #000000;
+    border-style: solid;
 }

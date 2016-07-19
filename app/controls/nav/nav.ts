@@ -1,38 +1,40 @@
 import { Control } from "../../decorators/control";
-import { EventEmitter, ViewChildren, ViewChild, ElementRef, HostListener, Host, Directive, Component, ContentChild, TemplateRef, ViewContainerRef} from '@angular/core';
+import { Input, EventEmitter, ViewChildren, ViewChild, ElementRef, HostListener, Host, Directive, Component, ContentChild, TemplateRef, ViewContainerRef} from '@angular/core';
 import { Logger} from "../../providers/logger";
 import { IonIcon,NavIcon} from "../icons/ion-icon";
 import { Observable, Subscription, Subject} from 'rxjs/Rx';
-import {Router, Instruction} from "@angular/router-deprecated";
-import {NxNavBack} from "./nav-back";
-import {Page} from "ui/page";
+import { Router, Instruction} from "@angular/router-deprecated";
+import { NxNavBack} from "./nav-back";
+import { Page} from "ui/page";
 import { MaterialIcon } from "../icons/material-icon";
 
 @Control({
     selector:"nx-nav",
     styleUrls: ["./controls/nav/nav.common.css"], 
     template:`
-        <ActionBar title="">
-            <StackLayout orientation="horizontal" class="v-center">
+        <StackLayout>
+            <StackLayout class="nx-nav nx-nav-main">
+                <GridLayout rows="*" columns="*,*,*">
+                    <StackLayout orientation="horizontal" col="0"  verticalAlignment="center">
+                        <nx-nav-back></nx-nav-back>
+                        <Label text="menu" [material-icon] class="title nav-icon" (tap)="menuButtonTap($event)"></Label>
+                    </StackLayout>
 
-                <StackLayout orientation="horizontal">
-                    <ng-content select="[nav-left]"></ng-content>
-                    
-                    <Label text="menu" [material-icon] class="title nav-icon" (tap)="menuButtonTap($event)"></Label>
-                    
-                    <nx-nav-back></nx-nav-back>
-                </StackLayout>
+                    <StackLayout orientation="horizontal" col="1" class="highlight" verticalAlignment="center">
+                        <ng-content select="[main-header]"></ng-content>    
+                    </StackLayout>  
 
-                <StackLayout orientation="horizontal">
-                    <ng-content></ng-content>
-                </StackLayout>  
-
-                <StackLayout orientation="horizontal">
-                    <ng-content select="[nav-right]"></ng-content>    
-                </StackLayout>                
-                
+                    <StackLayout orientation="horizontal" col="2" class="highlight" verticalAlignment="center">
+                        <ng-content select="[nav-right]"></ng-content>    
+                    </StackLayout>   
+                </GridLayout>
             </StackLayout>
-        </ActionBar>
+            <StackLayout class="nx-nav" verticalAlignment="center">
+                <ng-content></ng-content>
+            </StackLayout>
+        </StackLayout>
+        
+        
     `,
 
     //create 1 row template; 3 columns; 2 for the icons on the sides
@@ -69,6 +71,9 @@ import { MaterialIcon } from "../icons/material-icon";
 export class NxNav {
     @ViewChild('item') private container: ElementRef
 
+    @Input("showSubHeader")
+    public ShowSubheader : boolean = true; 
+
     public constructor(
         private router: Router, 
         private element: ElementRef,
@@ -80,8 +85,8 @@ export class NxNav {
     }
     
     ngOnInit() {
-        //this.page.actionBarHidden = true;
-        //this.page.actionBar.update();
+        this.page.actionBarHidden = true;
+        this.page.actionBar.update();
     }
       
     public title : string = "Default Title";

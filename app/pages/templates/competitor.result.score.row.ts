@@ -5,7 +5,6 @@ import {Logger} from "../../providers/logger";
 
 @PageControl({
     selector: 'competitor-result-row-header',
-    changeDetection: ChangeDetectionStrategy.Detached,
     template: `
         <GridLayout class="header" columns="*,*,*,*,*,*">
 

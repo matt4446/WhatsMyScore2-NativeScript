@@ -11,9 +11,9 @@
         "noEmitOnError": true
     },
     "exclude": [
+        "typings/browser",
+        "typings/browser/browser.d.ts",
         "node_modules",
-        "platforms",
-        "typings/browser.d.ts",
-        "typings/browser"
+        "platforms"
     ]
 }

@@ -1,15 +1,21 @@
+import { nativeScriptBootstrap, onAfterLivesync, onBeforeLivesync,bootstrap, AppOptions } from "nativescript-angular/application";
+
 import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from "@angular/router-deprecated";
 
 import { bind, provide, Inject, Component, ComponentRef } from '@angular/core';
-import { NS_ROUTER_DIRECTIVES, NS_ROUTER_PROVIDERS } from "nativescript-angular/router";
+//import { NS_ROUTER_DIRECTIVES, NS_ROUTER_PROVIDERS } from "nativescript-angular/router";
+import { NS_ROUTER_DIRECTIVES, NS_ROUTER_PROVIDERS} from "nativescript-angular/router-deprecated/ns-router-deprecated";
 import { NSLocationStrategy } from "nativescript-angular/router/ns-location-strategy";
 import { registerElement, ViewClass } from "nativescript-angular/element-registry";
-import { HTTP_PROVIDERS } from "@angular/http";
-import { nativeScriptBootstrap, bootstrap, AppOptions } from "nativescript-angular/application";
+
+import { HTTP_PROVIDERS, Http, XHRBackend, XHRConnection, ConnectionBackend, RequestOptions, RequestOptionsArgs, ResponseOptions, ResponseType, Response, Request, BrowserXhr, XSRFStrategy} from '@angular/http';
+import { NSXSRFStrategy, NSHttp} from "nativescript-angular/http/ns-http";
+import { NSFileSystem } from "nativescript-angular/file-system/ns-file-system";
+
 import { Page } from "ui/page";
 import { TextView} from 'ui/text-view';
 import { NSRememberLocationStrategy } from "../router/remember-location-strategy";
-import {LocationStrategy} from '@angular/common';
+import { LocationStrategy } from '@angular/common';
 //import application = require('application');
 //import {NS_ROUTER_PROVIDERS} from "nativescript-angular/router/ns-router";
 
@@ -47,16 +53,24 @@ export function App<T>(config: IAppConfig<T>) {
         config.selector = 'main';
         config.template = `<page-router-outlet></page-router-outlet>`;
 
+        var http = [
+            HTTP_PROVIDERS,
+            provide(XSRFStrategy, { useValue: new NSXSRFStrategy() }),
+            provide(Http, { useFactory: (backend, options, nsFileSystem) => {
+                return new NSHttp(backend, options, nsFileSystem);
+            }, deps: [XHRBackend, RequestOptions, NSFileSystem]})        
+        ];
+        
         //switch to design mode (remembers the previous page that was navigated to. )
         let baseConfig = config.designMode ? [
-            HTTP_PROVIDERS,
+            http,
             NS_ROUTER_PROVIDERS,
             //overide again
-            NSRememberLocationStrategy,
-            provide(LocationStrategy, { useExisting: NSRememberLocationStrategy}),
-            provide(NSLocationStrategy, { useExisting: NSRememberLocationStrategy})
+            //NSRememberLocationStrategy,
+            //provide(LocationStrategy, { useExisting: NSRememberLocationStrategy}),
+            //provide(NSLocationStrategy, { useExisting: NSRememberLocationStrategy})
         ] : [
-            HTTP_PROVIDERS,
+            http,
             NS_ROUTER_PROVIDERS
         ];
 

@@ -2,29 +2,37 @@
   "nativescript": {
     "id": "whatsmyscore.breakoutdeveloper.com",
     "tns-android": {
-      "version": "2.0.0"
+      "version": "2.1.1"
     }
   },
   "dependencies": {
-    "@angular/common": "2.0.0-rc.1",
-    "@angular/compiler": "2.0.0-rc.1",
-    "@angular/core": "2.0.0-rc.1",
-    "@angular/http": "2.0.0-rc.1",
-    "@angular/platform-browser": "2.0.0-rc.1",
-    "@angular/platform-browser-dynamic": "2.0.0-rc.1",
-    "@angular/platform-server": "2.0.0-rc.1",
-    "@angular/router-deprecated": "2.0.0-rc.1",
+    "tns-core-modules": ">=2.1.0 || >=2.1.0-2016",
+    "nativescript-angular": "~0.2.0",
+    "nativescript-intl": "^0.0.2",
+    "@angular/common": "2.0.0-rc.4",
+    "@angular/compiler": "2.0.0-rc.4",
+    "@angular/core": "2.0.0-rc.4",
+    "@angular/http": "2.0.0-rc.4",
+    "@angular/platform-browser": "2.0.0-rc.4",
+    "@angular/platform-browser-dynamic": "2.0.0-rc.4",
+    "@angular/platform-server": "2.0.0-rc.4",
+    "@angular/router-deprecated": "2.0.0-rc.2",
+    "@angular/router": "3.0.0-alpha.7",
+    "rxjs": "5.0.0-beta.6",
+    "zone.js": "^0.6.12",
+    "reflect-metadata": "^0.1.3",
+    "parse5": "1.4.2",
+    "punycode": "1.3.2",
+    "querystring": "0.2.0",
+    "url": "0.10.3",
     "ionicons": "~2.0.0",
     "lodash": "^4.13.1",
     "moment": "~2.11.2",
-    "nativescript-angular": "0.1.6",
     "nativescript-cardview": "1.0.1",
-    "nativescript-enumerable": "~2.2.0",
-    "nativescript-floatingactionbutton": "~2.2.2",
-    "nativescript-pulltorefresh": "1.1.4",
-    "reflect-metadata": "0.1.3",
-    "rxjs": "5.0.0-beta.6",
-    "tns-core-modules": "^2.0.1",
+    "nativescript-enumerable": "~3.3.7",
+    "nativescript-floatingactionbutton": "~2.2.4",
+    "nativescript-pulltorefresh": "~1.1.4",
+    "nativescript-videoplayer": "~0.2.0",
     "underscore": "~1.8.3"
   },
   "devDependencies": {
@@ -36,7 +44,5 @@
     "nativescript-dev-typescript": "^0.3.2",
     "typescript": "^1.8.10"
   },
-  "scripts": {
-    "postinstall": "typings install"
-  }
+  "scripts": {}
 }

@@ -1,7 +1,8 @@
 import 'reflect-metadata';
-import {RouteConfig} from "@angular/router-deprecated";
+
 //decorators
 import {App} from "./decorators/app";
+import {RouteConfig} from "@angular/router-deprecated";
 //pages 
 //level 1 
 import { StatsPage } from "./pages/competition/stats/stats.page";
@@ -107,6 +108,9 @@ import {RegionCache, CompetitionCache, GradeCache, ClubCache} from "./providers/
     {
         name: "PullToRefresh",
         resolver: () => require("nativescript-pulltorefresh").PullToRefresh 
+    },{
+        name: "VideoPlayer",
+        resolver: () => require("nativescript-videoplayer").Video
     }],
     directives: []
 })

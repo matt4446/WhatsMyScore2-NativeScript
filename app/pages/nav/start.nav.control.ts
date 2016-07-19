@@ -8,13 +8,17 @@ import {Router} from "@angular/router-deprecated";
 import {Settings} from "../../providers/routes/routes";
 import {NxDrawer} from "../../controls/drawer/drawer";
 import {NS_ROUTER_DIRECTIVES} from 'nativescript-angular/router';
+import {StartListSearchControl} from "../start/start.list.search.control";
+import {StartListControl} from "../start/stat.list.start.control";
 
 @PageControl({
     selector: "start-nav",
-    templateUrl: "pages/nav/start.nav.control.html"
+    templateUrl: "pages/nav/start.nav.control.html",
+    directives: [StartListSearchControl,StartListControl]
 })
 export class StartNav
 {
+    
     constructor(private logger:Logger, private router: Router)
     {
         this.logger.Notify("Start Page - constructor hit"); 

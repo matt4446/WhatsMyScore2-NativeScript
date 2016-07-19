@@ -3,12 +3,13 @@ import { EmbeddedViewRef, EventEmitter, ContentChildren, ViewChildren, ViewChild
 import { Control } from "../../decorators/control";
 import { Logger} from "../../providers/logger";
 import { NxNav } from "../nav/nav";
-import { Observable, Subscription, Subject} from 'rxjs/Rx';
+import * as Rx from 'rxjs/Rx';
 import { AbsoluteLayout } from "ui/layouts/absolute-layout";
 import { StackLayout } from "ui/layouts/stack-layout";
 import { GridLayout } from "ui/layouts/grid-layout";  
 import { Button } from "ui/button";
 import { PanGestureEventData} from "ui/gestures";
+import { AnimationPromise } from "ui/animation";// animation = require("ui/animation");
 // import 'rxjs/add/operator/map';
 // import 'rxjs/add/operator/from';
 
@@ -16,22 +17,41 @@ import { PanGestureEventData} from "ui/gestures";
  * GridLayout without rows and columns defined will overlap elements. 
  */
 
+@Directive({
+    selector : "[nx-drawer-close]"
+})
+export class NxCloseDrawer
+{
+
+} 
+
 @Control({
     selector:"nx-drawer",
     template:`
-        <GridLayout>
-            <StackLayout #asideLeftParent opacity="0" verticalAlignment="top" horizontalAlignment="left">
-                <StackLayout width="300" #asideLeft>
-                    <ng-content select="[drawer-aside-left]"></ng-content>
-                </StackLayout>
-            </StackLayout>  
+    
+        <GridLayout rows="*" columns="*">
+            
+   
+
         
-            <StackLayout #grid>
+            
+        
+            <StackLayout #grid row="0" col="0">
                 <StackLayout #centerContent>
                     <ng-content></ng-content>
                 </StackLayout>
-            </StackLayout>  
+            </StackLayout> 
+            <!-- need the AbsoluteLayout as it gets confused for some reason  --> 
+            <AbsoluteLayout>
+                <StackLayout horizontalAlignment="left" #asideLeftParent opacity="0" width="300">
+                    <StackLayout  #asideLeft>
+                        <ng-content select="[drawer-aside-left]"></ng-content>
+                    </StackLayout>
+                </StackLayout> 
+            </AbsoluteLayout>
+             
         </GridLayout>
+
     `
 })
 export class NxDrawer {
@@ -51,22 +71,92 @@ export class NxDrawer {
         NavAttached: false
     };
     
-    public Open () {
-        if(this.State.Open){
-            return;
-        }
+    public OpenLeftAside() {
+        // if(this.State.Open){
+        //     return;
+        // }
+        this.State.Open = true;
+        let center: StackLayout = this.centerContent.nativeElement;
+        let leftParent: AbsoluteLayout = this.asideLeftParent.nativeElement;
+        this.logger.Notify("bring back center");
+        //center.visibility = "collapse";
+        
+        center.animate({
+            translate: {
+                y: 0,
+                x: 300
+            },
+            opacity: 0.7
+        });
+        
+        leftParent.animate({
+            opacity: 1,
+            translate: {
+                x: 0,
+                y: 0
+            }
+        });
+        
     }
     
-    public Close() {
+    public CloseLeftAside() {
         if(!this.State.Open){
             return ;
         }
+        this.State.Open = false;
+        let center: StackLayout = this.centerContent.nativeElement;
+        let leftParent: AbsoluteLayout = this.asideLeftParent.nativeElement;
+        this.logger.Notify("show aside left");
+                //center.visibility = "visible";
+        center.animate({
+            translate: {
+                y: 0,
+                x: 0
+            },
+            opacity : 1
+        });
+        
+        leftParent.animate({
+            opacity: 0
+        });
+
+    }
+
+    public AnimateCenterToPosition(x : number){
+        let center: StackLayout = this.centerContent.nativeElement;
+        let leftParent: AbsoluteLayout = this.asideLeftParent.nativeElement;
+        
+        if(x > 0){
+            center.translateX = 300;
+            leftParent.translateX = 0;
+            return;
+        }
+
+        var newPosition = -((x /100) * 300) * 0.8;
+        var newOpacity = (Math.abs(x)/100) * 1; 
+
+        //go a little over 
+        newPosition = newPosition > 400 ? 400 : newPosition;
+        newOpacity = newOpacity > 1 
+            ? 1 
+            : newOpacity < 0.2 ? 0.2 : newOpacity;
+
+        center.translateX = 300 - newPosition;
+        center.opacity =  newOpacity;
+
+        leftParent.translateX = -newPosition;
     }
     
+    public mainTapped(){
+        //if(!this.State.Open){ return ; }
+        this.logger.Notify("main tapped");   
+    }
+
     private ngOnInit(){
         //let center: StackLayout = this.centerContent.nativeElement;
     } 
-        
+
+
     @ViewChild('grid')
     set _grid(item: ElementRef){
         this.logger.Notify("set pan on grid");
@@ -74,6 +164,20 @@ export class NxDrawer {
         // g.on("pan", (args: PanGestureEventData) => {
         //     this.logger.Notify("Pan delta: [" + args.deltaX + ", " + args.deltaY + "] state: " + args.state);
         // });
+
+        var pan = Rx.Observable.fromEvent<PanGestureEventData>(g, "pan");
+        pan.filter(e=> e.state === 2).subscribe((args) => {
+            this.logger.Notify("Pan delta: [" + args.deltaX + ", " + args.deltaY + "] state: " + args.state);
+            this.AnimateCenterToPosition(args.deltaX);
+        });
+        pan.filter(e=> e.state === 3).subscribe((args)=> {
+            if(args.deltaX < -100){
+                this.logger.Notify("close");
+                this.CloseLeftAside();
+            }else{
+                this.OpenLeftAside();
+            }
+        });
     }
     
     @ViewChild("asideLeftParent")private asideLeftParent: ElementRef;
@@ -82,13 +186,12 @@ export class NxDrawer {
     set _asideLeft(item: ElementRef){
         this.asideLeftContent = item;
         this.State.HasLeft = true;
-        //hi
-        //this.logger.Notify("drawer.asideLeftContent set" + item);
-        this.logger.Notify("set pan on asideLeft");
-        let g : GridLayout = item.nativeElement;
-        g.on("pan", (args: PanGestureEventData) => {
-            this.logger.Notify("Pan asideLeft delta: [" + args.deltaX + ", " + args.deltaY + "] state: " + args.state);
-        });
+
+        // this.logger.Notify("set pan on asideLeft");
+        // let g : GridLayout = item.nativeElement;
+        // g.on("pan", (args: PanGestureEventData) => {
+        //     this.logger.Notify("Pan asideLeft delta: [" + args.deltaX + ", " + args.deltaY + "] state: " + args.state);
+        // });
     }
     
     @ViewChild('asideRight') 
@@ -101,11 +204,11 @@ export class NxDrawer {
     @ViewChild('centerContent')
     set _setCenter(item: ElementRef){
         this.centerContent = item;
-        this.logger.Notify("set pan on centerContent");
-        let g : GridLayout = item.nativeElement;
-        g.on("pan", (args: PanGestureEventData) => {
-            this.logger.Notify("Pan centerContent delta: [" + args.deltaX + ", " + args.deltaY + "] state: " + args.state);
-        });
+        // this.logger.Notify("set pan on centerContent");
+        // let g : GridLayout = item.nativeElement;
+        // g.on("pan", (args: PanGestureEventData) => {
+        //     this.logger.Notify("Pan centerContent delta: [" + args.deltaX + ", " + args.deltaY + "] state: " + args.state);
+        // });
     }
         
     @ContentChildren(NxNav)
@@ -120,49 +223,13 @@ export class NxDrawer {
         
         var anySelected = this.childNavs.map((item) => item.menuSelected);
                 
-        Observable.from(anySelected).flatMap(x=>x).subscribe(() => { 
+        Rx.Observable.from(anySelected).flatMap(x=>x).subscribe(() => { 
             this.logger.Notify("nav menu tapped -> open side");
             //let grid: StackLayout = this.grid.nativeElement;
-            
-            
-            let leftParent: AbsoluteLayout = this.asideLeftParent.nativeElement;
-            let left: StackLayout = this.asideLeftContent.nativeElement;
-            let right: StackLayout = this.asideLeftContent.nativeElement;
-            let center: StackLayout = this.centerContent.nativeElement;
-            
-            if(this.State.Open){
-                this.State.Open = false;
-                this.logger.Notify("bring back center");
-                //center.visibility = "collapse";
-                center.animate({
-                    translate: {
-                        y: 0,
-                        x: 0
-                    },
-                    opacity : 1
-                });
-                
-                leftParent.animate({
-                    opacity: 0
-                });
-            }else if(!this.State.Open){
-                this.State.Open = true;
-                this.logger.Notify("show aside left");
-                //center.visibility = "visible";
-                center.animate({
-                    translate: {
-                        y: 0,
-                        x: 300
-                    },
-                    opacity: 0.7
-                });
-                
-                leftParent.animate({
-                    opacity: 1
-                });
-            }
-            
-            
+
+            if(this.State.Open){ this.CloseLeftAside(); }
+            else{ this.OpenLeftAside(); }
+
         });
     }
 }

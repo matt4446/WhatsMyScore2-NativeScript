@@ -2,11 +2,16 @@ GridLayout Label {
     padding: 5;
 }
 
-GridLayout.header{
+GridLayout.header {
     border-top-left-radius: 4;
     border-top-right-radius: 4;
 }
-GridLayout.header Label {
+StackLayout.header Label{
+    background-color: #1E88E5;
+    color: #BBDEFB;
+    font-size: 14;
+}
+GridLayout.header Label{
     background-color: #1E88E5;
     color: #BBDEFB;
     font-size: 14;

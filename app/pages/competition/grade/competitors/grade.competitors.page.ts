@@ -61,6 +61,7 @@ export class GradeCompetitorsPage implements OnInit {
     }
 
     public list: Models.ICompetitor[] = [];
+    public groupedList:  Models.IGroupOfItem<Models.ICompetitor>;
     public groups: number = 0; //if more than one group change the label
 
     //action to 
@@ -84,11 +85,16 @@ export class GradeCompetitorsPage implements OnInit {
 
         obseravable.map(e => e.json()).subscribe(e => {
             this.list = e;
-            let max = Rx.Observable.from(this.list).map(e => e.StartGroup).max();
-
-            max.subscribe(m => {
-                this.groups = m;
+            
+            this.list.forEach(e=> {
+                
             });
+
+            // let max = Rx.Observable.from(this.list).map(e => e.StartGroup).max();
+
+            // max.subscribe(m => {
+            //     this.groups = m;
+            // });
         });
 
         return obseravable;

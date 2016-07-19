@@ -30,11 +30,10 @@ export class ResultsDetailRow{
             <Label class='note' *ngIf="!context.Competitor.Removed" [text]="GetRank() | Title" textWrap="true"></Label>
             <Label class='note' *ngIf="!context.Competitor.Removed" [text]="context.Competitor.Total | number:'3.3-3'" textWrap="true"></Label>
             <Label class='note' *ngIf="context.Competitor.Removed" text="x" textWrap="true"></Label>
-            
         </StackLayout>
     </nx-item>
-
-    <nx-item *ngIf="IsExpanded()" (tap)="ShowHideResults()" > 
+    
+    <nx-item *ngIf="context.Expanded" (tap)="ShowHideResults()" > 
         
         <StackLayout item-col-3>
             <Label *ngIf="context.Competitor.Removed" text="Withdrawn" textWrap="true"></Label>
@@ -47,6 +46,10 @@ export class ResultsDetailRow{
                 <competitor-result-row *ngIf="context.Competitor.Pass4" [scoreline]="context.Competitor.Pass4"></competitor-result-row>
             </nx-list>
             
+            <VideoPlayer
+                src="https://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4"
+                autoplay="true" 
+                height="300"></VideoPlayer>
         </StackLayout>
     </nx-item>
   `,
@@ -68,7 +71,7 @@ export class CompetitorResult {
   public set competitor(value: ICompetitorContext){
     // var t = typeof(value);
     // console.log("set person: " + t);
-    this.logger.NotifyObjectProperties(value);
+    //this.logger.NotifyObjectProperties(value);
     this.context = value;
   }
 
