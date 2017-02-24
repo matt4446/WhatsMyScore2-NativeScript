@@ -20,11 +20,11 @@ import { MaterialIcon } from "../icons/material-icon";
                         <Label text="menu" [material-icon] class="title nav-icon" (tap)="menuButtonTap($event)"></Label>
                     </StackLayout>
 
-                    <StackLayout orientation="horizontal" col="1" class="highlight" verticalAlignment="center">
+                    <StackLayout orientation="horizontal" col="1" verticalAlignment="center">
                         <ng-content select="[main-header]"></ng-content>    
                     </StackLayout>  
 
-                    <StackLayout orientation="horizontal" col="2" class="highlight" verticalAlignment="center">
+                    <StackLayout orientation="horizontal" col="2" class="text-right" verticalAlignment="center">
                         <ng-content select="[nav-right]"></ng-content>    
                     </StackLayout>   
                 </GridLayout>

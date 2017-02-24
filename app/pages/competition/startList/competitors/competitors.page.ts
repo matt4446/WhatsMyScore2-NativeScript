@@ -106,7 +106,8 @@ export class StartGroup{
                                 <label [text]="person.Club" class="note"></label>
                                 <!-- todo : change to score. --> 
                                 <ion-icon item-right icon="ion-flame"></ion-icon>
-                                <Label item-right text="person.Total" textWrap="true"></Label>
+                                <Label class='note' item-right [text]="person.Total | number:'3.3-3'" textWrap="true"></Label>
+                                
                             </nx-item>
                         </nx-list>
                     </StackLayout>

@@ -74,30 +74,30 @@ export class NxPullToRefreshView{
         this.shrink();
     }
 
-    private animateContentChildElement: PullToRefreshAnimateElement;
-    @ContentChild(PullToRefreshAnimateElement)
-    public set contentChildren(element)
+    private animateContentChildElement: PullToRefreshAnimateElement[];
+    @ContentChildren(PullToRefreshAnimateElement)
+    public set contentChildren(elements)
     {
-        this.animateContentChildElement = element;
+        this.animateContentChildElement = elements.toArray();
     }
 
-    private animateViewChild : PullToRefreshAnimateElement;
-    @ViewChild(PullToRefreshAnimateElement)
-    public set viewChildren(element){
-        this.animateViewChild = element;
+    private animateViewChild : PullToRefreshAnimateElement[];
+    @ViewChildren(PullToRefreshAnimateElement)
+    public set viewChildren(elements){
+        this.animateViewChild = elements.toArray();
     }
 
     private get AnimateElements() : PullToRefreshAnimateElement[]{
         let a = [];
-        if(this.animateContentChildElement)
+        if(this.animateContentChildElement && this.animateContentChildElement.length > 0)
         {
             this.logger.Notify("animateContentChildElement");
-            a.push(this.animateContentChildElement); 
+            this.animateContentChildElement.forEach(item => { a.push(item); });
         }
-        if(this.animateViewChild)
+        if(this.animateViewChild && this.animateViewChild.length > 0)
         { 
             this.logger.Notify("animateViewChild");
-            a.push(this.animateViewChild); 
+            this.animateViewChild.forEach(item => { a.push(item); });
         }
 
         if(a.length === 0){
