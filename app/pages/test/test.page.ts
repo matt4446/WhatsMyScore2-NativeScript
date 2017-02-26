@@ -1,4 +1,4 @@
-import {Page} from "../../decorators/page";
+import { Component } from '@angular/core';
 import {Page as PageControl} from "ui/page";
 import {Logger} from "../../providers/logger";
 import {NxPullToRefresh} from "../../controls/pullToRefresh/pullToRefresh.control";
@@ -7,7 +7,7 @@ import {PullToRefresh} from "nativescript-pulltorefresh";
 import {Color} from "color";
 //Page is a wrapper on @Component
 
-@Page({
+@Component({
     selector: "start",
     template: `
         <StackLayout >
@@ -34,8 +34,7 @@ import {Color} from "color";
                 </nx-pull-to-refresh>
             </StackLayout>
         </StackLayout>
-    `,
-    directives: [NxPullToRefresh]
+    `
 })
 export class TestPage 
 {

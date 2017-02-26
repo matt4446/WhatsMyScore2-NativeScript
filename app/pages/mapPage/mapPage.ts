@@ -2,7 +2,6 @@ import {Observable, EventData } from "data/observable";
 import {alert} from "ui/dialogs";
 
 import {Inject, Component} from '@angular/core';
-import {Page} from "../../decorators/page";
 import {Logger} from "../../providers/logger";
 //import {Router} from "@angular/router-deprecated";
 import {NxNav} from "../../controls/nav/nav";
@@ -11,10 +10,9 @@ import {NxListItem} from "../../controls/list/list-item";
 import {NxHeader} from "../../controls/list/header";
 import {IonIcon,NavIcon} from "../../controls/icons/ion-icon";
 //import {TitleTransform} from "../../pipes/title";
-@Page({
+@Component({
     selector: "map-page",
     //move directives to App .. 
-    directives: [NxNav, NxList, NxListItem, NxHeader, IonIcon],
     templateUrl: "pages/mapPage/mapPage.html"
 })
 export class MapPage 

@@ -1,6 +1,4 @@
 import {Component, OnInit } from '@angular/core';
-//import {Router} from "@angular/router-deprecated";
-import {Page} from "../../../decorators/page";
 import {Logger} from "../../../providers/logger";
 //import {SearchList, ISearchEvent} from "../../controls/searchList/searchList";
 import {AppRoutingService} from "../../../context/router.context";
@@ -9,7 +7,7 @@ import {ClubService} from "../../../providers/leagues/club";
 import {GradeService} from "../../../providers/leagues/grade";
 import {RegionCache, CompetitionCache, GradeCache, ClubCache} from "../../../providers/leagues/cache";
 import {CompetitionNav} from "../../nav/competition.nav";
-@Page({
+@Component({
     selector: "find-competitor-page",
     template: `
         <nx-drawer>
@@ -27,7 +25,7 @@ import {CompetitionNav} from "../../nav/competition.nav";
                             <label [text]="clubGroup.key" class="nx-header-title"></label>
                         </nx-header>
                         
-                        <nx-item *ngFor="#club of clubGroup.items | orderBy:'Name'">
+                        <nx-item *ngFor="let club of clubGroup.items | orderBy:'Name'">
                             <ion-icon item-left icon="ion-clipboard"></ion-icon>
                             <label [text]="club.Name"></label>
                             <ion-icon item-right icon="ion-ios-people"></ion-icon>
@@ -39,7 +37,6 @@ import {CompetitionNav} from "../../nav/competition.nav";
             
         </nx-drawer>
     `,
-    directives: [CompetitionNav],
     providers: [CompetitionService, GradeService, ClubService]
 })
 export class FindCompetitorPage implements OnInit

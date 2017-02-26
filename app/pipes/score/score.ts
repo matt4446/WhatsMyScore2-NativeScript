@@ -1,5 +1,4 @@
 import { PipeTransform, Pipe } from "@angular/core";
-import { Logger } from "../providers/logger";
 
 @Pipe({name: 'FormScore', pure: true})
 export class FormScoreFormatter implements PipeTransform {

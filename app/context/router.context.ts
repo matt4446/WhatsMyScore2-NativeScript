@@ -1,4 +1,4 @@
-import {RouteParams} from "@angular/router-deprecated";
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import {Logger} from "../providers/logger"
 import {IRegion, ICompetition} from "../models/models"
 
@@ -22,15 +22,15 @@ export class AppRoutingService implements IRegionRoute, ICompetitionRoute, IGrad
     public GradeId : any;
     public ClubId : any;
     
-    constructor(private routeParams: RouteParams, private logger: Logger)
+    constructor(private routeParams: Params, private logger: Logger)
     {
         logger.Notify("AppRoutingService created");
         
         //this.Context = new RouterContext();
-        this.RegionId = this.routeParams.get('regionId');
-        this.CompetitionId = this.routeParams.get("competitionId");
-        this.GradeId = this.routeParams.get("gradeId");
-        this.ClubId = this.routeParams.get("clubId");
+        this.RegionId = this.routeParams['regionId'];
+        this.CompetitionId = this.routeParams["competitionId"];
+        this.GradeId = this.routeParams["gradeId"];
+        this.ClubId = this.routeParams["clubId"];
         
         let a = JSON.stringify({
             regionId : this.RegionId,

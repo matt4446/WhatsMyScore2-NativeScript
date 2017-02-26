@@ -1,22 +1,18 @@
 import {Component, Input, ChangeDetectionStrategy} from '@angular/core';
 import {ICompetitorContext } from "../../models/models";
-import {PageControl} from "../../decorators/pageControl";
 import {Logger} from "../../providers/logger";
 import {CompetitorResultRow, CompetitorResultRowHeader} from "./competitor.result.score.row";
 
-@PageControl({
+@Component({
     selector: 'competitor-result-detail-row',
-    directives: [],
-    template: `
-        
-    `
+    template: ``
 })
 export class ResultsDetailRow{
     @Input()
     public person; 
 }
 
-@PageControl({
+@Component({
   selector: 'competitor-result',
   styleUrls: ["./pages/templates/competitor.results.css"],
   template: `
@@ -55,8 +51,6 @@ export class ResultsDetailRow{
   `,
   //changeDetection: ChangeDetectionStrategy.,
   changeDetection: ChangeDetectionStrategy.Default,
-  directives: [ResultsDetailRow, CompetitorResultRow, CompetitorResultRowHeader],
-  
 })
 
 export class CompetitorResult {

@@ -1,15 +1,12 @@
 
-import { EventEmitter, ViewChildren, ViewChild, ElementRef, ContentChild } from '@angular/core';
-import { Router, Instruction,  } from "@angular/router-deprecated";
+import { EventEmitter, ViewChildren, ViewChild, ElementRef, ContentChild, Component } from '@angular/core';
 import { Location,LocationStrategy } from '@angular/common';
 
-import { Control } from "../../decorators/control";
 import { Logger} from "../../providers/logger";
-
 import { Observable, Subscription, Subject} from 'rxjs/Rx';
 import { MaterialIcon } from "../icons/material-icon";
 
-@Control({
+@Component ({
     selector:"nx-nav-back",
     styleUrls: ["./controls/nav/nav.common.css"], 
     // template: `
@@ -22,13 +19,11 @@ import { MaterialIcon } from "../icons/material-icon";
             
         </StackLayout>
     `,
-    directives: [MaterialIcon],
     providers: [],
 })
 export class NxNavBack {
     
     public constructor(
-        private router: Router, 
         private location: Location,
         private element: ElementRef,
         private logger: Logger) {       

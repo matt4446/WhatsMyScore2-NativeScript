@@ -1,27 +1,20 @@
-import {OnInit, OnDestroy} from '@angular/core';
+import { OnInit, OnDestroy, Component } from '@angular/core';
 
-import {PageControl} from "../../decorators/pageControl";
 import {Logger} from "../../providers/logger";
 import {CompetitionService} from "../../providers/leagues/competitions";
 
 import {GradeService} from "../../providers/leagues/grade";
 import {RegionCache, CompetitionCache, GradeCache, ClubCache} from "../../providers/leagues/cache";
 
-import {RouteParams} from "@angular/router-deprecated";
 import {ClubService} from "../../providers/leagues/club";
 import {ICompetition} from "../../models/models"
 import {CompetitionNav} from "../nav/competition.nav";
 import {AppRoutingService} from "../../context/router.context";
 import {Subscription} from 'rxjs/Rx';
 
-// import 'rxjs/add/operator/map';
-// import 'rxjs/add/operator/zip';
-// import 'rxjs/add/operator/from';
-
-@PageControl({
+@Component({
     selector: "Competiton",
 	templateUrl: "pages/competition/competition.page.html",
-    directives: [CompetitionNav],
     providers: [CompetitionService, GradeService, ClubService]
 })
 export class CompetitionLayout implements OnInit, OnDestroy

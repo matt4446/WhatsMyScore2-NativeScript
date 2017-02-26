@@ -1,13 +1,12 @@
-import { Control } from "../../decorators/control";
-import { Directive, ElementRef, Input, Output, EventEmitter, ContentChildren,ContentChild, ViewChild,TemplateRef } from "@angular/core";
+import { Component, Directive, ElementRef, Input, Output, EventEmitter, ContentChildren,ContentChild, ViewChild,TemplateRef } from "@angular/core";
 import { Logger } from "../../providers/logger";
 import { Label } from "ui/label";
 
 @Directive({
     selector:"nav-icon",
-    properties: [
-        'class: ion-icon nav-icon' 
-    ]
+    // properties: [
+    //     'class: ion-icon nav-icon' 
+    // ]
 })
 export class NavIcon
 {
@@ -31,7 +30,7 @@ export class AlignLeft{
 })
 export class AlignRight {}
 
-@Control({
+@Component({
     selector:"ion-icon",
     // template: `   
     // <label (tap)="tapIcon" #item 

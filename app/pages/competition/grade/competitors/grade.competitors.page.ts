@@ -1,6 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {Router} from "@angular/router-deprecated";
-import {Page} from "../../../../decorators/page";
 import {Logger} from "../../../../providers/logger";
 //import {SearchList, ISearchEvent} from "../../controls/searchList/searchList";
 import {AppRoutingService} from "../../../../context/router.context";
@@ -16,7 +14,7 @@ import 'rxjs/add/operator/max';
 import 'rxjs/add/operator/distinct';
 
 
-@Page({
+@Component({
     selector: "grade-competitors-page",
     template: `
         <nx-drawer>
@@ -47,7 +45,6 @@ import 'rxjs/add/operator/distinct';
             </nx-content>
         </nx-drawer>
     `,
-    directives: [CompetitionNav],
     providers: [CompetitionService, GradeService, ClubService, CompetitorService]
 })
 export class GradeCompetitorsPage implements OnInit {

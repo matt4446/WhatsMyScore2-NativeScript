@@ -1,6 +1,4 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
-import {Router} from "@angular/router-deprecated";
-import {Page} from "../../../decorators/page";
 import {Logger} from "../../../providers/logger";
 //import {SearchList, ISearchEvent} from "../../controls/searchList/searchList";
 import {AppRoutingService} from "../../../context/router.context";
@@ -12,7 +10,7 @@ import {IGrade} from "../../../models/models";
 import {CompetitionNav} from "../../nav/competition.nav";
 import * as Rx from "rxjs";
 
-@Page({
+@Component({
     selector: "grade-list-page",
     //templateUrl: "pages/competition/gradeList/page.html",
     template: `
@@ -52,7 +50,6 @@ import * as Rx from "rxjs";
             
         </nx-drawer>
     `,
-    directives: [CompetitionNav],
     providers: [CompetitionService, GradeService, ClubService]
 })
 export class GradeListPage implements OnInit, OnDestroy

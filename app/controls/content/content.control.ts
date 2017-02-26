@@ -1,5 +1,4 @@
-import { Control } from "../../decorators/control";
-import { HostListener, ElementRef, Input, Output, EventEmitter, 
+import { Component, HostListener, ElementRef, Input, Output, EventEmitter, 
     ContentChildren,ContentChild, ViewChild, TemplateRef, OnInit, AfterViewInit } from "@angular/core";
 import { Logger } from "../../providers/logger";
 import { Button } from "ui/button";
@@ -9,7 +8,7 @@ import { NxPullToRefresh, PullToRefreshAnimateElement } from '../pullToRefresh/p
 import { PullToRefresh } from "nativescript-pulltorefresh";
 import { AnimationPromise } from "ui/animation";
 
-@Control({
+@Component({
     selector:"nx-content",
     template: `
     <GridLayout>
@@ -23,8 +22,7 @@ import { AnimationPromise } from "ui/animation";
         <ActivityIndicator [busy]="isLoading" [visibility]="isLoading ? 'visible' : 'collapse'" horizontalAlignment="center" verticalAlignment="center"></ActivityIndicator>
     </GridLayout>
     `,
-    providers: [],
-    directives: [NxPullToRefresh, PullToRefreshAnimateElement]
+    providers: []
 })
 export class NxContent implements OnInit, AfterViewInit {
     //private template: TemplateRef;

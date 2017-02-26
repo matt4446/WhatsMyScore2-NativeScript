@@ -1,8 +1,6 @@
 import {Component, OnInit, OnDestroy } from '@angular/core';
-import {Page} from "../../decorators/page";
 import {Logger} from "../../providers/logger";
 import {CompetitionService} from "../../providers/leagues/competitions";
-import {RouteParams} from "@angular/router-deprecated";
 import {ICompetition, IRegion } from "../../models/models"
 import {StartNav} from "../nav/start.nav.control";
 import {AppRoutingService} from "../../context/router.context";
@@ -10,17 +8,16 @@ import {RegionCache, CompetitionCache, GradeCache, ClubCache} from "../../provid
 import {PullToRefresh} from "nativescript-pulltorefresh";
 import { RegionService } from "../../providers/leagues/leagues";
 import * as Rx from "rxjs";
-@Page({
+@Component({
     selector: "Region",
 	templateUrl: "pages/region/region.page.html",
-    directives: [StartNav],
     providers: [CompetitionService, RegionService]
 })
 export class RegionPage implements OnInit, OnDestroy
 {
     constructor(
         public context : AppRoutingService,
-        private params: RouteParams, 
+        //private params: RouteParams, 
         private logger: Logger, 
         private regionCache: RegionCache,
         private regionService: RegionService,

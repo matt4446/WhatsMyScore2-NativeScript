@@ -1,6 +1,8 @@
-import { EmbeddedViewRef, EventEmitter, ContentChildren, ViewChildren, ViewChild, ElementRef, HostListener, Host, Directive, Component, ContentChild, TemplateRef, ViewContainerRef} from '@angular/core';
-
-import { Control } from "../../decorators/control";
+import { ContentChildren } from '@angular/core';
+import { ViewChild } from '@angular/core';
+import { ElementRef } from '@angular/core';
+import { Component } from '@angular/core';
+import { Directive } from '@angular/core';
 import { Logger} from "../../providers/logger";
 import { NxNav } from "../nav/nav";
 import * as Rx from 'rxjs/Rx';
@@ -25,7 +27,7 @@ export class NxCloseDrawer
 
 } 
 
-@Control({
+@Component({
     selector:"nx-drawer",
     styleUrls: ["./controls/drawer/drawer.common.css"],
     template:`

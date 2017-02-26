@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
-import {PageControl} from "../../decorators/pageControl";
-@PageControl({
+
+@Component({
   selector: 'start-list-main',
   template: `
     <nx-list>

@@ -1,6 +1,4 @@
 import {Component} from '@angular/core';
-import {Router} from "@angular/router-deprecated";
-import {Page} from "../../../decorators/page";
 import {Logger} from "../../../providers/logger";
 import {AppRoutingService} from "../../../context/router.context";
 //import {SearchList, ISearchEvent} from "../../controls/searchList/searchList";
@@ -11,7 +9,7 @@ import {ClubService} from "../../../providers/leagues/club";
 import {ICompetition} from "../../../models/models";
 import {CompetitionNav} from "../../nav/competition.nav";
 
-@Page({
+@Component({
     selector: "grade-list-page",
     templateUrl: "pages/competition/information/page.html",
     template: `
@@ -38,7 +36,6 @@ import {CompetitionNav} from "../../nav/competition.nav";
             
         </nx-drawer>
     `,
-    directives: [CompetitionNav],
     providers: [CompetitionService, GradeService, ClubService]
 })
 export class InformationPage 

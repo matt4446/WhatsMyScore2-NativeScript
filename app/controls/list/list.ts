@@ -1,5 +1,4 @@
-import { Control } from "../../decorators/control";
-import { Directive, Input, Output, EventEmitter, ContentChildren } from "@angular/core";
+import { Component, Directive, Input, Output, EventEmitter, ContentChildren } from "@angular/core";
 import { Logger } from "../../providers/logger";
 import { NxListItem } from "./list-item";
 import { NxHeader } from "./header";
@@ -10,7 +9,7 @@ import { Observable, Subscription, Subject } from 'rxjs/Rx';
 // import 'rxjs/add/operator/map';
 // import 'rxjs/add/operator/from';
 
-@Control({
+@Component({
     selector: "nx-list",
     //templateUrl: "controls/list/list.html",
     template:`
@@ -30,7 +29,6 @@ import { Observable, Subscription, Subject } from 'rxjs/Rx';
 
     </StackLayout>
     `,
-    directives: [ NxListItem, NxHeader ],
     styleUrls: ["./controls/list/list.common.css"]
     //inputs:["padding"]
 })

@@ -1,14 +1,12 @@
-import { Control } from "../../decorators/control";
 import { Input, EventEmitter, ViewChildren, ViewChild, ElementRef, HostListener, Host, Directive, Component, ContentChild, TemplateRef, ViewContainerRef} from '@angular/core';
 import { Logger} from "../../providers/logger";
 import { IonIcon,NavIcon} from "../icons/ion-icon";
 import { Observable, Subscription, Subject} from 'rxjs/Rx';
-import { Router, Instruction} from "@angular/router-deprecated";
 import { NxNavBack} from "./nav-back";
 import { Page} from "ui/page";
 import { MaterialIcon } from "../icons/material-icon";
 
-@Control({
+@Component({
     selector:"nx-nav",
     styleUrls: ["./controls/nav/nav.common.css"], 
     template:`
@@ -63,7 +61,6 @@ import { MaterialIcon } from "../icons/material-icon";
     //         </Border>
     //     </StackLayout>
     // `,
-    directives: [IonIcon,NavIcon, NxNavBack, MaterialIcon],
     providers: [],
     inputs: [ "showBack", "showMenu", "title" ],
     outputs: [ "showLeftSidebar", "showRightSidebar" ]
@@ -75,12 +72,9 @@ export class NxNav {
     public ShowSubheader : boolean = true; 
 
     public constructor(
-        private router: Router, 
         private element: ElementRef,
         private logger: Logger,
         private page : Page) {
-            
-        
         //this.logger.Notify("nx-nav");
     }
     

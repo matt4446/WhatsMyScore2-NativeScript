@@ -1,7 +1,4 @@
 import {Component, OnInit, Input} from '@angular/core';
-import {Router} from "@angular/router-deprecated";
-import {Page} from "../../../../decorators/page";
-import {PageControl} from "../../../../decorators/pageControl";
 import {Logger} from "../../../../providers/logger";
 //import {SearchList, ISearchEvent} from "../../controls/searchList/searchList";
 import {AppRoutingService} from "../../../../context/router.context";
@@ -17,7 +14,7 @@ import 'rxjs/add/operator/max';
 import 'rxjs/add/operator/distinct';
 import * as _ from 'lodash';
 
-@PageControl({
+@Component({
     selector: "start-group-list",
     template: `
         <!--
@@ -54,7 +51,7 @@ export class StartGroup{
     }
 }
 
-@Page({
+@Component({
     selector: "start-list-grade-page",
     //templateUrl: "pages/competition/gradeList/page.html",
     template: `
@@ -118,7 +115,6 @@ export class StartGroup{
             
         </nx-drawer>
     `,
-    directives: [CompetitionNav, StartGroup],
     providers: [CompetitionService, GradeService, ClubService, CompetitorService]
 })
 export class StartListGradePage implements OnInit

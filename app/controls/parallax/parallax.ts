@@ -1,18 +1,10 @@
-import { Control } from "../../decorators/control";
-import { QueryList, ViewChild,ViewChildren, ElementRef, Directive, Input, Output, EventEmitter, ContentChildren } 
+import { Component, QueryList, ViewChild,ViewChildren, ElementRef, Directive, Input, Output, EventEmitter, ContentChildren } 
 from "@angular/core";
 import { Logger } from "../../providers/logger";
 import { Page } from "ui/page";
 import { StackLayout} from 'ui/layouts/stack-layout';
 import { ScrollView, ScrollEventData } from 'ui/scroll-view';
 import { ContentView } from "ui/content-view";
-
-// import 'rxjs/add/operator/map';
-// import 'rxjs/add/operator/zip';
-// import 'rxjs/add/operator/from';
-
-
-//var observable = require("data/observable");
 import { Observable, Subscription, Subject} from 'rxjs/Rx';
 
 @Directive({
@@ -33,7 +25,7 @@ export class ParallaxExpandableItem{
 
 /* todo - convert to table and float header above content */
 // original by https://github.com/TheOriginalJosh I've taken out the find by ids and added directives
-@Control({
+@Component({
     selector: "nx-parallax",
     template:`
         <GridLayout >
@@ -55,8 +47,7 @@ export class ParallaxExpandableItem{
                 <ng-content select="[pinned]"></ng-content>
             </StackLayout> 
         </GridLayout>
-    `,
-    directives : [ParallaxCollapsableItem]
+    `
 })
 export class Paralax {
     

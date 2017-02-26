@@ -1,12 +1,11 @@
-import { Control } from "../../decorators/control";
-import { Input , Output,EventEmitter } from "@angular/core";
+import { Component, Input , Output,EventEmitter } from "@angular/core";
 import { Logger} from "../../providers/logger";
 import { Observable } from "data/observable";
 //var observable = require("data/observable");
 import { SearchBar } from "ui/search-bar"
 
-//http://stackoverflow.com/questions/32568808/angular2-root-component-with-ng-content
-@Control({
+
+@Component({
     selector: "search-list",
     templateUrl: "controls/searchList/searchList.html",
     inputs:["HintText", "SearchText"],
@@ -39,7 +38,7 @@ export class SearchList {
     
     public OnClear(args) : void {
         this.logger.Notify("ev: OnClear");
-        this.OnSearch.next("");
+        this.OnSearch.next();
         // this.Search.next({
         //     Value: ""
         // });

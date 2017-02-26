@@ -1,6 +1,4 @@
 import {Component, Input, ChangeDetectionStrategy, OnInit} from '@angular/core';
-import {Router} from "@angular/router-deprecated";
-import {Page} from "../../../decorators/page";
 import {Logger} from "../../../providers/logger";
 //import {SearchList, ISearchEvent} from "../../controls/searchList/searchList";
 import {AppRoutingService} from "../../../context/router.context";
@@ -17,7 +15,7 @@ import 'rxjs/add/operator/distinct';
 
 import {CompetitionNav} from "../../nav/competition.nav";
 import {CompetitorResult} from "../../templates/competitor.results";
-@Page({
+@Component({
     selector: "grade-competitors-page",
     template: `
         <nx-drawer>
@@ -48,7 +46,6 @@ import {CompetitorResult} from "../../templates/competitor.results";
       
         </nx-drawer>
     `,
-    directives: [CompetitionNav, CompetitorResult],
     providers: [CompetitionService, GradeService, ClubService, CompetitorService],
     //changeDetection: ChangeDetectionStrategy.OnPush
 })
