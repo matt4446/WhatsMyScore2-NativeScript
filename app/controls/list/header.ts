@@ -13,7 +13,6 @@ import { NxListItem } from "./list-item";
         <StackLayout borderWidth="2" class="nx-header-ext" style="margin-top:-4">
         </StackLayout>
     `,
-    providers: [],
     styleUrls: ["./controls/list/list.common.css"]
 })
 export class NxHeader

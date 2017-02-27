@@ -3,7 +3,7 @@ import {
     ChangeDetectionStrategy,
     HostListener, ElementRef, 
     Input, Output, EventEmitter, ContentChildren, ContentChild, ViewChild } from "@angular/core";
-// import { Router, Instruction} from '@angular/router-deprecated';
+import { RouterExtensions } from "nativescript-angular/router"
 import { Logger } from "../../providers/logger";
 import { Button } from "ui/button";
 import { StackLayout} from "ui/layouts/stack-layout";
@@ -63,7 +63,7 @@ import { Observable, Subscription, Subject} from 'rxjs/Rx';
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
     providers: [],
-    inputs: ['params: nxRoute'],
+    //inputs: ['params: nxRoute'],
     outputs: ["tap"],
     styleUrls: ["./controls/list/list.common.css"]
 })
@@ -85,15 +85,21 @@ export class NxListItem {
             element.className += " visible";
         }
     }
-    
-    // set _setAnimatedElement(item: ElementRef){
-    //     this.
+
+    @Input('nxRoute')
+    private nxRoute: string;
+    // the instruction passed to the router to navigate
+
+
+
+    // set params(changes: string) {
+    //     this.routeParams = changes;
     // }
-        
+            
     @Input('animate')
     public Animate : boolean; 
         
-    constructor(private logger:Logger){
+    constructor(private logger:Logger, private routerExtensions: RouterExtensions){
     }
        
     public itemReady: Subject<NxListItem> = new Subject<NxListItem>();
@@ -136,24 +142,29 @@ export class NxListItem {
                 opacity: 1
             });
         }).then(() => {
-            // if(this.navigationInstruction){
-            //     this.logger.Notify("try to navigate!");
-            //     this.logger.NotifyObject(this.navigationInstruction);
+            
+            this.logger.Notify("has nav:" + this.nxRoute);
+
+            if(this.nxRoute){
+                this.logger.Notify("try to navigate!");
+                this.logger.NotifyObject(this.nxRoute);
                 
-            //     //this.router.navigate(this.routeParams);
-            //     this.router.navigateByInstruction(this.navigationInstruction)
-            //     .then(() => {
-            //         this.logger.Notify("navigated from competitions - > competition");
-            //     }).catch((r) => {
-            //         this.logger.Error("navigation rejected");
-            //         this.logger.Error(r.message);
-            //         this.logger.NotifyObject(r);
-            //     });
-            // }else if(this.tap){
-            //     this.tap.next(args);
-            // } else {
-            //     this.logger.Notify("tap has not been set on the view");
-            // }
+                this.routerExtensions.navigateByUrl(this.nxRoute)
+
+                //this.router.navigate(this.routeParams);
+                this.routerExtensions.navigateByUrl(this.nxRoute)
+                .then(() => {
+                    this.logger.Notify("navigated from competitions - > competition");
+                }).catch((r) => {
+                    this.logger.Error("navigation rejected");
+                    this.logger.Error(r.message);
+                    this.logger.NotifyObject(r);
+                });
+            }else if(this.tap){
+                this.tap.next(args);
+            } else {
+                this.logger.Notify("tap has not been set on the view");
+            }
         });
     };
     

@@ -81,6 +81,7 @@ import {RegionCache, CompetitionCache, GradeCache, ClubCache} from "./providers/
         CompetitionCache, 
         RegionCache
     ],
+
     schemas: [NO_ERRORS_SCHEMA],
     // selector: "main",
     // designMode: true,

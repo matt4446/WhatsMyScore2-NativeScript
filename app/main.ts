@@ -1,4 +1,7 @@
 import { platformNativeScriptDynamic } from "nativescript-angular/platform";
 import { AppModule } from "./app.module";
 
-platformNativeScriptDynamic().bootstrapModule(AppModule);
+platformNativeScriptDynamic({
+    cssFile : "app.css",
+    startPageActionBarHidden : true
+}).bootstrapModule(AppModule);

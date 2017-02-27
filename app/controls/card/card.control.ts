@@ -15,6 +15,8 @@ registerElement("CardView", () => {
     //templateUrl: "controls/list/list.html",
     template:`
     <CardView #item shadowColor="#FE00FC" elevation="10" margin="10">
+        <Label text="cardview" textWrap="true"></Label>
+        
         <StackLayout>
             <ng-content></ng-content>
         </StackLayout>
