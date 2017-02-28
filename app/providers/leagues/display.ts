@@ -1,14 +1,14 @@
-import {Component, OnInit, Injectable} from '@angular/core';
-import {Logger} from "../../providers/logger";
 import {AppRoutingService, IClubRoute, ICompetitionRoute, IGradeRoute, IRegionRoute} from "../../context/router.context";
-//import {SearchList, ISearchEvent} from "../../controls/searchList/searchList";
-import {CompetitionService} from "./competitions";
+import {Component, Injectable, OnInit} from '@angular/core';
+import {IClub, ICompetitionGrades, IGrade} from "../../models/models";
+import {Observable, Subject, Subscription} from 'rxjs/Rx';
+
 import {ClubService} from "./club";
+import {CompetitionCache} from './competitionCache';
+import {CompetitionService} from "./competitions";
 import {GradeService} from "./grade";
-import {RegionCache, CompetitionCache, GradeCache, ClubCache} from "./cache";
-import {Observable, Subscription, Subject} from 'rxjs/Rx';
 import {GroupedObservable} from "rxjs/operator/groupBy";
-import {IGrade, IClub, ICompetitionGrades} from "../../models/models";
+import {Logger} from "../../providers/logger";
 
 @Injectable()
 export class DisplayService

@@ -1,13 +1,16 @@
-import {Component, OnInit, OnDestroy } from '@angular/core';
-import {Logger} from "../../providers/logger";
-import {CompetitionService} from "../../providers/leagues/competitions";
-import {ICompetition, IRegion } from "../../models/models"
-import {StartNav} from "../nav/start.nav.control";
-import {AppRoutingService} from "../../context/router.context";
-import {RegionCache, CompetitionCache, GradeCache, ClubCache} from "../../providers/leagues/cache";
-import {PullToRefresh} from "nativescript-pulltorefresh";
-import { RegionService } from "../../providers/leagues/leagues";
 import * as Rx from "rxjs";
+
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ICompetition, IRegion} from "../../models/models"
+
+import {AppRoutingService} from "../../context/router.context";
+import {CompetitionService} from "../../providers/leagues/competitions";
+import {Logger} from "../../providers/logger";
+import {PullToRefresh} from "nativescript-pulltorefresh";
+import {RegionCache} from '../../providers/leagues/regionCache';
+import { RegionService } from "../../providers/leagues/leagues";
+import {StartNav} from "../nav/start.nav.control";
+
 @Component({
     selector: "Region",
 	templateUrl: "pages/region/region.page.html",

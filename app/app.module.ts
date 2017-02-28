@@ -1,20 +1,20 @@
+import * as AppRoutes from "./app.routing";
+import * as Controls from "./controls/controls.ref";
+import * as Pages from "./pages/pages.ref";
+import * as Pipes from "./pipes/pipes.ref";
+import * as Providers from "./providers/providers.ref";
 
-import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
-
-import { NativeScriptModule } from "nativescript-angular/nativescript.module";
-import { NativeScriptHttpModule } from "nativescript-angular/http";
-import { NativeScriptRouterModule } from "nativescript-angular/router";
+import { NO_ERRORS_SCHEMA, NgModule } from "@angular/core";
 
 import { AppComponent } from './app.component';
-
-import * as AppRoutes from "./app.routing";
-import * as Pages from "./pages/pages.ref";
-import * as Controls from "./controls/controls.ref";
-import * as Pipes from "./pipes/pipes.ref";
+import {Logger} from "./providers/logger";
+import { NativeScriptHttpModule } from "nativescript-angular/http";
+import { NativeScriptModule } from "nativescript-angular/nativescript.module";
+import { NativeScriptRouterModule } from "nativescript-angular/router";
 
 //providers 
-import {Logger} from "./providers/logger";
-import {RegionCache, CompetitionCache, GradeCache, ClubCache} from "./providers/leagues/cache";
+
+
 
 @NgModule({
     bootstrap: [AppComponent],
@@ -75,13 +75,16 @@ import {RegionCache, CompetitionCache, GradeCache, ClubCache} from "./providers/
         NativeScriptRouterModule.forRoot(AppRoutes.appRoutes),
     ],
     providers: [
-        Logger, 
-        GradeCache, 
-        ClubCache,
-        CompetitionCache, 
-        RegionCache
+        Providers.Logger,
+        Providers.RegionService,
+        Providers.GradeService,
+        Providers.ClubService,
+        Providers.RegionCache,
+        Providers.GradeCache,
+        Providers.ClubCache,
+        Providers.CompetitionCache,
+        Providers.AppRoutingService
     ],
-
     schemas: [NO_ERRORS_SCHEMA],
     // selector: "main",
     // designMode: true,

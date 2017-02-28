@@ -1,15 +1,13 @@
-import { OnInit, OnDestroy, Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 
-import {Logger} from "../../providers/logger";
-import {CompetitionService} from "../../providers/leagues/competitions";
-
-import {GradeService} from "../../providers/leagues/grade";
-import {RegionCache, CompetitionCache, GradeCache, ClubCache} from "../../providers/leagues/cache";
-
-import {ClubService} from "../../providers/leagues/club";
-import {ICompetition} from "../../models/models"
-import {CompetitionNav} from "../nav/competition.nav";
 import {AppRoutingService} from "../../context/router.context";
+import {ClubService} from "../../providers/leagues/club";
+import {CompetitionCache} from '../../providers/leagues/competitionCache';
+import {CompetitionNav} from "../nav/competition.nav";
+import {CompetitionService} from "../../providers/leagues/competitions";
+import {GradeService} from "../../providers/leagues/grade";
+import {ICompetition} from "../../models/models"
+import {Logger} from "../../providers/logger";
 import {Subscription} from 'rxjs/Rx';
 
 @Component({

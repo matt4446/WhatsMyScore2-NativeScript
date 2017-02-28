@@ -26,19 +26,19 @@ import {GradeCompetitorsPage} from "./pages/competition/grade/grade.page";
 export const appRoutes: Routes = [
     { path: "", component: StartPage },
     { path: "regions", component: RegionsPage },
-    { path: "region/:regionId", component: RegionPage },
-    { path: "region/:regionId/competition/:competitionId/information", component: InformationPage },
-    { path: "region/:regionId/competition/:competitionId/startList", component: StartListPage },
-    { path: "region/:regionId/competition/:competitionId/clubList", component: ClubListPage },
-    { path: "region/:regionId/competition/:competitionId/gradeList", component: GradeListPage },
+    { path: "regions/:regionId", component: RegionPage },
+    { path: "regions/:regionId/competition/:competitionId/information", component: InformationPage },
+    { path: "regions/:regionId/competition/:competitionId/startList", component: StartListPage },
+    { path: "regions/:regionId/competition/:competitionId/clubList", component: ClubListPage },
+    { path: "regions/:regionId/competition/:competitionId/gradeList", component: GradeListPage },
     //to-do - template & provider
-    { path: "region/:regionId/competition/:competitionId/findCompetitor", component: FindCompetitorPage },
+    { path: "regions/:regionId/competition/:competitionId/findCompetitor", component: FindCompetitorPage },
     //to-do - template & provider
-    { path: "region/:regionId/competition/:competitionId/stats", component: StatsPage },
+    { path: "regions/:regionId/competition/:competitionId/stats", component: StatsPage },
 
-    { path: "region/:regionId/competition/:competitionId/startList/:gradeId/competitors", component: StartListGradePage },
+    { path: "regions/:regionId/competition/:competitionId/startList/:gradeId/competitors", component: StartListGradePage },
     //to-do - template & provider
-    { path: "region/:regionId/competition/:competitionId/grade/:gradeId/competitors", component: GradeCompetitorsPage },
+    { path: "regions/:regionId/competition/:competitionId/grade/:gradeId/competitors", component: GradeCompetitorsPage },
     //to-do - template & provider
-    { path: "region/:regionId/competition/:competitionId/club/:clubId/competitors", component: ClubPage },
+    { path: "regions/:regionId/competition/:competitionId/club/:clubId/competitors", component: ClubPage },
 ];

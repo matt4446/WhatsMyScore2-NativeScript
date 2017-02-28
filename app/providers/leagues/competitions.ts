@@ -1,11 +1,11 @@
-import {Injectable} from '@angular/core';
-import {Observable, Subscription, BehaviorSubject} from 'rxjs/Rx';
+import {BehaviorSubject, Observable, Subscription} from 'rxjs/Rx';
+import {ICompetition, IRegion} from "../../models/models";
 
-import {Logger} from "../logger";
-import {IRegion, ICompetition} from "../../models/models";
-import {Settings} from "../routes/routes";
-import {CompetitionCache} from "./cache"
+import {CompetitionCache} from './competitionCache';
 import {Http} from "@angular/http";
+import {Injectable} from '@angular/core';
+import {Logger} from "../logger";
+import {Settings} from "../routes/routes";
 
 @Injectable()
 export class CompetitionService{

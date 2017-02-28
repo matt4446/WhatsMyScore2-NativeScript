@@ -1,13 +1,12 @@
-import {Component} from '@angular/core';
-import {Logger} from "../../../providers/logger";
 import {AppRoutingService} from "../../../context/router.context";
-//import {SearchList, ISearchEvent} from "../../controls/searchList/searchList";
-import {CompetitionService} from "../../../providers/leagues/competitions";
-import {GradeService} from "../../../providers/leagues/grade";
-import {RegionCache, CompetitionCache, GradeCache, ClubCache} from "../../../providers/leagues/cache";
 import {ClubService} from "../../../providers/leagues/club";
-import {ICompetition} from "../../../models/models";
+import {CompetitionCache} from '../../../providers/leagues/competitionCache';
 import {CompetitionNav} from "../../nav/competition.nav";
+import {CompetitionService} from "../../../providers/leagues/competitions";
+import {Component} from '@angular/core';
+import {GradeService} from "../../../providers/leagues/grade";
+import {ICompetition} from "../../../models/models";
+import {Logger} from "../../../providers/logger";
 
 @Component({
     selector: "grade-list-page",
@@ -43,7 +42,7 @@ export class InformationPage
     constructor(
         private logger: Logger,
         private context: AppRoutingService,
-        private competitionCache: CompetitionCache,
+        private competitionCache : CompetitionCache,
         private competitionService: CompetitionService)
     {
 

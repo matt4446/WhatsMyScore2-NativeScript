@@ -1,12 +1,9 @@
-import { OnInit, ViewChild, Component } from '@angular/core';
-import {Logger} from "../../providers/logger";
+import { Component, OnInit, ViewChild } from '@angular/core';
 
-/* data */
-import { RegionService } from "../../providers/leagues/leagues";
 import { IRegion } from "../../models/models";
-
-//import {Settings} from "../../providers/routes/routes";
-import {StartNav} from "../nav/start.nav.control";
+import { Logger } from "../../providers/logger";
+import { RegionService } from "../../providers/leagues/leagues";
+import { StartNav } from "../nav/start.nav.control";
 
 @Component({
     selector: "regions-page",

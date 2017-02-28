@@ -1,13 +1,11 @@
-import {Component} from '@angular/core';
-//import {Router} from "@angular/router-deprecated";
-import {Logger} from "../../../providers/logger";
 import {AppRoutingService} from "../../../context/router.context";
-//import {SearchList, ISearchEvent} from "../../controls/searchList/searchList";
-import {CompetitionService} from "../../../providers/leagues/competitions";
 import {ClubService} from "../../../providers/leagues/club";
-import {GradeService} from "../../../providers/leagues/grade";
-import {RegionCache, CompetitionCache, GradeCache, ClubCache} from "../../../providers/leagues/cache";
 import {CompetitionNav} from "../../nav/competition.nav";
+import {CompetitionService} from "../../../providers/leagues/competitions";
+import {Component} from '@angular/core';
+import {GradeService} from "../../../providers/leagues/grade";
+import {Logger} from "../../../providers/logger";
+
 @Component({
     selector: "stats-page",
     templateUrl: "pages/competition/stats/stats.page.html",

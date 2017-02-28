@@ -15,10 +15,9 @@
                     <Label [text]='region.Name' class="nx-header-title"></Label>
                 </nx-header>
                 
-                <nx-item *ngIf="region.Logo" animate="true"
-                    [nxRoute]="['Region', { regionId: region.Id }]">
+                <nx-item *ngIf="region.Logo" animate="true" [nsRouterLink]="[region.Id]">
                     
-                    <img [src]='"~/" + region.Logo' height="100" style="border-radius:4" />
+                    <img  [src]='"~/" + region.Logo' height="100" style="border-radius:4" />
                 </nx-item>
                 
                 <nx-item animate="true"

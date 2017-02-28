@@ -1,12 +1,12 @@
-import {Component, OnInit } from '@angular/core';
-import {Logger} from "../../../providers/logger";
-//import {SearchList, ISearchEvent} from "../../controls/searchList/searchList";
+import {Component, OnInit} from '@angular/core';
+
 import {AppRoutingService} from "../../../context/router.context";
-import {CompetitionService} from "../../../providers/leagues/competitions";
 import {ClubService} from "../../../providers/leagues/club";
-import {GradeService} from "../../../providers/leagues/grade";
-import {RegionCache, CompetitionCache, GradeCache, ClubCache} from "../../../providers/leagues/cache";
 import {CompetitionNav} from "../../nav/competition.nav";
+import {CompetitionService} from "../../../providers/leagues/competitions";
+import {GradeService} from "../../../providers/leagues/grade";
+import {Logger} from "../../../providers/logger";
+
 @Component({
     selector: "find-competitor-page",
     template: `
