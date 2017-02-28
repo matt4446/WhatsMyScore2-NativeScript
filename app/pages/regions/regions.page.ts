@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { IRegion } from "../../models/models";
 import { Logger } from "../../providers/logger";
-import { RegionService } from "../../providers/leagues/leagues";
+import { RegionService } from "../../providers/leagues/regionService";
 import { StartNav } from "../nav/start.nav.control";
 
 @Component({

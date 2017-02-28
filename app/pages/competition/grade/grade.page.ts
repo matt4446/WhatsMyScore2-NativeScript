@@ -7,13 +7,13 @@ import * as Rx from "rxjs";
 import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
 
 import {AppRoutingService} from "../../../context/router.context";
-import {ClubService} from "../../../providers/leagues/club";
+import {ClubService} from "../../../providers/leagues/clubService";
 import {CompetitionCache} from '../../../providers/leagues/competitionCache';
 import {CompetitionNav} from "../../nav/competition.nav";
-import {CompetitionService} from "../../../providers/leagues/competitions";
+import {CompetitionService} from "../../../providers/leagues/competitionService";
 import {CompetitorResult} from "../../templates/competitor.results";
-import {CompetitorService} from "../../../providers/leagues/competitors";
-import {GradeService} from "../../../providers/leagues/grade";
+import {CompetitorService} from "../../../providers/leagues/competitorService";
+import {GradeService} from "../../../providers/leagues/gradeService";
 import {Logger} from "../../../providers/logger";
 
 @Component({

@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 
 import {AppRoutingService} from "../../../context/router.context";
-import {ClubService} from "../../../providers/leagues/club";
+import {ClubService} from "../../../providers/leagues/clubService";
 import {CompetitionNav} from "../../nav/competition.nav";
-import {CompetitionService} from "../../../providers/leagues/competitions";
-import {GradeService} from "../../../providers/leagues/grade";
+import {CompetitionService} from "../../../providers/leagues/competitionService";
+import {GradeService} from "../../../providers/leagues/gradeService";
 import {Logger} from "../../../providers/logger";
 
 @Component({

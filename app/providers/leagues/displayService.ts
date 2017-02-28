@@ -3,10 +3,10 @@ import {Component, Injectable, OnInit} from '@angular/core';
 import {IClub, ICompetitionGrades, IGrade} from "../../models/models";
 import {Observable, Subject, Subscription} from 'rxjs/Rx';
 
-import {ClubService} from "./club";
+import {ClubService} from "./clubService";
 import {CompetitionCache} from './competitionCache';
-import {CompetitionService} from "./competitions";
-import {GradeService} from "./grade";
+import {CompetitionService} from "./competitionService";
+import {GradeService} from "./gradeService";
 import {GroupedObservable} from "rxjs/operator/groupBy";
 import {Logger} from "../../providers/logger";
 

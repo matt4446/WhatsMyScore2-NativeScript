@@ -7,14 +7,9 @@ import * as Providers from "./providers/providers.ref";
 import { NO_ERRORS_SCHEMA, NgModule } from "@angular/core";
 
 import { AppComponent } from './app.component';
-import {Logger} from "./providers/logger";
 import { NativeScriptHttpModule } from "nativescript-angular/http";
 import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 import { NativeScriptRouterModule } from "nativescript-angular/router";
-
-//providers 
-
-
 
 @NgModule({
     bootstrap: [AppComponent],
@@ -39,7 +34,8 @@ import { NativeScriptRouterModule } from "nativescript-angular/router";
         Pages.StatsPage, 
 
 
-        Controls.AlignLeft, Controls.AlignRight,
+        Controls.AlignLeft, 
+        Controls.AlignRight,
         Controls.IonIcon,
         Controls.MaterialFab,
         Controls.MaterialIcon,
@@ -71,18 +67,19 @@ import { NativeScriptRouterModule } from "nativescript-angular/router";
         NativeScriptModule,
         NativeScriptHttpModule, 
         NativeScriptRouterModule,
-
         NativeScriptRouterModule.forRoot(AppRoutes.appRoutes),
     ],
     providers: [
         Providers.Logger,
-        Providers.RegionService,
-        Providers.GradeService,
-        Providers.ClubService,
+
         Providers.RegionCache,
+        Providers.RegionService,
         Providers.GradeCache,
+        Providers.GradeService,
         Providers.ClubCache,
-        Providers.CompetitionCache,
+        Providers.ClubService,
+        Providers.CompetitionCache,       
+        Providers.CompetitorService,
         Providers.AppRoutingService
     ],
     schemas: [NO_ERRORS_SCHEMA],
@@ -108,7 +105,7 @@ import { NativeScriptRouterModule } from "nativescript-angular/router";
     // directives: []
 })
 export class AppModule {
-    constructor(private logger:Logger)
+    constructor(private logger:Providers.Logger)
     {
         this.logger.Notify("Main Page Starting");
     }

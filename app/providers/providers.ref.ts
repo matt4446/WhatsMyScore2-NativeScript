@@ -1,11 +1,13 @@
-export {AppRoutingService} from '../context/router.context';
+export { AppRoutingService } from '../context/router.context';
 export { GradeCache } from './leagues/gradeCache';
-export { ClubService } from './leagues/club';
+export { ClubService } from './leagues/clubService';
 export { CompetitionCache} from './leagues/competitionCache';
 export { RegionCache } from './leagues/regionCache';
 export { ClubCache } from './leagues/clubCache';
-export { DisplayService } from './leagues/display';
-export { GradeService } from './leagues/grade';
-export { RegionService } from './leagues/leagues';
+export { DisplayService } from './leagues/displayService';
+export { GradeService } from './leagues/gradeService';
+export { RegionService } from './leagues/RegionService';
+export { CompetitorService } from './leagues/competitorService';
 export { Logger } from './logger';
+
 

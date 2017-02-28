@@ -3,11 +3,11 @@ import * as Rx from 'rxjs/Rx';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import {AppRoutingService} from "../../context/router.context";
-import {ClubService} from "../../providers/leagues/club";
+import {ClubService} from "../../providers/leagues/clubService";
 import {CompetitionCache} from '../../providers/leagues/competitionCache';
 import {CompetitionNav} from "../nav/competition.nav";
-import {CompetitionService} from "../../providers/leagues/competitions";
-import {GradeService} from "../../providers/leagues/grade";
+import {CompetitionService} from "../../providers/leagues/competitionService";
+import {GradeService} from "../../providers/leagues/gradeService";
 import {ICompetition} from "../../models/models"
 import {Logger} from "../../providers/logger";
 

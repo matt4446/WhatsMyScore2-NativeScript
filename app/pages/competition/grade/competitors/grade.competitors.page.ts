@@ -7,12 +7,12 @@ import * as Rx from "rxjs";
 import {Component, OnInit} from '@angular/core';
 
 import {AppRoutingService} from "../../../../context/router.context";
-import {ClubService} from "../../../../providers/leagues/club";
+import {ClubService} from "../../../../providers/leagues/clubService";
 import {CompetitionCache} from '../../../../providers/leagues/competitionCache';
 import {CompetitionNav} from "../../../nav/competition.nav";
-import {CompetitionService} from "../../../../providers/leagues/competitions";
-import {CompetitorService} from "../../../../providers/leagues/competitors";
-import {GradeService} from "../../../../providers/leagues/grade";
+import {CompetitionService} from "../../../../providers/leagues/competitionService";
+import {CompetitorService} from "../../../../providers/leagues/competitorService";
+import {GradeService} from "../../../../providers/leagues/gradeService";
 import {Logger} from "../../../../providers/logger";
 
 @Component({

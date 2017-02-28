@@ -4,11 +4,11 @@ import {Component, OnInit} from '@angular/core';
 import {Observable, Subject, Subscription} from 'rxjs/Rx';
 
 import {AppRoutingService} from "../../../context/router.context";
-import {ClubService} from "../../../providers/leagues/club";
+import {ClubService} from "../../../providers/leagues/clubService";
 import {CompetitionCache} from '../../../providers/leagues/competitionCache';
 import {CompetitionNav} from "../../nav/competition.nav";
-import {CompetitionService} from "../../../providers/leagues/competitions";
-import {GradeService} from "../../../providers/leagues/grade";
+import {CompetitionService} from "../../../providers/leagues/competitionService";
+import {GradeService} from "../../../providers/leagues/gradeService";
 import {GroupedObservable} from "rxjs/operator/groupBy";
 import {Logger} from "../../../providers/logger";
 import {StartListItems} from "./start.list.items.control";

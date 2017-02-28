@@ -4,11 +4,11 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ICompetition, IRegion} from "../../models/models"
 
 import {AppRoutingService} from "../../context/router.context";
-import {CompetitionService} from "../../providers/leagues/competitions";
+import {CompetitionService} from "../../providers/leagues/competitionService";
 import {Logger} from "../../providers/logger";
 import {PullToRefresh} from "nativescript-pulltorefresh";
 import {RegionCache} from '../../providers/leagues/regionCache';
-import { RegionService } from "../../providers/leagues/leagues";
+import { RegionService } from "../../providers/leagues/regionService";
 import {StartNav} from "../nav/start.nav.control";
 
 @Component({
