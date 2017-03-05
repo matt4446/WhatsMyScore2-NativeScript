@@ -1,3 +1,4 @@
+import {ActivatedRoute, Router} from '@angular/router';
 import {ICompetition, IRegion} from "../models/models"
 
 import {Injectable} from '@angular/core';
@@ -17,6 +18,10 @@ export interface IClubRoute {
     ClubId : any;
 }
 
+// export let AppRoutingServiceFactory = (pageRoute: PageRoute,logger: Logger) => {
+//   return new AppRoutingService(pageRoute, logger);
+// };
+
 @Injectable()
 export class AppRoutingService implements IRegionRoute, ICompetitionRoute, IGradeRoute, IClubRoute
 {
@@ -25,43 +30,56 @@ export class AppRoutingService implements IRegionRoute, ICompetitionRoute, IGrad
     public GradeId : any;
     public ClubId : any;
     
-    constructor(private pageRoute: PageRoute, private logger: Logger)
+    constructor(
+        private router: Router,
+        private logger: Logger)
     {
         logger.Notify("AppRoutingService created");
-        this.pageRoute.activatedRoute
-            .switchMap(activatedRoute => activatedRoute.params)
-            .forEach((params) => { 
-                this.RegionId = params['regionId'];
-                this.CompetitionId = params["competitionId"];
-                this.GradeId = params["gradeId"];
-                this.ClubId = params["clubId"];
-
-
-                let a = JSON.stringify({
-                    regionId : this.RegionId,
-                    competitionId: this.CompetitionId,
-                    gradeId: this.GradeId,
-                    clubId: this.ClubId
-                });
-                        
-                this.logger.Notify(a);
-                
-                if(this.RegionId){
-                    logger.Notify("RegionId: " + this.RegionId);   
-                }
-                if(this.ClubId){
-                    logger.Notify("ClubId:" + this.ClubId);
-                }
-                if(this.GradeId){
-                    logger.Notify("regionId:" + this.RegionId);
-                }
-                if(this.CompetitionId){
-                    logger.Notify("competitionId:" + this.CompetitionId);
-                }
-
-            });
-        
-        
+        router.events.subscribe((e) => {
+            
+            this.logger.Notify("router nav");
+            //logger.NotifyObject(e);
+            //logger.NotifyObject(router.routerState.snapshot);
+        });
     } 
     
+    public Update(route: ActivatedRoute): void {
+        var params = route.params;
+        var subscription = params.subscribe((data) => {
+            this.logger.NotifyObject(data);
+
+            this.RegionId = data['regionId'];
+            this.CompetitionId = data["competitionId"];
+            this.GradeId = data["gradeId"];
+            this.ClubId = data["clubId"];
+
+
+            let a = JSON.stringify({
+                regionId : this.RegionId,
+                competitionId: this.CompetitionId,
+                gradeId: this.GradeId,
+                clubId: this.ClubId
+            });
+                    
+            this.logger.Notify(a);
+            
+            if(this.RegionId){
+                this.logger.Notify("RegionId: " + this.RegionId);   
+            }
+            if(this.ClubId){
+                this.logger.Notify("ClubId:" + this.ClubId);
+            }
+            if(this.GradeId){
+                this.logger.Notify("regionId:" + this.RegionId);
+            }
+            if(this.CompetitionId){
+                this.logger.Notify("competitionId:" + this.CompetitionId);
+            }
+
+        });
+        subscription.unsubscribe();
+
+        
+    }
+
 }

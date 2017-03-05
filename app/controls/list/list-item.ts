@@ -1,13 +1,24 @@
+import {} from 'nativescript-angular/router';
+
 import {
-    Component,
     ChangeDetectionStrategy,
-    HostListener, ElementRef, 
-    Input, Output, EventEmitter, ContentChildren, ContentChild, ViewChild } from "@angular/core";
-import { RouterExtensions } from "nativescript-angular/router"
-import { Logger } from "../../providers/logger";
+    Component,
+    ContentChild,
+    ContentChildren,
+    ElementRef,
+    EventEmitter,
+    HostListener,
+    Input,
+    Output,
+    ViewChild,
+} from "@angular/core";
+import { Observable, Subject, Subscription } from 'rxjs/Rx';
+
 import { Button } from "ui/button";
-import { StackLayout} from "ui/layouts/stack-layout";
-import { Observable, Subscription, Subject} from 'rxjs/Rx';
+import { Logger } from "../../providers/logger";
+import {QueryList} from '@angular/core';
+import { RouterExtensions } from "nativescript-angular/router"
+import { StackLayout } from "ui/layouts/stack-layout";
 
 @Component({
     selector:"nx-item",
@@ -62,8 +73,6 @@ import { Observable, Subscription, Subject} from 'rxjs/Rx';
     </StackLayout>
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: [],
-    //inputs: ['params: nxRoute'],
     outputs: ["tap"],
     styleUrls: ["./controls/list/list.common.css"]
 })
@@ -85,6 +94,9 @@ export class NxListItem {
             element.className += " visible";
         }
     }
+
+    @ContentChildren("NSRouterLink")
+    __childRoute : QueryList<any>;
 
     @Input('nxRoute')
     private nxRoute: string;
@@ -144,22 +156,24 @@ export class NxListItem {
         }).then(() => {
             
             this.logger.Notify("has nav:" + this.nxRoute);
+            var a = this.__childRoute.toArray();
+            if(a.length > 0){
+                a[0].onTap();
+            }
 
             if(this.nxRoute){
                 this.logger.Notify("try to navigate!");
                 this.logger.NotifyObject(this.nxRoute);
                 
+                
                 this.routerExtensions.navigateByUrl(this.nxRoute)
-
-                //this.router.navigate(this.routeParams);
-                this.routerExtensions.navigateByUrl(this.nxRoute)
-                .then(() => {
-                    this.logger.Notify("navigated from competitions - > competition");
-                }).catch((r) => {
-                    this.logger.Error("navigation rejected");
-                    this.logger.Error(r.message);
-                    this.logger.NotifyObject(r);
-                });
+                    .then(() => {
+                        this.logger.Notify("navigated from competitions - > competition");
+                    }).catch((r) => {
+                        this.logger.Error("navigation rejected");
+                        this.logger.Error(r.message);
+                        this.logger.NotifyObject(r);
+                    });
             }else if(this.tap){
                 this.tap.next(args);
             } else {

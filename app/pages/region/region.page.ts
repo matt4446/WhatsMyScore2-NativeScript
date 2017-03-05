@@ -3,6 +3,7 @@ import * as Rx from "rxjs";
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ICompetition, IRegion} from "../../models/models"
 
+import {ActivatedRoute} from '@angular/router';
 import {AppRoutingService} from "../../context/router.context";
 import {CompetitionService} from "../../providers/leagues/competitionService";
 import {Logger} from "../../providers/logger";
@@ -20,6 +21,7 @@ export class RegionPage implements OnInit, OnDestroy
 {
     constructor(
         public context : AppRoutingService,
+        private route: ActivatedRoute,
         //private params: RouteParams, 
         private logger: Logger, 
         private regionCache: RegionCache,
@@ -27,7 +29,8 @@ export class RegionPage implements OnInit, OnDestroy
         private competitionService: CompetitionService)
     {
         this.logger.Notify("region page loaded");
-        
+        this.context.Update(route);
+
         this.logger.Notify("regionId " + this.context.RegionId);
     }
   

@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { NativeScriptHttpModule } from "nativescript-angular/http";
 import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 import { NativeScriptRouterModule } from "nativescript-angular/router";
+import {PageRoute} from 'nativescript-angular';
 
 @NgModule({
     bootstrap: [AppComponent],
@@ -81,6 +82,12 @@ import { NativeScriptRouterModule } from "nativescript-angular/router";
         Providers.CompetitionCache,       
         Providers.CompetitorService,
         Providers.AppRoutingService
+        // {
+        //     provide: Providers.AppRoutingService,
+        //     useFactory: Providers.AppRoutingServiceFactory,
+        //     deps: [PageRoute]
+        // }
+        
     ],
     schemas: [NO_ERRORS_SCHEMA],
     // selector: "main",
