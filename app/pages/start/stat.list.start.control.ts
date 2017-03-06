@@ -8,7 +8,7 @@ import {Component} from '@angular/core';
             <label [text]="'Start' | Title" class="nx-header-title"></label>
         </nx-header>
 
-        <nx-item [nxRoute]="'regions'" animate="true">
+        <nx-item [nsRouterLink]="['/regions']" animate="true" pageTransition="slide">
             <ion-icon item-left icon="ion-map"></ion-icon>
 
             <label text="Leagues & Regions"></label>

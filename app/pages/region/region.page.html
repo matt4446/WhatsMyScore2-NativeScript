@@ -16,7 +16,8 @@
                 </nx-header>               
                 <nx-item animate="true"
                     *ngFor="let competition of list"
-                    [nxRoute]="[{ regionId: context.RegionId, competitionId: competition.Id }]">
+                    [nsRouterLink]="['competition', competition.Id]" pageTransition="slide"
+                    >
                     <ion-icon item-left icon="ion-ios-star" [align-right]></ion-icon>
                     <label [text]="competition.Name"></label>
                     <label class="note" [text]="competition.LocationName"></label>
