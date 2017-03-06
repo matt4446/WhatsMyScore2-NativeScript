@@ -1,29 +1,30 @@
-import {Inject, Component, OnInit } from '@angular/core';
-import {Http, RequestOptionsArgs, Headers} from "@angular/http";
+import {Component, Inject, OnInit} from '@angular/core';
+import {Headers, Http, RequestOptionsArgs} from "@angular/http";
 
-import {Router} from "@angular/router-deprecated";
-//import {Observable, EventData } from "data/observable";
-import {alert} from "ui/dialogs";
 import {ActionItem} from "ui/action-bar";
-
-import {Page} from "../../decorators/page";
+import {AppRoutingService} from '../../context/router.context';
 import {Logger} from "../../providers/logger";
-
-import {Settings} from "../../providers/routes/routes";
 import {NxDrawer} from "../../controls/drawer/drawer";
-import {StartNav} from "../nav/start.nav.control";
-
+import {PageRoute} from 'nativescript-angular';
+import {Settings} from "../../providers/routes/routes";
 import {StartListControl} from "./stat.list.start.control";
 import {StartListSearchControl} from "./start.list.search.control";
+import {StartNav} from "../nav/start.nav.control";
+import {alert} from "ui/dialogs";
 
-@Page({
+//import {Observable, EventData } from "data/observable";
+
+
+@Component({
     selector: "start",
     templateUrl: "pages/start/start.page.html",
-    directives: [StartNav, StartListControl, StartListSearchControl]
 })
 export class StartPage implements OnInit
 {
-    constructor(private logger:Logger, private http: Http)
+    constructor(private logger:Logger, 
+        private http: Http, 
+        private appRouteingService: AppRoutingService
+        )
     {
         this.logger.Notify("Start Page - constructor hit"); 
     }
@@ -31,38 +32,38 @@ export class StartPage implements OnInit
     ngOnInit()
     {
 
-        let headers = new Headers();
-        headers.append('Content-Type', 'application/json');
-        headers.append('Accept', 'text/xml');
-        headers.append('Accept-Encoding', 'deflate')
-        var requestObtionsArgs : RequestOptionsArgs= { 
-            headers: headers,
-            withCredentials: true
-        };
+        // let headers = new Headers();
+        // headers.append('Content-Type', 'application/json');
+        // headers.append('Accept', 'text/xml');
+        // headers.append('Accept-Encoding', 'deflate')
+        // var requestObtionsArgs : RequestOptionsArgs= { 
+        //     headers: headers,
+        //     withCredentials: true
+        // };
 
-        this.http.get("https://breakouttrampoliningwebservices.azurewebsites.net/test/string", requestObtionsArgs)
-            .map(e=> e.text())
-            .subscribe(e => {
-                console.log("expect: Hello world! Time is: {0}");
-                console.log(e);
-            }, (e) => {
-                console.log(e);
-            });
-        this.http.get("https://breakouttrampoliningwebservices.azurewebsites.net/test/number", requestObtionsArgs)
-            .map(e=> e.text())
-            .subscribe(e => {
-                console.log(e);
-            }, (e) => {
-                console.log(e);
-            });
-        this.http.get("https://breakouttrampoliningwebservices.azurewebsites.net/test/guid", requestObtionsArgs)
+        // this.http.get("https://breakouttrampoliningwebservices.azurewebsites.net/test/string", requestObtionsArgs)
+        //     .map(e=> e.text())
+        //     .subscribe(e => {
+        //         console.log("expect: Hello world! Time is: {0}");
+        //         console.log(e);
+        //     }, (e) => {
+        //         console.log(e);
+        //     });
+        // this.http.get("https://breakouttrampoliningwebservices.azurewebsites.net/test/number", requestObtionsArgs)
+        //     .map(e=> e.text())
+        //     .subscribe(e => {
+        //         console.log(e);
+        //     }, (e) => {
+        //         console.log(e);
+        //     });
+        // this.http.get("https://breakouttrampoliningwebservices.azurewebsites.net/test/guid", requestObtionsArgs)
             
-            .map(e=> e.text())
-            .subscribe(e => {
-                console.log(e);
-            }, (e) => {
-                console.log(e);
-            });
+        //     .map(e=> e.text())
+        //     .subscribe(e => {
+        //         console.log(e);
+        //     }, (e) => {
+        //         console.log(e);
+        //     });
 
        
     }

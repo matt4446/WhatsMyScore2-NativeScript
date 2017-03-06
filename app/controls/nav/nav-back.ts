@@ -1,15 +1,11 @@
+import { Component, ContentChild, ElementRef, EventEmitter, ViewChild, ViewChildren } from '@angular/core';
+import { Location, LocationStrategy } from '@angular/common';
+import { Observable, Subject, Subscription } from 'rxjs/Rx';
 
-import { EventEmitter, ViewChildren, ViewChild, ElementRef, ContentChild } from '@angular/core';
-import { Router, Instruction,  } from "@angular/router-deprecated";
-import { Location,LocationStrategy } from '@angular/common';
-
-import { Control } from "../../decorators/control";
-import { Logger} from "../../providers/logger";
-
-import { Observable, Subscription, Subject} from 'rxjs/Rx';
+import { Logger } from "../../providers/logger";
 import { MaterialIcon } from "../icons/material-icon";
 
-@Control({
+@Component ({
     selector:"nx-nav-back",
     styleUrls: ["./controls/nav/nav.common.css"], 
     // template: `
@@ -18,17 +14,16 @@ import { MaterialIcon } from "../icons/material-icon";
     template: `
         <StackLayout orientation="horizontal" (tap)="back($event)">
             <Label text="chevron_left" [material-icon] class="title nav-icon nav-icon-bold"></Label>
+            <!--
             <Label text="Back" class="title"></Label>
-            
+            -->
         </StackLayout>
     `,
-    directives: [MaterialIcon],
     providers: [],
 })
 export class NxNavBack {
     
     public constructor(
-        private router: Router, 
         private location: Location,
         private element: ElementRef,
         private logger: Logger) {       

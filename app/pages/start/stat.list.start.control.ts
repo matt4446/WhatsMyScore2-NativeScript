@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
-import {PageControl} from "../../decorators/pageControl";
-@PageControl({
+
+@Component({
   selector: 'start-list-main',
   template: `
     <nx-list>
@@ -8,7 +8,7 @@ import {PageControl} from "../../decorators/pageControl";
             <label [text]="'Start' | Title" class="nx-header-title"></label>
         </nx-header>
 
-        <nx-item [nxRoute]="['Regions']" animate="true">
+        <nx-item [nsRouterLink]="['/regions']" animate="true" pageTransition="slide">
             <ion-icon item-left icon="ion-map"></ion-icon>
 
             <label text="Leagues & Regions"></label>

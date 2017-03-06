@@ -1,21 +1,14 @@
-import {OnInit, ViewChild} from '@angular/core';
-import {Page} from "../../decorators/page";
+import { Component, OnInit, ViewChild } from '@angular/core';
 
-import {Logger} from "../../providers/logger";
-//import {SearchList, ISearchEvent} from "../../controls/searchList/searchList";
-
-/* data */
-import { RegionService } from "../../providers/leagues/leagues";
 import { IRegion } from "../../models/models";
+import { Logger } from "../../providers/logger";
+import { RegionService } from "../../providers/leagues/regionService";
+import { StartNav } from "../nav/start.nav.control";
 
-//import {Settings} from "../../providers/routes/routes";
-import {StartNav} from "../nav/start.nav.control";
-
-@Page({
+@Component({
     selector: "regions-page",
     templateUrl: "pages/regions/regions.page.html",
     providers: [RegionService],
-    directives: [StartNav]
 })
 export class RegionsPage implements OnInit
 {

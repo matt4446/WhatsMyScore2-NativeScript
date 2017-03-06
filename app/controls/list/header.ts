@@ -1,11 +1,10 @@
-import { Control } from "../../decorators/control";
-import { ElementRef, Input, Output, EventEmitter, ContentChildren, ViewChild } from "@angular/core";
+import { Component, ElementRef, Input, Output, EventEmitter, ContentChildren, ViewChild } from "@angular/core";
 import { Logger } from "../../providers/logger";
 import { Button } from "ui/button";
 import { StackLayout} from "ui/layouts/stack-layout";
 import { NxListItem } from "./list-item";
 
-@Control({
+@Component({
     selector:"nx-header",
     template: `
         <StackLayout #item class="nx-header">
@@ -14,8 +13,6 @@ import { NxListItem } from "./list-item";
         <StackLayout borderWidth="2" class="nx-header-ext" style="margin-top:-4">
         </StackLayout>
     `,
-    providers: [],
-    directives:[ NxListItem ],
     styleUrls: ["./controls/list/list.common.css"]
 })
 export class NxHeader

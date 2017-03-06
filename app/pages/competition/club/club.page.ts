@@ -1,23 +1,17 @@
-import {Component, OnInit } from '@angular/core';
-import {Router} from "@angular/router-deprecated";
-import {Page} from "../../../decorators/page";
-import {Logger} from "../../../providers/logger";
-//import {SearchList, ISearchEvent} from "../../controls/searchList/searchList";
-import {AppRoutingService} from "../../../context/router.context";
-import {CompetitionService} from "../../../providers/leagues/competitions";
-import {ClubService} from "../../../providers/leagues/club";
-import {GradeService} from "../../../providers/leagues/grade";
-import {RegionCache, CompetitionCache, GradeCache, ClubCache} from "../../../providers/leagues/cache";
-import {CompetitionNav} from "../../nav/competition.nav";
-import {CompetitorResult} from "../../templates/competitor.results";
-
 import * as Models from "../../../models/models";
 
-// import 'rxjs/add/operator/map';
-// import 'rxjs/add/operator/zip';
-// import 'rxjs/add/operator/from';
+import {Component, OnInit} from '@angular/core';
 
-@Page({
+import {AppRoutingService} from "../../../context/router.context";
+import {ClubService} from "../../../providers/leagues/clubService";
+import {CompetitionCache} from '../../../providers/leagues/competitionCache';
+import {CompetitionNav} from "../../nav/competition.nav";
+import {CompetitionService} from "../../../providers/leagues/competitionService";
+import {CompetitorResult} from "../../templates/competitor.results";
+import {GradeService} from "../../../providers/leagues/gradeService";
+import {Logger} from "../../../providers/logger";
+
+@Component({
     selector: "club-list-page",
     //templateUrl: "pages/competition/clubList/page.html",
     template: `
@@ -48,7 +42,6 @@ import * as Models from "../../../models/models";
             
         </nx-drawer>
     `,
-    directives: [CompetitionNav, CompetitorResult],
     providers: [CompetitionService, GradeService, ClubService]
 })
 export class ClubPage implements OnInit

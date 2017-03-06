@@ -1,9 +1,11 @@
+import {IClub, ICompetition} from "../../models/models";
+
+import {ClubCache} from './clubCache';
+import {CompetitionCache} from './competitionCache';
+import {Http} from "@angular/http";
 import {Injectable} from "@angular/core";
 import {Logger} from "../logger";
 import {Settings} from "../routes/routes";
-import {ICompetition, IClub} from "../../models/models";
-import {CompetitionCache, ClubCache} from "./cache";
-import {Http} from "@angular/http";
 
 @Injectable()
 export class ClubService 

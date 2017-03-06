@@ -1,6 +1,4 @@
-/// <reference path="../../../node_modules/nativescript-pulltorefresh/pulltorefresh.d.ts" />
 import { Logger } from "../../providers/logger";
-import { Control } from "../../decorators/control";
 import { Component, OnInit } from "@angular/core";
 import { Observable, Subscription, Subject} from 'rxjs/Rx';
 import { ViewChild, ViewChildren, ContentChildren, ContentChild, ElementRef, Directive, Input, Output, EventEmitter } from "@angular/core";
@@ -11,6 +9,8 @@ import { ListView } from "ui/list-view";
 import { StackLayout} from "ui/layouts/stack-layout";
 import { AnimationPromise } from "ui/animation";
 import {LayoutBase} from "ui/layouts/layout-base";
+
+registerElement("PullToRefresh", () => require("nativescript-pulltorefresh").PullToRefresh);
 
 @Directive({
     selector: "[pull-to-animate]"
@@ -145,7 +145,7 @@ export class NxPullToRefreshView{
 
 }
 
-@Control({
+@Component({
     selector: "nx-pull-to-refresh",
     template:`
     <PullToRefresh [pull-list-view] 
@@ -158,7 +158,6 @@ export class NxPullToRefreshView{
         </ScrollView>
     </PullToRefresh>
     `,
-    directives: [NxPullToRefreshView, PullToRefreshAnimateElement],
     outputs: ["refresh", "refreshCompleted"],
     //inputs: ["complete"]
 })

@@ -1,17 +1,14 @@
-import {Component} from '@angular/core';
-import {Router} from "@angular/router-deprecated";
-import {Page} from "../../../decorators/page";
-import {Logger} from "../../../providers/logger";
 import {AppRoutingService} from "../../../context/router.context";
-//import {SearchList, ISearchEvent} from "../../controls/searchList/searchList";
-import {CompetitionService} from "../../../providers/leagues/competitions";
-import {GradeService} from "../../../providers/leagues/grade";
-import {RegionCache, CompetitionCache, GradeCache, ClubCache} from "../../../providers/leagues/cache";
-import {ClubService} from "../../../providers/leagues/club";
-import {ICompetition} from "../../../models/models";
+import {ClubService} from "../../../providers/leagues/clubService";
+import {CompetitionCache} from '../../../providers/leagues/competitionCache';
 import {CompetitionNav} from "../../nav/competition.nav";
+import {CompetitionService} from "../../../providers/leagues/competitionService";
+import {Component} from '@angular/core';
+import {GradeService} from "../../../providers/leagues/gradeService";
+import {ICompetition} from "../../../models/models";
+import {Logger} from "../../../providers/logger";
 
-@Page({
+@Component({
     selector: "grade-list-page",
     templateUrl: "pages/competition/information/page.html",
     template: `
@@ -38,7 +35,6 @@ import {CompetitionNav} from "../../nav/competition.nav";
             
         </nx-drawer>
     `,
-    directives: [CompetitionNav],
     providers: [CompetitionService, GradeService, ClubService]
 })
 export class InformationPage 
@@ -46,7 +42,7 @@ export class InformationPage
     constructor(
         private logger: Logger,
         private context: AppRoutingService,
-        private competitionCache: CompetitionCache,
+        private competitionCache : CompetitionCache,
         private competitionService: CompetitionService)
     {
 

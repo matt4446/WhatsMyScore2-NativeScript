@@ -1,9 +1,8 @@
-import {PageControl} from "../../decorators/pageControl";
 import {Component, Input, ChangeDetectionStrategy} from '@angular/core';
 import {ICompetitiorScoreLine} from "../../models/models";
 import {Logger} from "../../providers/logger";
 
-@PageControl({
+@Component({
     selector: 'competitor-result-row-header',
     template: `
         <GridLayout class="header" columns="*,*,*,*,*,*">
@@ -23,7 +22,7 @@ export class CompetitorResultRowHeader{
   
 }
 
-@PageControl({
+@Component({
   selector: 'competitor-result-row',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `

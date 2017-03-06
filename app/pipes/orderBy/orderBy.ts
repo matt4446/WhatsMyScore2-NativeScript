@@ -1,5 +1,5 @@
 import { PipeTransform, Pipe } from "@angular/core";
-import { Logger } from "../providers/logger";
+import { Logger } from "../../providers/logger";
 var _ = require("underscore");
 
 //import {orderBy} from 'lodash/orderBy';

@@ -1,23 +1,22 @@
-import {Component, OnInit, Input} from '@angular/core';
-import {Router} from "@angular/router-deprecated";
-import {Page} from "../../../../decorators/page";
-import {PageControl} from "../../../../decorators/pageControl";
-import {Logger} from "../../../../providers/logger";
-//import {SearchList, ISearchEvent} from "../../controls/searchList/searchList";
-import {AppRoutingService} from "../../../../context/router.context";
-import {CompetitionService} from "../../../../providers/leagues/competitions";
-import {ClubService} from "../../../../providers/leagues/club";
-import {GradeService} from "../../../../providers/leagues/grade";
-import {CompetitorService} from "../../../../providers/leagues/competitors";
-import {RegionCache, CompetitionCache, GradeCache, ClubCache} from "../../../../providers/leagues/cache";
-import * as Models from "../../../../models/models";
-import {CompetitionNav} from "../../../nav/competition.nav";
-import * as Rx from "rxjs";
 import 'rxjs/add/operator/max';
 import 'rxjs/add/operator/distinct';
+
+import * as Models from "../../../../models/models";
+import * as Rx from "rxjs";
 import * as _ from 'lodash';
 
-@PageControl({
+import {Component, Input, OnInit} from '@angular/core';
+
+import {AppRoutingService} from "../../../../context/router.context";
+import {ClubService} from "../../../../providers/leagues/clubService";
+import {CompetitionCache} from '../../../../providers/leagues/competitionCache';
+import {CompetitionNav} from "../../../nav/competition.nav";
+import {CompetitionService} from "../../../../providers/leagues/competitionService";
+import {CompetitorService} from "../../../../providers/leagues/competitorService";
+import {GradeService} from "../../../../providers/leagues/gradeService";
+import {Logger} from "../../../../providers/logger";
+
+@Component({
     selector: "start-group-list",
     template: `
         <!--
@@ -54,7 +53,7 @@ export class StartGroup{
     }
 }
 
-@Page({
+@Component({
     selector: "start-list-grade-page",
     //templateUrl: "pages/competition/gradeList/page.html",
     template: `
@@ -118,7 +117,6 @@ export class StartGroup{
             
         </nx-drawer>
     `,
-    directives: [CompetitionNav, StartGroup],
     providers: [CompetitionService, GradeService, ClubService, CompetitorService]
 })
 export class StartListGradePage implements OnInit

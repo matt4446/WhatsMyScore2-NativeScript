@@ -1,5 +1,5 @@
 import { PipeTransform, Pipe } from "@angular/core";
-import { Logger } from "../providers/logger"
+import { Logger } from "../../providers/logger"
 
 @Pipe({name: 'StartGroup', pure: true})
 export class TitleTransform implements PipeTransform {

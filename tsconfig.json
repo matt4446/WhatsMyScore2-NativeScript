@@ -1,19 +1,15 @@
 {
     "compilerOptions": {
-        "outDir": "app",
-        "rootDir": "app",
         "module": "commonjs",
         "target": "es5",
-        "inlineSourceMap": true,
         "experimentalDecorators": true,
-        "removeComments": false,
         "emitDecoratorMetadata": true,
+        "noEmitHelpers": true,
         "noEmitOnError": true
     },
     "exclude": [
-        "typings/browser",
-        "typings/browser/browser.d.ts",
         "node_modules",
-        "platforms"
+        "platforms",
+        "**/*.aot.ts"
     ]
 }

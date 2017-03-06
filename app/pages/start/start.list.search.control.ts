@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
-import {PageControl} from "../../decorators/pageControl";
 
-@PageControl({
+@Component({
   selector: 'start-list-search',
   template: `
     <nx-list>

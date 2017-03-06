@@ -1,6 +1,6 @@
 {
 	"name": "NativeScript version of WhatsMyScore2",
-	"main": "app.js",
+	"main": "main.js",
 	"version": "0.1",
 	"author": "Matthew Green",
 	"description": "NativeScript version of What's My Score",

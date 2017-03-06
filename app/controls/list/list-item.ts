@@ -1,18 +1,26 @@
+import {} from 'nativescript-angular/router';
+
 import {
     ChangeDetectionStrategy,
-    HostListener, ElementRef, 
-    Input, Output, EventEmitter, ContentChildren, ContentChild, ViewChild } from "@angular/core";
-import { Router, Instruction} from '@angular/router-deprecated';
+    Component,
+    ContentChild,
+    ContentChildren,
+    ElementRef,
+    EventEmitter,
+    HostListener,
+    Input,
+    Output,
+    ViewChild,
+} from "@angular/core";
+import { Observable, Subject, Subscription } from 'rxjs/Rx';
 
-
-import { Control } from "../../decorators/control";
-
-import { Logger } from "../../providers/logger";
 import { Button } from "ui/button";
-import { StackLayout} from "ui/layouts/stack-layout";
-import { Observable, Subscription, Subject} from 'rxjs/Rx';
+import { Logger } from "../../providers/logger";
+import {QueryList} from '@angular/core';
+import { RouterExtensions } from "nativescript-angular/router"
+import { StackLayout } from "ui/layouts/stack-layout";
 
-@Control({
+@Component({
     selector:"nx-item",
     
     //create a 1 row template; 3 columns; 2 for the icons on the sides
@@ -65,8 +73,6 @@ import { Observable, Subscription, Subject} from 'rxjs/Rx';
     </StackLayout>
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: [],
-    inputs: ['params: nxRoute'],
     outputs: ["tap"],
     styleUrls: ["./controls/list/list.common.css"]
 })
@@ -88,51 +94,26 @@ export class NxListItem {
             element.className += " visible";
         }
     }
-    
-    // set _setAnimatedElement(item: ElementRef){
-    //     this.
+
+    @ContentChildren("NSRouterLink")
+    __childRoute : QueryList<any>;
+
+    @Input('nxRoute')
+    private nxRoute: string;
+    // the instruction passed to the router to navigate
+
+
+
+    // set params(changes: string) {
+    //     this.routeParams = changes;
     // }
-        
+            
     @Input('animate')
     public Animate : boolean; 
         
-    constructor(
-        private router: Router, 
-        private logger:Logger){
+    constructor(private logger:Logger, private routerExtensions: RouterExtensions){
     }
        
-    private routeParams: any[];
-    // the instruction passed to the router to navigate
-    private navigationInstruction: Instruction;
-    
-    set params(changes: any[]) {
-        this.routeParams = changes;
-        this.navigationInstruction = this.router.generate(this.routeParams);
-        
-        //this.logger.Notify("route params:");
-        //this.logger.NotifyObject(changes);
-    }
-    
-    get isRouteActive(): boolean 
-    { 
-        let available = this.navigationInstruction; 
-        if(!available){
-            //this.logger.Notify("no route specified."); 
-            return false;
-        }
-        //this.logger.Notify("route parts:");
-        this.logger.NotifyArray(this.routeParams);
-        //this.logger.Notify("current instruction");
-        //this.logger.Notify(this.router.currentInstruction.toStr);
-        
-        let active = this.router.isRouteActive(this.navigationInstruction);
-            
-
-        //this.logger.Notify("test route - active: " + active);
-        
-        return active;
-    }
-    
     public itemReady: Subject<NxListItem> = new Subject<NxListItem>();
     public itemSelected: Subject<NxListItem> = new Subject<NxListItem>();
     
@@ -173,19 +154,26 @@ export class NxListItem {
                 opacity: 1
             });
         }).then(() => {
-            if(this.navigationInstruction){
+            
+            this.logger.Notify("has nav:" + this.nxRoute);
+            var a = this.__childRoute.toArray();
+            if(a.length > 0){
+                a[0].onTap();
+            }
+
+            if(this.nxRoute){
                 this.logger.Notify("try to navigate!");
-                this.logger.NotifyObject(this.navigationInstruction);
+                this.logger.NotifyObject(this.nxRoute);
                 
-                //this.router.navigate(this.routeParams);
-                this.router.navigateByInstruction(this.navigationInstruction)
-                .then(() => {
-                    this.logger.Notify("navigated from competitions - > competition");
-                }).catch((r) => {
-                    this.logger.Error("navigation rejected");
-                    this.logger.Error(r.message);
-                    this.logger.NotifyObject(r);
-                });
+                
+                this.routerExtensions.navigateByUrl(this.nxRoute)
+                    .then(() => {
+                        this.logger.Notify("navigated from competitions - > competition");
+                    }).catch((r) => {
+                        this.logger.Error("navigation rejected");
+                        this.logger.Error(r.message);
+                        this.logger.NotifyObject(r);
+                    });
             }else if(this.tap){
                 this.tap.next(args);
             } else {

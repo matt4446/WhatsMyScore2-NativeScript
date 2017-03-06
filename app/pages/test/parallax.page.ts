@@ -1,4 +1,4 @@
-import {Page} from "../../decorators/page";
+import { Component } from '@angular/core';
 import {Page as PageControl} from "ui/page";
 import {Logger} from "../../providers/logger";
 
@@ -8,7 +8,7 @@ import {Color} from "color";
 import {NxPullToRefresh} from "../../controls/pullToRefresh/pullToRefresh.control";
 import {Paralax, ParallaxCollapsableItem} from "../../controls/parallax/parallax";
 
-@Page({
+@Component({
     selector: "parallax-test-page",
     template: `
         <StackLayout class="inset">           
@@ -38,8 +38,7 @@ import {Paralax, ParallaxCollapsableItem} from "../../controls/parallax/parallax
                 
             </nx-card>
         </StackLayout>
-    `,
-    directives: [Paralax, ParallaxCollapsableItem ]
+    `
 })
 export class ParallaxTestPage 
 {    

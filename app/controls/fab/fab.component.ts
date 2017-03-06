@@ -39,7 +39,6 @@ registerElement("Fab", () => require("nativescript-floatingactionbutton").Fab);
     `,
     outputs: ["tap"],
     styleUrls: ["./controls/fab/fab.common.css"],
-    directives: []
 })
 export class MaterialFab {
     @Input("horizontal-align")

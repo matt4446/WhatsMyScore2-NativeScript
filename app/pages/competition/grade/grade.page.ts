@@ -1,23 +1,22 @@
-import {Component, Input, ChangeDetectionStrategy, OnInit} from '@angular/core';
-import {Router} from "@angular/router-deprecated";
-import {Page} from "../../../decorators/page";
-import {Logger} from "../../../providers/logger";
-//import {SearchList, ISearchEvent} from "../../controls/searchList/searchList";
-import {AppRoutingService} from "../../../context/router.context";
-import {CompetitionService} from "../../../providers/leagues/competitions";
-import {ClubService} from "../../../providers/leagues/club";
-import {GradeService} from "../../../providers/leagues/grade";
-import {CompetitorService} from "../../../providers/leagues/competitors";
-import {RegionCache, CompetitionCache, GradeCache, ClubCache} from "../../../providers/leagues/cache";
-import * as Models from "../../../models/models";
-
-import * as Rx from "rxjs";
 import 'rxjs/add/operator/max';
 import 'rxjs/add/operator/distinct';
 
+import * as Models from "../../../models/models";
+import * as Rx from "rxjs";
+
+import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
+
+import {AppRoutingService} from "../../../context/router.context";
+import {ClubService} from "../../../providers/leagues/clubService";
+import {CompetitionCache} from '../../../providers/leagues/competitionCache';
 import {CompetitionNav} from "../../nav/competition.nav";
+import {CompetitionService} from "../../../providers/leagues/competitionService";
 import {CompetitorResult} from "../../templates/competitor.results";
-@Page({
+import {CompetitorService} from "../../../providers/leagues/competitorService";
+import {GradeService} from "../../../providers/leagues/gradeService";
+import {Logger} from "../../../providers/logger";
+
+@Component({
     selector: "grade-competitors-page",
     template: `
         <nx-drawer>
@@ -48,7 +47,6 @@ import {CompetitorResult} from "../../templates/competitor.results";
       
         </nx-drawer>
     `,
-    directives: [CompetitionNav, CompetitorResult],
     providers: [CompetitionService, GradeService, ClubService, CompetitorService],
     //changeDetection: ChangeDetectionStrategy.OnPush
 })

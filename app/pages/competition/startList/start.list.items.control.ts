@@ -1,10 +1,10 @@
-import {PageControl} from "../../../decorators/pageControl";
+import { Component } from '@angular/core';
 import {Observable, Subscription, Subject} from 'rxjs/Rx';
 import {GroupedObservable} from "rxjs/operator/groupBy";
 import {IGrade} from "../../../models/models";
 import {Logger} from "../../../providers/logger";
 
-@PageControl({
+@Component({
     selector : "StartListItems",
     template : `
         <nx-header item-top>

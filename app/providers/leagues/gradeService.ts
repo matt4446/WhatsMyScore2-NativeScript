@@ -1,9 +1,11 @@
+import {ICompetition, IGrade} from "../../models/models";
+
+import {CompetitionCache} from './competitionCache';
+import {GradeCache} from './gradeCache';
+import {Http} from "@angular/http";
 import {Injectable} from "@angular/core";
 import {Logger} from "../logger";
 import {Settings} from "../routes/routes";
-import {ICompetition, IGrade} from "../../models/models";
-import {CompetitionCache, GradeCache} from "./cache";
-import {Http} from "@angular/http";
 
 @Injectable()
 export class GradeService 

@@ -1,21 +1,19 @@
-import {Component, OnInit} from '@angular/core';
-//import {Router} from "@angular/router-deprecated";
-import {Page} from "../../../decorators/page";
-import {Logger} from "../../../providers/logger";
-import {AppRoutingService} from "../../../context/router.context";
-//import {SearchList, ISearchEvent} from "../../controls/searchList/searchList";
-import {CompetitionService} from "../../../providers/leagues/competitions";
-import {ClubService} from "../../../providers/leagues/club";
-import {GradeService} from "../../../providers/leagues/grade";
-import {RegionCache, CompetitionCache, GradeCache, ClubCache} from "../../../providers/leagues/cache";
-import {Observable, Subscription, Subject} from 'rxjs/Rx';
-import {GroupedObservable} from "rxjs/operator/groupBy";
-
-import {StartListItems} from "./start.list.items.control";
-import {CompetitionNav} from "../../nav/competition.nav";
 import * as Models from "../../../models/models";
 
-@Page({
+import {Component, OnInit} from '@angular/core';
+import {Observable, Subject, Subscription} from 'rxjs/Rx';
+
+import {AppRoutingService} from "../../../context/router.context";
+import {ClubService} from "../../../providers/leagues/clubService";
+import {CompetitionCache} from '../../../providers/leagues/competitionCache';
+import {CompetitionNav} from "../../nav/competition.nav";
+import {CompetitionService} from "../../../providers/leagues/competitionService";
+import {GradeService} from "../../../providers/leagues/gradeService";
+import {GroupedObservable} from "rxjs/operator/groupBy";
+import {Logger} from "../../../providers/logger";
+import {StartListItems} from "./start.list.items.control";
+
+@Component({
     selector: "start-list-page",
     //templateUrl: "pages/competition/startList/page.html",
     template: `
@@ -55,7 +53,6 @@ import * as Models from "../../../models/models";
         </nx-drawer>
     `,
     providers: [CompetitionService, GradeService, ClubService],
-    directives: [StartListItems, CompetitionNav] 
 })
 export class StartListPage implements OnInit
 {
