@@ -6,7 +6,7 @@ export { RegionCache } from './leagues/regionCache';
 export { ClubCache } from './leagues/clubCache';
 export { DisplayService } from './leagues/displayService';
 export { GradeService } from './leagues/gradeService';
-export { RegionService } from './leagues/RegionService';
+export { RegionService } from './leagues/regionService';
 export { CompetitorService } from './leagues/competitorService';
 export { Logger } from './logger';
 

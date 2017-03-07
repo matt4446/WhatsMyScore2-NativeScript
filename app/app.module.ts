@@ -1,5 +1,6 @@
 import * as AppRoutes from "./app.routing";
 import * as Controls from "./controls/controls.ref";
+import * as Nav from "./pages/menus.ref";
 import * as Pages from "./pages/pages.ref";
 import * as Pipes from "./pipes/pipes.ref";
 import * as Providers from "./providers/providers.ref";
@@ -10,10 +11,17 @@ import { AppComponent } from './app.component';
 import { NativeScriptHttpModule } from "nativescript-angular/http";
 import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 import { NativeScriptRouterModule } from "nativescript-angular/router";
-import {PageRoute} from 'nativescript-angular';
+import { NativeScriptUISideDrawerModule } from "nativescript-telerik-ui/sidedrawer/angular";
 
 @NgModule({
     bootstrap: [AppComponent],
+    imports: [
+        NativeScriptModule,
+        NativeScriptHttpModule, 
+        NativeScriptRouterModule,
+        NativeScriptRouterModule.forRoot(AppRoutes.appRoutes),
+        NativeScriptUISideDrawerModule
+    ],
     declarations: [
         AppComponent,
         Pages.StartPage,
@@ -34,6 +42,8 @@ import {PageRoute} from 'nativescript-angular';
         Pages.GradeCompetitorsPage,
         Pages.StatsPage, 
 
+        Nav.StartNav,
+        Nav.CompetitionNav,
 
         Controls.AlignLeft, 
         Controls.AlignRight,
@@ -57,6 +67,8 @@ import {PageRoute} from 'nativescript-angular';
         Controls.ParallaxExpandableItem,
         Controls.PullToRefreshAnimateElement,
 
+        
+
         Pipes.DisplayDate,
         Pipes.FormScoreFormatter,
         Pipes.OrderByPipe,
@@ -64,12 +76,7 @@ import {PageRoute} from 'nativescript-angular';
         Pipes.ScoreFormatter,
         Pipes.TitleTransform
     ],
-    imports: [
-        NativeScriptModule,
-        NativeScriptHttpModule, 
-        NativeScriptRouterModule,
-        NativeScriptRouterModule.forRoot(AppRoutes.appRoutes),
-    ],
+    
     providers: [
         Providers.Logger,
 

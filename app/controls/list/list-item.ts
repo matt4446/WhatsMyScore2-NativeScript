@@ -1,5 +1,3 @@
-import {} from 'nativescript-angular/router';
-
 import {
     ChangeDetectionStrategy,
     Component,
@@ -16,11 +14,12 @@ import { Observable, Subject, Subscription } from 'rxjs/Rx';
 
 import { Button } from "ui/button";
 import { Logger } from "../../providers/logger";
-import {QueryList} from '@angular/core';
+import { QueryList } from '@angular/core';
 import { RouterExtensions } from "nativescript-angular/router"
 import { StackLayout } from "ui/layouts/stack-layout";
 
 @Component({
+    moduleId: module.id,
     selector:"nx-item",
     
     //create a 1 row template; 3 columns; 2 for the icons on the sides
@@ -66,15 +65,11 @@ import { StackLayout } from "ui/layouts/stack-layout";
                 </GridLayout>
             </StackLayout>
         </StackLayout>
-        
-
-        
-
     </StackLayout>
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
     outputs: ["tap"],
-    styleUrls: ["./controls/list/list.common.css"]
+    styleUrls: ["list.common.css"]
 })
 export class NxListItem {
     //private template: TemplateRef;
