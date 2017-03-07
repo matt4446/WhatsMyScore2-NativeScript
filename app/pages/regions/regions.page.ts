@@ -1,20 +1,21 @@
+import * as Providers from "../../providers/providers.ref"
+
 import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { IRegion } from "../../models/models";
 import { Logger } from "../../providers/logger";
-import { RegionService } from "../../providers/leagues/regionService";
 import { StartNav } from "../nav/start.nav.control";
 
 @Component({
     selector: "regions-page",
     templateUrl: "pages/regions/regions.page.html",
-    providers: [RegionService],
+    providers: [ Providers.RegionService],
 })
 export class RegionsPage implements OnInit
 {
     constructor(
         private logger: Logger, 
-        private regions: RegionService)
+        private regions: Providers.RegionService)
     {
         this.logger.Notify("Regions page started");
     }

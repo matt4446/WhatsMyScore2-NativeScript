@@ -9,8 +9,7 @@ import {Settings} from "../routes/routes";
 
 @Injectable()
 export class RegionService{
-    
-    
+        
     constructor(private http: Http, private logger: Logger, private cache: RegionCache){
         logger.Notify("ProviderService created");
     }

@@ -1,16 +1,17 @@
-import {Observable, EventData } from "data/observable";
+import {Component, Inject} from '@angular/core';
+import {EventData, Observable} from "data/observable";
+
+import {Logger} from "../../providers/logger";
+import {NxDrawer} from "../../controls/drawer/drawer";
+import {Settings} from "../../providers/routes/routes";
+import {StartListControl} from "../start/stat.list.start.control";
+import {StartListSearchControl} from "../start/start.list.search.control";
 import {alert} from "ui/dialogs";
 
-import {Inject, Component} from '@angular/core';
-import {Logger} from "../../providers/logger";
-import {Settings} from "../../providers/routes/routes";
-import {NxDrawer} from "../../controls/drawer/drawer";
-import {StartListSearchControl} from "../start/start.list.search.control";
-import {StartListControl} from "../start/stat.list.start.control";
-
 @Component({
+    moduleId: module.id,
     selector: "start-nav",
-    templateUrl: "pages/nav/start.nav.control.html",
+    templateUrl: "start.nav.control.html",
 })
 export class StartNav
 {
@@ -35,9 +36,6 @@ export class StartNav
         // });
     }
     
-    public incomplete(args: EventData) : void {
-        alert("Its not made yet");
-    }
     
     
 }

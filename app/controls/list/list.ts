@@ -1,16 +1,21 @@
-import { Component, Directive, Input, Output, EventEmitter, ContentChildren } from "@angular/core";
+import { Component, ContentChildren, Directive, EventEmitter, Input, Output } from "@angular/core";
+import { Observable, Subject, Subscription } from 'rxjs/Rx';
+
 import { Logger } from "../../providers/logger";
-import { NxListItem } from "./list-item";
 import { NxHeader } from "./header";
+import { NxListItem } from "./list-item";
+
 //import { Page } from "ui/page";
 //var observable = require("data/observable");
-import { Observable, Subscription, Subject } from 'rxjs/Rx';
+
 //import { from } from "rxjs/observable/from";
 // import 'rxjs/add/operator/map';
 // import 'rxjs/add/operator/from';
 
 @Component({
+    moduleId: module.id,
     selector: "nx-list",
+    styleUrls: ["list.common.css"],
     //templateUrl: "controls/list/list.html",
     template:`
     <StackLayout class="nx-list">
@@ -28,8 +33,7 @@ import { Observable, Subscription, Subject } from 'rxjs/Rx';
             </StackLayout>
 
     </StackLayout>
-    `,
-    styleUrls: ["./controls/list/list.common.css"]
+    `
     //inputs:["padding"]
 })
 export class NxList {

@@ -1,23 +1,19 @@
-import { ContentChildren } from '@angular/core';
-import { ViewChild } from '@angular/core';
-import { ElementRef } from '@angular/core';
-import { Component } from '@angular/core';
-import { Directive } from '@angular/core';
-import { Logger} from "../../providers/logger";
-import { NxNav } from "../nav/nav";
 import * as Rx from 'rxjs/Rx';
-import { AbsoluteLayout } from "ui/layouts/absolute-layout";
-import { StackLayout } from "ui/layouts/stack-layout";
-import { GridLayout } from "ui/layouts/grid-layout";  
-import { Button } from "ui/button";
-import { PanGestureEventData} from "ui/gestures";
-import { AnimationPromise } from "ui/animation";// animation = require("ui/animation");
-// import 'rxjs/add/operator/map';
-// import 'rxjs/add/operator/from';
 
-/*
- * GridLayout without rows and columns defined will overlap elements. 
- */
+import { AbsoluteLayout } from "ui/layouts/absolute-layout";
+import { AnimationPromise } from "ui/animation";
+import { Button } from "ui/button";
+import { Component } from '@angular/core';
+import { ContentChildren } from '@angular/core';
+import { Directive } from '@angular/core';
+import { ElementRef } from '@angular/core';
+import { GridLayout } from "ui/layouts/grid-layout";
+import { Logger } from "../../providers/logger";
+import { NxNav } from "../nav/nav";
+import { PanGestureEventData } from "ui/gestures";
+import { RadSideDrawerComponent } from "nativescript-telerik-ui/sidedrawer/angular"
+import { StackLayout } from "ui/layouts/stack-layout";
+import { ViewChild } from '@angular/core';
 
 @Directive({
     selector : "[nx-drawer-close]",
@@ -29,34 +25,51 @@ export class NxCloseDrawer
 
 @Component({
     selector:"nx-drawer",
-    styleUrls: ["./controls/drawer/drawer.common.css"],
+    moduleId: module.id,
+    styleUrls: ["drawer.common.css"],
     template:`
-    
-        <GridLayout #grid rows="*" columns="300, *">
-            
-            <StackLayout  row="0" col="0" colSpan="2">
-                <StackLayout #centerContent>
-                    <ng-content></ng-content>
-                </StackLayout>
+        <RadSideDrawer #main [transition]="sideDrawerTransition" tkExampleTitle tkToggleNavButton>
+        
+            <!-- drawer -->
+            <StackLayout tkDrawerContent class="side-page" #asideLeft>
+                <ng-content select="[drawer-aside-left]"></ng-content>
+            </StackLayout>
+            <!-- end of drawer -->
+            <!-- main content --> 
+            <StackLayout #centerContent tkMainContent>
+                <ng-content></ng-content>
             </StackLayout> 
-
-            <AbsoluteLayout class="side-page" #asideLeftParent  opacity="0">
-              
-                <StackLayout #asideLeft col="0">
-                    <ng-content select="[drawer-aside-left]"></ng-content>
-                </StackLayout>   
-                        
-            </AbsoluteLayout>
-             
-        </GridLayout>
-
+            <!-- Main content --> 
+        </RadSideDrawer>
     `
+    // template:`
+    
+    //     <GridLayout #grid rows="*" columns="300, *">
+            
+    //         <StackLayout  row="0" col="0" colSpan="2">
+    //             <StackLayout #centerContent>
+    //                 <ng-content></ng-content>
+    //             </StackLayout>
+    //         </StackLayout> 
+
+    //         <AbsoluteLayout class="side-page" #asideLeftParent  opacity="0">
+              
+    //             <StackLayout #asideLeft col="0">
+    //                 <ng-content select="[drawer-aside-left]"></ng-content>
+    //             </StackLayout>   
+                        
+    //         </AbsoluteLayout>
+             
+    //     </GridLayout>
+
+    // `
 })
 export class NxDrawer {
     private childNavs : Array<NxNav>;
     private asideLeftContent : ElementRef;
     private asideRightContent: ElementRef;
     private centerContent: ElementRef;
+    private sidebar : RadSideDrawerComponent;
     
     public constructor(private logger: Logger ){
         //this.logger.Notify("nx-drawer");
@@ -70,152 +83,45 @@ export class NxDrawer {
     };
     
     public OpenLeftAside() {
-        // if(this.State.Open){
-        //     return;
-        // }
-        this.State.Open = true;
-        let center: StackLayout = this.centerContent.nativeElement;
-        let leftParent: AbsoluteLayout = this.asideLeftParent.nativeElement;
-        this.logger.Notify("bring back center");
-        //center.visibility = "collapse";
-        
-        center.animate({
-            translate: {
-                y: 0,
-                x: 0
-                //x: 300
-            },
-            opacity: 0.7
-        });
-        
-        leftParent.animate({
-            opacity: 1,
-            translate: {
-                x: 0,
-                y: 0
-            }
-        });
-        
+        this.sidebar.sideDrawer.toggleDrawerState();
     }
     
     public CloseLeftAside() {
-        if(!this.State.Open){
-            return ;
-        }
-        this.State.Open = false;
-        let center: StackLayout = this.centerContent.nativeElement;
-        let leftParent: AbsoluteLayout = this.asideLeftParent.nativeElement;
-        this.logger.Notify("show aside left");
-                //center.visibility = "visible";
-        center.animate({
-            translate: {
-                y: 0,
-                x: 0
-            },
-            opacity : 1
-        });
-        
-        leftParent.animate({
-            opacity: 0.8
-        });
-
+        this.sidebar.sideDrawer.toggleDrawerState();
     }
 
-    public AnimateCenterToPosition(x : number){
-        let center: StackLayout = this.centerContent.nativeElement;
-        let leftParent: AbsoluteLayout = this.asideLeftParent.nativeElement;
-        
-        if(x > 0){
-            //center.translateX = 300;
-            leftParent.translateX = 0;
-            return;
-        }
-
-        var newPosition = -((x /100) * 300) * 0.8;
-        var newOpacity = (Math.abs(x)/100) * 1; 
-
-        //go a little over 
-        newPosition = newPosition > 300 ? 300 : newPosition;
-        newOpacity = newOpacity > 1 
-            ? 1 
-            : newOpacity < 0.2 ? 0.2 : newOpacity;
-
-        //center.translateX = 300 - newPosition;
-        center.opacity =  newOpacity;
-
-        leftParent.translateX = -newPosition;
-    }
     
-    public mainTapped(){
-        //if(!this.State.Open){ return ; }
-        this.logger.Notify("main tapped");   
-    }
 
     private ngOnInit(){
         //let center: StackLayout = this.centerContent.nativeElement;
-        let leftParent: AbsoluteLayout = this.asideLeftParent.nativeElement;
-        leftParent.translateX = -300;
-
-        var pan = Rx.Observable.fromEvent<PanGestureEventData>(leftParent, "pan");
-        pan.filter(e=> e.state === 2).subscribe((args) => {
-            this.logger.Notify("Pan delta: [" + args.deltaX + ", " + args.deltaY + "] state: " + args.state);
-            this.AnimateCenterToPosition(args.deltaX);
-        });
-        pan.filter(e=> e.state === 3).subscribe((args)=> {
-            if(args.deltaX < -100){
-                this.logger.Notify("close");
-                this.CloseLeftAside();
-            }else{
-                this.OpenLeftAside();
-            }
-        });
     } 
 
-
-    @ViewChild('grid')
-    set _grid(item: ElementRef){
-        this.logger.Notify("set pan on grid");
-        let g : GridLayout = item.nativeElement;
-        // g.on("pan", (args: PanGestureEventData) => {
-        //     this.logger.Notify("Pan delta: [" + args.deltaX + ", " + args.deltaY + "] state: " + args.state);
-        // });
-
-        
-    }
     
-    @ViewChild("asideLeftParent")private asideLeftParent: ElementRef;
     
     @ViewChild('asideLeft') 
     set _asideLeft(item: ElementRef){
         this.asideLeftContent = item;
         this.State.HasLeft = true;
-
-        // this.logger.Notify("set pan on asideLeft");
-        // let g : GridLayout = item.nativeElement;
-        // g.on("pan", (args: PanGestureEventData) => {
-        //     this.logger.Notify("Pan asideLeft delta: [" + args.deltaX + ", " + args.deltaY + "] state: " + args.state);
-        // });
     }
     
     @ViewChild('asideRight') 
     set _asideRight(item: ElementRef){
         this.asideRightContent = item;
         this.State.HasRight = true;    
-        //this.logger.Notify("drawer.asideRightContent set: item" + item);
     }
     
     @ViewChild('centerContent')
     set _setCenter(item: ElementRef){
         this.centerContent = item;
-        // this.logger.Notify("set pan on centerContent");
-        // let g : GridLayout = item.nativeElement;
-        // g.on("pan", (args: PanGestureEventData) => {
-        //     this.logger.Notify("Pan centerContent delta: [" + args.deltaX + ", " + args.deltaY + "] state: " + args.state);
-        // });
+    }
+
+    @ViewChild(RadSideDrawerComponent)
+    set _setMain(item: RadSideDrawerComponent){
+        this.sidebar = item;
     }
         
     @ContentChildren(NxNav)
-    set _setNav(items: any){
+    set _setNav(items: any) {
         if(this.State.NavAttached){ return; }
         
         ///this.logger.Notify("drawer.nav set: " + items);
