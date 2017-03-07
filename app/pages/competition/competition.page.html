@@ -13,18 +13,14 @@
                 <nx-header item-top>
                     <label [text]="'Information & Documents' | Title" class="nx-header-title"></label>
                 </nx-header>
-                <nx-item animate="true" 
-                    [nxRoute]="[
-                        'Region.Competition.Information',
-                        { regionId: context.RegionId, competitionId: context.CompetitionId }]">
+                <nx-item animate="true" pageTransition="slide"
+                    [nsRouterLink]="['information']">
                     <ion-icon item-left icon="ion-map"></ion-icon>
                     <label [text]="'Information' | Title"></label>
                     <ion-icon item-right icon="ion-chevron-right"></ion-icon>
                 </nx-item>
                 <nx-item animate="true" 
-                    [nxRoute]="[
-                        'Region.Competition.StartList',
-                        { regionId: context.RegionId, competitionId: context.CompetitionId }]">
+                    [nsRouterLink]="['startList']">
                     <ion-icon item-left icon="ion-map"></ion-icon>
                     <label [text]="'Start List' | Title"></label>
                     <ion-icon item-right icon="ion-chevron-right"></ion-icon>
@@ -35,35 +31,30 @@
                 <nx-header item-top>
                     <label [text]="'Competition & Results' | Title" class="nx-header-title"></label>
                 </nx-header>
-                <nx-item animate="true" 
-                    [nxRoute]="[
-                        'Region.Competition.GradeList',
-                        { regionId: context.RegionId, competitionId: context.CompetitionId }]">
+                <nx-item animate="true" pageTransition="slide"
+                    [nsRouterLink]="['gradeList']">
                     <label [text]="'Grades' | Title "></label>
                     <ion-icon item-right icon="ion-search"></ion-icon>
                 </nx-item>
-                <nx-item animate="true" 
-                    [nxRoute]="[
-                        'Region.Competition.ClubList',
-                        { regionId: context.RegionId, competitionId: context.CompetitionId }]">
+                <nx-item animate="true" pageTransition="slide"
+                    [nsRouterLink]="['clubList']">
                     <ion-icon item-left icon="ion-ios-people"></ion-icon>
                     <label [text]="'Clubs' | Title"></label>
                     <ion-icon item-right icon="ion-search"></ion-icon>
                 </nx-item>
                 <nx-item animate="true"
-                     [nxRoute]="[
-                        'Region.Competition.FindCompetitor',
-                        { regionId: context.RegionId, competitionId: context.CompetitionId }]">
+                     animate="true" pageTransition="slide"
+                    [nsRouterLink]="['findCompetitor']">
                     <ion-icon item-left icon="ion-ios-people"></ion-icon>
                     <label [text]="'Find a Competitor' | Title"></label>
                 </nx-item>
-                <nx-item animate="true" 
+                <!--<nx-item animate="true" 
                     [nxRoute]="[
                         'Region.Competition.Stats',
                         { regionId: context.RegionId, competitionId: context.CompetitionId }]">
                     <ion-icon item-left icon="ion-ios-people"></ion-icon>
                     <label [text]="'Stats' | Title"></label>
-                </nx-item>
+                </nx-item>-->
             </nx-list>
 
 
