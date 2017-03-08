@@ -43,43 +43,45 @@ export class AppRoutingService implements IRegionRoute, ICompetitionRoute, IGrad
         });
     } 
     
+    public UpdateFromParams(data : { [key: string]:any }){
+        this.logger.NotifyObject(data);
+
+        this.RegionId = data['regionId'];
+        this.CompetitionId = data["competitionId"];
+        this.GradeId = data["gradeId"];
+        this.ClubId = data["clubId"];
+
+
+        let a = JSON.stringify({
+            regionId : this.RegionId,
+            competitionId: this.CompetitionId,
+            gradeId: this.GradeId,
+            clubId: this.ClubId
+        });
+                
+        this.logger.Notify(a);
+        
+        if(this.RegionId){
+            this.logger.Notify("RegionId: " + this.RegionId);   
+        }
+        if(this.ClubId){
+            this.logger.Notify("ClubId:" + this.ClubId);
+        }
+        if(this.GradeId){
+            this.logger.Notify("regionId:" + this.RegionId);
+        }
+        if(this.CompetitionId){
+            this.logger.Notify("competitionId:" + this.CompetitionId);
+        }
+
+    }
+
     public Update(route: ActivatedRoute): void {
         var params = route.params;
         var subscription = params.subscribe((data) => {
-            this.logger.NotifyObject(data);
-
-            this.RegionId = data['regionId'];
-            this.CompetitionId = data["competitionId"];
-            this.GradeId = data["gradeId"];
-            this.ClubId = data["clubId"];
-
-
-            let a = JSON.stringify({
-                regionId : this.RegionId,
-                competitionId: this.CompetitionId,
-                gradeId: this.GradeId,
-                clubId: this.ClubId
-            });
-                    
-            this.logger.Notify(a);
-            
-            if(this.RegionId){
-                this.logger.Notify("RegionId: " + this.RegionId);   
-            }
-            if(this.ClubId){
-                this.logger.Notify("ClubId:" + this.ClubId);
-            }
-            if(this.GradeId){
-                this.logger.Notify("regionId:" + this.RegionId);
-            }
-            if(this.CompetitionId){
-                this.logger.Notify("competitionId:" + this.CompetitionId);
-            }
-
+            this.UpdateFromParams(data);
         });
         subscription.unsubscribe();
-
-        
     }
 
 }

@@ -20,8 +20,8 @@ import {StartNav} from "../nav/start.nav.control";
 export class RegionPage implements OnInit, OnDestroy
 {
     constructor(
-        public context : AppRoutingService,
-        private route: ActivatedRoute,
+        private context : AppRoutingService,
+        //private route: ActivatedRoute,
         //private params: RouteParams, 
         private logger: Logger, 
         private regionCache: RegionCache,
@@ -29,7 +29,7 @@ export class RegionPage implements OnInit, OnDestroy
         private competitionService: CompetitionService)
     {
         this.logger.Notify("region page loaded");
-        this.context.Update(route);
+        //this.context.Update(route);
 
         this.logger.Notify("regionId " + this.context.RegionId);
     }

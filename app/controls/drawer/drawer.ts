@@ -2,6 +2,7 @@ import * as Rx from 'rxjs/Rx';
 
 import { AbsoluteLayout } from "ui/layouts/absolute-layout";
 import { AnimationPromise } from "ui/animation";
+import {AppRoutingService} from '../../context/router.context';
 import { Button } from "ui/button";
 import { Component } from '@angular/core';
 import { ContentChildren } from '@angular/core';
@@ -10,6 +11,7 @@ import { ElementRef } from '@angular/core';
 import { GridLayout } from "ui/layouts/grid-layout";
 import { Logger } from "../../providers/logger";
 import { NxNav } from "../nav/nav";
+import {PageRoute} from 'nativescript-angular';
 import { PanGestureEventData } from "ui/gestures";
 import { RadSideDrawerComponent } from "nativescript-telerik-ui/sidedrawer/angular"
 import { StackLayout } from "ui/layouts/stack-layout";
@@ -71,8 +73,17 @@ export class NxDrawer {
     private centerContent: ElementRef;
     private sidebar : RadSideDrawerComponent;
     
-    public constructor(private logger: Logger ){
-        //this.logger.Notify("nx-drawer");
+    public constructor(
+        private logger: Logger,
+        private pageRoute: PageRoute,
+        private context : AppRoutingService){
+        
+        this.pageRoute.activatedRoute
+            .switchMap(activatedRoute => activatedRoute.params)
+            .subscribe((params) => {
+                context.UpdateFromParams(params);
+            });
+            //.forEach((params) => { this.id = +params['id']; });
     }
     
     private State = {

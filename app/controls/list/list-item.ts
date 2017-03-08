@@ -90,18 +90,8 @@ export class NxListItem {
         }
     }
 
-    @ContentChildren("NSRouterLink")
-    __childRoute : QueryList<any>;
-
-    @Input('nxRoute')
-    private nxRoute: string;
-    // the instruction passed to the router to navigate
-
-
-
-    // set params(changes: string) {
-    //     this.routeParams = changes;
-    // }
+    // @ContentChildren("NSRouterLink")
+    // __childRoute : QueryList<any>;
             
     @Input('animate')
     public Animate : boolean; 
@@ -111,17 +101,7 @@ export class NxListItem {
        
     public itemReady: Subject<NxListItem> = new Subject<NxListItem>();
     public itemSelected: Subject<NxListItem> = new Subject<NxListItem>();
-    
-    public itemLoading($event)
-    {
-        //this.logger.Notify("item loading");
-    }
-    
-    public itemLoaded($event)
-    {
-        //this.logger.Notify("item loaded");
-    }
-    
+        
     public getNativeElement() : StackLayout {
         if(!this.container){ return ; }
         
@@ -133,7 +113,8 @@ export class NxListItem {
     public tapWrapper = (args: any) => {
         this.logger.Notify("tap clicked on item");
         
-        var stackLayout: StackLayout = this.getNativeElement();
+        let stackLayout: StackLayout = this.getNativeElement();
+
         if(!stackLayout) { return ;}
         
         this.itemSelected.next(this);
@@ -143,40 +124,20 @@ export class NxListItem {
             translate: { x: 20, y: 0 },
             opacity: 0.8
         }).then(() =>{
+            
+
             return stackLayout.animate({ 
                 duration: 100,
                 translate: { x:0, y: 0},
                 opacity: 1
             });
         }).then(() => {
-            
-            this.logger.Notify("has nav:" + this.nxRoute);
-            var a = this.__childRoute.toArray();
-            if(a.length > 0){
-                a[0].onTap();
-            }
-
-            if(this.nxRoute){
-                this.logger.Notify("try to navigate!");
-                this.logger.NotifyObject(this.nxRoute);
-                
-                
-                this.routerExtensions.navigateByUrl(this.nxRoute)
-                    .then(() => {
-                        this.logger.Notify("navigated from competitions - > competition");
-                    }).catch((r) => {
-                        this.logger.Error("navigation rejected");
-                        this.logger.Error(r.message);
-                        this.logger.NotifyObject(r);
-                    });
-            }else if(this.tap){
+            //normal router navigation
+            if(this.tap){
                 this.tap.next(args);
-            } else {
-                this.logger.Notify("tap has not been set on the view");
             }
         });
     };
     
     public tap = new EventEmitter(); // : (args: EventEmitter<any>) => void;
-    //todo get the contents to naviate
 }

@@ -32,12 +32,10 @@ import {StartListItems} from "./start.list.items.control";
                             <label [text]="group.key | Title" class="nx-header-title"></label>
                         </nx-header>
                         
-                        <nx-item *ngFor="let grade of group.items | orderBy:'ClassName'" 
-                            [nxRoute]="[
-                                'Region.Competition.StartList.Competitors', 
-                                { regionId: context.RegionId, competitionId: context.CompetitionId, gradeId: grade.Id }
-                            ]">
-                            
+                        <nx-item *ngFor="let grade of group.items | orderBy:'ClassName'"
+                            [nsRouterLink]="[grade.Id]" 
+                            pageTransition="slide"> 
+
                             <label [text]="grade.ClassName"></label>
                             <label class="note" [text]="grade.Competitors + ' competitors' "></label>
                             

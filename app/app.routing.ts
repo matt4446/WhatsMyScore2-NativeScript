@@ -13,14 +13,7 @@ export const appRoutes: Routes = [
     { path: "regions/:regionId/competition/:competitionId/clubList", component: Pages.ClubListPage },
     { path: "regions/:regionId/competition/:competitionId/clubList/:clubId", component: Pages.ClubPage },
     { path: "regions/:regionId/competition/:competitionId/gradeList", component: Pages.GradeListPage },
-    { path: "regions/:regionId/competition/:competitionId/gradelist/:gradeId", component: Pages.GradeCompetitorsPage },
-    
-    //to-do - template & provider
+    { path: "regions/:regionId/competition/:competitionId/gradeList/:gradeId", component: Pages.GradeCompetitorsPage },
     { path: "regions/:regionId/competition/:competitionId/findCompetitor", component: Pages.FindCompetitorPage },
-    //to-do - template & provider
     { path: "regions/:regionId/competition/:competitionId/stats", component: Pages.StatsPage }
-
-    //to-do - template & provider
-    //to-do - template & provider
-    
 ];

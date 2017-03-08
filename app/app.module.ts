@@ -4,6 +4,7 @@ import * as Nav from "./pages/menus.ref";
 import * as Pages from "./pages/pages.ref";
 import * as Pipes from "./pipes/pipes.ref";
 import * as Providers from "./providers/providers.ref";
+import * as Templates from "./pages/templates.ref";
 
 import { NO_ERRORS_SCHEMA, NgModule } from "@angular/core";
 
@@ -41,6 +42,11 @@ import { NativeScriptUISideDrawerModule } from "nativescript-telerik-ui/sidedraw
         Pages.GradeListPage,
         Pages.GradeCompetitorsPage,
         Pages.StatsPage, 
+
+        Templates.CompetitorResult,
+        Templates.CompetitorResultRow,
+        Templates.CompetitorResultRowHeader,
+        Templates.ResultsDetailRow,
 
         Nav.StartNav,
         Nav.CompetitionNav,

@@ -31,11 +31,8 @@ import {Logger} from "../../../providers/logger";
                         </nx-header>
                         
                         <nx-item *ngFor="let grade of group.items | orderBy:'ClassName'"
-                            [nxRoute]="[
-                                'Region.Competition.GradeList.Competitors', 
-                                { regionId: context.RegionId, competitionId: context.CompetitionId, gradeId: grade.Id }
-                            ]"
-                        >
+                            [nsRouterLink]="[grade.Id]" 
+                            pageTransition="slide">
                             <Label item-left class="material-icons icon-default" text="assignment" textWrap="true"></Label>
 
                             <label [text]="grade.ClassName"></label>

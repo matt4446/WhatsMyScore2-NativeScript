@@ -20,17 +20,17 @@ import { NxListItem } from "./list-item";
     template:`
     <StackLayout class="nx-list">
 
-            <StackLayout>
-                <StackLayout>
-                    <ng-content select="[item-top]"></ng-content>
-                </StackLayout>
-                <StackLayout>
-                    <ng-content></ng-content>
-                </StackLayout>
-                <StackLayout>
-                    <ng-content select="[item-bottom]"></ng-content>
-                </StackLayout>
-            </StackLayout>
+            
+        <StackLayout>
+            <ng-content select="[item-top]"></ng-content>
+        </StackLayout>
+        <StackLayout>
+            <ng-content></ng-content>
+        </StackLayout>
+        <StackLayout>
+            <ng-content select="[item-bottom]"></ng-content>
+        </StackLayout>
+      
 
     </StackLayout>
     `
@@ -47,25 +47,7 @@ export class NxList {
     public padding : boolean = false;
     public children : Array<NxListItem>;
     public headers : Array<NxHeader>;
-    // public HasPadding(){
-    //     if(this.padding){
-    //         return "padding";
-    //     }
-    // }   
-    
-    //https://angular.io/docs/ts/latest/guide/lifecycle-hooks.html
-    public ngAfterContentInit(){
-    }
-    
-    public ngAfterContentChecked(){
-    }
-    
-    public ngAfterViewInit(){
-    }
-    
-    public ngAfterViewChecked(){
-    }
-    
+            
     @ContentChildren(NxHeader)
     set _setHeader(items : any) {
         this.headers = items.toArray();
