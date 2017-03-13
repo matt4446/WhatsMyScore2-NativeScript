@@ -1,7 +1,8 @@
-import {Component, Input, ChangeDetectionStrategy} from '@angular/core';
-import {ICompetitorContext } from "../../models/models";
-import {Logger} from "../../providers/logger";
+import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
 import {CompetitorResultRow, CompetitorResultRowHeader} from "./competitor.result.score.row";
+
+import {ICompetitorContext} from "../../models/models";
+import {Logger} from "../../providers/logger";
 
 @Component({
     selector: 'competitor-result-detail-row',
@@ -24,7 +25,7 @@ export class ResultsDetailRow{
  
         <StackLayout class="text-right" item-right>
             <Label class='note' *ngIf="!context.Competitor.Removed" [text]="GetRank() | Title" textWrap="true"></Label>
-            <Label class='note' *ngIf="!context.Competitor.Removed" [text]="context.Competitor.Total | number:'3.3-3'" textWrap="true"></Label>
+            <Label class='note' *ngIf="!context.Competitor.Removed" [text]="context.Competitor.Total | number:'1.3-3'" textWrap="true"></Label>
             <Label class='note' *ngIf="context.Competitor.Removed" text="x" textWrap="true"></Label>
         </StackLayout>
     </nx-item>
