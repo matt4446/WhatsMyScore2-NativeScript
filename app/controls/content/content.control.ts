@@ -1,12 +1,25 @@
-import { Component, HostListener, ElementRef, Input, Output, EventEmitter, 
-    ContentChildren,ContentChild, ViewChild, TemplateRef, OnInit, AfterViewInit } from "@angular/core";
-import { Logger } from "../../providers/logger";
-import { Button } from "ui/button";
-import { StackLayout} from "ui/layouts/stack-layout";
-import { Observable, Subscription, Subject} from 'rxjs/Rx';
-import { NxPullToRefresh, PullToRefreshAnimateElement } from '../pullToRefresh/pullToRefresh.control'; 
-import { PullToRefresh } from "nativescript-pulltorefresh";
+import {
+    AfterViewInit,
+    Component,
+    ContentChild,
+    ContentChildren,
+    ElementRef,
+    EventEmitter,
+    HostListener,
+    Input,
+    OnInit,
+    Output,
+    TemplateRef,
+    ViewChild,
+} from "@angular/core";
+import { NxPullToRefresh, NxPullToRefreshAnimateElement } from '../pullToRefresh/pullToRefresh.control';
+import { Observable, Subject, Subscription } from 'rxjs/Rx';
+
 import { AnimationPromise } from "ui/animation";
+import { Button } from "ui/button";
+import { Logger } from "../../providers/logger";
+import { PullToRefresh } from "nativescript-pulltorefresh";
+import { StackLayout } from "ui/layouts/stack-layout";
 
 @Component({
     selector:"nx-content",

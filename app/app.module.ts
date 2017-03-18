@@ -67,11 +67,14 @@ import { NativeScriptUISideDrawerModule } from "nativescript-telerik-ui/sidedraw
         Controls.NxNav,
         Controls.NxNavBack,
         Controls.NxPullToRefresh,
+        Controls.NxPullToRefreshView,
+        Controls.NxPullToRefreshAnimateElement,
+
         Controls.NxTitle,
         Controls.Paralax,
         Controls.ParallaxCollapsableItem,
         Controls.ParallaxExpandableItem,
-        Controls.PullToRefreshAnimateElement,
+        Controls.NxPullToRefreshAnimateElement,
 
         
 

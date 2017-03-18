@@ -13,7 +13,7 @@ export {NxNavBack} from "./nav/nav-back";
 export {NxTitle} from "./nav/nav-title";
 export {NxNav} from "./nav/nav";
 export {Paralax,ParallaxCollapsableItem,ParallaxExpandableItem} from "./parallax/parallax";
-export {NxPullToRefresh, NxPullToRefreshView, PullToRefreshAnimateElement} from "./pullToRefresh/pullToRefresh.control";
+export {NxPullToRefresh, NxPullToRefreshView, NxPullToRefreshAnimateElement} from "./pullToRefresh/pullToRefresh.control";
 
 // export var controls = [
 //     NxCard,

@@ -1,21 +1,22 @@
-import { Logger } from "../../providers/logger";
 import { Component, OnInit } from "@angular/core";
-import { Observable, Subscription, Subject} from 'rxjs/Rx';
-import { ViewChild, ViewChildren, ContentChildren, ContentChild, ElementRef, Directive, Input, Output, EventEmitter } from "@angular/core";
-import { registerElement, ViewClass } from "nativescript-angular/element-registry";
-import { PullToRefresh } from "nativescript-pulltorefresh";
-import { ListViewComponent } from "nativescript-angular/directives/list-view-comp";
-import { ListView } from "ui/list-view";
-import { StackLayout} from "ui/layouts/stack-layout";
+import { ContentChild, ContentChildren, Directive, ElementRef, EventEmitter, Input, Output, ViewChild, ViewChildren } from "@angular/core";
+import { Observable, Subject, Subscription } from 'rxjs/Rx';
+import { ViewClass, registerElement } from "nativescript-angular/element-registry";
+
 import { AnimationPromise } from "ui/animation";
 import {LayoutBase} from "ui/layouts/layout-base";
+import { ListView } from "ui/list-view";
+import { ListViewComponent } from "nativescript-angular/directives/list-view-comp";
+import { Logger } from "../../providers/logger";
+import { PullToRefresh } from "nativescript-pulltorefresh";
+import { StackLayout } from "ui/layouts/stack-layout";
 
 registerElement("PullToRefresh", () => require("nativescript-pulltorefresh").PullToRefresh);
 
 @Directive({
     selector: "[pull-to-animate]"
 })
-export class PullToRefreshAnimateElement{
+export class NxPullToRefreshAnimateElement{
     
     constructor(private element : ElementRef){
 
@@ -74,20 +75,20 @@ export class NxPullToRefreshView{
         this.shrink();
     }
 
-    private animateContentChildElement: PullToRefreshAnimateElement[];
-    @ContentChildren(PullToRefreshAnimateElement)
+    private animateContentChildElement: NxPullToRefreshAnimateElement[];
+    @ContentChildren(NxPullToRefreshAnimateElement)
     public set contentChildren(elements)
     {
         this.animateContentChildElement = elements.toArray();
     }
 
-    private animateViewChild : PullToRefreshAnimateElement[];
-    @ViewChildren(PullToRefreshAnimateElement)
+    private animateViewChild : NxPullToRefreshAnimateElement[];
+    @ViewChildren(NxPullToRefreshAnimateElement)
     public set viewChildren(elements){
         this.animateViewChild = elements.toArray();
     }
 
-    private get AnimateElements() : PullToRefreshAnimateElement[]{
+    private get AnimateElements() : NxPullToRefreshAnimateElement[]{
         let a = [];
         if(this.animateContentChildElement && this.animateContentChildElement.length > 0)
         {

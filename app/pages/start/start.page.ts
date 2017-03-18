@@ -31,45 +31,11 @@ export class StartPage implements OnInit
     
     ngOnInit()
     {
-
-        // let headers = new Headers();
-        // headers.append('Content-Type', 'application/json');
-        // headers.append('Accept', 'text/xml');
-        // headers.append('Accept-Encoding', 'deflate')
-        // var requestObtionsArgs : RequestOptionsArgs= { 
-        //     headers: headers,
-        //     withCredentials: true
-        // };
-
-        // this.http.get("https://breakouttrampoliningwebservices.azurewebsites.net/test/string", requestObtionsArgs)
-        //     .map(e=> e.text())
-        //     .subscribe(e => {
-        //         console.log("expect: Hello world! Time is: {0}");
-        //         console.log(e);
-        //     }, (e) => {
-        //         console.log(e);
-        //     });
-        // this.http.get("https://breakouttrampoliningwebservices.azurewebsites.net/test/number", requestObtionsArgs)
-        //     .map(e=> e.text())
-        //     .subscribe(e => {
-        //         console.log(e);
-        //     }, (e) => {
-        //         console.log(e);
-        //     });
-        // this.http.get("https://breakouttrampoliningwebservices.azurewebsites.net/test/guid", requestObtionsArgs)
-            
-        //     .map(e=> e.text())
-        //     .subscribe(e => {
-        //         console.log(e);
-        //     }, (e) => {
-        //         console.log(e);
-        //     });
-
-       
     }
 
   
     public refresh(args: any){
+        console.log(args);
         setTimeout(()=> {
             args.completed();
         }, 1000);
