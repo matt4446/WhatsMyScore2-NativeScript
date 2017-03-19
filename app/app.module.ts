@@ -74,9 +74,6 @@ import { NativeScriptUISideDrawerModule } from "nativescript-telerik-ui/sidedraw
         Controls.Paralax,
         Controls.ParallaxCollapsableItem,
         Controls.ParallaxExpandableItem,
-        Controls.NxPullToRefreshAnimateElement,
-
-        
 
         Pipes.DisplayDate,
         Pipes.FormScoreFormatter,

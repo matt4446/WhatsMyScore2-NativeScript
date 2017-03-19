@@ -19,23 +19,16 @@ import {alert} from "ui/dialogs";
     selector: "start",
     templateUrl: "pages/start/start.page.html",
 })
-export class StartPage implements OnInit
+export class StartPage
 {
     constructor(private logger:Logger, 
-        private http: Http, 
         private appRouteingService: AppRoutingService
         )
     {
-        this.logger.Notify("Start Page - constructor hit"); 
     }
-    
-    ngOnInit()
-    {
-    }
-
   
     public refresh(args: any){
-        console.log(args);
+        
         setTimeout(()=> {
             args.completed();
         }, 1000);

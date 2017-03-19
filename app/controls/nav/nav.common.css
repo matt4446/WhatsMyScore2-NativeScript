@@ -4,9 +4,7 @@
 }
 
 ActionBar {
-
     vertical-align: center;
-
 }
 
 .nx-nav-main{
@@ -20,6 +18,10 @@ ActionBar {
     color: #ffffff;
     font-size: 20;
 
+}
+
+.nav-icon-text{
+    margin-right: 10;
 }
 
 .nav-icon {

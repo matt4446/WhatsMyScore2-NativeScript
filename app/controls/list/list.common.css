@@ -10,7 +10,6 @@
     border-color:#4d75b8;
 }
 
-
 .nx-list {
     margin-bottom: 12;
     border-width: 1;
@@ -26,7 +25,7 @@
 
 .nx-item-top-border {
     /* height="2" borderRadius="0" borderWidth="1" borderColor="#548CEC" */
-    height: 2;
+    height: 1;
     border-radius: 0;
     border-width: 1;
     border-color: #548CEC;
@@ -39,11 +38,6 @@
 
 .nx-item-column {
    vertical-align: center;
-   /*
-   border-width: 1;
-   border-style: solid;
-   border-color: red;
-   */
 }
 
 .inset {

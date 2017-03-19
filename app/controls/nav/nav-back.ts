@@ -6,17 +6,16 @@ import { Logger } from "../../providers/logger";
 import { MaterialIcon } from "../icons/material-icon";
 
 @Component ({
+    moduleId: module.id,
     selector:"nx-nav-back",
-    styleUrls: ["./controls/nav/nav.common.css"], 
+    styleUrls: ["nav.common.css"], 
     // template: `
     //     <ion-icon item-left icon="ion-chevron-left" ></ion-icon>
     // `,
     template: `
         <StackLayout orientation="horizontal" (tap)="back($event)">
             <Label text="chevron_left" [material-icon] class="title nav-icon nav-icon-bold"></Label>
-            <!--
-            <Label text="Back" class="title"></Label>
-            -->
+            <Label text="Back" class="nav-icon-text title"></Label>
         </StackLayout>
     `,
     providers: [],
