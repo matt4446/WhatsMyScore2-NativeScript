@@ -12,6 +12,7 @@ import {
 } from "@angular/core";
 import { Observable, Subject, Subscription } from 'rxjs/Rx';
 
+import { AnimationCurve } from "ui/enums";
 import { Button } from "ui/button";
 import { Logger } from "../../providers/logger";
 import { QueryList } from '@angular/core';
@@ -28,7 +29,7 @@ import { StackLayout } from "ui/layouts/stack-layout";
     <StackLayout #item>
 
         <StackLayout>
-            <StackLayout class="nx-item-top-border"></StackLayout>
+            <!--<StackLayout class="nx-item-top-border"></StackLayout>-->
 
             <StackLayout class="nx-item inset-top inset-bottom">
                 <GridLayout #animateItem columns="40, *, 50" rows="auto" (tap)="tapWrapper($event)">
@@ -116,28 +117,35 @@ export class NxListItem {
         let stackLayout: StackLayout = this.getNativeElement();
 
         if(!stackLayout) { return ;}
-        
-        this.itemSelected.next(this);
-         
+ 
         let moveRight = stackLayout.animate({
             duration: 100,
-            translate: { x: 20, y: 0 },
-            opacity: 0.8
+            translate: { x: 15, y: 0 },
+            opacity: 0.8,
+            curve: AnimationCurve.easeIn
         }).then(() =>{
-            
+            this.itemSelected.next(this);
 
             return stackLayout.animate({ 
                 duration: 100,
                 translate: { x:0, y: 0},
-                opacity: 1
+                opacity: 1,
+                curve: AnimationCurve.easeIn
             });
         }).then(() => {
             //normal router navigation
-            if(this.tap){
-                this.tap.next(args);
-            }
+            setTimeout(() => {
+                this.Navigate(args);
+            }, 200)
+            
         });
     };
+
+    private Navigate(args){
+        if(this.tap){
+            this.tap.next(args);
+        }
+    }
     
     public tap = new EventEmitter(); // : (args: EventEmitter<any>) => void;
 }

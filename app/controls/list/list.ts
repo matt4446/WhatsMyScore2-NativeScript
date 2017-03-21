@@ -1,6 +1,7 @@
 import { Component, ContentChildren, Directive, EventEmitter, Input, Output } from "@angular/core";
 import { Observable, Subject, Subscription } from 'rxjs/Rx';
 
+import { AnimationCurve } from "ui/enums";
 import { Logger } from "../../providers/logger";
 import { NxHeader } from "./header";
 import { NxListItem } from "./list-item";
@@ -37,11 +38,9 @@ import { NxListItem } from "./list-item";
     //inputs:["padding"]
 })
 export class NxList {
-    //@Input() //see @control - inputs
 
     constructor(private logger: Logger)
     {
-        //this.logger.Notify("NxList control Started");
     }
     
     public padding : boolean = false;
@@ -52,7 +51,7 @@ export class NxList {
     set _setHeader(items : any) {
         this.headers = items.toArray();
     }
-    //this should give me a list of shadow elements in ng-content
+    
     @ContentChildren(NxListItem)
     set _listItems(items: any){
         this.children  = items.toArray();
@@ -60,49 +59,67 @@ export class NxList {
         var anyReady = this.children.map((item) => item.itemReady);
         var anySelected = this.children.map((item) => item.itemSelected);
         
-        Observable.from(anySelected).flatMap(x=> x).subscribe((item) => {
+        Observable.from(anySelected)
+                    .flatMap(x=> x)
+                    .subscribe((item) => {
             
+            let indexOfSelected = this.children.indexOf(item);
             this.children.forEach((row) => {
-                if(item == row){
+                let indexOfRow = this.children.indexOf(row);
+                let distance = Math.abs(indexOfSelected - indexOfRow);
+                if (distance > 1){ return; }
+                
+                if(item == row) {
                     return;
                 }
                 
-                var stackPanel = row.getNativeElement();
-                
-                
-                stackPanel.animate({
-                    opacity: 1,
-                    duration: 100,
-                    translate: {
-                        x : 40,
-                        y: 0
-                    }
-               }).then(() => {
-                   return stackPanel.animate({
-                       duration: 100,
-                       translate: {
-                           x: -200,
-                           y: 0
-                       },
-                       opacity: 0
-                   });
-               }).then(() => {
-                    stackPanel.translateX = 0;
-                    return stackPanel.animate({
-                        duration: 200,
-                        translate: {
-                            x: 0,
-                            y: 0
-                        },
-                        opacity: 1
-                    });
-               });
-               
-                
+                this.AnimateCollection(row, distance);
             });
             
         });
 
+    }
+
+    private AnimateCollection(row : NxListItem, distance: number) {
+        var stackPanel = row.getNativeElement();
+        setTimeout(()=> {
+            
+
+            stackPanel.animate({
+                opacity: 1,
+                duration: 100,
+                translate: {
+                    x : -15,
+                    y: 0
+                },
+                curve: AnimationCurve.easeIn
+            }).then(() => {
+                return stackPanel.animate({
+                    duration: 100,
+                    translate: {
+                        x: -200,
+                        y: 0
+                    },
+                    opacity: 0,
+                    curve: AnimationCurve.easeOut
+                });
+            }).then(() => {
+                stackPanel.translateX = 0;
+                return stackPanel.animate({
+                    duration: 200,
+                    translate: {
+                        x: 0,
+                        y: 0
+                    },
+                    opacity: 1,
+                    curve: AnimationCurve.easeIn
+                });
+            });
+        
+
+        }, (25*distance));
+                
+        
     }
 }
 
