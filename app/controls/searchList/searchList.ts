@@ -1,8 +1,11 @@
-import { Component, Input , Output,EventEmitter } from "@angular/core";
-import { Logger} from "../../providers/logger";
+import { Component, EventEmitter, Input, Output } from "@angular/core";
+
+import { Logger } from "../../providers/logger";
 import { Observable } from "data/observable";
-//var observable = require("data/observable");
 import { SearchBar } from "ui/search-bar"
+
+//var observable = require("data/observable");
+
 
 
 @Component({
@@ -18,7 +21,7 @@ export class SearchList {
         this.logger.Notify("SearchList control Started");
         
         var searchBar = new SearchBar();
-        SearchBar.textProperty
+
     }
     
     //@Input() 

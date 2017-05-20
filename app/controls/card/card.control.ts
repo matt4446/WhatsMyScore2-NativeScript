@@ -1,10 +1,9 @@
-import { Component, ViewChild, ElementRef } from "@angular/core";
-import { Logger } from "../../providers/logger";
-import { CardView } from "cardview";
-import { registerElement } from "nativescript-angular/element-registry";
-import { Observable, Subscription, Subject} from 'rxjs/Rx';
+import { Component, ElementRef, ViewChild } from "@angular/core";
+import { Observable, Subject, Subscription } from 'rxjs/Rx';
 
-//import { Color } from "color";
+import { CardView } from "nativescript-cardview";
+import { Logger } from "../../providers/logger";
+import { registerElement } from "nativescript-angular/element-registry";
 
 registerElement("CardView", () => {
     console.log("Adding CardView");

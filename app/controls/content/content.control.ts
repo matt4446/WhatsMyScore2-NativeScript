@@ -15,11 +15,8 @@ import {
 import { NxPullToRefresh, NxPullToRefreshAnimateElement } from '../pullToRefresh/pullToRefresh.control';
 import { Observable, Subject, Subscription } from 'rxjs/Rx';
 
-import { AnimationPromise } from "ui/animation";
-import { Button } from "ui/button";
 import { Logger } from "../../providers/logger";
 import { PullToRefresh } from "nativescript-pulltorefresh";
-import { StackLayout } from "ui/layouts/stack-layout";
 
 @Component({
     selector:"nx-content",
@@ -59,7 +56,7 @@ export class NxContent implements OnInit, AfterViewInit {
     @Input()
     public refreshComplete : boolean = true;
         
-    private transition: AnimationPromise = null; 
+    //private transition: AnimationPromise = null; 
         
     private refreshPage(args){      
         this.logger.Notify("content restart ->"); 

@@ -1,6 +1,6 @@
 export { StatsPage } from "./competition/stats/stats.page";
-export { TestPage } from "./test/test.page";
-export { ParallaxTestPage } from "./test/parallax.page";
+// export { TestPage } from "./test/test.page";
+// export { ParallaxTestPage } from "./test/parallax.page";
 export { StartPage } from "./start/start.page";
 export { StartListSearchControl } from "./start/start.list.search.control";
 export { StartListControl} from "./start/stat.list.start.control";

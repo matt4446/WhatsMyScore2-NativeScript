@@ -1,16 +1,15 @@
 import {AppRoutingService} from "../../../context/router.context";
 import {ClubService} from "../../../providers/leagues/clubService";
-import {CompetitionCache} from '../../../providers/leagues/competitionCache';
+import {CompetitionCache} from "../../../providers/leagues/competitionCache";
 import {CompetitionNav} from "../../nav/competition.nav";
 import {CompetitionService} from "../../../providers/leagues/competitionService";
-import {Component} from '@angular/core';
+import {Component} from "@angular/core";
 import {GradeService} from "../../../providers/leagues/gradeService";
 import {ICompetition} from "../../../models/models";
 import {Logger} from "../../../providers/logger";
 
 @Component({
     selector: "grade-list-page",
-    templateUrl: "pages/competition/information/page.html",
     template: `
         <nx-drawer>
             <competition-nav drawer-aside-left></competition-nav>

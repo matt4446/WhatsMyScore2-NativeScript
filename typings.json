@@ -1,6 +1,5 @@
 {
   "ambientDependencies": {
-    "lodash": "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/master/lodash/lodash.d.ts"
   },
   "ambientDevDependencies": {}
 }
