@@ -1,0 +1,21 @@
+@import './theme/_app-variables.scss';
+@import './theme/fonts.scss';
+
+.inset {
+    padding: $primary-content-padding;
+}
+
+.md-18 { font-size: 18; height: 18; }
+.md-24 { font-size: 24; height: 24; }
+.md-36 { font-size: 36; height: 36; }
+.md-48 { font-size: 48; height: 48; }
+
+/* Rules for using icons as black on a light background. */
+.md-dark { color: rgba(0, 0, 0, 0.54); }
+
+/* Rules for using icons as white on a dark background. */
+.md-light { color: rgba(255, 255, 255, 1); }
+
+.title {
+    color: $font-primary-title-color;
+}

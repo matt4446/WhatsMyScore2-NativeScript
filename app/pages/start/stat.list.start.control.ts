@@ -1,7 +1,7 @@
-import {Component} from '@angular/core';
+import {Component} from "@angular/core";
 
 @Component({
-  selector: 'start-list-main',
+  selector: "start-list-main",
   template: `
     <nx-list>
         <nx-header item-top>
@@ -20,8 +20,4 @@ import {Component} from '@angular/core';
   `
 })
 export class StartListControl {
-
-    constructor() {
-
-    }
 }

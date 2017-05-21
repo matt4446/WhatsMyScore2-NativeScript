@@ -1,7 +1,7 @@
-import {Component} from '@angular/core';
+import {Component} from "@angular/core";
 
 @Component({
-  selector: 'start-list-search',
+  selector: "start-list-search",
   template: `
     <nx-list>
         <nx-header item-top>
@@ -21,12 +21,4 @@ import {Component} from '@angular/core';
   `
 })
 export class StartListSearchControl {
-
-  constructor() {
-
-  }
-
-  public incomplete(event){
-
-  }
 }

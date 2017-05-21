@@ -1,8 +1,9 @@
-import { Observable, Subscription, Subject} from 'rxjs/Rx';
-import { Component, ViewChild, ElementRef, Directive, Input, Output, EventEmitter, ContentChildren } from "@angular/core";
-import { registerElement, ViewClass } from "nativescript-angular/element-registry";
-import { StackLayout} from "ui/layouts/stack-layout";
+import { Component, ContentChildren, Directive, ElementRef, EventEmitter, Input, Output, ViewChild } from "@angular/core";
+import { Observable, Subject, Subscription } from 'rxjs/Rx';
+import { ViewClass, registerElement } from "nativescript-angular/element-registry";
+
 import { AnimationPromise } from "ui/animation";
+import { StackLayout } from "ui/layouts/stack-layout";
 
 registerElement("Fab", () => require("nativescript-floatingactionbutton").Fab);
 /*
@@ -23,7 +24,7 @@ registerElement("Fab", () => require("nativescript-floatingactionbutton").Fab);
         <StackLayout class="fab-button-content" style="z-index: 1;">
             <!--<ng-content></ng-content>
             -->
-            <Label [text]="text" class="fab-icon material-icons md-light" 
+            <Label [text]="text" class="fab-icon material-icons md-light"
                 [class.md-18]="fontSize == 'md-18'"
                 [class.md-24]="fontSize == 'md-24'"
                 [class.md-36]="fontSize == 'md-36'"

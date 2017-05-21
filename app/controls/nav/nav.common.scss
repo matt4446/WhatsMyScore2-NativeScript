@@ -1,0 +1,37 @@
+@import "app/theme/_app-variables.scss";
+
+$header-primary-backgound-color: $background-color-primary;
+
+$list-backgorund-color: #FFF;
+$list-item-border-color: #c8c7cc;
+$list-margin: $primary-content-padding;
+$font-color: $font-primary-title-color; 
+
+ActionBar {
+    vertical-align: center;
+}
+
+.nx-nav {
+  height: 40;
+}
+
+.nx-nav-row1 {
+    padding: 0;
+    margin: 0;
+    background-color: $background-color-primary-darker;
+}
+.nx-nav-row2 {
+    background-color: $header-primary-backgound-color;
+}
+
+.nav-title {
+    color: $font-color;
+}
+.title {
+    color: $font-color;
+}
+
+.nav-icon-text{
+    margin-right: 10;
+}
+

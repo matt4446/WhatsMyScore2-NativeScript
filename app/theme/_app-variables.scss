@@ -1,0 +1,15 @@
+$primary-color: green;
+$primary-background-color : #FFFFFF;
+
+/* content padding */
+$primary-content-padding : 14;
+
+
+/* font colors */
+$font-primary-color : #000;
+$font-primary-title-color: #FFFFFF;
+
+
+$background-color-primary : #4d75b8;
+$background-color-primary-lighter : lighten( $background-color-primary, 10% );
+$background-color-primary-darker : darken( $background-color-primary, 10% )

@@ -12,8 +12,8 @@ import {
     TemplateRef,
     ViewChild,
 } from "@angular/core";
-import { NxPullToRefresh, NxPullToRefreshAnimateElement } from '../pullToRefresh/pullToRefresh.control';
-import { Observable, Subject, Subscription } from 'rxjs/Rx';
+import { NxPullToRefresh, NxPullToRefreshAnimateElement } from "../pullToRefresh/pullToRefresh.control";
+import { Observable, Subject, Subscription } from "rxjs/Rx";
 
 import { Logger } from "../../providers/logger";
 import { PullToRefresh } from "nativescript-pulltorefresh";
@@ -22,53 +22,49 @@ import { PullToRefresh } from "nativescript-pulltorefresh";
     selector:"nx-content",
     template: `
     <GridLayout>
-        <nx-pull-to-refresh #refreshControl 
+        <nx-pull-to-refresh #refreshControl
             (refreshStarted)="refreshPage($event)"
             (refreshCompleted)="refreshPageCompleted($event)">
             <StackLayout [pull-to-animate]>
                 <ng-content></ng-content>
             </StackLayout>
         </nx-pull-to-refresh>
-        <ActivityIndicator [busy]="isLoading" [visibility]="isLoading ? 'visible' : 'collapse'" horizontalAlignment="center" verticalAlignment="center"></ActivityIndicator>
+        <ActivityIndicator
+            [busy]="isLoading"
+            [visibility]="isLoading ? 'visible' : 'collapse'"
+            horizontalAlignment="center"
+            verticalAlignment="center">
+        </ActivityIndicator>
     </GridLayout>
     `,
     providers: []
 })
-export class NxContent implements OnInit, AfterViewInit {
-    //private template: TemplateRef;
+export class NxContent {
     private container: ElementRef;
-    
-    constructor(private logger:Logger)
-    {
-        this.logger.Notify("nx-content added");    
-    }
 
-    public ngOnInit(){ }
-    
-    public ngAfterViewInit(){ }
+    constructor(private logger:Logger) {
+    }
 
     @Input()
     public isLoading : boolean = false;
-    
+
     @ContentChild(NxPullToRefresh)
     private content : ElementRef;
-        
+
     @Input()
     public refreshComplete : boolean = true;
-        
-    //private transition: AnimationPromise = null; 
-        
-    private refreshPage(args){      
-        this.logger.Notify("content restart ->"); 
+
+    private refreshPage(args) {
+        this.logger.Notify("content restart ->");
         this.refreshStarted.next(args);
         this.isLoading = true;
     }
-    
-    private refreshPageCompleted($event){
-        this.refreshCompleted.next($event); 
+
+    private refreshPageCompleted($event) {
+        this.refreshCompleted.next($event);
         this.isLoading = false; 
     }
-    
+
     @Output("refreshStarted")
     public refreshStarted = new EventEmitter();
     @Output("refreshCompleted")

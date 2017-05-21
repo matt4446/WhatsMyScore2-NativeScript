@@ -36,34 +36,28 @@ import {Logger} from "../../../providers/logger";
     `,
     providers: [CompetitionService, GradeService, ClubService]
 })
-export class InformationPage 
-{
+export class InformationPage {
     constructor(
         private logger: Logger,
         private context: AppRoutingService,
         private competitionCache : CompetitionCache,
-        private competitionService: CompetitionService)
-    {
-
+        private competitionService: CompetitionService) {
         this.logger.Notify("grade list page started");
     }
-    
+
     public competition : any;
 
-    
-    //passed to the child component
+    // passed to the child component
     public regionsHintText = "Hi from regions";
-    
-    //action to 
-    public regionSearch($event : any)
-    {
+
+    // action to
+    public regionSearch($event : any) {
         this.logger.Notify("Search passed to region");
         this.logger.Notify($event);
-        //this.logger.Notify("Search Term in Regions Page: " + $event.Value);
     } 
     
     /* angular2 lifecycle */
-    public ngOnInit(){
+    public ngOnInit() {
         this.logger.Notify("Region-page ngAfterViewInit");
         if(this.competitionCache.Competition){
             this.competition = this.competitionCache.Competition;
@@ -72,7 +66,7 @@ export class InformationPage
         this.loadDetail();
     }
     
-    public loadDetail(){
+    public loadDetail() {
         let competitionId = this.context.CompetitionId;
         let observable = this.competitionService.Get(competitionId);
         
@@ -87,11 +81,9 @@ export class InformationPage
         return observable;
     }
     
-    public refresh(args: any){
+    public refresh(args: any) {
         this.loadDetail().subscribe(() => {
             args.completed();
         });
     }
-   
-    
 }

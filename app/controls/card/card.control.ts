@@ -1,5 +1,5 @@
 import { Component, ElementRef, ViewChild } from "@angular/core";
-import { Observable, Subject, Subscription } from 'rxjs/Rx';
+import { Observable, Subject, Subscription } from "rxjs/Rx";
 
 import { CardView } from "nativescript-cardview";
 import { Logger } from "../../providers/logger";
@@ -11,11 +11,9 @@ registerElement("CardView", () => {
 });
 @Component({
     selector: "nx-card",
-    //templateUrl: "controls/list/list.html",
     template:`
     <CardView #item shadowColor="#FE00FC" elevation="10" margin="10">
         <Label text="cardview" textWrap="true"></Label>
-        
         <StackLayout>
             <ng-content></ng-content>
         </StackLayout>
@@ -23,13 +21,8 @@ registerElement("CardView", () => {
     `
 })
 export class NxCard {
-    constructor() 
-    {
-    }
-    
-    @ViewChild('item') 
+    @ViewChild("item")
     set _listItems(item: ElementRef){
         let cardView: any = item.nativeElement;
-        //cardView.shadowColor = new Color("#FF0000").android;
     }
 }

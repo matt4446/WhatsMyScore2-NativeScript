@@ -1,11 +1,13 @@
-import {Directive} from '@angular/core';
+import {Directive} from "@angular/core";
 
 @Directive({
-  selector: '[material-icon]',
+  selector: "[material-icon]",
   host: {
     "class": "material-icons"
   }
 })
 export class MaterialIcon {
-    constructor() { }
+    constructor() {
+      console.log("material-icon added");
+    }
 }
