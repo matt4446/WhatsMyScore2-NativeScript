@@ -1,14 +1,14 @@
-import 'rxjs/add/operator/max';
-import 'rxjs/add/operator/distinct';
+import "rxjs/add/operator/max";
+import "rxjs/add/operator/distinct";
 
 import * as Models from "../../../../models/models";
 import * as Rx from "rxjs";
 
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit} from "@angular/core";
 
 import {AppRoutingService} from "../../../../context/router.context";
 import {ClubService} from "../../../../providers/leagues/clubService";
-import {CompetitionCache} from '../../../../providers/leagues/competitionCache';
+import {CompetitionCache} from "../../../../providers/leagues/competitionCache";
 import {CompetitionNav} from "../../../nav/competition.nav";
 import {CompetitionService} from "../../../../providers/leagues/competitionService";
 import {CompetitorService} from "../../../../providers/leagues/competitorService";
@@ -17,6 +17,7 @@ import {Logger} from "../../../../providers/logger";
 
 @Component({
     selector: "grade-competitors-page",
+    moduleId: module.id,
     template: `
         <nx-drawer>
             <competition-nav drawer-aside-left></competition-nav>
@@ -34,7 +35,7 @@ import {Logger} from "../../../../providers/logger";
                             </nx-header>
                             <nx-item *ngFor="let person of startGroup.items | orderBy:'StartNumber'">
                                 <label item-left [text]="person.StartNumber"></label>
-                                                
+
                                 <label [text]="person.FullName"></label>
                                 <label [text]="person.Club" class="note"></label>
                             </nx-item>
@@ -42,7 +43,7 @@ import {Logger} from "../../../../providers/logger";
                     </StackLayout>
                     <material-fab text="face" vertical-align="top" horizontal-align="right"></material-fab>
                 </GridLayout>
-                
+
             </nx-content>
         </nx-drawer>
     `,
@@ -60,18 +61,15 @@ export class GradeCompetitorsPage implements OnInit {
 
     public list: Models.ICompetitor[] = [];
     public groupedList:  Models.IGroupOfItem<Models.ICompetitor>;
-    public groups: number = 0; //if more than one group change the label
+    public groups: number = 0; // if more than one group change the label
 
-    //action to 
     public gradeSearch($event: any) {
         this.logger.Notify("Search passed to region");
         this.logger.Notify($event);
-        //this.logger.Notify("Search Term in Regions Page: " + $event.Value);
     }
 
-    public ngOnInit() {
+    public ngOnInit(): void {
         this.logger.Notify("grade-list-page ngOnInit");
-        //time to load the data
 
         this.loadDetail();
     }
@@ -79,20 +77,8 @@ export class GradeCompetitorsPage implements OnInit {
     public loadDetail() {
         let obseravable = this.competitorService.ListGradeCompetitors(this.context.CompetitionId, this.context.GradeId);
 
-        //this.logger.NotifyResponse(obseravable);
-
         obseravable.map(e => e.json()).subscribe(e => {
             this.list = e;
-            
-            this.list.forEach(e=> {
-                
-            });
-
-            // let max = Rx.Observable.from(this.list).map(e => e.StartGroup).max();
-
-            // max.subscribe(m => {
-            //     this.groups = m;
-            // });
         });
 
         return obseravable;

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit} from "@angular/core";
 
 import {AppRoutingService} from "../../../context/router.context";
 import {ClubService} from "../../../providers/leagues/clubService";
@@ -9,10 +9,11 @@ import {Logger} from "../../../providers/logger";
 
 @Component({
     selector: "find-competitor-page",
+    moduleId: module.id,
     template: `
         <nx-drawer>
             <competition-nav drawer-aside-left></competition-nav>
-            
+
             <nx-nav>
                 <label class="nx-header-title" [text]="'Find Competitors' | Title" style="horizontal-align:center"></label>
                 <ion-icon nav-right nav="true" icon="ion-android-favorite"></ion-icon>
@@ -24,7 +25,7 @@ import {Logger} from "../../../providers/logger";
                         <nx-header item-top>
                             <label [text]="clubGroup.key" class="nx-header-title"></label>
                         </nx-header>
-                        
+
                         <nx-item *ngFor="let club of clubGroup.items | orderBy:'Name'">
                             <ion-icon item-left icon="ion-clipboard"></ion-icon>
                             <label [text]="club.Name"></label>
@@ -34,44 +35,19 @@ import {Logger} from "../../../providers/logger";
                     </nx-list>
                 </StackLayout>
             </nx-content>
-            
+
         </nx-drawer>
     `,
     providers: [CompetitionService, GradeService, ClubService]
 })
-export class FindCompetitorPage implements OnInit
-{
+export class FindCompetitorPage {
+
     constructor(
         private logger: Logger,
-        private context: AppRoutingService)
-    {
+        private context: AppRoutingService) {
 
         this.logger.Notify("grade list page started");
     }
-    
-    public list : Array<any> = [];
 
-    
-    //passed to the child component
-    public regionsHintText = "Hi from regions";
-    
-    //action to 
-    public regionSearch($event : any)
-    {
-        this.logger.Notify("Search passed to region");
-        this.logger.Notify($event);
-        //this.logger.Notify("Search Term in Regions Page: " + $event.Value);
-    } 
-    
-    /* angular2 lifecycle */
-    public ngOnInit(){
-        
-        
-        this.logger.Notify("Region-page ngAfterViewInit");
-        
-        //time to load the data
-        
-    }
-    
-    
+    public list : Array<any> = [];
 }

@@ -1,10 +1,10 @@
 import * as Models from "../../../models/models";
 
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit} from "@angular/core";
 
 import {AppRoutingService} from "../../../context/router.context";
 import {ClubService} from "../../../providers/leagues/clubService";
-import {CompetitionCache} from '../../../providers/leagues/competitionCache';
+import {CompetitionCache} from "../../../providers/leagues/competitionCache";
 import {CompetitionNav} from "../../nav/competition.nav";
 import {CompetitionService} from "../../../providers/leagues/competitionService";
 import {CompetitorResult} from "../../templates/competitor.results";
@@ -13,11 +13,11 @@ import {Logger} from "../../../providers/logger";
 
 @Component({
     selector: "club-list-page",
-    //templateUrl: "pages/competition/clubList/page.html",
+    moduleId: module.id,
     template: `
         <nx-drawer>
             <competition-nav drawer-aside-left></competition-nav>
-            
+
             <nx-nav>
                 <label class="nx-header-title" [text]="'Club' | Title" style="horizontal-align:center"></label>
                 <ion-icon nav-right nav="true" icon="ion-android-favorite"></ion-icon>
@@ -26,59 +26,48 @@ import {Logger} from "../../../providers/logger";
             <nx-content (refreshStarted)="refresh($event)">
                 <StackLayout class="inset">
                     <nx-list *ngFor="let group of list | orderBy:'key'">
-                        <!-- {"Competitor":{"FullName":"Katherine Allot & Dayle Walker","Club":"Bath","Group":"SS1","Class":null,"Team":null,"Competition":"Synchro"} -->
                         <nx-header item-top>
-                            <!-- grade name --> 
+                            <!-- grade name -->
                             <label [text]="group.key" class="nx-header-title"></label>
                         </nx-header>
-                        <!-- competitors in that grade --> 
+                        <!-- competitors in that grade -->
 
                         <competitor-result *ngFor="let item of group.items" [competitor]="item"></competitor-result>
-
-                        
                     </nx-list>
                 </StackLayout>
             </nx-content>
-            
+
         </nx-drawer>
-    `,
-    providers: [CompetitionService, GradeService, ClubService]
+    `
 })
-export class ClubPage implements OnInit
-{
-    
+export class ClubPage implements OnInit {
     constructor(
-        private logger: Logger, 
+        private logger: Logger,
         private clubService: ClubService,
         private context: AppRoutingService,
-        private cache: CompetitionCache)
-    {
+        private cache: CompetitionCache) {
         this.logger.Notify("club page started");
     }
     
-    //public list : Models.ICompetitor[] = [];
-    //public list: Models.ICompetitorContext[] = [];
     public list: Models.IGroupOfItem<Models.ICompetitorContext>[];
 
-    //action to 
-    public clubSearch($event : any)
-    {
+    public clubSearch($event : any) {
         this.logger.Notify("Search passed to region");
         this.logger.Notify($event);
         //this.logger.Notify("Search Term in Regions Page: " + $event.Value);
-    } 
-    
-    public ngOnInit(){
+    }
+
+    public ngOnInit() {
         this.logger.Notify("club-page ngOnInit");
 
         this.loadDetail();
     }
-    
+
     public loadDetail() {
         let observable = this.clubService
             .ListCompetitors(this.context.CompetitionId, this.context.ClubId)
             .map(e=> e.json());
-        
+
         observable.subscribe((e : Models.ICompetitor[])=> {
             var projection : Models.ICompetitorContext[] = e.map((competitor) => {
                 let item : Models.ICompetitorContext = {
@@ -90,23 +79,23 @@ export class ClubPage implements OnInit
 
             this.list = this.groupByCompetition(projection);
         });
-        
+
         return observable;
     }
-    
-    public refresh(args: any){      
+
+    public refresh(args: any) {
         this.loadDetail().subscribe(() => {
             args.completed();
         });
     }
-    
-    private groupByCompetition(items: Models.ICompetitorContext[]){
+
+    private groupByCompetition(items: Models.ICompetitorContext[]) {
         let groups : Models.IGroupOfItem<Models.ICompetitorContext>[] = [];
 
         items.forEach(item => {
             let existing = groups.filter(e=> e.key === item.Competitor.Group);
-            
-            if(existing.length > 0){
+
+            if(existing.length > 0) {
                 existing[0].items.push(item);
                 return;
             }
@@ -116,10 +105,6 @@ export class ClubPage implements OnInit
                 items: [ item ]
             });
         });
-
-        // this.list.forEach(item => {
-        //     item.
-        // });
 
         return groups;
     }

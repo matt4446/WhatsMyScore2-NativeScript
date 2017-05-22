@@ -1,14 +1,14 @@
-import 'rxjs/add/operator/max';
-import 'rxjs/add/operator/distinct';
+import "rxjs/add/operator/max";
+import "rxjs/add/operator/distinct";
 
 import * as Models from "../../../models/models";
 import * as Rx from "rxjs";
 
-import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input, OnInit} from "@angular/core";
 
 import {AppRoutingService} from "../../../context/router.context";
 import {ClubService} from "../../../providers/leagues/clubService";
-import {CompetitionCache} from '../../../providers/leagues/competitionCache';
+import {CompetitionCache} from "../../../providers/leagues/competitionCache";
 import {CompetitionNav} from "../../nav/competition.nav";
 import {CompetitionService} from "../../../providers/leagues/competitionService";
 import {CompetitorResult} from "../../templates/competitor.results";
@@ -28,15 +28,12 @@ import {Logger} from "../../../providers/logger";
 
             <StackLayout class="inset">
                 <nx-list>
-
                     <PullToRefresh [pull-list-view] 
                         (refreshStarted)="refreshStarted($event)"
                         (refreshCompleted)="refreshCompleted()">
                         <ListView [items]="list" [pull-to-animate]>
                             <template let-item="item">
-                        
                                 <competitor-result [competitor]="item"></competitor-result>
-                       
                             </template>
                         </ListView>
                     </PullToRefresh>
@@ -44,11 +41,9 @@ import {Logger} from "../../../providers/logger";
 
                 </nx-list>
             </StackLayout>
-      
         </nx-drawer>
     `,
     providers: [CompetitionService, GradeService, ClubService, CompetitorService],
-    //changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class GradeCompetitorsPage implements OnInit {
     constructor(
@@ -62,63 +57,48 @@ export class GradeCompetitorsPage implements OnInit {
 
     public list: Models.ICompetitorContext[] = [];
 
-    public onLoaded($event) : void {
-
-    }
-    public onItemLoading($event) : void{
-
-    }
-    public onItemTap($event): void {
-
-    }
-
-    //action to 
-    public gradeSearch($event: any) {
+    public gradeSearch($event: any): void {
         this.logger.Notify("Search passed to region");
         this.logger.Notify($event);
-        //this.logger.Notify("Search Term in Regions Page: " + $event.Value);
     }
 
-    public ngOnInit() {
+    public ngOnInit(): void {
         this.logger.Notify("grade-page ngOnInit");
-        //time to load the data
 
         this.loadDetail();
     }
 
-    public loadDetail() {
+    public loadDetail()  {
         let obseravable = this.competitorService
             .ListGradeCompetitors(this.context.CompetitionId, this.context.GradeId);
 
-        //this.logger.NotifyResponse(obseravable);
-
         obseravable.map(e => e.json())
-            .map((e : Models.ICompetitor[]) => { 
+            .map((e : Models.ICompetitor[]) => {
                 let contexts = e.map(item => {
                     return {
                         Expanded : false,
                         Competitor : item
-                    }
+                    };
                 });
                 return contexts;
             })
             .subscribe((e : Models.ICompetitorContext[]) => {
                 this.list = e.sort((a,b) => {
-                    return a.Competitor.FinalRank - b.Competitor.FinalRank;               
+                    return a.Competitor.FinalRank - b.Competitor.FinalRank;
                 });
-                //let max = Rx.Observable.from(this.list).map(e => e.StartGroup).max();
             });
 
         return obseravable;
     }
 
-    public refreshStarted(args: any){
+    public refreshStarted(args: any) {
         this.logger.Notify("Grade: refresh starting");
         this.loadDetail().subscribe(() => {
             args.completed();
         });
     }
-    public refreshCompleted(){
+    
+    public refreshCompleted() {
         this.logger.Notify("Grade: refresh completed");
     }
 

@@ -1,6 +1,7 @@
 import {BehaviorSubject, Observable, Subscription} from "rxjs/Rx";
 import {Http, Response} from "@angular/http";
 
+import {AppRoutingService} from "../../context/router.context";
 import {IRegion} from "../../models/models";
 import {Injectable} from "@angular/core";
 import {Logger} from "../logger";
@@ -9,28 +10,41 @@ import {Settings} from "../routes/routes";
 
 @Injectable()
 export class RegionService {
-    constructor(private http: Http, private logger: Logger, private cache: RegionCache){
-        logger.Notify("ProviderService created");
+    constructor(
+        private http: Http,
+        private logger: Logger,
+        private routingService: AppRoutingService,
+        private cache: RegionCache) {
+
+        logger.Notify("RegionService created");
+
+        routingService
+            .RegionIdChanging
+            .filter(e=> e !== undefined)
+            .distinctUntilChanged((a,b) => a === b)
+            .flatMap(e=> this.Get(e))
+            .subscribe((e) => {
+            this.logger.Notify(`Reloaded ${e.Id} ${e.Name}`);
+        });
     }
 
-    public Get(regionId: any): Observable<Response> {
+    public Get(regionId: any): Observable<IRegion> {
         let base: string = Settings.WebApiBaseUrl;
-        let endpoint: string = "/api/Providers/Get/";
-        let route: string = base + endpoint + regionId;
-
-        this.logger.Notify("Load :" + route);
+        let route: string = `${base}/api/Providers/Get/${regionId}`;
 
         let promise: Observable<Response> = this.http.get(route);
-        promise.map(response => response.json()).subscribe((region : IRegion) => {
+        let result: Observable<IRegion> = promise.map(response => response.json());
+
+        result.subscribe((region : IRegion) => {
             this.cache.Region = region;
         });
 
         this.logger.NotifyResponse(promise);
 
-        return promise;
+        return result;
     }
 
-    public List(): Observable<Response> {
+    public List(): Observable<IRegion[]> {
         let base: string = Settings.WebApiBaseUrl;
         let endpoint: string  = "/Api/Providers/List/Enabled";
         let route: string = base + endpoint;
@@ -38,14 +52,15 @@ export class RegionService {
         this.logger.Notify("Load :" + route);
 
         let promise: Observable<Response> = this.http.get(route);
+        let result: Observable<IRegion[]> = promise.map(response => response.json());
 
-        promise.map(response => response.json()).subscribe((regions: IRegion[]) => {
+        result.subscribe((regions: IRegion[]) => {
             this.cache.Regions = regions;
         });
 
-        this.logger.NotifyResponse(promise);
+        //this.logger.NotifyResponse(promise);
 
-        return promise;
+        return result;
     }
 
 }

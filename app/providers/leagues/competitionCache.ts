@@ -1,4 +1,4 @@
-import * as Rx from 'rxjs/Rx';
+import * as Rx from "rxjs/Rx";
 import * as appSettings from "application-settings";
 
 import {
@@ -8,54 +8,56 @@ import {
     IRegion,
 }
 from "../../models/models";
-import { Inject, Injectable } from '@angular/core';
+import { Inject, Injectable } from "@angular/core";
 
-import {ClubCache} from './clubCache';
-import {GradeCache} from './gradeCache';
+import {ClubCache} from "./clubCache";
+import {GradeCache} from "./gradeCache";
 
 @Injectable()
 export class CompetitionCache {
 
     public CompetitionChanges = new Rx.BehaviorSubject<ICompetition>(null);
-    
+
     constructor(
-        public clubCache: ClubCache, 
-        public gradeCache: GradeCache){
+        public clubCache: ClubCache,
+        public gradeCache: GradeCache) {
     }
 
-    private _competiton: ICompetition;
+    private competition: ICompetition;
     public get Competition(): ICompetition {
-        return this._competiton;
+        return this.competition;
     }
     public set Competition(value: ICompetition) {
-        if (this._competiton && value) {
-            //if its different from the previous data invalidate current values and collections. 
-            if (this._competiton.Id !== value.Id) {
+        if (this.competition && value) {
+            // if different then invalidate current values and collections.
+            if (this.competition.Id !== value.Id) {
+
                 this.Grades = null;
                 this.Clubs = null;
+
                 this.clubCache.Club = null;
                 this.gradeCache.Grade = null;
             }
         }
 
-        this._competiton = value;
-        this.CompetitionChanges.next(this._competiton);
+        this.competition = value;
+        this.CompetitionChanges.next(this.competition);
     }
 
-    private _grades: Array<IGrade>;
+    private grades: Array<IGrade>;
     public get Grades(): Array <IGrade> {
-        return  this._grades;
+        return  this.grades;
     }
     public set Grades(value: Array <IGrade>) {
-        this._grades = value;
-    } 
-    
-    private _clubs: Array < IClub >; 
+        this.grades = value;
+    }
+
+    private clubs: Array < IClub >;
     public get Clubs(): Array<IClub> {
-        return this._clubs;
+        return this.clubs;
     }
     public set Clubs(value: Array<IClub>) {
-        this._clubs = value;
+        this.clubs = value;
     }
 
 }

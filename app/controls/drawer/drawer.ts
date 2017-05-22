@@ -54,8 +54,12 @@ export class NxDrawer {
         private pageRoute: PageRoute,
         private context : AppRoutingService) {
 
+        this.pageRoute.activatedRoute.subscribe(e=> {
+            this.logger.Notify(`activatedRoute changed`);
+        });
+
         this.pageRoute.activatedRoute
-            .switchMap(activatedRoute => activatedRoute.params)
+            .switchMap(activatedRoute => activatedRoute.params.catch(ex => Rx.Observable.of({})))
             .subscribe((params) => {
                 context.UpdateFromParams(params);
             });

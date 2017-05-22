@@ -1,96 +1,60 @@
-import * as Rx from "rxjs";
+import {Component, OnDestroy, OnInit} from "@angular/core";
+import {ICompetition, IRegion} from "../../models/models";
+import {Observable, Subscription} from "rxjs";
 
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ICompetition, IRegion} from "../../models/models"
-
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute} from "@angular/router";
 import {AppRoutingService} from "../../context/router.context";
 import {CompetitionService} from "../../providers/leagues/competitionService";
 import {Logger} from "../../providers/logger";
 import {PullToRefresh} from "nativescript-pulltorefresh";
-import {RegionCache} from '../../providers/leagues/regionCache';
+import {RegionCache} from "../../providers/leagues/regionCache";
 import { RegionService } from "../../providers/leagues/regionService";
 import {StartNav} from "../nav/start.nav.control";
 
 @Component({
     selector: "Region",
-	templateUrl: "pages/region/region.page.html",
-    providers: [CompetitionService, RegionService]
+    moduleId: module.id,
+	templateUrl: "region.page.html"
 })
-export class RegionPage implements OnInit, OnDestroy
-{
+export class RegionPage implements OnInit {
     constructor(
         private context : AppRoutingService,
-        //private route: ActivatedRoute,
-        //private params: RouteParams, 
-        private logger: Logger, 
+        private logger: Logger,
         private regionCache: RegionCache,
         private regionService: RegionService,
-        private competitionService: CompetitionService)
-    {
-        this.logger.Notify("region page loaded");
-        //this.context.Update(route);
+        private competitionService: CompetitionService) {
 
-        this.logger.Notify("regionId " + this.context.RegionId);
+        this.logger.Notify("region page loaded");
     }
-  
-    public list : Array<ICompetition> = []; 
-    public region : IRegion = {
-        Name : "",
-        Id: 0,
-        Logo: ""
-    }; 
-    
-    public refresh(args: any){
+
+    public list : Observable<ICompetition[]>;
+    public region : Observable<IRegion>;
+
+    public refresh(args: any): void {
         let control : PullToRefresh = args.object;
-        
+
         this.loadDetail().subscribe(() => {
             args.completed();
         });
     }
-    
-    private loadDetail() {
-        let observable = this.competitionService.List(this.context.RegionId);
-        
-        observable
-            .map((response)=> response.json())
-            .subscribe((items : ICompetition[]) => { 
-                this.list = items; 
-            }, (error)=> {
-                this.logger.Error(error);
-            });
-            
+
+    private loadDetail(): Observable<ICompetition[]> {
+        let observable: Observable<ICompetition[]> = this.competitionService
+            .List(this.context.RegionId)
+            .filter(e=> e !== null);
+
+        this.list = observable;
+
         return observable;
     }
-    
-    private SetRegion(){
-        this.region = this.regionCache.Region 
-            ? this.regionCache.Region  
-            : this.regionCache.Regions.filter(e=> e.Id == this.context.RegionId)[0];
-        
-    }
-    
-    private regionsSubscription : Rx.Subscription; 
-    
-    ngOnInit()
-    {
-        this.logger.Notify("ngOnInit: RegionPage");
-        this.regionsSubscription = this.regionCache.RegionsChange.subscribe(all => {
-            this.region = all.filter(e=> e.Id == this.context.RegionId)[0];
-        });
-        
-        if(this.regionCache.Regions == null){
-            this.regionService.List();
-        }else{
-            this.SetRegion();
-        }
-        
+
+    private regionSubscription: Subscription;
+
+    ngOnInit(): void {
+        this.logger.Notify(`ngOnInit: RegionPage ${this.context.RegionId}`);
+        this.region = this.regionCache.RegionChange.filter(e=> e !== null);
+
         this.loadDetail();
-    }  
-    
-    ngOnDestroy(){
-        this.regionsSubscription.unsubscribe();
     }
-    
 }
 

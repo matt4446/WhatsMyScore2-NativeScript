@@ -3,7 +3,7 @@
     <start-nav drawer-aside-left></start-nav>
     
     <nx-nav>
-        <label class="nx-header-title" [text]="region.Name" style="horizontal-align:center"></label>
+        <label class="title" [text]="(region|async)?.Name" style="horizontal-align:center"></label>
         
         <ion-icon nav-right nav="true" icon="ion-android-favorite"></ion-icon>
     </nx-nav>
@@ -15,9 +15,7 @@
                     <label [text]="'Competitions' | Title" class="nx-header-title"></label>
                 </nx-header>               
                 <nx-item animate="true"
-                    *ngFor="let competition of list"
-                    [nsRouterLink]="['competition', competition.Id]" pageTransition="slide"
-                    >
+                    *ngFor="let competition of list|async" [nsRouterLink]="['competition', competition.Id]" pageTransition="slide">
                     <ion-icon item-left icon="ion-ios-star" [align-right]></ion-icon>
                     <label [text]="competition.Name"></label>
                     <label class="note" [text]="competition.LocationName"></label>

@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit} from "@angular/core";
 
 import {AppRoutingService} from "../../../context/router.context";
 import {ClubService} from "../../../providers/leagues/clubService";
-import {CompetitionCache} from '../../../providers/leagues/competitionCache';
+import {CompetitionCache} from "../../../providers/leagues/competitionCache";
 import {CompetitionNav} from "../../nav/competition.nav";
 import {CompetitionService} from "../../../providers/leagues/competitionService";
 import {GradeService} from "../../../providers/leagues/gradeService";
@@ -11,11 +11,11 @@ import {Logger} from "../../../providers/logger";
 
 @Component({
     selector: "club-list-page",
-    //templateUrl: "pages/competition/clubList/page.html",
+    moduleId: module.id,
     template: `
         <nx-drawer>
             <competition-nav drawer-aside-left></competition-nav>
-            
+
             <nx-nav>
                 <label class="nx-header-title" [text]="'Club List' | Title" style="horizontal-align:center"></label>
                 <ion-icon nav-right nav="true" icon="ion-android-favorite"></ion-icon>
@@ -27,14 +27,14 @@ import {Logger} from "../../../providers/logger";
                         <nx-header item-top>
                             <label [text]="clubGroup.key" class="nx-header-title"></label>
                         </nx-header>
-                        
+
                         <nx-item *ngFor="let club of clubGroup.items | orderBy:'Name'"
                             [nxRoute]="[
                                 'Region.Competition.ClubList.Competitors', 
                                 { regionId: context.RegionId, competitionId: context.CompetitionId, clubId: club.Id }
                             ]">
                             <ion-icon item-left icon="ion-clipboard"></ion-icon>
-                             
+
                             <label [text]="club.Name"></label>
                             <label class="note" [text]="club.Competitors + ' competitors' "></label>
 
@@ -43,58 +43,48 @@ import {Logger} from "../../../providers/logger";
                     </nx-list>
                 </StackLayout>
             </nx-content>
-            
+
         </nx-drawer>
     `,
     providers: [CompetitionService, GradeService, ClubService]
 })
-export class ClubListPage implements OnInit
-{
-    
+export class ClubListPage implements OnInit {
+
     constructor(
-        private logger: Logger, 
+        private logger: Logger,
         private clubService: ClubService,
         private context: AppRoutingService,
-        private cache: CompetitionCache)
-    {
+        private cache: CompetitionCache) {
         this.logger.Notify("club list page started");
     }
-    
+
     public list : IClub[] = [];
 
-    
-    //passed to the child component
     public regionsHintText = "Hi from regions";
-    
-    //action to 
-    public clubSearch($event : any)
-    {
+
+    public clubSearch($event : any) {
         this.logger.Notify("Search passed to region");
         this.logger.Notify($event);
-        //this.logger.Notify("Search Term in Regions Page: " + $event.Value);
-    } 
-    
-    
-    
-    public loadDetail(){
+    }
+
+    public loadDetail() {
         let observable = this.clubService.List(this.context.CompetitionId).map(e=> e.json());
         observable.subscribe(e=> {
             this.list = e;
         });
-        
+
         return observable;
     }
-    
-    public refresh(args: any){      
+
+    public refresh(args: any) {
         this.loadDetail().subscribe(() => {
             args.completed();
         });
     }
 
-    public ngOnInit(){
+    public ngOnInit() {
         this.logger.Notify("club-list-page ngOnInit");
-        
-        //time to load the data
+
         if(this.cache.Clubs && this.cache.Clubs.length > 0){
             this.list = this.cache.Clubs;
             return;
@@ -102,6 +92,5 @@ export class ClubListPage implements OnInit
 
         this.loadDetail();
     }
-    
-    
+
 }

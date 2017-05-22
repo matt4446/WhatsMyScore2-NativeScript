@@ -26,7 +26,7 @@ export class CompetitorService {
 
         var observable = this.http.get(route);
 
-        this.logger.NotifyResponse(observable);
+        // this.logger.NotifyResponse(observable);
 
         return observable;
     }

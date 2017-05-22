@@ -9,7 +9,8 @@ import { StartNav } from "../nav/start.nav.control";
 
 @Component({
     selector: "regions-page",
-    templateUrl: "pages/regions/regions.page.html",
+    moduleId: module.id,
+    templateUrl: "regions.page.html",
     providers: [ Providers.RegionService],
 })
 export class RegionsPage implements OnInit {
@@ -33,26 +34,22 @@ export class RegionsPage implements OnInit {
         });
     }
 
-    public loadDetail() {
+    public loadDetail(): Observable<any> {
         this.logger.Notify("load regions");
 
-        let response = this.regions.List();
+        let response : Observable<IRegion[]> = this.regions.List();
 
-        // transform the data to json -> array of IProvider
         response
-            .map(response => response.json())
-            .subscribe((items : Array<IRegion>) => {
+            .subscribe((items) => {
                 this.list = items;
             },(error) => {
-                this.logger.Error("Could not map items");
+                this.logger.Error("Could not load items");
                 this.logger.Error(error);
             });
 
         return response;
     }
 
-
-    /* angular2 lifecycle */
     public ngOnInit(): void {
         this.loadDetail();
     }

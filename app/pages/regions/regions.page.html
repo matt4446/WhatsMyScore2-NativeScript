@@ -6,7 +6,7 @@
         
         <ion-icon nav-right nav="true" icon="ion-android-favorite"></ion-icon>
     </nx-nav>
-    <nx-content (refreshStarted)="refresh($event)">
+    <nx-content #content (refreshStarted)="refresh($event)">
         
         <StackLayout class="inset">
             
@@ -25,6 +25,7 @@
                     <ion-icon item-left icon="ion-ios-star"></ion-icon>
                     <Label [text]='region.CompetitionCount + " Competitions"'></Label>
                     <ion-icon item-right icon="ion-chevron-right"></ion-icon>
+                    
                 </nx-item>
             </nx-list>
         </StackLayout>

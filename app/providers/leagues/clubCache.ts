@@ -1,25 +1,28 @@
-import { Injectable, Inject } from '@angular/core';
-import * as Rx from 'rxjs/Rx';
-import * as appSettings from "application-settings"; 
+import * as Rx from "rxjs/Rx";
+import * as appSettings from "application-settings";
+
 import {
-    IRegion,
-    ICompetition,
     IClub,
-    IGrade
+    ICompetition,
+    IGrade,
+    IRegion,
 }
 from "../../models/models";
+import { Inject, Injectable } from "@angular/core";
+
+import { AppRoutingService } from "../../context/router.context";
 
 @Injectable()
 export class ClubCache {
     public ClubChanges = new Rx.Subject<IClub>();
-    
-    private _club: IClub;
-    
+
+    private club: IClub;
+
     public get Club(): IClub {
-        return this._club;
+        return this.club;
     }
     public set Club(value: IClub) {
-        this._club = value;
-        this.ClubChanges.next(this._club);
+        this.club = value;
+        this.ClubChanges.next(this.club);
     }
 }

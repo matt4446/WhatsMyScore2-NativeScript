@@ -8,7 +8,7 @@ import * as Templates from "./pages/templates.ref";
 
 import { NO_ERRORS_SCHEMA, NgModule } from "@angular/core";
 
-import { AppComponent } from './app.component';
+import { AppComponent } from "./app.component";
 import { NativeScriptHttpModule } from "nativescript-angular/http";
 import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 import { NativeScriptRouterModule } from "nativescript-angular/router";
@@ -18,7 +18,7 @@ import { NativeScriptUISideDrawerModule } from "nativescript-telerik-ui/sidedraw
     bootstrap: [AppComponent],
     imports: [
         NativeScriptModule,
-        NativeScriptHttpModule, 
+        NativeScriptHttpModule,
         NativeScriptRouterModule,
         NativeScriptRouterModule.forRoot(AppRoutes.appRoutes),
         NativeScriptUISideDrawerModule
@@ -33,7 +33,7 @@ import { NativeScriptUISideDrawerModule } from "nativescript-telerik-ui/sidedraw
         Pages.RegionsPage,
         Pages.RegionPage,
         Pages.FindCompetitorPage,
-         
+
         Pages.CompetitionPage,
         Pages.StartListPage,
         Pages.StartListGradePage,
@@ -41,7 +41,7 @@ import { NativeScriptUISideDrawerModule } from "nativescript-telerik-ui/sidedraw
         Pages.ClubPage,
         Pages.GradeListPage,
         Pages.GradeCompetitorsPage,
-        Pages.StatsPage, 
+        Pages.StatsPage,
 
         Templates.CompetitorResult,
         Templates.CompetitorResultRow,
@@ -51,7 +51,7 @@ import { NativeScriptUISideDrawerModule } from "nativescript-telerik-ui/sidedraw
         Nav.StartNav,
         Nav.CompetitionNav,
 
-        Controls.AlignLeft, 
+        Controls.AlignLeft,
         Controls.AlignRight,
         Controls.IonIcon,
         Controls.MaterialFab,
@@ -82,7 +82,6 @@ import { NativeScriptUISideDrawerModule } from "nativescript-telerik-ui/sidedraw
         Pipes.ScoreFormatter,
         Pipes.TitleTransform
     ],
-    
     providers: [
         Providers.Logger,
 
@@ -92,7 +91,8 @@ import { NativeScriptUISideDrawerModule } from "nativescript-telerik-ui/sidedraw
         Providers.GradeService,
         Providers.ClubCache,
         Providers.ClubService,
-        Providers.CompetitionCache,       
+        Providers.CompetitionCache,
+        Providers.CompetitionService,
         Providers.CompetitorService,
         Providers.AppRoutingService
         // {
@@ -100,7 +100,6 @@ import { NativeScriptUISideDrawerModule } from "nativescript-telerik-ui/sidedraw
         //     useFactory: Providers.AppRoutingServiceFactory,
         //     deps: [PageRoute]
         // }
-        
     ],
     schemas: [NO_ERRORS_SCHEMA],
     // selector: "main",

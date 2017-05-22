@@ -62,7 +62,7 @@ export class NxContent {
 
     private refreshPageCompleted($event) {
         this.refreshCompleted.next($event);
-        this.isLoading = false; 
+        this.isLoading = false;
     }
 
     @Output("refreshStarted")
