@@ -22,10 +22,11 @@ export class RegionService {
             .RegionIdChanging
             .filter(e=> e !== undefined)
             .distinctUntilChanged((a,b) => a === b)
-            .flatMap(e=> this.Get(e))
-            .subscribe((e) => {
-            this.logger.Notify(`Reloaded ${e.Id} ${e.Name}`);
-        });
+            .switchMap(e=> this.Get(e).catch(err => Observable.of(undefined)))
+            .filter(e=> e !== undefined)
+            .subscribe((e) => { 
+                this.logger.Notify(`Reloaded ${e.Id} ${e.Name}`);
+            });
     }
 
     public Get(regionId: any): Observable<IRegion> {
