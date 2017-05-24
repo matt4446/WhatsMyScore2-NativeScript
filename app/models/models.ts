@@ -1,5 +1,4 @@
-export interface IRegion 
-{
+export interface IRegion {
     Id: number;
     Name: string;
     Logo: string;
@@ -17,9 +16,8 @@ export interface IRegion
 Public":true,"Provider":{"Id":1,"Name":"BUCS","Logo":"content/logos/bucs-logo.jpg","CompetitionCount":null},"Notices":"None","Documents":null},{"Id":16,"Name":"BUCS 2015 - DAY 1 & Syncro","LocationName":"Sheffield Ice Arena","CreatedUtc":"2015-02-21T16:53:17.077Z","StartDateTimeUtc":"2015-02-21T09:00:00Z","EndDateTimeUtc":"2015-02-21T17:30:00Z","LastUploadedUtc":null,"Published":true,"Public":true,"Provider":{"Id":1,"Name":"BUCS","Logo":"content/logos/bucs-logo.jpg","CompetitionCount":null},"Notices":"None","Documents":null}
 */
 
-export interface ICompetition
-{
-    Id: number,
+export interface ICompetition {
+    Id: number;
     Name: string;
     LocationName: string;
     CreatedUtc: string;
@@ -31,8 +29,8 @@ export interface ICompetition
 }
 
 export interface ICompetitionGrades {
-    Discipline : string, 
-    Grades : IGrade[]
+    Discipline : string;
+    Grades : IGrade[];
 }
 
 //{"Id":3359,"Name":"Bournemouth University","Letter":"B","Competitors":1,"Teams":[]}
@@ -48,20 +46,20 @@ export interface IGrade {
     Id: number;
     ClassName: string;
     Discipline: string;
-    CompetitorsInFinal: number,
+    CompetitorsInFinal: number;
     Competitors: number;
     Enabled: boolean;
     Panel : number;
 }
 
 export interface IPage {
-    title: string; 
+    title: string;
     page: any;
 }
 
 export interface ICompetitorContext {
-    Expanded : boolean,
-    Competitor : ICompetitor
+    Expanded : boolean;
+    Competitor : ICompetitor;
 }
 
 export interface ICompetitor {
@@ -107,10 +105,12 @@ export interface ICompetitiorScoreLine {
 }
 
 interface ICorrectedScore {
-    Value: number; Corrected: boolean; Correction: number
+    Value: number;
+    Corrected: boolean;
+    Correction: number;
 }
 
 export interface IGroupOfItem<T> {
     key: any;
-    items: Array<T>
+    items: Array<T>;
 }

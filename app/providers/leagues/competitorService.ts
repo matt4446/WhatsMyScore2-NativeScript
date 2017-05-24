@@ -15,7 +15,7 @@ export class CompetitorService {
         let base: string = Settings.WebApiBaseUrl;
         let route: string = base + `${base}/Api/Competition/${competitionId}/Competitors/Grade2/${gradeId}`;
 
-        var observable = this.http.get(route);
+        var observable: Observable<Response> = this.http.get(route);
 
         return observable;
     }
@@ -24,7 +24,7 @@ export class CompetitorService {
         let base: string = Settings.WebApiBaseUrl;
         let route: string = `${base}/Api/Competition/${competitionId}/Competitors/Club/${clubId}`;
 
-        var observable = this.http.get(route);
+        var observable: Observable<Response> = this.http.get(route);
 
         // this.logger.NotifyResponse(observable);
 

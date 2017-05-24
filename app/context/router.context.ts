@@ -24,7 +24,7 @@ export class AppRoutingService implements IRegionRoute, ICompetitionRoute, IGrad
 
     public RegionIdChanging: Subject<number> = new BehaviorSubject<number>(undefined);
     public CompetitionIdChanging: Subject<number> = new BehaviorSubject<number>(undefined);
-    public GadeIdChanging: Subject<number> = new BehaviorSubject<number>(undefined);
+    public GradeIdChanging: Subject<number> = new BehaviorSubject<number>(undefined);
     public ClubIdChanging: Subject<number> = new BehaviorSubject<number>(undefined);
 
     private regionId : number;
@@ -59,7 +59,7 @@ export class AppRoutingService implements IRegionRoute, ICompetitionRoute, IGrad
         return this.gradeId;
     }
     public set GradeId(value: number) {
-        this.GadeIdChanging.next(value);
+        this.GradeIdChanging.next(value);
         this.gradeId = value;
     }
 

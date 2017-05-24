@@ -1,18 +1,19 @@
-import { Injectable, Inject } from '@angular/core';
-import * as Rx from 'rxjs/Rx';
-import * as appSettings from "application-settings"; 
+import * as Rx from "rxjs/Rx";
+import * as appSettings from "application-settings";
+
 import {
-    IRegion,
-    ICompetition,
     IClub,
-    IGrade
+    ICompetition,
+    IGrade,
+    IRegion,
 }
 from "../../models/models";
+import { Inject, Injectable } from "@angular/core";
 
 @Injectable()
 export class GradeCache {
     public GradeChanges = new Rx.Subject<IGrade>();
-    
+
     private _grade: IGrade;
     public get Grade(): IGrade {
         return this._grade;

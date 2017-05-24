@@ -10,21 +10,20 @@ import {
     Output,
     ViewChild,
 } from "@angular/core";
-import { Observable, Subject, Subscription } from 'rxjs/Rx';
+import { Observable, Subject, Subscription } from "rxjs/Rx";
 
 import { AnimationCurve } from "ui/enums";
 import { Button } from "ui/button";
 import { Logger } from "../../providers/logger";
-import { QueryList } from '@angular/core';
-import { RouterExtensions } from "nativescript-angular/router"
+import { QueryList } from "@angular/core";
+import { RouterExtensions } from "nativescript-angular/router";
 import { StackLayout } from "ui/layouts/stack-layout";
 
 @Component({
     moduleId: module.id,
     selector:"nx-item",
-    
-    //create a 1 row template; 3 columns; 2 for the icons on the sides
-    //https://github.com/NativeScript/NativeScript/issues/859 -- cant get per side border yet. 
+
+    // create a 1 row template; 3 columns; 2 for the icons on the sides
     template: `
     <StackLayout #item>
 
@@ -33,7 +32,7 @@ import { StackLayout } from "ui/layouts/stack-layout";
 
             <StackLayout class="nx-item inset-top inset-bottom">
                 <GridLayout #animateItem columns="40, *, 50" rows="auto" (tap)="tapWrapper($event)">
-                    <!-- default layout --> 
+                    <!-- default layout -->
                     <StackLayout col="0" row="0" class="icon-column icon-left nx-item-column" >
                         <ng-content select="[item-left]"></ng-content>
                     </StackLayout>
@@ -45,8 +44,8 @@ import { StackLayout } from "ui/layouts/stack-layout";
                     <StackLayout col="2" row="0" class="icon-column icon-right nx-item-column">
                         <ng-content select="[item-right]"></ng-content>
                     </StackLayout>
-                    
-                    <!-- first two colums --> 
+
+                    <!-- first two colums -->
                     <StackLayout col="0" row="0" colSpan="2" class="nx-item-column inset-sides">
                         <ng-content select="[item-col-2-left]"></ng-content>
                     </StackLayout>
@@ -56,13 +55,13 @@ import { StackLayout } from "ui/layouts/stack-layout";
                         <ng-content select="[item-col-2-right]"></ng-content>
                     </StackLayout>
 
-                    <!-- all three columns  -->
+                    <!-- all three columns -->
                     <StackLayout col="0" row="0" colSpan="3" class="nx-item-column inset-sides">
                         <ng-content select="[item-col-3]"></ng-content>
                     </StackLayout>
-                    
-                    <!-- highlight --> 
-                    
+
+                    <!-- highlight -->
+
                 </GridLayout>
             </StackLayout>
         </StackLayout>
@@ -73,79 +72,75 @@ import { StackLayout } from "ui/layouts/stack-layout";
     styleUrls: ["list.common.css"]
 })
 export class NxListItem {
-    //private template: TemplateRef;
     private container: ElementRef;
-    
-    @ViewChild('item') 
+
+    @ViewChild("item")
     set _setListElement(item: ElementRef){
         this.container = item;
         this.itemReady.next(this);
     }
-    
-    @ViewChild('animateItem')
+
+    @ViewChild("animateItem")
     set _gridElement(item: ElementRef){
         let element:StackLayout = item.nativeElement ;
-        
-        if(this.Animate){
+
+        if(this.Animate) {
             element.className += " visible";
         }
     }
 
-    // @ContentChildren("NSRouterLink")
-    // __childRoute : QueryList<any>;
-            
-    @Input('animate')
-    public Animate : boolean; 
-        
+    @Input("animate")
+    public Animate : boolean;
+
     constructor(private logger:Logger, private routerExtensions: RouterExtensions){
     }
-       
+
     public itemReady: Subject<NxListItem> = new Subject<NxListItem>();
     public itemSelected: Subject<NxListItem> = new Subject<NxListItem>();
-        
-    public getNativeElement() : StackLayout {
-        if(!this.container){ return ; }
-        
+
+    public getNativeElement(): StackLayout {
+        if(!this.container) {
+             return;
+        }
+
         let stackLayout: StackLayout = this.container.nativeElement;
-        
+
         return stackLayout;
     }
-    
+
     public tapWrapper = (args: any) => {
         this.logger.Notify("tap clicked on item");
-        
+
         let stackLayout: StackLayout = this.getNativeElement();
 
         if(!stackLayout) { return ;}
- 
-        let moveRight = stackLayout.animate({
-            duration: 100,
-            translate: { x: 15, y: 0 },
-            opacity: 0.8,
-            curve: AnimationCurve.easeIn
-        }).then(() =>{
-            this.itemSelected.next(this);
+        this.Navigate(args);
+        // let moveRight = stackLayout.animate({
+        //     duration: 100,
+        //     translate: { x: 15, y: 0 },
+        //     opacity: 0.8,
+        //     curve: AnimationCurve.easeIn
+        // }).then(() =>{
+        //     this.itemSelected.next(this);
 
-            return stackLayout.animate({ 
-                duration: 100,
-                translate: { x:0, y: 0},
-                opacity: 1,
-                curve: AnimationCurve.easeIn
-            });
-        }).then(() => {
-            //normal router navigation
-            setTimeout(() => {
-                this.Navigate(args);
-            }, 200)
-            
-        });
-    };
+        //     return stackLayout.animate({
+        //         duration: 100,
+        //         translate: { x:0, y: 0},
+        //         opacity: 1,
+        //         curve: AnimationCurve.easeIn
+        //     });
+        // }).then(() => {
+        //     setTimeout(() => {
+        //         this.Navigate(args);
+        //     }, 200);
+        // });
+    }
 
-    private Navigate(args){
-        if(this.tap){
+    private Navigate(args: any): void {
+        if(this.tap) {
             this.tap.next(args);
         }
     }
-    
+
     public tap = new EventEmitter(); // : (args: EventEmitter<any>) => void;
 }

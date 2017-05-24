@@ -1,119 +1,96 @@
 import * as Rx from "rxjs";
 
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from "@angular/core";
 
 import {AppRoutingService} from "../../../context/router.context";
 import {ClubService} from "../../../providers/leagues/clubService";
-import {CompetitionCache} from '../../../providers/leagues/competitionCache';
+import {CompetitionCache} from "../../../providers/leagues/competitionCache";
 import {CompetitionNav} from "../../nav/competition.nav";
 import {CompetitionService} from "../../../providers/leagues/competitionService";
 import {GradeService} from "../../../providers/leagues/gradeService";
 import {IGrade} from "../../../models/models";
 import {Logger} from "../../../providers/logger";
+import { Observable } from "rxjs";
 
 @Component({
     selector: "grade-list-page",
-    //templateUrl: "pages/competition/gradeList/page.html",
     template: `
         <nx-drawer>
             <competition-nav drawer-aside-left></competition-nav>
-            
+
             <nx-nav>
-                <label class="nx-header-title" [text]="'Grade List' | Title" style="horizontal-align:center"></label>
+                <label class="title" [text]="'Grade List' | Title" style="horizontal-align:center"></label>
                 <ion-icon nav-right nav="true" icon="ion-android-favorite"></ion-icon>
             </nx-nav>
 
             <nx-content (refreshStarted)="refresh($event)">
-                <StackLayout class="inset">
-                    <nx-list *ngFor="let group of list | groupBy: 'Discipline' | orderBy:'key'">
+                <StackLayout class="inset" *ngIf="loading">
+                    <Label text="No grades to display" textWrap="true"></Label>
+                </StackLayout>
+                <StackLayout class="inset" *ngIf="!loading">
+                    <nx-list *ngFor="let group of list|async | groupBy: 'Discipline' | orderBy:'key'">
                         <nx-header item-top>
                             <label [text]="group.key | Title" class="nx-header-title"></label>
                         </nx-header>
-                        
+
                         <nx-item *ngFor="let grade of group.items | orderBy:'ClassName'"
-                            [nsRouterLink]="[grade.Id]" 
+                            [nsRouterLink]="[grade.Id]"
                             pageTransition="slide">
                             <Label item-left class="material-icons icon-default" text="assignment" textWrap="true"></Label>
 
                             <label [text]="grade.ClassName"></label>
                             <label class="note" [text]="grade.Competitors + ' competitors' "></label>
-                            
-                            
+
+
                             <ion-icon item-right icon="ion-chevron-right"></ion-icon>
-                            
+
                         </nx-item>
                     </nx-list>
                 </StackLayout>
             </nx-content>
-            
+
         </nx-drawer>
     `,
     providers: [CompetitionService, GradeService, ClubService]
 })
-export class GradeListPage implements OnInit, OnDestroy
-{
+export class GradeListPage implements OnInit {
     constructor(
-        private logger: Logger, 
+        private logger: Logger,
         private competitionService : CompetitionService,
         private gradeService: GradeService,
         private context: AppRoutingService,
-        private cache: CompetitionCache)
-    {
+        private cache: CompetitionCache) {
 
         this.logger.Notify("grade list page started");
     }
-    
-    public list : IGrade[] = [];
-    
-    //subscriptions which need to be unbound on destroy. 
-    public subscriptions : Rx.Subscription[] = [];
-    
-    //action to 
-    public gradeSearch($event : any)
-    {
+
+    public loading : boolean = true;
+    public list : Observable<IGrade[]>;
+
+    public gradeSearch($event : any): void {
         this.logger.Notify($event);
-        //this.logger.Notify("Search Term in Regions Page: " + $event.Value);
-    } 
-    
-    public loadCompetition() {
-        if(this.cache.Competition == null){
-            this.competitionService.Get(this.context.CompetitionId);
-        }
     }
-    
-    public loadDetail() {
-        //this.cache.Competition.Id is missing due to parent loads it. 
-       
-        
-        let observable = this.gradeService.List(this.context.CompetitionId).map(e=> e.json());
-        observable.subscribe(e=> {
-            this.list = e;
+
+    public loadDetail(): Observable<IGrade[]> {
+        this.logger.Notify("load grade list");
+        this.list = this.gradeService.List(this.context.CompetitionId);
+        this.list.subscribe(() => {
+            this.logger.Notify("grade list loaded");
+            this.loading = false;
         });
-        
-        return observable;
+        return this.list;
     }
-    
-    public refresh(args: any){
+
+    public refresh(args: any): void {
+        this.logger.Notify("Refresh grade-list page");
         this.loadDetail().subscribe(() => {
             args.completed();
         });
     }
-    
-     public ngOnInit(){
+
+     public ngOnInit(): void {
         this.logger.Notify("grade-list-page ngOnInit");
-        //time to load the data
-        if(this.cache.Grades && this.cache.Grades.length > 0){
-            this.list = this.cache.Grades;
-            return;
-        }
-        
+
         this.loadDetail();
     }
-    
-    public ngOnDestroy(){
-        this.subscriptions.forEach((subscription) => {
-            subscription.unsubscribe();
-        });
-    }
-    
 }

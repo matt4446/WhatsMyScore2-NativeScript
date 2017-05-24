@@ -8,6 +8,7 @@ import {CompetitionService} from "../../../providers/leagues/competitionService"
 import {GradeService} from "../../../providers/leagues/gradeService";
 import {IClub} from "../../../models/models";
 import {Logger} from "../../../providers/logger";
+import { Observable } from "rxjs/Rx";
 
 @Component({
     selector: "club-list-page",
@@ -23,14 +24,14 @@ import {Logger} from "../../../providers/logger";
 
             <nx-content (refreshStarted)="refresh($event)">
                 <StackLayout class="inset">
-                    <nx-list *ngFor="let clubGroup of list | groupBy: 'Letter' | orderBy:'key'">
+                    <nx-list *ngFor="let clubGroup of list|async | groupBy: 'Letter' | orderBy:'key'">
                         <nx-header item-top>
                             <label [text]="clubGroup.key" class="nx-header-title"></label>
                         </nx-header>
 
                         <nx-item *ngFor="let club of clubGroup.items | orderBy:'Name'"
                             [nxRoute]="[
-                                'Region.Competition.ClubList.Competitors', 
+                                'Region.Competition.ClubList.Competitors',
                                 { regionId: context.RegionId, competitionId: context.CompetitionId, clubId: club.Id }
                             ]">
                             <ion-icon item-left icon="ion-clipboard"></ion-icon>
@@ -58,37 +59,34 @@ export class ClubListPage implements OnInit {
         this.logger.Notify("club list page started");
     }
 
-    public list : IClub[] = [];
+    public loading : boolean;
+    public list : Observable<IClub[]>;
 
-    public regionsHintText = "Hi from regions";
-
-    public clubSearch($event : any) {
+    public clubSearch($event : any): void {
         this.logger.Notify("Search passed to region");
         this.logger.Notify($event);
     }
 
-    public loadDetail() {
-        let observable = this.clubService.List(this.context.CompetitionId).map(e=> e.json());
-        observable.subscribe(e=> {
-            this.list = e;
+    public loadDetail(): Observable<IClub[]> {
+        this.loading = true;
+        let clubListObservable: Observable<IClub[]> = this.clubService.List(this.context.CompetitionId);
+        clubListObservable.subscribe(() => {
+            this.loading = false;
         });
 
-        return observable;
+        this.list = clubListObservable;
+
+        return clubListObservable;
     }
 
-    public refresh(args: any) {
+    public refresh(args: any): void {
         this.loadDetail().subscribe(() => {
             args.completed();
         });
     }
 
-    public ngOnInit() {
+    public ngOnInit(): void {
         this.logger.Notify("club-list-page ngOnInit");
-
-        if(this.cache.Clubs && this.cache.Clubs.length > 0){
-            this.list = this.cache.Clubs;
-            return;
-        }
 
         this.loadDetail();
     }

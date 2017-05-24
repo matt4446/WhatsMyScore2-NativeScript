@@ -15,51 +15,32 @@ export class RegionService {
         private logger: Logger,
         private routingService: AppRoutingService,
         private cache: RegionCache) {
-
-        logger.Notify("RegionService created");
-
-        routingService
-            .RegionIdChanging
-            .filter(e=> e !== undefined)
-            .distinctUntilChanged((a,b) => a === b)
-            .switchMap(e=> this.Get(e).catch(err => Observable.of(undefined)))
-            .filter(e=> e !== undefined)
-            .subscribe((e) => { 
-                this.logger.Notify(`Reloaded ${e.Id} ${e.Name}`);
-            });
     }
 
     public Get(regionId: any): Observable<IRegion> {
         let base: string = Settings.WebApiBaseUrl;
         let route: string = `${base}/api/Providers/Get/${regionId}`;
 
-        let promise: Observable<Response> = this.http.get(route);
-        let result: Observable<IRegion> = promise.map(response => response.json());
+        let request: Observable<Response> = this.http.get(route);
+        let result: Observable<IRegion> = request.map(response => response.json());
 
         result.subscribe((region : IRegion) => {
             this.cache.Region = region;
         });
-
-        this.logger.NotifyResponse(promise);
 
         return result;
     }
 
     public List(): Observable<IRegion[]> {
         let base: string = Settings.WebApiBaseUrl;
-        let endpoint: string  = "/Api/Providers/List/Enabled";
-        let route: string = base + endpoint;
+        let route: string  = `${base}/Api/Providers/List/Enabled`;
 
-        this.logger.Notify("Load :" + route);
-
-        let promise: Observable<Response> = this.http.get(route);
-        let result: Observable<IRegion[]> = promise.map(response => response.json());
+        let request: Observable<Response> = this.http.get(route);
+        let result: Observable<IRegion[]> = request.map(response => response.json());
 
         result.subscribe((regions: IRegion[]) => {
             this.cache.Regions = regions;
         });
-
-        //this.logger.NotifyResponse(promise);
 
         return result;
     }

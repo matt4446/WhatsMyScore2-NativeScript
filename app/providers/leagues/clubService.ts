@@ -19,16 +19,6 @@ export class ClubService {
         private competitionCache: CompetitionCache,
         private clubCache : ClubCache) {
         logger.Notify("ProviderService created");
-
-        Observable.combineLatest(
-            this.routingService.CompetitionIdChanging,
-            this.routingService.ClubIdChanging
-        ).subscribe(values => {
-            var competitionId: number = values[0];
-            var clubId: number = values[0];
-
-            this.Get(competitionId, clubId);
-        });
     }
 
     public Get(competitionId: number, clubId: number): Observable<IClub> {
@@ -37,7 +27,7 @@ export class ClubService {
         let promise: Observable<Response> = this.http.get(route);
         let result: Observable<IClub> = promise.map(response => response.json());
 
-        this.logger.NotifyResponse(promise);
+        //this.logger.NotifyResponse(promise);
 
         result.subscribe((club) => {
             this.clubCache.Club = club;
@@ -46,21 +36,24 @@ export class ClubService {
         return result;
     }
 
-    public List(competitionId: number): Observable<Response> {
+    public List(competitionId: number): Observable<IClub[]> {
+        this.logger.Notify(`load clubs from ${competitionId}`);
         let base: string = Settings.WebApiBaseUrl;
         let route: string = `${base}/Api/Competition/${competitionId}/Clubs`;
-        let promise: Observable<Response> = this.http.get(route);
+        let request: Observable<Response> = this.http.get(route);
+        let result: Observable<IClub[]> = request.map(response => response.json());
 
-        this.logger.NotifyResponse(promise);
+        this.logger.NotifyResponse(request);
 
-        promise.map(response => response.json()).subscribe((clubs : Array<IClub>) => {
+        result.subscribe((clubs : Array<IClub>) => {
             this.competitionCache.Clubs = clubs;
         });
 
-        return promise;
+        return result;
     }
 
     public ListCompetitors(competitionId: number, clubId: number): Observable<Response> {
+
         let base: string = Settings.WebApiBaseUrl;
         let route: string = `${base}/Api/Competition/${competitionId}/Competitors/Club2/${clubId}`;
         let promise: Observable<Response> = this.http.get(route);

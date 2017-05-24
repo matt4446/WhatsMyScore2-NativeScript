@@ -5,6 +5,7 @@
     padding: $primary-content-padding;
 }
 
+.md-6 { font-size: 6; height: 6} 
 .md-18 { font-size: 18; height: 18; }
 .md-24 { font-size: 24; height: 24; }
 .md-36 { font-size: 36; height: 36; }
@@ -18,4 +19,17 @@
 
 .title {
     color: $font-primary-title-color;
+}
+
+.nx-item {
+    color: $font-primary-color1;
+    font-size: 14;
+}
+.nx-item .title {
+    color: $font-primary-color1;
+    font-size: 14;
+}
+.nx-item .note {
+    color: $font-primary-color3;
+    font-size: 10;
 }

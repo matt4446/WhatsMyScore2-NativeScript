@@ -18,16 +18,14 @@ export class CompetitionService {
         let base: string = Settings.WebApiBaseUrl;
         let route: string = `${base}/Api/Competition/${competitionId}`;
 
-        this.logger.Notify("Load :" + route);
-
-        let promise: Observable<Response> = this.http.get(route);
-        let result: Observable<ICompetition> = promise.map(response => response.json());
+        let rquest: Observable<Response> = this.http.get(route);
+        let result: Observable<ICompetition> = rquest.map(response => response.json());
 
         result.subscribe((competition : ICompetition) => {
             this.competitionCache.Competition = competition;
         });
 
-        // this.logger.NotifyResponse(promise);
+        this.logger.NotifyResponse(rquest);
 
         return result;
     }
@@ -35,16 +33,9 @@ export class CompetitionService {
     public List(regionId: number): Observable<ICompetition[]> {
         let base: string = Settings.WebApiBaseUrl;
         let route: string = `${base}/Api/Providers/${regionId}/Competitions/Enabled`;
-        this.logger.Notify("Load :" + route);
 
         let promise: Observable<Response> = this.http.get(route);
         let result: Observable<ICompetition[]> = promise.map(response => response.json());
-
-        // result.subscribe((competitions) => {
-        //     this.competitionCache
-        // });
-
-        // this.logger.NotifyResponse(promise);
 
         return result;
     }

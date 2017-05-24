@@ -16,36 +16,38 @@ export class GradeService {
         logger.Notify("ProviderService created");
     }
 
-    public Get(competitionId: number, gradeId: number): Observable<Response> {
+    public Get(competitionId: number, gradeId: number): Observable<IGrade> {
         let base: string = Settings.WebApiBaseUrl;
-        let route: string = base + "/Api/Competitions/" + competitionId;
-        route += "/Group/" + gradeId;
+        let route: string = `${base}/Api/Competitions/${competitionId}/Group/${gradeId}`;
 
-        let promise = this.http.get(route);
+        let request: Observable<Response> = this.http.get(route);
+        let result: Observable<IGrade> = request.map(response => response.json());
 
-        this.logger.NotifyResponse(promise);
-
-        promise.map(response => response.json()).subscribe((grade : IGrade) => {
+        result.subscribe((grade : IGrade) => {
             this.gradeCache.Grade = grade;
         });
+        this.logger.NotifyResponse(request);
 
-        return promise;
+        return result;
     }
 
-    public List(competitionId: number) {
+    public List(competitionId: number): Observable<IGrade[]> {
         let base: string = Settings.WebApiBaseUrl;
-        let route: string = base + "/Api/Competition/" + competitionId + "/Grades";
+        let route: string = `${base}/Api/Competition/${competitionId}/Grades`;
 
-        let promise = this.http.get(route);
+        this.logger.Notify(`load grades from ${competitionId} | '${route}'`);
 
-        this.logger.NotifyResponse(promise);
+        let request: Observable<Response> = this.http.get(route);
+        let result: Observable<IGrade[]> = request.map(response => response.json());
 
-
-        promise.map(response => response.json()).subscribe((grades : Array<IGrade>) => {
+        result.subscribe((grades : IGrade[]) => {
+            this.logger.Notify(`grades loaded: ${grades.length}`);
             this.competitionCache.Grades = grades;
         });
 
-        return promise;
+        // this.logger.NotifyResponse(request);
+
+        return result;
     }
 
 }

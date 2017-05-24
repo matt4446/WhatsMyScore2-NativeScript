@@ -11,25 +11,19 @@ import { StartNav } from "../nav/start.nav.control";
     selector: "regions-page",
     moduleId: module.id,
     templateUrl: "regions.page.html",
-    providers: [ Providers.RegionService],
 })
 export class RegionsPage implements OnInit {
     constructor(
         private logger: Logger,
         private regions: Providers.RegionService) {
-        this.logger.Notify("Regions page started");
     }
 
-    public list : Array<IRegion> = [];
-
-    public regionSearch($event : any): void {
-        this.logger.Notify("Search passed to region");
-        this.logger.Notify($event);
-    }
+    public list : Observable<IRegion[]>;
 
     public refresh(args: any): void {
         this.logger.Notify("regions page refresh => load data");
         this.loadDetail().subscribe(() => {
+            this.logger.Notify("load regions completed");
             args.completed();
         });
     }
@@ -37,17 +31,9 @@ export class RegionsPage implements OnInit {
     public loadDetail(): Observable<any> {
         this.logger.Notify("load regions");
 
-        let response : Observable<IRegion[]> = this.regions.List();
+        this.list = this.regions.List();
 
-        response
-            .subscribe((items) => {
-                this.list = items;
-            },(error) => {
-                this.logger.Error("Could not load items");
-                this.logger.Error(error);
-            });
-
-        return response;
+        return this.list;
     }
 
     public ngOnInit(): void {

@@ -11,66 +11,58 @@ import {GroupedObservable} from "rxjs/operator/groupBy";
 import {Logger} from "../../providers/logger";
 
 @Injectable()
-export class DisplayService
-{
+export class DisplayService {
+
     constructor(
         private logger: Logger,
         private context: AppRoutingService,
         private competitionCache: CompetitionCache,
         private gradeService : GradeService,
-        private clubService : ClubService)
-    {
+        private clubService : ClubService) {
     }
 
-    public GetOrderedClubs(context: IClubRoute, refresh: boolean) {
-        let clubResults : Observable<IClub>;
-        let useCache = this.competitionCache.Clubs && this.competitionCache.Clubs.length;
+    // public GetOrderedClubs(context: IClubRoute, refresh: boolean): Observable<IClub[]> {
+    //     let clubResults : Observable<IClub[]>;
+    //     let useCache: boolean = this.competitionCache.HasClubs();
 
-        clubResults = useCache
-            ? Observable.from(this.competitionCache.Clubs)
-            : this.clubService.List(this.context.ClubId).map(e=> e.json());
+    //     clubResults = useCache
+    //         ? Observable.of(this.competitionCache.Clubs)
+    //         : this.clubService.List(this.context.ClubId);
 
-        let grouped = clubResults.groupBy(e=> e.Letter, e=> e).map(group => {
-            let clubs : IClub[] = [];
+    //     return clubResults;
+    // }
 
-            group.subscribe(k => {
+    // public GetOrderedGrades(context: IGradeRoute, refresh: boolean): Observable<IGrade[]> {
 
-            });
+    //     let gradeResults : Observable<IGrade[]>;
+    //     let useCache: boolean = this.competitionCache.HasGrades();
 
-        });
-    }
+    //     gradeResults = useCache
+    //         ? Observable.of(this.competitionCache.Grades)
+    //         : this.gradeService.List(this.context.CompetitionId);
 
-    public GetOrderedGrades(context: IGradeRoute, refresh: boolean){
+    //     let grouped = gradeResults.groupBy(e=> e.Discipline, e=> e).map(group=> {
+    //         let grades : IGrade[] = [];
 
-        let gradeResults : Observable<IGrade>;
-        let useCache = this.competitionCache.Grades && this.competitionCache.Grades.length;
+    //         group.subscribe(k => {
+    //             grades.push(k);
+    //         }, (error) => {
 
-        gradeResults = useCache
-            ? Observable.from(this.competitionCache.Grades)
-            : this.gradeService.List(this.context.CompetitionId).map(e=> e.json());
+    //         }, () => {
+    //             let orderedGrades = grades.sort((a,b) =>
+    //                 a.ClassName.toLowerCase() < b.ClassName.toLowerCase() ? -1 : a.ClassName > b.ClassName ? 1 : 0
+    //             );
+    //             grades = orderedGrades;
+    //         });
 
-        let grouped = gradeResults.groupBy(e=> e.Discipline, e=> e).map(group=> {
-            let grades : IGrade[] = [];
+    //         return {
+    //             Discipline : group.key,
+    //             Grades : grades
+    //         };
+    //     });
 
-            group.subscribe(k => {
-                grades.push(k);
-            }, (error) => {
-
-            }, () => {
-                let orderedGrades = grades.sort((a,b) =>
-                    a.ClassName.toLowerCase() < b.ClassName.toLowerCase() ? -1 : a.ClassName > b.ClassName ? 1 : 0
-                );
-                grades = orderedGrades;
-            });
-
-            return {
-                Discipline : group.key,
-                Grades : grades
-            };
-        });
-
-        return grouped.toArray();
-    }
+    //     return grouped.toArray();
+    // }
 
 
 }

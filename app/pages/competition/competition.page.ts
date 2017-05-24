@@ -1,6 +1,7 @@
 import * as Rx from "rxjs/Rx";
 
 import { Component, OnDestroy, OnInit } from "@angular/core";
+import { IClub, ICompetition, IGrade } from "../../models/models";
 
 import {AppRoutingService} from "../../context/router.context";
 import {ClubService} from "../../providers/leagues/clubService";
@@ -8,15 +9,15 @@ import {CompetitionCache} from "../../providers/leagues/competitionCache";
 import {CompetitionNav} from "../nav/competition.nav";
 import {CompetitionService} from "../../providers/leagues/competitionService";
 import {GradeService} from "../../providers/leagues/gradeService";
-import {ICompetition} from "../../models/models";
 import {Logger} from "../../providers/logger";
+import { Observable } from "rxjs/Rx";
 
 @Component({
     selector: "Competiton",
-	templateUrl: "pages/competition/competition.page.html",
-    providers: [CompetitionService, GradeService, ClubService]
+    moduleId: module.id,
+	templateUrl: "competition.page.html"
 })
-export class CompetitionPage implements OnInit, OnDestroy {
+export class CompetitionPage implements OnInit {
     constructor(
         private logger: Logger,
         private context: AppRoutingService,
@@ -24,54 +25,38 @@ export class CompetitionPage implements OnInit, OnDestroy {
         private competitionService: CompetitionService,
         private clubService: ClubService,
         private gradeService: GradeService) {
-
-        this.logger.Notify("a competition is being loaded");
-
     }
 
-    public list : Array<ICompetition> = [];
-    public subscriptions : Rx.Subscription[] = [];
-
-    ngOnDestroy(): void {
-        this.subscriptions.forEach((subscription)=> {
-            subscription.unsubscribe();
-        });
-    }
+    public competition : Observable<ICompetition>;
+    public gradeCount : Observable<number>;
+    public clubCount : Observable<number>;
+    public competitorCount : Observable<number>;
 
     ngOnInit(): void {
         this.logger.Notify("ngOnInit: CompetitionPage");
-        this.loadCompetition();
         this.loadCompetitionDetails();
     }
 
-    public loadCompetitionDetails(): void {
-        let detailSubscription = this.competitionCache.CompetitionChanges.filter(e=> e!== null).subscribe(competition => {
-            this.logger.Notify("competition changed... load club and grade");
-            this.logger.NotifyObject(competition);
+    public loadCompetitionDetails(): Observable<any> {
+        let competitionId: number = this.context.CompetitionId;
 
-            let clubObservable = this.clubService.List(competition.Id);
-            let gradeObservable = this.gradeService.List(competition.Id);
-
-            clubObservable.map(e=> e.json()).subscribe(e  => {
-                this.competitionCache.Clubs = e;
-            });
-            gradeObservable.map(e=> e.json()).subscribe(e=> {
-                this.competitionCache.Grades = e;
-            });
+        this.competition = this.competitionService.Get(competitionId);
+        this.clubCount = this.clubService.List(competitionId).map(e=> e.length);
+        let gradeList = this.gradeService.List(competitionId);
+        this.gradeCount = gradeList.map(e=> e.length);
+        this.competitorCount = gradeList.map(e=> {
+            let competitors = e.map(a => a.Competitors);
+            let total = competitors.reduce((a,b) => a+=b );
+            return total;
         });
 
-        this.subscriptions.push(detailSubscription);
-    }
+        let forAll: Observable<any> = Observable.combineLatest(this.competition, this.clubCount, this.gradeCount);
 
-    public loadCompetition() {
-        let competitionId = this.context.CompetitionId;
-        let observable = this.competitionService.Get(competitionId);
-
-        return observable;
+        return forAll; // .combineLatest(observable,clubsObservable,gradesObservable);
     }
 
     public refresh(args: any): void {
-        this.loadCompetition().subscribe(() => {
+        this.loadCompetitionDetails().subscribe(() => {
             args.completed();
         });
     }

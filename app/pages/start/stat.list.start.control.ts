@@ -11,7 +11,7 @@ import {Component} from "@angular/core";
         <nx-item [nsRouterLink]="['/regions']" animate="true" pageTransition="slide">
             <ion-icon item-left icon="ion-map"></ion-icon>
 
-            <label text="Leagues & Regions"></label>
+            <label class="title" text="Leagues & Regions"></label>
             <label class="note" text="BUCS, SUTL ..."></label>
 
             <ion-icon item-right icon="ion-chevron-right"></ion-icon>

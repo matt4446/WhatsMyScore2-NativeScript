@@ -44,7 +44,7 @@ export class CompetitionCache {
         this.CompetitionChanges.next(this.competition);
     }
 
-    private grades: Array<IGrade>;
+    private grades: IGrade[];
     public get Grades(): Array <IGrade> {
         return  this.grades;
     }
@@ -52,12 +52,20 @@ export class CompetitionCache {
         this.grades = value;
     }
 
-    private clubs: Array < IClub >;
+    public HasGrades(): boolean {
+        return this.grades && this.grades.length > 0;
+    }
+
+    private clubs: IClub[];
     public get Clubs(): Array<IClub> {
         return this.clubs;
     }
     public set Clubs(value: Array<IClub>) {
         this.clubs = value;
+    }
+
+    public HasClubs(): boolean {
+        return this.clubs && this.clubs.length > 0;
     }
 
 }

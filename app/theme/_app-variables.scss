@@ -7,9 +7,15 @@ $primary-content-padding : 14;
 
 /* font colors */
 $font-primary-color : #000;
-$font-primary-title-color: #FFFFFF;
+$font-primary-color1 : lighten( $font-primary-color , 10% );
+$font-primary-color2 : lighten( $font-primary-color , 15% );
+$font-primary-color3 : lighten( $font-primary-color , 20% );
 
+$font-primary-title-color: #FFFFFF;
+$font-primary-title-color1 : darken( $font-primary-title-color, 10% );
+$font-primary-title-color2 : darken( $font-primary-title-color, 15% );
+$font-primary-title-color3 : darken( $font-primary-title-color, 20% );
 
 $background-color-primary : #4d75b8;
 $background-color-primary-lighter : lighten( $background-color-primary, 10% );
-$background-color-primary-darker : darken( $background-color-primary, 10% )
+$background-color-primary-darker : darken( $background-color-primary, 10% );
