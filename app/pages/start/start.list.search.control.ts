@@ -7,15 +7,11 @@ import {Component} from "@angular/core";
         <nx-header item-top>
             <label [text]="'Search' | Title" class="nx-header-title"></label>
         </nx-header>
+
         <nx-item (tap)="incomplete($event)" animate="true">
-            <ion-icon item-left icon="ion-calendar"></ion-icon>
-            <label text="Competitions"></label>
-            <ion-icon item-right icon="ion-search"></ion-icon>
-        </nx-item>
-        <nx-item (tap)="incomplete($event)" animate="true">
-            <ion-icon item-left icon="ion-ios-people"></ion-icon>
+            <nx-icon item-left icon="search"></nx-icon>
             <label text="Competitors"></label>
-            <ion-icon item-right icon="ion-search"></ion-icon>
+            <nx-icon item-right icon="chevron_right"></nx-icon>
         </nx-item>
     </nx-list>
   `

@@ -38,14 +38,16 @@ export class RegionPage implements OnInit {
         });
     }
 
-    private loadDetail(): Observable<ICompetition[]> {
-        let observable: Observable<ICompetition[]> = this.competitionService
-            .List(this.context.RegionId)
-            .filter(e=> e !== null);
+    private loadDetail(): Observable<any> {
+        let regionObservable: Observable<IRegion> = this.regionService
+            .Get(this.context.RegionId);
+        let competitionsObservable: Observable<ICompetition[]> = this.competitionService
+            .List(this.context.RegionId);
 
-        this.list = observable;
+        this.region = regionObservable;
+        this.list = competitionsObservable;
 
-        return observable;
+        return Observable.combineLatest(regionObservable, competitionsObservable);
     }
 
     private regionSubscription: Subscription;

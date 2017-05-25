@@ -9,26 +9,9 @@ export {MaterialIcon} from "./icons/material-icon";
 export {NxHeader} from "./list/header";
 export {NxListItem} from "./list/list-item";
 export {NxList} from "./list/list";
+export {NxIcon} from "./icons/nx-icon";
 export {NxNavBack} from "./nav/nav-back";
 export {NxTitle} from "./nav/nav-title";
 export {NxNav} from "./nav/nav";
 export {Paralax,ParallaxCollapsableItem,ParallaxExpandableItem} from "./parallax/parallax";
 export {NxPullToRefresh, NxPullToRefreshView, NxPullToRefreshAnimateElement} from "./pullToRefresh/pullToRefresh.control";
-
-// export var controls = [
-//     NxCard,
-//     NxContent,
-//     NxDrawer,
-//     MaterialFab,
-//     MaterialIcon,
-//     IonIcon, AlignLeft,AlignRight,NavIcon,
-
-//     NxHeader,
-//     NxListItem,
-//     NxList,
-//     NxNavBack,
-//     NxTitle,
-//     NxNav,
-//     Paralax, ParallaxCollapsableItem, ParallaxExpandableItem,
-//     NxPullToRefresh, NxPullToRefreshView, PullToRefreshAnimateElement
-// ];

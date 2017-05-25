@@ -36,14 +36,12 @@ import { Observable } from "rxjs";
                         <nx-item *ngFor="let grade of group.items | orderBy:'ClassName'"
                             [nsRouterLink]="[grade.Id]"
                             pageTransition="slide">
-                            <Label item-left class="material-icons icon-default" text="assignment" textWrap="true"></Label>
+                            <nx-icon item-left icon="assignment"></nx-icon>
 
                             <label [text]="grade.ClassName"></label>
                             <label class="note" [text]="grade.Competitors + ' competitors' "></label>
 
-
-                            <ion-icon item-right icon="ion-chevron-right"></ion-icon>
-
+                            <nx-icon item-right icon="chevron_right"></nx-icon>
                         </nx-item>
                     </nx-list>
                 </StackLayout>

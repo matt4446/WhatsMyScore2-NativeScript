@@ -33,14 +33,14 @@ import {StartListItems} from "./start.list.items.control";
                         </nx-header>
 
                         <nx-item *ngFor="let grade of group.items | orderBy:'ClassName'"
-                            [nsRouterLink]="[grade.Id]"
-                            pageTransition="slide">
+                            [nsRouterLink]="[grade.Id]" pageTransition="slide">
+
+                            <nx-icon item-left icon="assignment"></nx-icon>
 
                             <label [text]="grade.ClassName"></label>
                             <label class="note" [text]="grade.Competitors + ' competitors' "></label>
 
-                            <Label item-left class="material-icons text-center icon-default" text="assignment" textWrap="true"></Label>
-                            <ion-icon item-right icon="ion-chevron-right"></ion-icon>
+                            <nx-icon item-right icon="chevron_right"></nx-icon>
 
                         </nx-item>
                     </nx-list>

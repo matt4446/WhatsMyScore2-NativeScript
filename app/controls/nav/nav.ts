@@ -8,15 +8,16 @@ import { NxNavBack } from "./nav-back";
 import { Page } from "ui/page";
 
 @Component({
+    moduleId: module.id,
     selector:"nx-nav",
-    styleUrls: ["./controls/nav/nav.common.css"],
+    styleUrls: ["nav.common.css"],
     template:`
-        <StackLayout>
+        <StackLayout class="nx-nav-wrapper">
             <StackLayout class="nx-nav nx-nav-row1">
                 <GridLayout rows="*" columns="*,*,*">
                     <StackLayout orientation="horizontal" col="0"  verticalAlignment="center">
                         <nx-nav-back></nx-nav-back>
-                        <Label text="menu" [material-icon] class="md-light md-36" (tap)="menuButtonTap($event)"></Label>
+                        <nx-icon item-right icon="menu" (tap)="menuButtonTap($event)"></nx-icon>
                     </StackLayout>
 
                     <StackLayout orientation="horizontal" col="1" verticalAlignment="center">

@@ -16,12 +16,13 @@
                 </nx-header>               
                 <nx-item animate="true"
                     *ngFor="let competition of list|async" [nsRouterLink]="['competition', competition.Id]" pageTransition="slide">
-                    <ion-icon item-left icon="ion-ios-star" [align-right]></ion-icon>
+                    <nx-icon item-left icon="event"></nx-icon>
+                    
                     <label [text]="competition.Name"></label>
                     <label class="note" [text]="competition.LocationName"></label>
                     <label class="note" [text]="competition.StartDateTimeUtc | DisplayDate"></label>
                     
-                    <ion-icon item-right icon="ion-chevron-right"></ion-icon>
+                    <nx-icon item-right icon="chevron_right"></nx-icon>
                 </nx-item>
                                           
             </nx-list>

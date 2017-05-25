@@ -10,9 +10,7 @@ import { MaterialIcon } from "../icons/material-icon";
     selector:"nx-nav-back",
     styleUrls: ["nav.common.css"],
     template: `
-        <StackLayout orientation="horizontal" (tap)="back($event)">
-            <Label text="chevron_left" [material-icon] class="md-light md-36" textWrap="false"></Label>
-        </StackLayout>
+        <nx-icon icon="chevron_left" (tap)="back($event)"></nx-icon>
     `,
     providers: [],
 })

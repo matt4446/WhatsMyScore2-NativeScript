@@ -8,45 +8,32 @@
     
     <nx-content (refreshStarted)="refresh($event)">
         <StackLayout class="inset">
-            <!-- 
-            <nx-list>
-                <nx-header item-top>
-                    <label [text]="'Information & Documents' | Title" class="nx-header-title"></label>
-                </nx-header>
-                <nx-item animate="true" pageTransition="slide"
-                    [nsRouterLink]="['information']">
-                    <ion-icon item-left icon="ion-map"></ion-icon>
-                    <label [text]="'Information' | Title"></label>
-                    <ion-icon item-right icon="ion-chevron-right"></ion-icon>
-                </nx-item>
-                
-            </nx-list>
-            -->
-
             <nx-list>
                 <nx-header item-top>
                     <label [text]="'Competition & Results' | Title" class="nx-header-title"></label>
                 </nx-header>
                 <nx-item animate="true" pageTransition="slide" [nsRouterLink]="['startList']">
-                    <ion-icon item-left icon="ion-map"></ion-icon>
-                    <label [text]="'Start List' | Title"></label>
-                    <ion-icon item-right icon="ion-chevron-right"></ion-icon>
+                    <nx-icon item-left icon="assignment"></nx-icon>
+                    <label text="Start list"></label>
+                    <nx-icon item-right icon="chevron_right"></nx-icon>
                 </nx-item>
                 <nx-item animate="true" pageTransition="slide" [nsRouterLink]="['gradeList']">
-                    <label [text]="'Grades' | Title "></label>
+                    <nx-icon item-left icon="assignment"></nx-icon>
+                    <label text="Grades"></label>
                     <label class="note" [text]="gradeCount|async"></label>
                     
-                    <ion-icon item-right icon="ion-search"></ion-icon>
+                    <nx-icon item-right icon="chevron_right"></nx-icon>
                 </nx-item>
                 <nx-item animate="true" pageTransition="slide" [nsRouterLink]="['clubList']">
-                    <ion-icon item-left icon="ion-ios-people"></ion-icon>
-                    <label [text]="'Clubs' | Title"></label>
+                    <nx-icon item-left icon="assignment"></nx-icon>
+                    <label text="Clubs"></label>
                     <Label class="note" [text]="clubCount|async"></Label>
-                    <ion-icon item-right icon="ion-search"></ion-icon>
+                    <nx-icon item-right icon="chevron_right"></nx-icon>
                 </nx-item>
                 <nx-item animate="true" pageTransition="slide" [nsRouterLink]="['findCompetitor']">
-                    <ion-icon item-left icon="ion-ios-people"></ion-icon>
-                    <label [text]="'Find a Competitor' | Title"></label>
+                    <nx-icon item-left icon="search"></nx-icon>
+                    <label text="Find a Competitor"></label>
+                    <nx-icon item-right icon="chevron_right"></nx-icon>
                 </nx-item>
                 <!--<nx-item animate="true" 
                     [nxRoute]="[

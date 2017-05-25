@@ -9,12 +9,11 @@ import {Component} from "@angular/core";
         </nx-header>
 
         <nx-item [nsRouterLink]="['/regions']" animate="true" pageTransition="slide">
-            <ion-icon item-left icon="ion-map"></ion-icon>
-
+            <!--<ion-icon item-left icon="ion-map"></ion-icon>-->
+            <nx-icon item-left icon="today"></nx-icon>
             <label class="title" text="Leagues & Regions"></label>
             <label class="note" text="BUCS, SUTL ..."></label>
-
-            <ion-icon item-right icon="ion-chevron-right"></ion-icon>
+            <nx-icon item-right icon="chevron_right"></nx-icon>
         </nx-item>
     </nx-list>
   `

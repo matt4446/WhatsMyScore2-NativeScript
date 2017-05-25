@@ -18,7 +18,7 @@ import { Observable } from "rxjs/Rx";
             <competition-nav drawer-aside-left></competition-nav>
 
             <nx-nav>
-                <label class="nx-header-title" [text]="'Club List' | Title" style="horizontal-align:center"></label>
+                <label class="title" [text]="'Club List' | Title" style="horizontal-align:center"></label>
                 <ion-icon nav-right nav="true" icon="ion-android-favorite"></ion-icon>
             </nx-nav>
 
@@ -34,12 +34,13 @@ import { Observable } from "rxjs/Rx";
                                 'Region.Competition.ClubList.Competitors',
                                 { regionId: context.RegionId, competitionId: context.CompetitionId, clubId: club.Id }
                             ]">
-                            <ion-icon item-left icon="ion-clipboard"></ion-icon>
+                            <nx-icon item-left icon="assignment"></nx-icon>
 
                             <label [text]="club.Name"></label>
                             <label class="note" [text]="club.Competitors + ' competitors' "></label>
 
-                            <ion-icon item-right icon="ion-chevron-right"></ion-icon>
+                            <nx-icon item-right icon="chevron_right"></nx-icon>
+
                         </nx-item>
                     </nx-list>
                 </StackLayout>
