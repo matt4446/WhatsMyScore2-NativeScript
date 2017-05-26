@@ -5,7 +5,7 @@ import {Component} from "@angular/core";
   template: `
     <nx-list>
         <nx-header item-top>
-            <label [text]="'Start' | Title" class="nx-header-title"></label>
+            <label [text]="'Start' | Title" class="title"></label>
         </nx-header>
 
         <nx-item [nsRouterLink]="['/regions']" animate="true" pageTransition="slide">

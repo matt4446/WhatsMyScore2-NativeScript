@@ -12,6 +12,6 @@ export {NxList} from "./list/list";
 export {NxIcon} from "./icons/nx-icon";
 export {NxNavBack} from "./nav/nav-back";
 export {NxTitle} from "./nav/nav-title";
-export {NxNav} from "./nav/nav";
+export {NxNav, NxNavRow} from "./nav/nav";
 export {Paralax,ParallaxCollapsableItem,ParallaxExpandableItem} from "./parallax/parallax";
 export {NxPullToRefresh, NxPullToRefreshView, NxPullToRefreshAnimateElement} from "./pullToRefresh/pullToRefresh.control";

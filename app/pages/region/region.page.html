@@ -12,7 +12,7 @@
         <StackLayout class="inset">
             <nx-list>
                 <nx-header item-top>
-                    <label [text]="'Competitions' | Title" class="nx-header-title"></label>
+                    <label [text]="'Competitions' | Title" class="title"></label>
                 </nx-header>               
                 <nx-item animate="true"
                     *ngFor="let competition of list|async" [nsRouterLink]="['competition', competition.Id]" pageTransition="slide">

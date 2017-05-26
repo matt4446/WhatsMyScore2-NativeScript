@@ -1,5 +1,6 @@
+import {Observable, Subject, Subscription} from 'rxjs/Rx';
+
 import { Component } from '@angular/core';
-import {Observable, Subscription, Subject} from 'rxjs/Rx';
 import {GroupedObservable} from "rxjs/operator/groupBy";
 import {IGrade} from "../../../models/models";
 import {Logger} from "../../../providers/logger";
@@ -8,7 +9,7 @@ import {Logger} from "../../../providers/logger";
     selector : "StartListItems",
     template : `
         <nx-header item-top>
-            <label [text]="title | Title" class="nx-header-title"></label>
+            <label [text]="title | Title" class="title"></label>
         </nx-header>
         <nx-item><label text="hi"></label> 
         </nx-item>

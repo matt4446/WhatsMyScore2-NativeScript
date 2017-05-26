@@ -33,7 +33,7 @@ import { StackLayout } from "ui/layouts/stack-layout";
             <StackLayout class="nx-item inset-top inset-bottom">
                 <GridLayout #animateItem columns="40, *, 50" rows="auto" (tap)="tapWrapper($event)">
                     <!-- default layout -->
-                    <StackLayout col="0" row="0" class="icon-column icon-left nx-item-column" >
+                    <StackLayout col="0" row="0" class="nx-item-column" >
                         <ng-content select="[item-left]"></ng-content>
                     </StackLayout>
 
@@ -41,7 +41,7 @@ import { StackLayout } from "ui/layouts/stack-layout";
                         <ng-content></ng-content>
                     </StackLayout>
 
-                    <StackLayout col="2" row="0" class="icon-column icon-right nx-item-column">
+                    <StackLayout col="2" row="0" class="nx-item-column">
                         <ng-content select="[item-right]"></ng-content>
                     </StackLayout>
 

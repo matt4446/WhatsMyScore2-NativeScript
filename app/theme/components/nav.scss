@@ -1,0 +1,60 @@
+@import "../_app-variables.scss";
+
+$header-primary-backgound-color: $background-color-primary;
+
+$nav-background-color: $background-color-primary;
+$nav-background-color1: $nav-background-color;
+$nav-background-color2: lighten($nav-background-color, 4% );
+
+$nav-item-border-color: #c8c7cc;
+$nav-margin: $primary-content-padding;
+$font-color: $font-primary-title-color; 
+
+$nav-border-color1: lighten($nav-background-color, 2% );
+$nav-border-color2: lighten($nav-background-color, 6% );
+
+.nx-nav, .nx-nav-row {
+  height: 40;
+  padding : 0;
+
+  .title {
+      color: $font-color;
+      font-weight: bold;
+      text-align: center;
+  }
+  .nx-nav-col {
+      padding-left: $nav-margin;
+      vertical-align: center;
+  }
+  .nx-nav-col2 {
+      text-align: center;
+      vertical-align:center;
+      horizontal-align:center;
+  }
+  .nx-nav-col3 {
+      padding-right: $nav-margin;
+  }
+}
+
+.nx-nav-wrapper {
+    border-bottom-color: $nav-border-color2;
+    border-bottom-width: 1;
+    border-bottom-style: solid;
+}
+
+.row1 {
+    .nx-nav-row {
+        background-color: $nav-background-color1;
+    }   
+    border-bottom-color: $nav-border-color1;
+    border-bottom-width: 1;
+    border-bottom-style: solid;
+}
+.row2 {
+    .nx-nav-row {
+        background-color: $nav-background-color2;
+    }
+    border-bottom-color: $nav-border-color2;
+    border-bottom-width: 1;
+    border-bottom-style: solid;
+}

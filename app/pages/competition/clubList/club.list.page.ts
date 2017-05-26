@@ -26,7 +26,7 @@ import { Observable } from "rxjs/Rx";
                 <StackLayout class="inset">
                     <nx-list *ngFor="let clubGroup of list|async | groupBy: 'Letter' | orderBy:'key'">
                         <nx-header item-top>
-                            <label [text]="clubGroup.key" class="nx-header-title"></label>
+                            <label [text]="clubGroup.key" class="title"></label>
                         </nx-header>
 
                         <nx-item *ngFor="let club of clubGroup.items | orderBy:'Name'"

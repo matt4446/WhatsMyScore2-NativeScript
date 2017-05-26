@@ -12,7 +12,7 @@
             
             <nx-list *ngFor="let region of list|async">
                 <nx-header>
-                    <Label [text]='region.Name' class="nx-header-title"></Label>
+                    <Label [text]='region.Name' class="title"></Label>
                 </nx-header>
                 
                 <nx-item *ngIf="region.Logo" animate="true" [nsRouterLink]="[region.Id]" pageTransition="slide">

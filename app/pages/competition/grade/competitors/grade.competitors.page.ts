@@ -22,7 +22,7 @@ import {Logger} from "../../../../providers/logger";
         <nx-drawer>
             <competition-nav drawer-aside-left></competition-nav>
             <nx-nav>
-                <label class="nx-header-title" [text]="'Competitors' | Title" style="horizontal-align:center"></label>
+                <label class="title" [text]="'Competitors' | Title" style="horizontal-align:center"></label>
                 <ion-icon nav-right nav="true" icon="ion-android-favorite"></ion-icon>
             </nx-nav>
             <nx-content (refreshStarted)="refresh($event)">
@@ -30,8 +30,8 @@ import {Logger} from "../../../../providers/logger";
                     <StackLayout class="inset">
                         <nx-list *ngFor="let startGroup of list | groupBy: 'StartGroup'">
                             <nx-header item-top>
-                                <label *ngIf="groups > 1" [text]="'StartGroup: ' + startGroup.key | Title" class="nx-header-title"></label>
-                                <label *ngIf="groups <= 1" [text]="'StartGroup'| Title" class="nx-header-title"></label>
+                                <label *ngIf="groups > 1" [text]="'StartGroup: ' + startGroup.key | Title" class="title"></label>
+                                <label *ngIf="groups <= 1" [text]="'StartGroup'| Title" class="title"></label>
                             </nx-header>
                             <nx-item *ngFor="let person of startGroup.items | orderBy:'StartNumber'">
                                 <label item-left [text]="person.StartNumber"></label>

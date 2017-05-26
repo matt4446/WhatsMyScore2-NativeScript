@@ -29,7 +29,7 @@ import {StartListItems} from "./start.list.items.control";
                 <StackLayout class="inset">
                     <nx-list *ngFor="let group of list|async | groupBy: 'Discipline' | orderBy:'key'">
                         <nx-header item-top>
-                            <label [text]="group.key | Title" class="nx-header-title"></label>
+                            <label [text]="group.key | Title" class="title"></label>
                         </nx-header>
 
                         <nx-item *ngFor="let grade of group.items | orderBy:'ClassName'"

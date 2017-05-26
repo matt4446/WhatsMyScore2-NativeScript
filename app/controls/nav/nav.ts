@@ -9,30 +9,46 @@ import { Page } from "ui/page";
 
 @Component({
     moduleId: module.id,
+    selector: "nx-nav-row",
+    styleUrls: ["nav.common.css"],
+    template: `
+    <FlexboxLayout class="nx-nav-row">
+        <StackLayout class="nx-nav-col nx-nav-col1" orientation="horizontal" width="50">
+            <ng-content select="[nav-row-left]"></ng-content>
+        </StackLayout>
+        <StackLayout flexGrow="1" class="nx-nav-col nx-nav-col2" orientation="horizontal">
+            <ng-content select="[nav-row-title]"></ng-content>
+        </StackLayout>
+        <StackLayout class="nx-nav-col nx-nav-col3" orientation="horizontal" width="50">
+            <ng-content select="[nav-row-right]"></ng-content>
+        </StackLayout>
+    </FlexboxLayout>
+    `
+})
+export class NxNavRow {
+}
+
+@Component({
+    moduleId: module.id,
     selector:"nx-nav",
     styleUrls: ["nav.common.css"],
     template:`
         <StackLayout class="nx-nav-wrapper">
-            <StackLayout class="nx-nav nx-nav-row1">
-                <GridLayout rows="*" columns="*,*,*">
-                    <StackLayout orientation="horizontal" col="0"  verticalAlignment="center">
-                        <nx-nav-back></nx-nav-back>
-                        <nx-icon item-right icon="menu" (tap)="menuButtonTap($event)"></nx-icon>
-                    </StackLayout>
-
-                    <StackLayout orientation="horizontal" col="1" verticalAlignment="center">
-                        <ng-content select="[main-header]"></ng-content>
-                    </StackLayout>
-
-                    <StackLayout orientation="horizontal" col="2" class="text-right" verticalAlignment="center">
-                        <ng-content select="[nav-right]"></ng-content>
-                    </StackLayout>
-                </GridLayout>
+            <StackLayout class="row1">
+                <nx-nav-row>
+                    <nx-icon [nav-row-left] icon="menu" (tap)="menuButtonTap($event)"></nx-icon>
+                    <ng-content [nav-row-title]></ng-content>
+                    <ng-content [nav-row-right] select="[nav-right]"></ng-content>
+                </nx-nav-row>
             </StackLayout>
-            <!-- Page titles etc --->
-            <StackLayout class="nx-nav nx-nav-row2" verticalAlignment="center">
-                <ng-content></ng-content>
+            <StackLayout class="row2">
+                <nx-nav-row>
+                    <nx-nav-back [nav-row-left]></nx-nav-back>
+                    <ng-content [nav-row-title]></ng-content>
+                    <ng-content [nav-row-right] select="[nav-secondary-right]"></ng-content>
+                </nx-nav-row>
             </StackLayout>
+
         </StackLayout>
     `,
     inputs: [ "showBack", "showMenu", "title" ],

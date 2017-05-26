@@ -16,7 +16,7 @@ import { Observable } from "rxjs/Rx";
             <competition-nav drawer-aside-left></competition-nav>
 
             <nx-nav>
-                <label class="nx-header-title" text="Information" style="horizontal-align:center"></label>
+                <label class="title" text="Information" style="horizontal-align:center"></label>
                 <ion-icon nav-right nav="true" icon="ion-android-favorite"></ion-icon>
             </nx-nav>
 
@@ -24,7 +24,7 @@ import { Observable } from "rxjs/Rx";
                 <StackLayout class="inset">
                     <nx-list>
                         <nx-header item-top>
-                            <label [text]="'information' | Title" class="nx-header-title"></label>
+                            <label [text]="'information' | Title" class="title"></label>
                         </nx-header>
                         <nx-item>
                             <label text="Information"></label>

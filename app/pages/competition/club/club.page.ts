@@ -19,7 +19,7 @@ import {Logger} from "../../../providers/logger";
             <competition-nav drawer-aside-left></competition-nav>
 
             <nx-nav>
-                <label class="nx-header-title" [text]="'Club' | Title" style="horizontal-align:center"></label>
+                <label class="title" [text]="'Club' | Title" style="horizontal-align:center"></label>
                 <ion-icon nav-right nav="true" icon="ion-android-favorite"></ion-icon>
             </nx-nav>
 
@@ -28,7 +28,7 @@ import {Logger} from "../../../providers/logger";
                     <nx-list *ngFor="let group of list | orderBy:'key'">
                         <nx-header item-top>
                             <!-- grade name -->
-                            <label [text]="group.key" class="nx-header-title"></label>
+                            <label [text]="group.key" class="title"></label>
                         </nx-header>
                         <!-- competitors in that grade -->
 

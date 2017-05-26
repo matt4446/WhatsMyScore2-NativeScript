@@ -17,5 +17,9 @@ $font-primary-title-color2 : darken( $font-primary-title-color, 15% );
 $font-primary-title-color3 : darken( $font-primary-title-color, 20% );
 
 $background-color-primary : #01579b;
-$background-color-primary-lighter : lighten( $background-color-primary, 10% );
-$background-color-primary-darker : darken( $background-color-primary, 10% );
+$background-color-primary-lighter : #4f83cc;
+$background-color-primary-darker :#002f6c;
+
+$background-color-secondary : #eceff1;
+$background-color-secondary-lighter : #fff;
+$background-color-secondary-darker : #babdbe;

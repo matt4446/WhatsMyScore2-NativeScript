@@ -4,7 +4,7 @@
     <competition-nav drawer-aside-left></competition-nav>
     
     <nx-nav>
-        <label class="nx-header-title" text="Start List" style="horizontal-align:center"></label>
+        <label class="title" text="Start List" style="horizontal-align:center"></label>
         <ion-icon nav-right nav="true" icon="ion-android-favorite"></ion-icon>
     </nx-nav>
 
@@ -14,7 +14,7 @@
                 <!--<StartListItems [title]='gradeGroup.key' [items]='gradeGroup'></StartListItems>
                 -->
                 <nx-header item-top>
-                    <label [text]="gradeGroup.Discipline | Title" class="nx-header-title"></label>
+                    <label [text]="gradeGroup.Discipline | Title" class="title"></label>
                 </nx-header>
                 <nx-item *ngFor="#grade of gradeGroup.Grades">
                      <ion-icon item-left icon="ion-clipboard"></ion-icon>

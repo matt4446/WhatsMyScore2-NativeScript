@@ -5,7 +5,7 @@ import {Component} from "@angular/core";
   template: `
     <nx-list>
         <nx-header item-top>
-            <label [text]="'Search' | Title" class="nx-header-title"></label>
+            <label [text]="'Search' | Title" class="title"></label>
         </nx-header>
 
         <nx-item (tap)="incomplete($event)" animate="true">

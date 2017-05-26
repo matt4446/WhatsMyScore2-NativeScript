@@ -60,7 +60,7 @@ export class StartGroup{
         <nx-drawer>
             <competition-nav drawer-aside-left></competition-nav>
             <nx-nav>
-                <label class="nx-header-title" [text]="'Competitors' | Title" style="horizontal-align:center"></label>
+                <label class="title" [text]="'Competitors' | Title" style="horizontal-align:center"></label>
                 <ion-icon nav-right nav="true" icon="ion-android-favorite"></ion-icon>
             </nx-nav>
             <!--
@@ -75,8 +75,8 @@ export class StartGroup{
                         <template let-item="item">
                            <nx-list>
                                 <nx-header item-top>
-                                    <label *ngIf="groups > 1" [text]="'StartGroup: ' + item.key | Title" class="nx-header-title"></label>
-                                    <label *ngIf="groups <= 1" [text]="'StartGroup'| Title" class="nx-header-title"></label>
+                                    <label *ngIf="groups > 1" [text]="'StartGroup: ' + item.key | Title" class="title"></label>
+                                    <label *ngIf="groups <= 1" [text]="'StartGroup'| Title" class="title"></label>
                                 </nx-header>
                                 <start-group-list [data]="item.items"></start-group-list>
                            </nx-list> 
@@ -95,8 +95,8 @@ export class StartGroup{
                     <StackLayout class="inset">
                         <nx-list *ngFor="let startGroup of groupedStartList">
                             <nx-header item-top>
-                                <label *ngIf="groups > 1" [text]="'StartGroup: ' + startGroup.key | Title" class="nx-header-title"></label>
-                                <label *ngIf="groups <= 1" [text]="'StartGroup'| Title" class="nx-header-title"></label>
+                                <label *ngIf="groups > 1" [text]="'StartGroup: ' + startGroup.key | Title" class="title"></label>
+                                <label *ngIf="groups <= 1" [text]="'StartGroup'| Title" class="title"></label>
                             </nx-header>
                             <nx-item *ngFor="let person of startGroup.items | orderBy:'StartNumber'">
                                 <label item-left [text]="person.StartNumber"></label>

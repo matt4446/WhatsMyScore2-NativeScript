@@ -22,7 +22,7 @@ import {Logger} from "../../../providers/logger";
         <nx-drawer>
             <competition-nav drawer-aside-left></competition-nav>
             <nx-nav>
-                <label class="nx-header-title" [text]="'Competitors' | Title" style="horizontal-align:center"></label>
+                <label class="title" [text]="'Competitors' | Title" style="horizontal-align:center"></label>
                 <ion-icon nav-right nav="true" icon="ion-android-favorite"></ion-icon>
             </nx-nav>
 

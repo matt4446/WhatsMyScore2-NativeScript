@@ -15,7 +15,7 @@ import {Logger} from "../../../providers/logger";
             <competition-nav drawer-aside-left></competition-nav>
 
             <nx-nav>
-                <label class="nx-header-title" [text]="'Find Competitors' | Title" style="horizontal-align:center"></label>
+                <label class="title" [text]="'Find Competitors' | Title" style="horizontal-align:center"></label>
                 <ion-icon nav-right nav="true" icon="ion-android-favorite"></ion-icon>
             </nx-nav>
 
@@ -23,7 +23,7 @@ import {Logger} from "../../../providers/logger";
                 <StackLayout class="inset">
                     <nx-list *ngFor="let clubGroup of list | groupBy: 'Letter' | orderBy:'key'">
                         <nx-header item-top>
-                            <label [text]="clubGroup.key" class="nx-header-title"></label>
+                            <label [text]="clubGroup.key" class="title"></label>
                         </nx-header>
 
                         <nx-item *ngFor="let club of clubGroup.items | orderBy:'Name'">

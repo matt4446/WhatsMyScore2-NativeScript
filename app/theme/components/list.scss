@@ -1,0 +1,67 @@
+@import "../_app-variables.scss";
+
+$header-primary-backgound-color: $background-color-primary;
+
+$list-backgorund-color: #FFF;
+$list-item-border-color: #c8c7cc;
+$list-margin: $primary-content-padding;
+$list-header-text-color:$font-primary-title-color; 
+
+.nx-header {
+    padding: $list-margin;
+    border-radius: 4;
+    background-color: $header-primary-backgound-color;
+    color: $list-header-text-color;
+
+    .title {
+        font-weight: bold;
+    }
+}
+.nx-header-ext {
+    background-color:$header-primary-backgound-color;
+    border-color:$header-primary-backgound-color;
+}
+
+.nx-list {
+    margin-bottom: $list-margin;
+    border-width: 1;
+    border-radius: 4;
+    border-color: #eee;
+    background-color: $list-backgorund-color;
+}
+
+.nx-item {
+    border-bottom-width: 1;
+    border-color: $list-item-border-color;
+    border-style: solid;
+}
+
+.nx-item-top-border {
+    height: 1;
+    border-radius: 0;
+    border-width: 1;
+    border-color: $list-item-border-color;
+}
+
+.nx-item-column {
+   vertical-align: center;
+}
+
+.inset {
+    padding: $list-margin;
+}
+
+.inset-sides
+{
+    padding-left: $list-margin;
+    padding-right:$list-margin;
+}
+
+.inset-top {
+    padding-top: $list-margin;
+}
+
+.inset-bottom {
+    padding-bottom: $list-margin;
+}
+
