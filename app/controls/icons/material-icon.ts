@@ -7,7 +7,4 @@ import {Directive} from "@angular/core";
   }
 })
 export class MaterialIcon {
-    constructor() {
-      console.log("material-icon added");
-    }
 }

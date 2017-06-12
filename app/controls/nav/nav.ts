@@ -33,7 +33,7 @@ export class NxNavRow {
     selector:"nx-nav",
     styleUrls: ["nav.common.css"],
     template:`
-        <StackLayout class="nx-nav-wrapper">
+        <StackLayout class="nx-nav nx-nav-wrapper">
             <StackLayout class="row1">
                 <nx-nav-row>
                     <nx-icon [nav-row-left] icon="menu" (tap)="menuButtonTap($event)"></nx-icon>

@@ -1,7 +1,8 @@
 import * as Models from "../../../models/models";
 
 import {Component, OnInit} from "@angular/core";
-import {Observable, Subject, Subscription} from "rxjs/Rx";
+import { IGrade, IGroup } from "../../../models/models";
+import { Observable, ReplaySubject, Subject, Subscription } from "rxjs/Rx";
 
 import {AppRoutingService} from "../../../context/router.context";
 import {ClubService} from "../../../providers/leagues/clubService";
@@ -10,7 +11,6 @@ import {CompetitionNav} from "../../nav/competition.nav";
 import {CompetitionService} from "../../../providers/leagues/competitionService";
 import {GradeService} from "../../../providers/leagues/gradeService";
 import {GroupedObservable} from "rxjs/operator/groupBy";
-import {IGrade} from "../../../models/models";
 import {Logger} from "../../../providers/logger";
 import {StartListItems} from "./start.list.items.control";
 
@@ -27,13 +27,13 @@ import {StartListItems} from "./start.list.items.control";
 
             <nx-content (refreshStarted)="refresh($event)">
                 <StackLayout class="inset">
-                    <nx-list *ngFor="let group of list|async | groupBy: 'Discipline' | orderBy:'key'">
+                    <nx-list *ngFor="let group of list|async">
                         <nx-header item-top>
-                            <label [text]="group.key | Title" class="title"></label>
+                            <label [text]="group.Key | Title" class="title"></label>
                         </nx-header>
 
-                        <nx-item *ngFor="let grade of group.items | orderBy:'ClassName'"
-                            [nsRouterLink]="[grade.Id]" pageTransition="slide">
+                        <nx-item *ngFor="let grade of group.Items | async"
+                            [nsRouterLink]="[grade.Id]" animate="true" pageTransition="slide">
 
                             <nx-icon item-left icon="assignment"></nx-icon>
 
@@ -59,18 +59,46 @@ export class StartListPage implements OnInit {
         private gradeService : GradeService) {
     }
 
-    public list : Observable<IGrade[]>;
+    public list : Observable<IGroup<IGrade>[]>;
 
     public gradeSearch($event : any): void {
         this.logger.Notify("Search passed to start list");
         this.logger.Notify($event);
     }
 
+    private CreateViewModel(grades: Observable<IGrade[]>): void {
+
+        var groupMap: Observable<IGroup<IGrade>[]> = grades
+            .flatMap(e=> e)
+            .groupBy((x)=> x.Discipline)
+            .map(disciplineGroups => {
+                let items = disciplineGroups.publishReplay().refCount().toArray();
+
+                let group : IGroup<IGrade> = {
+                    Key: disciplineGroups.key,
+                    Items: items
+                };
+
+                group.Items.subscribe(y=> {
+                    this.logger.Notify(`${disciplineGroups.key}: ${y.length}`);
+                });
+                return group;
+            }).toArray();
+
+        this.list = groupMap;
+        this.list.subscribe(x => {
+            this.logger.Notify(`groups: ${x.length}`);
+        });
+    }
+
     public ngOnInit():void {
         this.logger.Notify("start-list-page ngOnInit");
 
         if(this.cache.HasGrades()) {
-            this.list = Observable.of(this.cache.Grades);
+            var items : Observable<IGrade[]> = Observable.of(this.cache.Grades);
+
+            this.CreateViewModel(items)           ;
+
             return;
         }
 
@@ -78,8 +106,10 @@ export class StartListPage implements OnInit {
     }
 
     public loadDetail(): Observable<IGrade[]> {
-        let observable: Observable<IGrade[]> = this.gradeService.List(this.context.CompetitionId);
-        this.list = observable;
+        let observable : Observable<IGrade[]> = this.gradeService
+            .List(this.context.CompetitionId);
+
+        this.CreateViewModel(observable);
 
         return observable;
     }

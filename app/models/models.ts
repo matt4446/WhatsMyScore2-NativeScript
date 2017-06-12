@@ -1,3 +1,5 @@
+import { Observable } from "rxjs/Rx";
+
 export interface IRegion {
     Id: number;
     Name: string;
@@ -5,15 +7,17 @@ export interface IRegion {
 }
 
 /*
-{"Id":17,
-"Name":"BUCS 2015 - Day 2 - Finals",
-"LocationName":"Sheffield Ice Arena",
-"CreatedUtc":"2015-02-22T10:41:22.197Z",
-"StartDateTimeUtc":"2015-02-22T09:00:00Z",
-"EndDateTimeUtc":"2015-08-23T16:00:00Z",
-"LastUploadedUtc":null,
-"Published":true,"
-Public":true,"Provider":{"Id":1,"Name":"BUCS","Logo":"content/logos/bucs-logo.jpg","CompetitionCount":null},"Notices":"None","Documents":null},{"Id":16,"Name":"BUCS 2015 - DAY 1 & Syncro","LocationName":"Sheffield Ice Arena","CreatedUtc":"2015-02-21T16:53:17.077Z","StartDateTimeUtc":"2015-02-21T09:00:00Z","EndDateTimeUtc":"2015-02-21T17:30:00Z","LastUploadedUtc":null,"Published":true,"Public":true,"Provider":{"Id":1,"Name":"BUCS","Logo":"content/logos/bucs-logo.jpg","CompetitionCount":null},"Notices":"None","Documents":null}
+    {"Id":17,
+    "Name":"BUCS 2015 - Day 2 - Finals",
+    "LocationName":"Sheffield Ice Arena",
+    "CreatedUtc":"2015-02-22T10:41:22.197Z",
+    "StartDateTimeUtc":"2015-02-22T09:00:00Z",
+    "EndDateTimeUtc":"2015-08-23T16:00:00Z",
+    "LastUploadedUtc":null,
+    "Published":true,
+    "Public":true,
+    "Provider":{"Id":1,"Name":"BUCS","Logo":"content/logos/bucs-logo.jpg","CompetitionCount":null},
+    "Notices":"None","Documents":null},{"Id":16,"Name":"BUCS 2015 - DAY 1 & Syncro","LocationName":"Sheffield Ice Arena","CreatedUtc":"2015-02-21T16:53:17.077Z","StartDateTimeUtc":"2015-02-21T09:00:00Z","EndDateTimeUtc":"2015-02-21T17:30:00Z","LastUploadedUtc":null,"Published":true,"Public":true,"Provider":{"Id":1,"Name":"BUCS","Logo":"content/logos/bucs-logo.jpg","CompetitionCount":null},"Notices":"None","Documents":null}
 */
 
 export interface ICompetition {
@@ -33,7 +37,7 @@ export interface ICompetitionGrades {
     Grades : IGrade[];
 }
 
-//{"Id":3359,"Name":"Bournemouth University","Letter":"B","Competitors":1,"Teams":[]}
+// {"Id":3359,"Name":"Bournemouth University","Letter":"B","Competitors":1,"Teams":[]}
 export interface IClub {
     Id: number;
     Letter: string;
@@ -41,7 +45,7 @@ export interface IClub {
     Competitors: number;
 }
 
-//{"Id":1719,"ClassName":"BUCS 1 Elite Male","CompetitorsInFinal":0,"Discipline":"Individual","Competitors":11,"Enabled":true,"Panel":3}
+// {"Id":1719,"ClassName":"BUCS 1 Elite Male","CompetitorsInFinal":0,"Discipline":"Individual","Competitors":11,"Enabled":true,"Panel":3}
 export interface IGrade {
     Id: number;
     ClassName: string;
@@ -50,6 +54,11 @@ export interface IGrade {
     Competitors: number;
     Enabled: boolean;
     Panel : number;
+}
+
+export interface IGroup<TModel> {
+    Key: any;
+    Items: Observable<TModel[]>;
 }
 
 export interface IPage {
@@ -108,9 +117,4 @@ interface ICorrectedScore {
     Value: number;
     Corrected: boolean;
     Correction: number;
-}
-
-export interface IGroupOfItem<T> {
-    key: any;
-    items: Array<T>;
 }

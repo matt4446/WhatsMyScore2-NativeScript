@@ -42,11 +42,12 @@ export class CompetitionPage implements OnInit {
 
         this.competition = this.competitionService.Get(competitionId);
         this.clubCount = this.clubService.List(competitionId).map(e=> e.length);
+
         let gradeList = this.gradeService.List(competitionId);
         this.gradeCount = gradeList.map(e=> e.length);
         this.competitorCount = gradeList.map(e=> {
             let competitors = e.map(a => a.Competitors);
-            let total = competitors.reduce((a,b) => a+=b );
+            let total: number = competitors.reduce((a,b) => a+=b );
             return total;
         });
 

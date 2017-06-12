@@ -1,5 +1,6 @@
 import {Http, Response} from "@angular/http";
 
+import {ICompetitor} from "../../models/models";
 import {Injectable} from "@angular/core";
 import {Logger} from "../logger";
 import { Observable } from "rxjs/Rx";
@@ -11,23 +12,24 @@ export class CompetitorService {
 
     }
 
-    public ListGradeCompetitors(competitionId: number, gradeId: number): Observable<Response> {
+    public ListGradeCompetitors(competitionId: number, gradeId: number): Observable<ICompetitor[]> {
         let base: string = Settings.WebApiBaseUrl;
-        let route: string = base + `${base}/Api/Competition/${competitionId}/Competitors/Grade2/${gradeId}`;
+        let route: string = `${base}/Api/Competition/${competitionId}/Competitors/Grade2/${gradeId}`;
 
-        var observable: Observable<Response> = this.http.get(route);
+        let observable: Observable<Response> = this.http.get(route);
+        let result: Observable<ICompetitor[]> = observable.map(e=> e.json());
 
-        return observable;
+        return result;
     }
 
-    public ListClubCompetitors(competitionId: number, clubId: number): Observable<Response>  {
+    public ListClubCompetitors(competitionId: number, clubId: number): Observable<ICompetitor[]>  {
         let base: string = Settings.WebApiBaseUrl;
         let route: string = `${base}/Api/Competition/${competitionId}/Competitors/Club/${clubId}`;
 
-        var observable: Observable<Response> = this.http.get(route);
-
+        let observable: Observable<Response> = this.http.get(route);
+        let result: Observable<ICompetitor[]> = observable.map(e=> e.json());
         // this.logger.NotifyResponse(observable);
 
-        return observable;
+        return result;
     }
 }

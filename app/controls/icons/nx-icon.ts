@@ -6,14 +6,23 @@ import { Component, EventEmitter, Input } from "@angular/core";
     styleUrls: ["nx-icon.css"],
     outputs: ["tap"],
     template: `
-        <StackLayout class="icon-wrapper2" (tap)="click($event)">
-            <StackLayout class="icon-wrapper">
-                <Label class="icon-text" [material-icon] [text]="iconText"></Label>
+
+        <GridLayout rows="*" columns="*" (tap)="click($event)">
+            <StackLayout class="icon-layer-back">
             </StackLayout>
-        </StackLayout>
+            <StackLayout  class="icon-layer-front">
+            </StackLayout>
+            <StackLayout class="icon-wrapper">
+                <Label *ngIf="iconText" class="icon-text" [material-icon] [text]="iconText"></Label>
+                <Label *ngIf="justText" class="icon-text" [text]="justText"></Label>
+            </StackLayout>
+
+        </GridLayout>
     `
 })
 export class NxIcon {
+    @Input("text")
+    public justText: string;
 
     @Input("icon")
     public iconText: string;

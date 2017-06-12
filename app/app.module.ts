@@ -9,10 +9,12 @@ import * as Templates from "./pages/templates.ref";
 import { NO_ERRORS_SCHEMA, NgModule } from "@angular/core";
 
 import { AppComponent } from "./app.component";
+import { MomentModule } from "angular2-moment";
 import { NativeScriptHttpModule } from "nativescript-angular/http";
 import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 import { NativeScriptRouterModule } from "nativescript-angular/router";
 import { NativeScriptUISideDrawerModule } from "nativescript-telerik-ui/sidedrawer/angular";
+import { NgPipesModule } from "ngx-pipes";
 
 @NgModule({
     bootstrap: [AppComponent],
@@ -21,7 +23,9 @@ import { NativeScriptUISideDrawerModule } from "nativescript-telerik-ui/sidedraw
         NativeScriptHttpModule,
         NativeScriptRouterModule,
         NativeScriptRouterModule.forRoot(AppRoutes.appRoutes),
-        NativeScriptUISideDrawerModule
+        NativeScriptUISideDrawerModule,
+        NgPipesModule,
+        MomentModule
     ],
     declarations: [
         AppComponent,
@@ -79,8 +83,8 @@ import { NativeScriptUISideDrawerModule } from "nativescript-telerik-ui/sidedraw
 
         Pipes.DisplayDate,
         Pipes.FormScoreFormatter,
-        Pipes.OrderByPipe,
-        Pipes.GroupByPipe,
+        // Pipes.OrderByPipe,
+        // Pipes.GroupByPipe,
         Pipes.ScoreFormatter,
         Pipes.TitleTransform
     ],
@@ -103,31 +107,10 @@ import { NativeScriptUISideDrawerModule } from "nativescript-telerik-ui/sidedraw
         //     deps: [PageRoute]
         // }
     ],
-    schemas: [NO_ERRORS_SCHEMA],
-    // selector: "main",
-    // designMode: true,
-    // providers: [Logger, 
-    //     GradeCache, 
-    //     ClubCache,
-    //     CompetitionCache, 
-    //     RegionCache
-    // ],
-    // registerElements: [{
-    //     name: "CardView",
-    //     resolver: () => require("nativescript-cardview").CardView
-    // },
-    // {
-    //     name: "PullToRefresh",
-    //     resolver: () => require("nativescript-pulltorefresh").PullToRefresh 
-    // },{
-    //     name: "VideoPlayer",
-    //     resolver: () => require("nativescript-videoplayer").Video
-    // }],
-    // directives: []
+    schemas: [NO_ERRORS_SCHEMA]
 })
 export class AppModule {
-    constructor(private logger:Providers.Logger)
-    {
+    constructor(private logger:Providers.Logger) {
         this.logger.Notify("Main Page Starting");
     }
 }

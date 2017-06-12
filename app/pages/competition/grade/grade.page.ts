@@ -15,6 +15,7 @@ import {CompetitorResult} from "../../templates/competitor.results";
 import {CompetitorService} from "../../../providers/leagues/competitorService";
 import {GradeService} from "../../../providers/leagues/gradeService";
 import {Logger} from "../../../providers/logger";
+import { Observable } from "rxjs";
 
 @Component({
     selector: "grade-competitors-page",
@@ -28,10 +29,10 @@ import {Logger} from "../../../providers/logger";
 
             <StackLayout class="inset">
                 <nx-list>
-                    <PullToRefresh [pull-list-view] 
+                    <PullToRefresh [pull-list-view]
                         (refreshStarted)="refreshStarted($event)"
                         (refreshCompleted)="refreshCompleted()">
-                        <ListView [items]="list" [pull-to-animate]>
+                        <ListView [items]="list|async" [pull-to-animate]>
                             <template let-item="item">
                                 <competitor-result [competitor]="item"></competitor-result>
                             </template>
@@ -55,7 +56,7 @@ export class GradeCompetitorsPage implements OnInit {
         this.logger.Notify("grade list page started");
     }
 
-    public list: Models.ICompetitorContext[] = [];
+    public list: Observable<Models.ICompetitorContext[]>;
 
     public gradeSearch($event: any): void {
         this.logger.Notify("Search passed to region");
@@ -68,37 +69,40 @@ export class GradeCompetitorsPage implements OnInit {
         this.loadDetail();
     }
 
-    public loadDetail()  {
-        let obseravable = this.competitorService
+    public loadDetail(): Observable<Models.ICompetitor[]> {
+        let obseravable: Observable<Models.ICompetitor[]> = this.competitorService
             .ListGradeCompetitors(this.context.CompetitionId, this.context.GradeId);
 
-        obseravable.map(e => e.json())
+        let viewModel = obseravable
+            .map((e) => {
+                let list: Models.ICompetitor[] = e.sort((a,b) => {
+                    return a.FinalRank - b.FinalRank;
+                });
+                return list;
+            })
             .map((e : Models.ICompetitor[]) => {
-                let contexts = e.map(item => {
+                let contexts: Models.ICompetitorContext[] = e.map(item => {
                     return {
                         Expanded : false,
                         Competitor : item
                     };
                 });
                 return contexts;
-            })
-            .subscribe((e : Models.ICompetitorContext[]) => {
-                this.list = e.sort((a,b) => {
-                    return a.Competitor.FinalRank - b.Competitor.FinalRank;
-                });
             });
+
+        this.list = viewModel;
 
         return obseravable;
     }
 
-    public refreshStarted(args: any) {
+    public refreshStarted(args: any): void {
         this.logger.Notify("Grade: refresh starting");
         this.loadDetail().subscribe(() => {
             args.completed();
         });
     }
-    
-    public refreshCompleted() {
+
+    public refreshCompleted(): void {
         this.logger.Notify("Grade: refresh completed");
     }
 

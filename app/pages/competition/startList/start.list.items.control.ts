@@ -1,6 +1,6 @@
-import {Observable, Subject, Subscription} from 'rxjs/Rx';
+import {Observable, Subject, Subscription} from "rxjs/Rx";
 
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
 import {GroupedObservable} from "rxjs/operator/groupBy";
 import {IGrade} from "../../../models/models";
 import {Logger} from "../../../providers/logger";
@@ -11,10 +11,10 @@ import {Logger} from "../../../providers/logger";
         <nx-header item-top>
             <label [text]="title | Title" class="title"></label>
         </nx-header>
-        <nx-item><label text="hi"></label> 
+        <nx-item><label text="hi"></label>
         </nx-item>
         <nx-item *ngFor="#grade of grades | async">
-            <label text="hi"></label> 
+            <label text="hi"></label>
             <label [text]="grade.Name"></label>
         </nx-item>
     `,
@@ -22,13 +22,13 @@ import {Logger} from "../../../providers/logger";
 })
 export class StartListItems {
     constructor(private logger: Logger) {
-        
+
     }
-    
+
     public title = "";
     public grades: Observable<IGrade[]>;
-    
-    private _items: GroupedObservable<string,IGrade>
+
+    private _items: GroupedObservable<string,IGrade>;
     public get items() : GroupedObservable<string,IGrade> {
         return this._items;
     };

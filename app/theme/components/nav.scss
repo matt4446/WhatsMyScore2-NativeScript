@@ -1,22 +1,19 @@
 @import "../_app-variables.scss";
 
-$header-primary-backgound-color: $background-color-primary;
-
 $nav-background-color: $background-color-primary;
 $nav-background-color1: $nav-background-color;
-$nav-background-color2: lighten($nav-background-color, 4% );
+$nav-background-color2: lighten($nav-background-color, 5% );
 
-$nav-item-border-color: #c8c7cc;
 $nav-margin: $primary-content-padding;
 $font-color: $font-primary-title-color; 
 
-$nav-border-color1: lighten($nav-background-color, 2% );
-$nav-border-color2: lighten($nav-background-color, 6% );
+$nav-border-color1: lighten($nav-background-color, 1% );
+$nav-border-color2: lighten($nav-background-color, 2% );
 
-.nx-nav, .nx-nav-row {
+.nx-nav-row {
   height: 40;
   padding : 0;
-
+    
   .title {
       color: $font-color;
       font-weight: bold;
@@ -28,8 +25,11 @@ $nav-border-color2: lighten($nav-background-color, 6% );
   }
   .nx-nav-col2 {
       text-align: center;
-      vertical-align:center;
       horizontal-align:center;
+
+      label {
+        vertical-align: center;
+      }
   }
   .nx-nav-col3 {
       padding-right: $nav-margin;
@@ -57,4 +57,29 @@ $nav-border-color2: lighten($nav-background-color, 6% );
     border-bottom-color: $nav-border-color2;
     border-bottom-width: 1;
     border-bottom-style: solid;
+}
+
+/* icon overrides */
+$nav-icon-background-1: lighten($nav-background-color, 6%);
+$nav-icon-background-2: lighten($nav-background-color, 8%);
+$nav-icon-border-color1: darken($nav-icon-background-1, 2%); 
+$nav-icon-border-color2: darken($nav-icon-background-1, 4%); 
+$nav-icon-font-color: #fff;
+
+
+.nx-nav {
+    .icon-layer-front {
+        background-color: $nav-icon-background-1;
+        border-color: $nav-icon-border-color1;
+    }
+    .icon-layer-back{
+        background-color: $nav-icon-background-2;
+        border-color: $nav-icon-border-color2;
+    }
+
+    .icon-wrapper {
+        .icon-text {
+            color: $nav-icon-font-color;
+        }
+    }
 }

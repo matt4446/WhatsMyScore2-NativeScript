@@ -20,7 +20,11 @@
                     
                     <label [text]="competition.Name"></label>
                     <label class="note" [text]="competition.LocationName"></label>
-                    <label class="note" [text]="competition.StartDateTimeUtc | DisplayDate"></label>
+                    <StackLayout orientation="horizontal">
+                        <label class="note" [text]="competition.StartDateTimeUtc | amDateFormat:'llll'"></label>
+                        <label class="note" text=", "></label>
+                        <label class="note" [text]="competition.StartDateTimeUtc | amTimeAgo"></label>
+                    </StackLayout>
                     
                     <nx-icon item-right icon="chevron_right"></nx-icon>
                 </nx-item>

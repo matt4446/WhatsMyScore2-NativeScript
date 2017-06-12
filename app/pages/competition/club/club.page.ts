@@ -10,6 +10,7 @@ import {CompetitionService} from "../../../providers/leagues/competitionService"
 import {CompetitorResult} from "../../templates/competitor.results";
 import {GradeService} from "../../../providers/leagues/gradeService";
 import {Logger} from "../../../providers/logger";
+import { Observable } from "rxjs/Rx";
 
 @Component({
     selector: "club-list-page",
@@ -25,14 +26,14 @@ import {Logger} from "../../../providers/logger";
 
             <nx-content (refreshStarted)="refresh($event)">
                 <StackLayout class="inset">
-                    <nx-list *ngFor="let group of list | orderBy:'key'">
+                    <nx-list *ngFor="let group of List | async">
                         <nx-header item-top>
                             <!-- grade name -->
                             <label [text]="group.key" class="title"></label>
                         </nx-header>
                         <!-- competitors in that grade -->
 
-                        <competitor-result *ngFor="let item of group.items" [competitor]="item"></competitor-result>
+                        <competitor-result *ngFor="let item of group.items | async" [competitor]="item"></competitor-result>
                     </nx-list>
                 </StackLayout>
             </nx-content>
@@ -48,64 +49,53 @@ export class ClubPage implements OnInit {
         private cache: CompetitionCache) {
         this.logger.Notify("club page started");
     }
-    
-    public list: Models.IGroupOfItem<Models.ICompetitorContext>[];
 
-    public clubSearch($event : any) {
+    public list: Observable<Models.IGroup<Models.ICompetitorContext>[]>;
+
+    public clubSearch($event : any): void {
         this.logger.Notify("Search passed to region");
         this.logger.Notify($event);
-        //this.logger.Notify("Search Term in Regions Page: " + $event.Value);
     }
 
-    public ngOnInit() {
+    public ngOnInit(): void {
         this.logger.Notify("club-page ngOnInit");
 
         this.loadDetail();
     }
 
-    public loadDetail() {
-        let observable = this.clubService
-            .ListCompetitors(this.context.CompetitionId, this.context.ClubId)
-            .map(e=> e.json());
+    public loadDetail(): Observable<Models.ICompetitor[]> {
+        let observable: Observable<Models.ICompetitor[]> = this.clubService
+            .ListCompetitors(this.context.CompetitionId, this.context.ClubId);
 
-        observable.subscribe((e : Models.ICompetitor[])=> {
-            var projection : Models.ICompetitorContext[] = e.map((competitor) => {
-                let item : Models.ICompetitorContext = {
-                    Expanded : false,
-                    Competitor: competitor
+        this.list = observable
+            .flatMap(e=> e)
+            .groupBy(e=> e.Group)
+            .map(e => {
+                let items: Observable<Models.ICompetitorContext> = e.map(e=> {
+                        let context : Models.ICompetitorContext = {
+                            Competitor : e,
+                            Expanded : false
+                        };
+                        return context;
+                    })
+                    .publishReplay()
+                    .refCount();
+
+                let group: Models.IGroup<Models.ICompetitorContext> = {
+                    Key : e.key,
+                    Items: items.toArray()
                 };
-                return item;
-            });
 
-            this.list = this.groupByCompetition(projection);
-        });
+                return group;
+            })
+            .toArray();
 
         return observable;
     }
 
-    public refresh(args: any) {
+    public refresh(args: any):void {
         this.loadDetail().subscribe(() => {
             args.completed();
         });
-    }
-
-    private groupByCompetition(items: Models.ICompetitorContext[]) {
-        let groups : Models.IGroupOfItem<Models.ICompetitorContext>[] = [];
-
-        items.forEach(item => {
-            let existing = groups.filter(e=> e.key === item.Competitor.Group);
-
-            if(existing.length > 0) {
-                existing[0].items.push(item);
-                return;
-            }
-
-            groups.push({
-                key : item.Competitor.Group,
-                items: [ item ]
-            });
-        });
-
-        return groups;
     }
 }

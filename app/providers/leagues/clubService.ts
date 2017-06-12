@@ -1,5 +1,5 @@
 import {Http, Response} from "@angular/http";
-import {IClub, ICompetition} from "../../models/models";
+import {IClub, ICompetition, ICompetitor} from "../../models/models";
 
 import {AppRoutingService} from "../../context/router.context";
 import {ClubCache} from "./clubCache";
@@ -52,15 +52,16 @@ export class ClubService {
         return result;
     }
 
-    public ListCompetitors(competitionId: number, clubId: number): Observable<Response> {
+    public ListCompetitors(competitionId: number, clubId: number): Observable<ICompetitor[]> {
 
         let base: string = Settings.WebApiBaseUrl;
         let route: string = `${base}/Api/Competition/${competitionId}/Competitors/Club2/${clubId}`;
-        let promise: Observable<Response> = this.http.get(route);
+        let request: Observable<Response> = this.http.get(route);
+        let result: Observable<ICompetitor[]> = request.map(response => response.json());
 
-        this.logger.NotifyResponse(promise);
+        this.logger.NotifyResponse(request);
 
-        return promise;
+        return result;
     }
 
 }
